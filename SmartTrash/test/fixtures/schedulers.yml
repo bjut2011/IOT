@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sendval: MyString
+  sendflag: 1
+  week: 1
+  hr: 1
+  min: 1
+  sec: 1
+
+two:
+  name: MyString
+  sendval: MyString
+  sendflag: 1
+  week: 1
+  hr: 1
+  min: 1
+  sec: 1

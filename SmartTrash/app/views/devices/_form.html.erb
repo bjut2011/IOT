@@ -1,0 +1,49 @@
+<%= form_for(@device) do |f| %>
+  <% if @device.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@device.errors.count, "error") %> prohibited this device from being saved:</h2>
+
+      <ul>
+      <% @device.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.collection_select :project_id, Project.all, :id, :name %>    
+  </div>
+  <div class="field">
+    <%= f.label :device_name %><br>
+    <%= f.text_field :device_name %>
+  </div>
+  <div class="field">
+    <%= f.label :device_mark %><br>
+    <%= f.text_field :device_mark %>
+  </div>
+  <div class="field">
+    <%= f.label :device_details %><br>
+    <%= f.text_field :device_details %>
+  </div>
+  <div class="field">
+    <%= f.label :device_img %><br>
+    <%= f.text_field :device_img %>
+  </div>
+  <div class="field">
+    <%= f.label :create_time %><br>
+    <%= f.time_select :create_time %>
+  </div>
+  <div class="field">
+    <%= f.label :lon %><br>
+    <%= f.text_field :lon %>
+  </div>
+  <div class="field">
+    <%= f.label :lat %><br>
+    <%= f.text_field :lat %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Alarms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Alarmtype</th>
+      <th>Alarmtype name</th>
+      <th>Alarmtypediv</th>
+      <th>Target</th>
+      <th>Target name</th>
+      <th>Switchval</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @alarms.each do |alarm| %>
+      <tr>
+        <td><%= alarm.name %></td>
+        <td><%= alarm.alarmType %></td>
+        <td><%= alarm.alarmType_Name %></td>
+        <td><%= alarm.alarmTypeDiv %></td>
+        <td><%= alarm.target %></td>
+        <td><%= alarm.target_name %></td>
+        <td><%= alarm.switchVal %></td>
+        <td><%= link_to 'Show', alarm %></td>
+        <td><%= link_to 'Edit', edit_alarm_path(alarm) %></td>
+        <td><%= link_to 'Destroy', alarm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Alarm', new_alarm_path %>

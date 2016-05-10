@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Schedulers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Sendval</th>
+      <th>Sendflag</th>
+      <th>Week</th>
+      <th>Hr</th>
+      <th>Min</th>
+      <th>Sec</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedulers.each do |scheduler| %>
+      <tr>
+        <td><%= scheduler.name %></td>
+        <td><%= scheduler.sendval %></td>
+        <td><%= scheduler.sendflag %></td>
+        <td><%= scheduler.week %></td>
+        <td><%= scheduler.hr %></td>
+        <td><%= scheduler.min %></td>
+        <td><%= scheduler.sec %></td>
+        <td><%= link_to 'Show', scheduler %></td>
+        <td><%= link_to 'Edit', edit_scheduler_path(scheduler) %></td>
+        <td><%= link_to 'Destroy', scheduler, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scheduler', new_scheduler_path %>

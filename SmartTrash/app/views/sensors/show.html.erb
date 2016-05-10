@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sensor.name %>
+</p>
+
+<p>
+  <strong>Sensortype:</strong>
+  <%= @sensor.sensorType %>
+</p>
+
+<p>
+  <strong>Sensorsign:</strong>
+  <%= @sensor.sensorSign %>
+</p>
+
+<p>
+  <strong>Sensorunit:</strong>
+  <%= @sensor.sensorUnit %>
+</p>
+
+<%= link_to 'Edit', edit_sensor_path(@sensor) %> |
+<%= link_to 'Back', sensors_path %>

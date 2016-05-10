@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0025)http://#/ -->
+<HTML><HEAD><TITLE>New Connection平台</TITLE>
+<META charset=utf-8>
+<META name=renderer content=webkit>
+<META content=IE=Edge,chrome=1 http-equiv=X-UA-Compatible>
+<META content=251034410766174610006636 property="qc:admins">
+<META content=98f31a051ed51991 property="wb:webmaster">
+<META name=description 
+content="New Connection平台是由打造的PaaS物联网开放平台。平台能够帮助开发者轻松实现设备接入与设备连接， 快速完成产品开发部署，为智能硬件、智能家居、可穿戴式设备等消费电子产品，无线抄表、智慧能源等行业物联网应用，提供综合性的物联网解决方案，实现物联网设备的数据获取，数据存储，数据展现。">
+<META name=keywords 
+content=" 智慧城市 物联网开放平台 物联网应用 可穿戴式 物联网云平台 物联网解决方案 物联网 创客 智能硬件 开发者 车联网 设备接入 智能家居 设备云">
+<LINK rel="shortcut icon" type=image/x-icon href="http://#/static/files/favicon.ico">
+<LINK rel=stylesheet type=text/css href=<%=  "../css/home/global_60a4ced.css" %> >
+<LINK rel=stylesheet type=text/css href=<%=  "../css/project/project_list_aba33b8.css" %> >
+<SCRIPT>
+            var IOT = {
+                userData: {
+                    nickname: 'super2016',
+                    avatar: 'http://#/123/2015/08/07/644b9c547ffcc44a195273804ee25f39.jpg'
+                },
+                staticUrl: 'http://#/static',
+                host: '#',
+                imageUrl: 'http://#',
+                defaultAvatar: 'http://#/static/files/image_cliper/default-200.jpg',
+                i18n: 'zh_CN'
+            };
+        </SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.7601.18913"></HEAD>
+<BODY><!--[if lte IE 7]>
+        <div class="alert-box alert header-alert">
+            你正在使用本平台<strong>不支持</strong>的IE低级浏览器，<br />为了更好的使用New Connection平台，请您立即<a class="blue" href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie" target="_blank">升级IE浏览器</a>或者用更快更安全的<a class="blue" href="https://www.google.com/chrome/browser/desktop/index.html?hl=zh-CN&standalone=1" target="_blank">谷歌浏览器Chrome</a> 。
+        </div>
+        <![endif]-->
+
+<div class="header">
+    <div class="h-top grid">
+        <a href="/" class="logo fl " title="首页"></a>
+        <div class="info fr clearfix ">
+            <!-- <div class="search fl">
+                <span><input type="text"/></span>
+                <span class="po-img"><a href="#"><img src="/static/common/img/search.png" alt=""/></a></span>
+            </div> -->
+            <a href="/about" class="a-style fl">关于我们</a>
+            <a href="/about/contact" class="a-style fl">联系我们</a>
+                <div class="e5 fl">|</div>
+            <% if current_admin %>
+                <div class="fl tran" style="width: 121px;">
+                    <a href="/logout" data-method="delete" class="a-style fl hide" style="display: none;">退出登录</a>
+                    <a href="/user/baseinfo" class="a-style fl hide" style="display: none;">设置</a>
+                    <a href="/favorite" class="a-style fl hide" style="display: none;">我的收藏</a>
+                    <a class="a-style fr unhover"><%= current_admin.name %></a>
+                </div>
+            <% else %>
+                 <a href="/reg/tel" class="a-style fl">注册</a>
+                <a href="/login" class="a-style fl">登录</a>
+            
+            </div>
+            <% end %>
+
+
+            <!--<a href="javascript:;" class="a-style fl" onclick="IOT.setI18n('en_US', '/');">English</a>
+            <div class="e5 fl">|</div>
+            <a href="javascript:;" class="a-style fl" onclick="IOT.setI18n('zh_CN', '/');">中文</a>
+            -->
+        </div>
+    </div>
+</div>
+<div class="develop-nav">
+    <div class="grid">
+        <a href="/user/baseinfo" title="账号设置">
+            <img class="develop-avatar j_avatar_img" src="http://upfiles.heclouds.com/123/2015/08/07/644b9c547ffcc44a195273804ee25f39.jpg">
+        </a>
+        <em><%= current_admin.name %></em>
+        <ul>
+            <li>
+                <a class="active" href="/project/index">项目</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="project-wrapper">
+        <div class="grid">
+            <div class="sub-head">
+                <div class="sub-title">
+                    <span>项目总数：<%= @projects.size %>个</span>
+                    <a href="/projects/new" class="button small hollow radius">新建项目</a>
+                </div>
+            </div>
+            <ul class="project-list clearfix ">
+                    <% @projects.each  do |pr| %>
+                                <li>
+                    <div class="project-item j_project_item" data-pid="59957">
+                        <div class="project-header">
+                            <a class="project-name" href="/projects/<%= pr.id %>"><%= pr.name %></a>
+                            <a class="icon-trash j_project_del project-change" href="#" title="删除"></a>
+                            <a class="icon-pencil j_project_edit project-change" href="/project/precreate?pid=59957" title="编辑"></a>
+                        </div>
+                        <div class="project-content">
+                            <a class="project-details" href="/devices?pid=<%= pr.id %>">
+                                <i class="icon-desktop list-icon"></i>
+                                <span>设备总数：<%= pr.device.size%>台</span>
+                            </a>
+                            <a class="project-details" href="/apps?pid=59957">
+                                <i class="icon-macstore list-icon"></i>
+                                <span>应用个数：2个</span>
+                            </a>
+                            <a class="project-details" href="/apikey?pid=59957">
+                                <i class="icon-key list-icon"></i>
+                                <span>APIKey数：2个</span>
+                            </a>
+                            <a class="project-details" href="/triggers?pid=59957">
+                                <i class="icon-cog list-icon"></i>
+                                <span>触发器数：1个</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                  <% end %> 
+                                <li>
+                    <div class="project-item j_project_item even" data-pid="59094">
+                        <div class="project-header">
+                            <a class="project-name" href="/project/detail?pid=59094">默认项目</a>
+                            <a class="icon-trash j_project_del project-change" href="#" title="删除"></a>
+                            <a class="icon-pencil j_project_edit project-change" href="/project/precreate?pid=59094" title="编辑"></a>
+                        </div>
+                        <div class="project-content">
+                            <a class="project-details" href="/device?pid=59094">
+                                <i class="icon-desktop list-icon"></i>
+                                <span>设备总数：1台</span>
+                            </a>
+                            <a class="project-details" href="/app?pid=59094">
+                                <i class="icon-macstore list-icon"></i>
+                                <span>应用个数：0个</span>
+                            </a>
+                            <a class="project-details" href="/apikey?pid=59094">
+                                <i class="icon-key list-icon"></i>
+                                <span>APIKey数：2个</span>
+                            </a>
+                            <a class="project-details" href="/trigger?pid=59094">
+                                <i class="icon-cog list-icon"></i>
+                                <span>触发器数：0个</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                            </ul>
+            <div class="ui-pager">
+                
+
+<ul>
+    
+                    
+    
+    
+                
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+        
+                            
+
+                        
+
+        
+    
+
+    
+    
+    
+    
+    
+
+    
+</ul>            </div>
+        </div>
+    </div>
+
+<DIV class="footer clearfix ">
+<DIV class="f-info grid clearfix">
+<UL class=clearfix>
+  <LI class=mr50>
+  <H3>关于我们</H3>
+  <DIV class=u-l-red></DIV>
+  <P class=mb15><A href="http://#/about">我们是谁</A></P>
+  <P class=mb15><A href="http://#/case">成功案例</A></P>
+  <P class=mb15><A href="http://#/try">体验产品</A></P>
+  <P><A href="http://#/" target=_blank>加入我们</A></P></LI>
+  <LI class=mr50>
+  <H3>开发者</H3>
+  <DIV class=u-l-red></DIV>
+  <P class=mb15><A href="http://#/develop">快速接入设备</A></P>
+  <P class=mb15><A href="http://#/apidoc">API文档</A></P>
+  <P class=mb15><A href="http://#/help">接入文档</A></P>
+  <P><A href="http://#/debugtool">调试工具</A></P></LI>
+  <LI class=mr180>
+  <H3>友情链接</H3>
+  <DIV class=u-l-red></DIV>
+  <P class=mb15><A href="http://#/" target=_blank></A></P>
+  <P class=mb15><A href="http://#/priv-net" 
+  target=_blank>物联网专网</A></P>
+  <P class=mb15><A href="http://www.arduino.cn/forum-94-1.html" 
+  target=_blank>arduino中文社区</A></P>
+  <P class=mb15><A href="http://www.hemax.net/" target=_blank>智能硬件</A></P>
+  <P class=mb15><A href="http://ec.#/" 
+  target=_blank>物联网业务管理平台</A></P></LI>
+  <LI class=multi-lang>
+  <H3>APP下载</H3>
+  <DIV class=u-l-red></DIV>
+  <DIV class=q-code><IMG src=<%= asset_path "home/getQrcode.png" %> > 
+  <P class=q-code-p>
+  <A   href="https://itunes.apple.com/xx"   target=_blank>iOS</A> / 
+  <A   href="http://upfiles.yyyyyy.com/xx.apk"   target=_blank>Android</A></P></DIV></LI>
+  <LI class=clearfix>
+  <H3>联系方式</H3>
+  <DIV class=u-l-red></DIV>
+  <P class=mb15><A class=j_contact href="javascript:;">18900000000</A></P>
+  <P class=mb15><A>QQ交流群: 888888</A></P>
+  <P class=mb15><A href="mailto:admin@ctbri.com.cn">admin@ctbri.com.cn</A></P>
+  <P><A href="http://j.map.baidu.com/RyXtk" 
+  target=_blank>北京市昌平区未来科技城</A></P></LI></UL>
+<DIV class="grid f-line"><SPAN><IMG alt="" src=<% asset_path "home/u_l_half.png" %> ></SPAN> 
+<SPAN class=fr><IMG alt="" src=<%= asset_path "home/u_l_half.png" %> ></SPAN> </DIV>
+<DIV class=f-logo><IMG alt="New Connection Copyright here!" src=<%=  "logo_footer_ctbri.png" %> ></DIV>
+<P class=f-signature><SPAN><A href="http://#/"></A></SPAN> 
+<SPAN>版权所有 (c)</SPAN> <SPAN>2016 </SPAN></P></DIV></DIV>
+<SCRIPT type=text/javascript charset=utf-8 src=<%=  "../js/home/auto_combine_26020_6907625.js" %> ></SCRIPT>
+
+<SCRIPT type=text/javascript charset=utf-8 src=<%=   "../js/home/parsley.i18n_52b6c6e.js"%> ></SCRIPT>
+
+<SCRIPT type=text/javascript charset=utf-8 src=<%=  "../js/home/auto_combine_dd8ff_a8412c5.js"%> ></SCRIPT>
+<SCRIPT type=text/javascript charset=utf-8 src=<%=  "../js/project/project_list_63ea5ae.js"%> ></SCRIPT>
+</BODY></HTML>
+
