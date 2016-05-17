@@ -61,6 +61,7 @@ ol{margin-bottom:60px;}
 .index_theLeft ul{ width:100%;padding:0px; margin:0px;}
 .index_theLeft li{margin-bottom:25px; list-style:none;text-align:center; }
 .index_theLeft a{color:#ffffff;display:block;}
+.index_theLeft a.choose{background:#f6721a;}
 .index_theLeft a:hover{color:#ffffff;}
 .index_theLeft h5{margin-top:9px;}
 .index_theLeft_new{height:100%;background-color:#333333; width:80px; padding:0px;}

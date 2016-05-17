@@ -6,16 +6,18 @@ class AlarmsController < ApplicationController
   # GET /alarms.json
   def index
     @alarms = Alarm.all
-    if params["pid"]
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    if params["pid"]  and current_admin.type!=0
        pid=params["pid"]
        logger.info pid
-       @project_name=Project.find(pid).name
-       @project_id=Project.find(pid).id.to_s
+       @project_name=User.find(pid).name
+       @project_id=User.find(pid).id.to_s
        @alarms=Alarm.where(projectId:@project_id)
     end
   end
   
   def addAlarms
+     current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
      contactId=params[:contactId]
      deviceId=params[:deviceId]
      sensorId=params[:sensorId]
@@ -24,11 +26,11 @@ class AlarmsController < ApplicationController
      target=params[:target]
      switchVal=params[:switchVal]
      dev=Device.find(deviceId)
-     projectId=dev.project_id.to_s()
-     alarm=Alarm.new(contactId:contactId,deviceId:deviceId,sensorId:sensorId,alarmType:alarmType,alarmTypeDiv:upperBoundC,target:target,switchVal:switchVal,projectId:projectId)
+     userId=dev.user_id.to_s()
+     alarm=Alarm.new(contactId:contactId,deviceId:deviceId,sensorId:sensorId,alarmType:alarmType,alarmTypeDiv:upperBoundC,target:target,switchVal:switchVal,userId:userId)
      alarm.save
      respond_to do |format|
-        format.html { redirect_to "/alarms?pid="+projectId, notice: 'Alarm was successfully created.' }
+        format.html { redirect_to "/alarms?pid="+userId, notice: 'Alarm was successfully created.' }
         format.json { render :json => {:code =>1,:msg =>"ok",:redirect_uri =>"/"} }
      end
   end
@@ -44,14 +46,38 @@ class AlarmsController < ApplicationController
 
  
   def toAddAlarms
-    if params["pid"]
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    if params["pid"] and current_admin.type!=0
       pid=params["pid"]
-      prj=Project.find(pid)
+      prj=User.find(pid)
       @devices=prj.device
-      @contacts=Contact.all
       if @devices
          @sensors= @devices[0].sensor
       end
+    else
+     @devices=Device.all
+    end
+    @contacts=Contact.all
+    if @devices
+       @sensors= @devices[0].sensor
+    end
+  end
+  
+  def toUpdateAlarms
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    if params["pid"] and current_admin.type!=0
+      pid=params["pid"]
+      prj=User.find(pid)
+      @devices=prj.device
+      if @devices
+         @sensors= @devices[0].sensor
+      end
+    else
+     @devices=Device.all
+    end
+    @contacts=Contact.all
+    if @devices
+       @sensors= @devices[0].sensor
     end
   end
   # GET /alarms/1
@@ -103,8 +129,7 @@ class AlarmsController < ApplicationController
   def destroy
     @alarm.destroy
     respond_to do |format|
-      format.html { redirect_to alarms_url, notice: 'Alarm was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render :json => {:code =>0,:msg =>"Alarm was successfully destroyed.",:redirect_uri =>""} }
     end
   end
 

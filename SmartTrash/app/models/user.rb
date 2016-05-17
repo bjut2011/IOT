@@ -6,5 +6,6 @@ class User
   key :password_digest, String
   key :remeber_digest, String
   key :token, String
-
+  key :type, Integer
+  many :device
 end

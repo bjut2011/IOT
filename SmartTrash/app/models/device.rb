@@ -2,6 +2,7 @@ class Device
   include MongoMapper::Document
 
   key :project_id, ObjectId
+  key :user_id, ObjectId
   key :device_name, String
   key :device_mark, String
   key :device_details, String
@@ -13,5 +14,6 @@ class Device
   key :device_sn, String
   many :sensor
   belongs_to :project   
+  belongs_to :user   
 
 end

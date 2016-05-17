@@ -1,0 +1,184 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base />
+    <title>Tlink物联网-监控中心,TLINK物联网-中国最大的物联网开放平台</title>
+    <meta name="Keywords" content="TLINK|物联网|智能物联|数字农业|仪器仪表物联网|物联网平台|物联网云服务|物联网开放平台" />
+    <meta name="Description" content="TLINK物联网是深圳市模拟科技有限公司面向物联网产品的开放平台" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="icon" href="/images/favicon.ico">
+<script src="../js/device/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../js/device/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/device/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/device/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="../css/device/myIndex.css">
+<link rel="stylesheet" type="text/css" href="../css/device/style.min.css">
+<script type="text/javascript" src="../js/device/jquery-form.js"></script>
+<script type="text/javascript" src="../js/device/navbar.js"></script>
+<script type="text/javascript" src="../js/device/jquery.datetimepicker.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cab9d2db73648c24a142c1d8df07c285";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script> 
+	<script type="text/javascript" src="../js/device/highcharts.js"></script>
+	<script type="text/javascript" src="../js/device/exporting.js"></script> 
+  </head>
+  
+  <body>
+	<input type="hidden" id="wsurl1" value="ws://115.29.170.230:8086/tlink_websocket/chat/11135_16262"/>
+	<input type="hidden" id="wsurl2" value="ws://115.29.170.230:8087/tlink_websocket/chat/11135_16262"/>
+  	<input type="hidden" id="wsurl" value="ws://115.29.170.230:48686/tlink_websocket/chat/11135_16262"/>
+    <input type="hidden" id="sensorId" value="<%= @sensor_id %>">
+    <input type="hidden" id="uid" value="11135"/>
+    <input type="hidden" id="unit" value="K"/>
+    <input type="hidden" id="name" value="温度"/>
+    <div id="container" style="width: 98%;height: 100%;background-color:#f7f6f2;"></div>  
+  </body>
+  <script type="text/javascript">  
+    Date.prototype.Format = function (fmt) { //author: meizz 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+   }
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth()+1;
+    var day = d.getDate();
+    if(month<10){
+    	month="0"+month;
+    }
+    if(day<10){
+    	day="0"+day;
+    }
+	var nowDate = year+"-"+month+"-"+day;
+	var chart; 
+	var series;
+	var uid;
+    var sid;
+    var unit;
+    var sname;
+	$(document).ready(function() { 
+		uid = $("#uid").val(); 
+		sid = $("#sensorId").val();
+   		unit = $("#unit").val();
+    	sname = "数值";
+    	Highcharts.setOptions({  
+        	global: {  
+            	useUTC: false  
+        	}  
+    	});  
+    	 
+    	chart = new Highcharts.Chart({  
+        	chart: {  
+            	renderTo: 'container',  
+            	type: 'spline',  
+            	backgroundColor: '#f7f6f2',
+            	marginRight: 10,  
+            	events: {  
+                	load: function() {  
+                    series = this.series[0];   
+                   // var x = (new Date()).getTime(), // current time  
+                    //    y = 11;  // 追加数据 
+                   // series.addPoint([x, y], true, true);  
+                }  
+            }  
+        },  
+        title: {  
+            text: ''  
+        },  
+        xAxis: {  
+            type: 'datetime'
+        },  
+        yAxis: {  
+            title: {  
+                text: '实时曲线'
+            },  
+            plotLines: [{  
+                value: 0,  
+                width: 1,  
+                color: '#808080'  
+            }]  
+        },  
+        tooltip: {  
+            formatter: function() {  
+                    return  Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+  
+                    '<b>'+ this.series.name +': </b>'+  
+                    Highcharts.numberFormat(this.y, 2)+' ';  
+            }  
+        },  
+        legend: {  
+            enabled: false  
+        },  
+        exporting: {  
+            enabled: false  
+        },  
+        series: [{  
+            name: ''+sname,  
+            data: []
+        }]  
+    });  
+       $.ajax({
+	           url:"/sensorlogs/getData",
+	           type:"POST",
+	               data:"sensorid="+sid, 
+	               success:function (data) {
+	                 //var jsonObj = $.parseJSON(data);
+                         var arr = [];
+                         var j=0;
+                         for (i=0 ;i<data.data.length;i++){
+                             itm=data.data[i];
+                             if(itm["time"]== undefined){
+                                 continue;
+                             }
+                             var date2 = new Date(itm["time"]);
+ 
+                             var localeString = date2.toLocaleString();
+                             arr[j]=[];
+                             arr[j][0]=Date.UTC(date2.getUTCFullYear(),  date2.getUTCMonth(),  date2.getUTCDate(),date2.getUTCHours(),date2.getUTCMinutes());
+                             arr[j][1]=itm["value"];
+                             j++;
+  
+                               
+                         }
+                         var series=chart.series[0].setData(arr); 
+	               }
+        });
+});  
+	
+	
+	
+	
+
+	
+	
+	
+</script>  
+</html>
+

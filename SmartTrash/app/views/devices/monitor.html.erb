@@ -117,17 +117,13 @@ function demoLogin(){
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/index.htm">
-                         <img src="../img/logo.png">
+                         <img src="../img/logo.jpg" height="45">
                     </a>
                 </div>
                 <div class="navbar-collapse"  style="height:60px">
                     <ul class="nav navbar-nav">
                         <!--                 <li><a href="/">首页</a></li> -->
-                        <li><a href="/deviceMap.htm">设备探索</a></li>
-                        <li><a href="/projects">项目管理</a></li>
-                        <li><a href="/feedback/feedback.htm">信息反馈</a></li>
-                        
-                        <li><a href="/user/userIndex.htm">监控中心</a></li>
+                        <li><a href="/devices/monitor?pid=<%= @project_id%>">监控中心</a></li>
                         
                     </ul>
                     <div class="navbar-right" style="padding-right: 15px;">
@@ -145,10 +141,10 @@ function demoLogin(){
                 		
                         <ul class="nav navbar-nav">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">13810139056 <span class="caret"></span></a>
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_admin.name%><span class="caret"></span></a>
                             	<ul class="dropdown-menu" role="menu">
                                 	<li><a href="/user/userIndex.htm">监控中心</a></li>
-                                	<li><a href="/user/loginout.htm">退出</a></li>
+                                	<li><a href="/logout">退出</a></li>
                             	</ul>
                             </li>
                         </ul>
@@ -495,7 +491,7 @@ function demoLogin(){
     <div class="index_theLeft">
     <br>
                 <ul class="dashboard-menu">
-                    <li>
+                    <li class="active">
                         <a href="/devices/monitor?pid=<%= @project_id%>">
                             <i class="glyphicon glyphicon-record"></i>
                             <h5>监控中心</h5>
@@ -527,27 +523,9 @@ function demoLogin(){
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="/contact/queryUserInfoByUserId.htm">
+	                        <a href="">
 	                            <i class="glyphicon glyphicon-user"></i>
 	                            <h5>用户中心</h5>
-	                        </a>
-	                    </li>
-	                    <li>
-	                        <a href="/user/queryUserCustomList.htm">
-	                            <i class="glyphicon glyphicon-send"></i>
-	                            <h5>发布应用</h5>
-	                        </a>
-	                    </li>
-	                    <!--<li>
-	                        <a href="/scheduler/queryUserScheduler.htm">
-	                            <i class="glyphicon glyphicon-time"></i>
-	                            <h5>定时任务</h5>
-	                        </a>
-	                    </li>-->
-	                     <li>
-	                        <a href="/feedback/userFeedback.htm">
-	                            <i class="glyphicon glyphicon-comment"></i>
-	                            <h5>反馈中心</h5>
 	                        </a>
 	                    </li>
                     
@@ -563,7 +541,7 @@ function demoLogin(){
                     <input type="hidden" id="wsurl1" value="ws://115.29.170.230:8086/tlink_websocket/chat/11135_0">
 					<input type="hidden" id="wsurl2" value="ws://115.29.170.230:8087/tlink_websocket/chat/11135_0">
                     <h4>我的设备<input type="hidden" id="wsurl" value="ws://115.29.170.230:48686/tlink_websocket/chat/11135_0"></h4>
-                    <table>
+                    <table style="display:none">
                         <tbody><tr>
                             <td><a style="cursor:pointer;" onclick="javascript:window.location.reload();">所有设备</a></td>
                             <td><a href="/device/addDevice.htm">添加设备</a></td>
@@ -579,7 +557,7 @@ function demoLogin(){
             		
 				                   
                     <% @devices.each do |de|%>
-                   <div class="index_img_infosN">
+                   <div class="index_img_infosN" onclick="divShow('<%=de.id%>')">
 				        <div class="in_imgN" id="dev_<%=de.id%>">
 				            <a href="/device/updateDevice.htm?deviceId=<%=de.id%>&amp;url=/user/userIndex.htm" title="<%=de.device_name%>">
 				                
@@ -589,9 +567,9 @@ function demoLogin(){
 				            </a>
 				        </div>
 				        <div class="in_infosN">
-				            <h4><a href="/device/updateDevice.htm?deviceId=<%=de.id%>&amp;url=/user/userIndex.htm" title="<%=de.device_name%>"><%=de.device_name%></a></h4>
+				            <h4><a onclick="divShow('<%=de.id%>')"  title="<%=de.device_name%>"><%=de.device_name%></a></h4>
 				        </div>
-				        <div class="pull-right">
+				        <div class="pull-right" style="display:none;">
 				            <a onclick="divHide('<%=de.id%>')" id="device_h_<%=de.id%>"><img class="newImage_eyes" title="隐藏传感器" src="../../img/closeEyes.png"></a>
 				            <a style="display:none;" onclick="divShow('<%=de.id%>')" id="device_s_<%=de.id%>"><img title="显示传感器" class="newImage_eyes" src="../../img/openEyes.png"></a>
 				            <a onclick="onLocationClick('<%=de.id%>')"><img title="查看传感器" class="newImage_seT" src="../../img/select_T.png"></a>
@@ -613,7 +591,7 @@ function demoLogin(){
   <div class="index_theRight" id="avast02">
 		<% @devices.each do |de|%>
                 <%if de.sensor && de.sensor.size>0%>
-                <p class="in_sen_title" id="divicename_<%=de.id%>">
+                <p class="in_sen_title" id="divicename_<%=de.id%>"  style="display:none">
                 	 <%=de.device_name%>
                 	<span class="pull-right">序列号：JVA613NM4U18P04J</span>
                 </p>
@@ -621,13 +599,13 @@ function demoLogin(){
                 	
                 <%de.sensor.each do |se|%>		
                 	
-                	<div class="row infos_imgsTitle" id="device-item-<%=de.id%>">
+                	<div class="row infos_imgsTitle" id="device-item-<%=de.id%>" style="display:none">
                     	<div class="col-sm-2">
                         	<img src="../img/temperature.png" onerror="this.src='../img/scenery-21.png'">
                         	<p style="padding:0px 0px 10px 10px;">ID:17020</p>
                     	</div>
                     	<div class="col-sm-4">
-                        	<h4>dd</h4>
+                        	<h4><%=se.name%></h4>
                         	<p>当前状态：
                         	<span id="sz_<%=se.id%>"><font color="#ff0000;">未连接</font></span>
                         	</p>
@@ -649,7 +627,7 @@ function demoLogin(){
                     	<div class="pull-right">
                     		
                     		
-                        	<a id="shouH_chart" onclick="showFrameDiv(<%=de.id%>,<%=se.id%>,'dd','',2,'','','','','','');">&nbsp;∨&nbsp;实时曲线</a>
+                        	<a id="shouH_chart" onclick="showFrameDiv('<%=de.id%>','<%=se.id%>','dd','',2,'','','','','','');">&nbsp;∨&nbsp;实时曲线</a>
                         	<span data-toggle="modal" data-target="#myModal_hist"><a href="javascript:alertWin(<%=de.id%>,<%=se.id%>,30,2)">&nbsp;&gt;&nbsp;历史查询</a></span>&nbsp;
                         	
                     	</div>
@@ -890,6 +868,7 @@ function demoLogin(){
     	}
       }
 	};
+   var pre="";
 
 	ws2.onclose = function() {
 	}
@@ -915,6 +894,10 @@ function demoLogin(){
     	$("#divicename_"+id).show();
     	$("#device_h_"+id).show();
     	$("#device_s_"+id).hide();
+        if(pre!="" &&pre!=id){
+          divHide(pre);
+        }
+        pre=id;
     }
     
      function addAlarms(){
@@ -930,7 +913,7 @@ function demoLogin(){
 			var coll = $("#coll_"+deviceid+"_"+id).val();
 		    if("1" == type ||  "2" == type){//数值型
 				if(coll == 'h'){
-					$("#iframe_"+deviceid+"_"+id).attr("src","/user/queryLineData.htm?sensorId="+id+"&sensorName="+name+"&unit="+unit);
+					$("#iframe_"+deviceid+"_"+id).attr("src","/devices/queryLineData?sensorId="+id+"&sensorName="+name+"&unit="+unit);
 					$("#collapseExample_"+deviceid+"_"+id).show();
 					$("#coll_"+deviceid+"_"+id).val("s");
 				}else{

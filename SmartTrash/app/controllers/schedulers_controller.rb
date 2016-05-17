@@ -18,6 +18,7 @@ class SchedulersController < ApplicationController
 
   # GET /schedulers/new
   def new
+    @project_id=params[:pid]
     @scheduler = Scheduler.new
     @devices= Device.where(project_id:params[:pid])
   end

@@ -5,20 +5,29 @@ Rails.application.routes.draw do
   resources :contacts
   resources :sensors
   get 'alarms/toAddAlarms' =>"alarms#toAddAlarms"
+  get 'alarms/toUpdateAlarms' =>"alarms#toUpdateAlarms"
   post 'alarms/querySensorByDeviceId' =>"alarms#querySensorByDeviceId"
   post 'alarms/addAlarms' =>"alarms#addAlarms"
   get 'devices/monitor' =>"devices#monitor"
   get 'devices/layout' =>"devices#layout"
   get 'devices/explore' =>"devices#explore"
+  get 'devices/queryLineData' =>"devices#queryLineData"
   post 'devices/:id/update' =>"devices#update"
   post 'devices/getDevices' =>"devices#getDevices"
+  get 'sensorlogs/getData' =>"sensorlogs#getData"
+  post 'sensorlogs/getData' =>"sensorlogs#getData"
   resources :devices
   resources :projects
+  resources :sensorlogs
   get 'home/index'
-  root to: "home#index"
+  #root to: "home#index"
+  root to: "users#login"
   get 'login' => 'users#login'
+  get 'register' => 'users#register'
+  post 'register' => 'users#register'
   post 'login' => 'users#create_login_session'
   delete 'logout' => 'users#logout'
+  get 'logout' => 'users#logout'
   #get 'login' => 'sessions#new'
   #get 'login' => 'sessions#new'
   #post 'login' => 'sessions#create'

@@ -6,25 +6,50 @@ class DevicesController < ApplicationController
   # GET /devices.json
   def index
     @devices = Device.all
-    if params["pid"]
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    #for de in @devices do
+    #    de.update_attributes(user_id:current_admin.id)
+      
+    #end 
+    if params["pid"] and current_admin.type!=0
        pid=params["pid"]
        logger.info pid
-       @devices=Project.find(pid).device
-       @project_name=Project.find(pid).name
-       @project_id=Project.find(pid).id
+       @devices=User.find(pid).device
+       @project_name=User.find(pid).name
+       @project_id=User.find(pid).id
     end
   end
   def layout
   end
+
+  def alarmsms
+    str='您的验证码是：123。请不要把验证码泄露给其他人。'
+    params = {}  
+    params["method"] = 'Submit'  
+    params["account"] = 'cf_zst'  
+    params["password"] = 'cdc123456'  
+    params["mobile"] = '13810139056'  
+    params["content"] = str  
+    uri = URI.parse("http://106.ihuyi.cn/webservice/sms.php?method=Submit")
+    res = Net::HTTP.post_form(uri, params) 
+    respond_to do |format|
+      format.json { render :json => {:code =>1,:msg =>"ok",:redirect_uri =>"/"} }
+    end
+  end
   
+  def queryLineData
+    @sensor_id=params[:sensorId]
+  end
+
   def getDevices
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     @devices = Device.all
-    if params["pid"]
+    if params["pid"] and current_admin.type!=0
        pid=params["pid"]
        logger.info pid
-       @devices=Project.find(pid).device
-       @project_name=Project.find(pid).name
-       @project_id=Project.find(pid).id
+       @devices=User.find(pid).device
+       @project_name=User.find(pid).name
+       @project_id=User.find(pid).id
     end
     respond_to do |format|
       format.json {render :json => {:code =>0,:data => @devices}}
@@ -32,13 +57,14 @@ class DevicesController < ApplicationController
   end
 
   def explore
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     @devices = Device.all
-    if params["pid"]
+    if params["pid"] and current_admin.type!=0
        pid=params["pid"]
        logger.info pid
-       @devices=Project.find(pid).device
-       @project_name=Project.find(pid).name
-       @project_id=Project.find(pid).id
+       @devices=User.find(pid).device
+       @project_name=User.find(pid).name
+       @project_id=User.find(pid).id
     end
   end
   # GET /devices/1
@@ -47,16 +73,18 @@ class DevicesController < ApplicationController
       @dev_id=params["id"]
       @dev=Device.find(@dev_id)
       @sensor=@dev.sensor
-      @project=Project.find(@dev.project_id)
+      @project=User.find(@dev.user_id)
   end
 
   def monitor
-   if params["pid"]
+   current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+   @devices = Device.all
+   if params["pid"] and current_admin.type!=0
        pid=params["pid"]
        logger.info pid
-       @devices=Project.find(pid).device
-       @project_name=Project.find(pid).name
-       @project_id=Project.find(pid).id
+       @devices=User.find(pid).device
+       @project_name=User.find(pid).name
+       @project_id=User.find(pid).id
     end
   end
   
@@ -84,7 +112,7 @@ class DevicesController < ApplicationController
     sn=params["sn"]
     lon=params["devicePositionLng"].to_f
     lat=params["devicePositionLat"].to_f
-    @device = Device.new(project_id:project_id,create_time:create_time,device_name:device_name,device_mark:device_mark,device_details:device_details,lon:lon,lat:lat,device_sn:sn)
+    @device = Device.new(user_id:project_id,create_time:create_time,device_name:device_name,device_mark:device_mark,device_details:device_details,lon:lon,lat:lat,device_sn:sn)
     @device.save
     for item in params[:deviceSensorList] do
         logger.info item[1][:sensorName]
@@ -125,8 +153,9 @@ class DevicesController < ApplicationController
   def update
     @device=Device.find(params[:id])
     deviceName=params[:deviceName]
+    sn=params[:sn]
     if deviceName
-       @device.update_attributes(device_name:deviceName)
+       @device.update_attributes(device_name:deviceName,device_sn:sn)
     end
     for item in params[:deviceSensorList] do
         logger.info item[1][:sensorName]
@@ -152,13 +181,7 @@ class DevicesController < ApplicationController
         
     end
     respond_to do |format|
-      #if @device.update(device_params)
-       # format.html { redirect_to @device, notice: 'Device was successfully updated.' }
       format.json { render :json => {:code =>1,:msg =>"ok",:redirect_uri =>"/"} }
-      #else
-        #format.html { render :edit }
-        #format.json { render json: @device.errors, status: :unprocessable_entity }
-      #end
     end
   end
 
@@ -167,8 +190,7 @@ class DevicesController < ApplicationController
   def destroy
     @device.destroy
     respond_to do |format|
-      format.html { redirect_to devices_url, notice: 'Device was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render :json => {:code =>1,:msg =>"Device was successfully destroyed.",:redirect_uri =>""} }
     end
   end
 

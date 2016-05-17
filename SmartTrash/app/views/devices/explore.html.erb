@@ -122,17 +122,14 @@ function demoLogin(){
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/index.htm">
-                         <img src="../img/logo.png">
+                         <img src="../img/logo.jpg" height="45">
                     </a>
                 </div>
                 <div class=" navbar-collapse"  style="height:60px">
                     <ul class="nav navbar-nav">
                         <!--                 <li><a href="/">首页</a></li> -->
-                        <li><a href="/deviceMap.htm">设备探索</a></li>
-                        <li><a href="/projects">项目管理</a></li>
-                        <li><a href="/feedback/feedback.htm">信息反馈</a></li>
                         
-                        <li><a href="/user/userIndex.htm">监控中心</a></li>
+                        <li><a href="/devices/monitor?pid=<%=@project_id%>"">监控中心</a></li>
                         
                     </ul>
                     <div class="navbar-right" style="padding-right: 15px;">
@@ -150,10 +147,10 @@ function demoLogin(){
                 		
                         <ul class="nav navbar-nav">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">13810139056 <span class="caret"></span></a>
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_admin.name%> <span class="caret"></span></a>
                             	<ul class="dropdown-menu" role="menu">
-                                	<li><a href="/user/userIndex.htm">监控中心</a></li>
-                                	<li><a href="/user/loginout.htm">退出</a></li>
+                                	<li><a href="/devices/monitor?pid=<%=@project_id%>"">监控中心</a></li>
+                                	<li><a href="/logout">退出</a></li>
                             	</ul>
                             </li>
                         </ul>
@@ -516,37 +513,25 @@ function demoLogin(){
 	                    <li>
 	                        <a href="/alarms?pid=<%= @project_id%>">
 	                            <i class="glyphicon glyphicon-bell"></i>
-	                            <h5>触发器</h5>
+	                            <h5>报警</h5>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="/device/myDownload.htm">
+	                        <a href="/schedulers?pid=<%=@project_id%>">
 	                            <i class="glyphicon glyphicon-arrow-down"></i>
-	                            <h5>数据下载</h5>
+	                            <h5>广告</h5>
+	                        </a>
+	                    </li>
+	                    <li class="active">
+	                        <a href="/devices/explore?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-map-marker"></i>
+	                            <h5>分布图</h5>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="/contact/queryUserInfoByUserId.htm">
+	                        <a href="">
 	                            <i class="glyphicon glyphicon-user"></i>
 	                            <h5>用户中心</h5>
-	                        </a>
-	                    </li>
-	                    <li>
-	                        <a href="/user/queryUserCustomList.htm">
-	                            <i class="glyphicon glyphicon-send"></i>
-	                            <h5>发布应用</h5>
-	                        </a>
-	                    </li>
-	                    <!--<li>
-	                        <a href="/scheduler/queryUserScheduler.htm">
-	                            <i class="glyphicon glyphicon-time"></i>
-	                            <h5>定时任务</h5>
-	                        </a>
-	                    </li>-->
-	                     <li>
-	                        <a href="/feedback/userFeedback.htm">
-	                            <i class="glyphicon glyphicon-comment"></i>
-	                            <h5>反馈中心</h5>
 	                        </a>
 	                    </li>
                     

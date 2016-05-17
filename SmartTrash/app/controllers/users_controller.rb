@@ -26,16 +26,43 @@ class UsersController < ApplicationController
     cookies.delete(:token)
   end
  
+  def register
+    if request.get?
+       cookies.delete(:token)
+    else
+      @user = User.new(name: params[:name],password_digest: params[:password],type: 1)
+    
+
+      respond_to do |format|
+        if @user.save
+          @user.update_attributes!(token: SecureRandom.urlsafe_base64)
+          format.json {render :json => {:code =>0,:msg =>"注册成功",:redirect_uri =>"/"}}
+        else
+          format.json {render :json => {:code =>1,:msg =>"注册失败",:redirect_uri =>"/"}}
+        end
+      end
+    end
+  end
+ 
   def create_login_session
     @user = User.find_by_name(params[:name])
     logger.info "OKddddda"
     if @user
-      logger.info "OK"
-      cookies.permanent[:token] = @user.token
-      #redirect_to root_url, :notice => "已经登录"
+      if @user.password_digest==params[:password]
+        cookies.permanent[:token] = @user.token
+        respond_to do |format|
+           format.json {render :json => {:code =>0,:msg =>"登录成功",:redirect_uri =>"/devices?pid="+@user.id}}
+        end
+      else
+        respond_to do |format|
+         format.json {render :json => {:code =>1,:msg =>"登录成功",:errorMsg => "密码不对",:redirect_uri =>"/devices?pid="+@user.id}}
+        end
+        
+      end
+    else
       respond_to do |format|
-         format.json {render :json => {:code =>0,:msg =>"登录成功",:redirect_uri =>"/"}}
-       end
+         format.json {render :json => {:code =>1,:msg =>"登录成功",:errorMsg => "用户名不存在",:redirect_uri =>"/devices?pid="+@user.id}}
+      end
     end
   end
 
@@ -66,7 +93,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update_attributes(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -94,6 +121,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password_digest, :remeber_digest)
+      params.require(:user).permit(:name, :email, :password_digest, :remeber_digest,:type)
     end
 end

@@ -2,7 +2,7 @@ var icoNum = 0;
 var reConnectOptions = [1,3,5,10,15,20,30];
 var periodOptions = [1,3,5,10,15,20,30,60];
 var sensorSignMax = 4;//小数位最多有效位
-var sensorTypeOptions = ["数值型","开关型","定位型","图片型"];
+var sensorTypeOptions = ["数值型","开关型","定位型","状态型"];
 var reConnectDefault = 3;
 var periodDefault = 60;
 var reConnectInputHtml = '<input class="form-control" name="deviceDelay" value="3" />',

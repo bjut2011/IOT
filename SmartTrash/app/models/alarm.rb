@@ -11,6 +11,7 @@ class Alarm
   key :projectId, String
   key :sensorId, String
   key :deviceId, String
+  key :userId, String
   key :contactId, String
 
 end

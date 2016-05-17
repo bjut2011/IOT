@@ -38,18 +38,20 @@ var _hmt = _hmt || [];
        function deleteDevice(id){
           if(confirm('您确定要删除该设备吗？')){
                $.ajax({
-	               url:"/device/queryLineSensorByDevice.htm",
-	               type:"POST",
+	               url:"/devices/"+id,
+	               type:"DELETE",
 	               data:{"deviceId":id}, 
 	               success:function (data) {
-	                 var jsonObj = $.parseJSON(data);
-	                 if("00" == jsonObj.flag){
-	                    if(Number(jsonObj.num) > 0){
-	                       alert('设备存在在线的传感器，请先断开该设备所有的传感器！')
-	                    }else{
-	                       window.location.href='/device/deleteDevice.htm?deviceId='+id;
-	                    }
-	                 }
+                         alert('删除设备成功');
+    	                 window.location.reload();
+	                 //var jsonObj = $.parseJSON(data);
+	                 //if("00" == jsonObj.flag){
+	                 //   if(Number(jsonObj.num) > 0){
+	                 //      alert('设备存在在线的传感器，请先断开该设备所有的传感器！')
+	                 //   }else{
+	                 //      window.location.href='/device/deleteDevice.htm?deviceId='+id;
+	                 //   }
+	                 //}
 	               }
                });
           }
@@ -117,17 +119,14 @@ function demoLogin(){
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/index.htm">
-                         <img src="../img/logo.png">
+                         <img src="../img/logo.jpg" height="45" width="54">
                     </a>
                 </div>
                 <div class=" navbar-collapse"  style="height:60px">
                     <ul class="nav navbar-nav">
                         <!--                 <li><a href="/">首页</a></li> -->
-                        <li><a href="/deviceMap.htm">设备探索</a></li>
-                        <li><a href="/projects">项目管理</a></li>
-                        <li><a href="/feedback/feedback.htm">信息反馈</a></li>
                         
-                        <li><a href="/user/userIndex.htm">监控中心</a></li>
+                        <li><a href="/devices/monitor?pid=<%=@project_id%>">监控中心</a></li>
                         
                     </ul>
                     <div class="navbar-right" style="padding-right: 15px;">
@@ -145,10 +144,10 @@ function demoLogin(){
                 		
                         <ul class="nav navbar-nav">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">13810139056 <span class="caret"></span></a>
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_admin.name%> <span class="caret"></span></a>
                             	<ul class="dropdown-menu" role="menu">
-                                	<li><a href="/user/userIndex.htm">监控中心</a></li>
-                                	<li><a href="/user/loginout.htm">退出</a></li>
+                                	<li><a href="/devices/monitor?pid=<%=@project_id%>">监控中心</a></li>
+                                	<li><a href="/logout">退出</a></li>
                             	</ul>
                             </li>
                         </ul>
@@ -502,7 +501,7 @@ function demoLogin(){
                         </a>
                     </li>
                     
-	                    <li>
+	                    <li class="active">
 	                        <a href="/devices?pid=<%=@project_id%>">
 	                            <i class="glyphicon glyphicon-blackboard"></i>
 	                            <h5>设备</h5>
@@ -527,27 +526,9 @@ function demoLogin(){
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="/contact/queryUserInfoByUserId.htm">
+	                        <a href="">
 	                            <i class="glyphicon glyphicon-user"></i>
 	                            <h5>用户中心</h5>
-	                        </a>
-	                    </li>
-	                    <li>
-	                        <a href="/user/queryUserCustomList.htm">
-	                            <i class="glyphicon glyphicon-send"></i>
-	                            <h5>发布应用</h5>
-	                        </a>
-	                    </li>
-	                    <!--<li>
-	                        <a href="/scheduler/queryUserScheduler.htm">
-	                            <i class="glyphicon glyphicon-time"></i>
-	                            <h5>定时任务</h5>
-	                        </a>
-	                    </li>-->
-	                     <li>
-	                        <a href="/feedback/userFeedback.htm">
-	                            <i class="glyphicon glyphicon-comment"></i>
-	                            <h5>反馈中心</h5>
 	                        </a>
 	                    </li>
                     
@@ -564,8 +545,8 @@ function demoLogin(){
     <h3 class="trigger_font">我的设备</h3>
     
 	    <a href="/devices?pid=<%=@project_id%>"><p>所有设备</p></a>
-	 	<a href="/devices?pid=<%=@project_id%>&status=1"><p>已链接设备</p></a>
-	    <a href="/devices?pid=<%=@project_id%>&status=0"> <p>未链接设备</p></a>
+	 	<a href="/devices?pid=<%=@project_id%>&status=1"><p>在线设备</p></a>
+	    <a href="/devices?pid=<%=@project_id%>&status=0"> <p>下线设备</p></a>
     
     <br>
     <h3 class="trigger_font">管理设备</h3>
@@ -606,9 +587,9 @@ function demoLogin(){
                                     <% end %>
 			        </div>
 			        <div class="col-sm-5 allDe_Opera">
-			            <a href="/device/devices/device-index/3180/tcp.htm">设置连接</a>
+			            <a href="/device/devices/device-index/3180/tcp.htm" style="display:none">设置连接</a>
 			            <a href="/devices/<%=pd.id%>">编辑设备</a>
-			            <a onclick="javascript:deleteDevice(3180)">删除设备</a>
+			            <a onclick="javascript:deleteDevice('<%=pd.id%>')">删除设备</a>
 			        </div>
 			    </div>
                   <%end%>

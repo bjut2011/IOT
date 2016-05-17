@@ -1,0 +1,2 @@
+module SensorlogsHelper
+end
