@@ -117,14 +117,13 @@ function demoLogin(){
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/index.htm">
-                         <img src="../img/logo.jpg" height="45">
                     </a>
                 </div>
                 <div class=" navbar-collapse"  style="height:60px">
                     <ul class="nav navbar-nav">
-                        <!--                 <li><a href="/">首页</a></li> -->
                         
-                        <li><a href="#">监控中心</a></li>
+                        <li><img src="../img/logo_1.png"></li>
+                        <li><img src="../img/img2.jpg"></li>
                         
                     </ul>
                     <div class="navbar-right" style="padding-right: 15px;">
@@ -551,14 +550,14 @@ function demoLogin(){
          <a href="/devices?pid=<%=@project_id%>"><p><i class="glyphicon glyphicon-chevron-right"></i>设备列表</p></a>
     
     
-	    <a href="/alarms?pid=<%=@project_id%>"><p><i class="glyphicon glyphicon-bell"></i>所有触发器</p></a>
+	    <a href="/alarms?pid=<%=@project_id%>"><p><i class="glyphicon glyphicon-bell"></i>所有报警</p></a>
 	    <a href="/alarms?pid=<%=@project_id%>"><p><i><img src="../img/on_activate.png"></i>已激活</p></a>
 	    <a href="/alarms?pid=<%=@project_id%>"><p><i><img src="../img/off_activate.png"></i>未激活</p></a>
     
           <br>
           <h3 class="trigger_font">管理</h3> 
     
-          <a href="javascript:updateAlarms('');"><p class="p_border_"><i class="glyphicon glyphicon-plus"></i><label data-toggle="modal" data-target="#addAlarms">添加触发器</label></p></a>
+          <a href="javascript:updateAlarms('');"><p class="p_border_"><i class="glyphicon glyphicon-plus"></i><label data-toggle="modal" data-target="#addAlarms">添加报警</label></p></a>
     
          <a href="#"><p><i class="glyphicon glyphicon-pencil"></i>报警记录</p></a>
          </div>
@@ -593,12 +592,12 @@ function demoLogin(){
         <p>
           当前状态：
           <a href="javascript:activeAlarms('1','<%= am.id%>')" id="active920" style="color:#fff;"
-          class="online_t" title="开启触发器">
+          class="online_t" title="开启报警">
             已开启
           </a>
         </p>
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-5" style="width: 32.66666667%;">
         <%case am.alarmType%>
         <% when 'val_above' %>
         <%=Sensor.find(am.sensorId).name%>:如果数值高于<%= am.alarmTypeDiv%>
@@ -614,7 +613,7 @@ function demoLogin(){
         <% end %>
       </div>
       <div class="pull-right">
-        <a href="javascript:updateAlarms(920);" title="编辑触发器">
+        <a href="javascript:updateAlarms('<%= am.id%>');" title="编辑报警">
           <p data-toggle="modal" data-target="#addAlarms">
             <img src="../img/edit.png">
           </p>
@@ -622,10 +621,10 @@ function demoLogin(){
             编辑
           </p>
         </a>
-        <a href="javascript:deleteAlarms('<%= am.id%>');" title="删除触发器">
-          <p>
+      </div>
+      <div class="col-sm-1" style="width: 12.66666667%;padding-top: 31px;">
+        <a href="javascript:deleteAlarms('<%= am.id%>');" title="删除报警">
             删除
-          </p>
         </a>
       </div>
     </div>
@@ -656,10 +655,10 @@ function demoLogin(){
 
     <script type="text/javascript">
 	   function updateAlarms(id){
-		      var src = "/alarms/toUpdateAlarms?alarmsId="+id;
-		      var title = '修改触发器';
+		      var src = "/alarms/toUpdateAlarms?pid=<%=@project_id%>&alarmsId="+id;
+		      var title = '修改报警';
 		      if('' == id){
-		         title = '添加触发器';
+		         title = '添加报警';
 		         src = '/alarms/toAddAlarms?pid=<%=@project_id%>';
 		      }
 		      $.get(src, function(data){
@@ -670,7 +669,7 @@ function demoLogin(){
 		}
 	  function activeAlarms(active,alarmsId){
 	     var tip =  active == '1' ? '开启' : '关闭';
-	     if(confirm('您确定要'+tip+'触发器吗?')){
+	     if(confirm('您确定要'+tip+'报警吗?')){
 				$.ajax({url: "/alarms/activeAlarms.htm", type:"POST", data:{"alarmsId":alarmsId,"active" : active}, success:function (data) {
 					var jsonObj = $.parseJSON(data);
 					if ("00" == jsonObj.flag) {

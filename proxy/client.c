@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/shm.h>
-
+#include "util.h"
 #define MYPORT  9988
 #define BUFFER_SIZE 1024
 
@@ -35,10 +35,13 @@ int main()
     char recvbuf[BUFFER_SIZE];
     memset(recvbuf, 0, sizeof(recvbuf));
     char *str="68A3A368870100F000EF0000000000E6008008000110031E0E110C4576B1E306004E2029E80000003F010010271027102710271800070009001200140008000C000E00140006000C000B0017DC00DC00233737370000000043544E45540000000000000031333931323334353637382C010A00DA5E5715803E0101B0A10000000000000000000000000000000000000000000000000000000000000000000000000000B416";
-    send(sock_cli, str, strlen(str),0); ///发送
+    BYTE *dsrc=(BYTE *)malloc(sizeof(BYTE)*strlen(str)/2);
+    memset(dsrc,0,sizeof(BYTE)*strlen(str)/2);
+    StrToHex(dsrc,str,sizeof(BYTE)*strlen(str)/2);
+    send(sock_cli, dsrc, sizeof(BYTE)*strlen(str)/2,0); ///发送
     recv(sock_cli, recvbuf, sizeof(recvbuf),0); ///接收
     fputs(recvbuf, stdout);
-
+    free(dsrc);
     close(sock_cli);
     return 0;
 }

@@ -265,9 +265,9 @@ $(function(){
 			sensorId:"",
 		},opts || {});
         icoNum++;
-        var more = '&nbsp;&nbsp;&nbsp;<a>MORE...</a>';
+        var more = '&nbsp;&nbsp;&nbsp;<a style="display:none">MORE...</a>';
         if('1' == option.type){
-           more = '&nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#collapse'+icoNum+'" aria-expanded="false">MORE...</a>';
+           more = '&nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#collapse'+icoNum+'" aria-expanded="false" style="display:none">MORE...</a>';
         }
 		var html = '<div class="col-md-11 pd0"><div class="col-md-11 addSensor_line"><div class="row">'+generateSensorName(option.namePre,option.sensorId)+
 		            generateSensorType(option.type,icoNum)+generateSensorSign(option.type,option.sign)+generateSensorUnit(option.type,option.unit)+

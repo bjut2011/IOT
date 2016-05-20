@@ -3,13 +3,15 @@
 extern queue_t g_qalarm;
 extern  mongoc_client_t *mgclient;
 unsigned char VerifyIED101Frame(unsigned char * pTemp_Buf, unsigned short usTemp_Length, unsigned char ucTemp_Port){
-    printf("%s\n",pTemp_Buf);
-    if(pTemp_Buf[0]==0x68){
-     printf("okok\n");
+    int i=0;
+    for(;i<usTemp_Length;i++){
+       printf("%02x",pTemp_Buf[i]);
     }
-    BYTE *dsrc=(BYTE *)malloc(sizeof(BYTE)*strlen(pTemp_Buf)/2);
-    memset(dsrc,0,sizeof(BYTE)*strlen(pTemp_Buf)/2);
-    StrToHex(dsrc,pTemp_Buf,sizeof(BYTE)*strlen(pTemp_Buf)/2);
+    printf("\n");
+    //BYTE *dsrc=(BYTE *)malloc(sizeof(BYTE)*strlen(pTemp_Buf)/2);
+    //memset(dsrc,0,sizeof(BYTE)*strlen(pTemp_Buf)/2);
+    //StrToHex(dsrc,pTemp_Buf,sizeof(BYTE)*strlen(pTemp_Buf)/2);
+    BYTE *dsrc=pTemp_Buf;
     printf("%02x\n",dsrc[0]);
     if(dsrc[0]==0x68){
      printf("okok\n");
@@ -22,7 +24,7 @@ unsigned char VerifyIED101Frame(unsigned char * pTemp_Buf, unsigned short usTemp
     
 
 
-    free(dsrc);
+    //free(dsrc);
     return 0x01;
 }
 

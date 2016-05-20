@@ -117,14 +117,14 @@ function demoLogin(){
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/index.htm">
-                         <img src="../img/logo.png">
                     </a>
                 </div>
                 <div class=" navbar-collapse"  style="height:60px">
                     <ul class="nav navbar-nav">
                         <!--                 <li><a href="/">首页</a></li> -->
+                        <li><img src="../img/logo_1.png"></li>
+                        <li><img src="../img/img2.jpg"></li>
                         
-                        <li><a href="/devices/monitor?pid=<%=@project_id%>">监控中心</a></li>
                         
                     </ul>
                     <div class="navbar-right" style="padding-right: 15px;">
@@ -538,10 +538,10 @@ function demoLogin(){
             <!--中间部分-->
              <div class="trigger_centen">
 				<div class="trigger_pa">
-				    <h3 class="trigger_font">定时任务管理</h3>
+				    <h3 class="trigger_font">广告管理</h3>
 				    
-					    <a href="/schedulers/new?pid=<%=@project_id%>"><p>新增定时任务</p></a>
-					 	<a href="/schedulers?pid=<%=@project_id%>"><p>我的定时任务</p></a>
+					    <a href="/schedulers/new?pid=<%=@project_id%>"><p>新增广告</p></a>
+					 	<a href="/schedulers?pid=<%=@project_id%>"><p>我的广告</p></a>
 				    
 				</div>
             </div>               
@@ -555,7 +555,7 @@ function demoLogin(){
         <div class="col-sm-10 all_device">
             <div style="margin-left:290px;" class="form-horizontal personU_theRight">
                 <p class="personU_sen_title">
-                   &nbsp; 新增定时任务
+                   &nbsp; 新增广告
                 </p>
                 <div class="addDevice_div">
                 <form id="add-form" class="form-horizontal" action="/schedulers" method="post">
@@ -596,18 +596,6 @@ function demoLogin(){
                         </div>
                     </div>
                     
-                    <div class="form-group" id="_tran" style="display:none">
-                    	<label class="col-md-1 control-label pd0">是否转发</label>
-                        <div class="col-md-6">
-                            <input type="radio" name="transfer" value="0" checked="checked"> 否
-                            <input type="radio" name="transfer" value="1"> 是
-                            
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a title="" data-html="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="转发传感器数值<br/>固定格式：sen_{长度}_{传感器ID}_<br/>长度：传感器数值的字节长度，如果不需要固定长度，此处写0<br/>传感器ID：只可转发本账号下的传感器数值，填写本账号传感器ID<br/>举例：#header，<a style='color: blue;font-size: 14;'>sen_7_17122_</a>，<a style='color: blue;font-size: 14;'>sen_7_17123_</a>，end<br/>说明：可以转发多个传感器，转发内容可以自由编辑“头”、“尾”、“间隔符”。" data-original-title="">
-                        	 <img src="../../img/xieyiHelp.gif" width="20px" height="20px">
-                            </a>
-                        </div>
-                    </div>
                    
                     <div class="form-group" id="_datatype" style="">
                         <label class="col-md-1 control-label pd0">数据类型</label>
@@ -624,7 +612,7 @@ function demoLogin(){
                         </div>
                     </div>
 	                    
-                    <div class="form-group">
+                    <div class="form-group" style="display:none">
                         <label class="col-md-1 control-label pd0">计划时间</label>
                         <div class="col-md-7">
                            <p><input type="checkbox" name="week" value="2" id="wk_2"> 星期一 <input type="checkbox" name="week" value="3" id="wk_3"> 星期二  <input type="checkbox" name="week" value="4" id="wk_4"> 星期三 
@@ -680,7 +668,7 @@ function demoLogin(){
                     <div class="form-group">
                         <div class="col-md-4 pd0">
                            	<button type="button" onclick="check();" class="btn btn-default">
-                            	添加定时任务
+                            	添加广告
                             	
                            	</button>
                            	<button type="button" onclick="window.history.go(-1);" class="btn btn-default">

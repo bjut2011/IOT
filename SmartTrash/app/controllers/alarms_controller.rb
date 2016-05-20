@@ -12,7 +12,7 @@ class AlarmsController < ApplicationController
        logger.info pid
        @project_name=User.find(pid).name
        @project_id=User.find(pid).id.to_s
-       @alarms=Alarm.where(projectId:@project_id)
+       @alarms=Alarm.where(userId:@project_id)
     end
   end
   
@@ -23,6 +23,9 @@ class AlarmsController < ApplicationController
      sensorId=params[:sensorId]
      alarmType=params[:alarmType]
      upperBoundC=params[:upperBoundC]
+     if params[:lowerBoundC]
+       upperBoundC=params[:lowerBoundC]
+     end
      target=params[:target]
      switchVal=params[:switchVal]
      dev=Device.find(deviceId)

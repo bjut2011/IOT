@@ -12,9 +12,11 @@
 #include "util.h"
 #include "re_thread.h"
 #include "alarm_thread.h"
+#include "query_thread.h"
 #include "queue.h"
 static pthread_t tid_ping = 0; 
 static pthread_t tid_alarm = 0; 
+static pthread_t tid_query = 0; 
 mongoc_client_t *mgclient;
 queue_t g_qalarm;
 int main(){
@@ -29,13 +31,19 @@ int main(){
   if (result != 0) {
      printf("error");
   }
-  pthread_join(tid_ping, NULL);  
+  pthread_detach(tid_ping);  
   
   result = pthread_create(&tid_alarm, NULL, (void *)thread_alarm, NULL);
   if (result != 0) {
      printf("error");
   }
-  pthread_join(tid_alarm, NULL);  
+  pthread_detach(tid_alarm);  
+  result = pthread_create(&tid_query, NULL, (void *)thread_query, NULL);
+  if (result != 0) {
+     printf("error");
+  }
+  printf("d%\n",tid_query);
+  pthread_join(tid_query,NULL);  
 	//pthread_detach(tid_ping);
   mongoc_client_destroy (mgclient);
   mongoc_cleanup ();

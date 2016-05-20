@@ -119,14 +119,15 @@ function demoLogin(){
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/index.htm">
-                         <img src="../img/logo.jpg" height="45" width="54">
                     </a>
                 </div>
                 <div class=" navbar-collapse"  style="height:60px">
                     <ul class="nav navbar-nav">
                         <!--                 <li><a href="/">首页</a></li> -->
                         
-                        <li><a href="/devices/monitor?pid=<%=@project_id%>">监控中心</a></li>
+                        
+                        <li><img src="../img/logo_1.png"></li>
+                        <li><img src="../img/img2.jpg"></li>
                         
                     </ul>
                     <div class="navbar-right" style="padding-right: 15px;">
@@ -546,7 +547,7 @@ function demoLogin(){
     
 	    <a href="/devices?pid=<%=@project_id%>"><p>所有设备</p></a>
 	 	<a href="/devices?pid=<%=@project_id%>&status=1"><p>在线设备</p></a>
-	    <a href="/devices?pid=<%=@project_id%>&status=0"> <p>下线设备</p></a>
+	    <a href="/devices?pid=<%=@project_id%>&status=0"> <p>离线设备</p></a>
     
     <br>
     <h3 class="trigger_font">管理设备</h3>

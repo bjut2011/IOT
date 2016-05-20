@@ -16,7 +16,7 @@
 static void Data_handle(void * sock_fd){
    int fd = *((int *)sock_fd);
    int i_recvBytes;
-     char data_recv[BUFFER_LENGTH];
+    BYTE data_recv[BUFFER_LENGTH];
     const char * data_send = "Server has received your request!\n";
  
     while(1)
@@ -41,7 +41,7 @@ static void Data_handle(void * sock_fd){
              printf("Quit command!\n");
              break;                           //Break the while loop.
         }
-        VerifyIED101Frame(data_recv,0,0);
+        VerifyIED101Frame(data_recv,i_recvBytes,0);
         printf("read from client : %s\n",data_recv);
         if(write(fd,data_send,strlen(data_send)) == -1)
          {

@@ -122,14 +122,14 @@ function demoLogin(){
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/index.htm">
-                         <img src="../img/logo.jpg" height="45">
                     </a>
                 </div>
                 <div class=" navbar-collapse"  style="height:60px">
                     <ul class="nav navbar-nav">
                         <!--                 <li><a href="/">首页</a></li> -->
                         
-                        <li><a href="/devices/monitor?pid=<%=@project_id%>"">监控中心</a></li>
+                        <li><img src="../img/logo_1.png"></li>
+                        <li><img src="../img/img2.jpg"></li>
                         
                     </ul>
                     <div class="navbar-right" style="padding-right: 15px;">
@@ -305,177 +305,6 @@ function demoLogin(){
             <a data-ajax="true" data-ajax-mode="replace" data-ajax-update="#tlink_menu" href="/" id="UserCar" style="display:none">头部</a>
         </form>
     </div>
-<!--  登录 注册 结束-->
-
- <script type="text/javascript">
-        $(document).ready(function () {
-           //getCurrentDate();
-            $("#modal-toggle1").click(function () {
-                $(".modal-content").toggle();
-            })
-            $("#modal-toggle2").click(function () {
-                $(".modal-content").toggle();
-            })
-            
-            
-            $.ajax({
-   					type:"post",
-  					url:"/get_server_date.htm",
-   					success:function(data){
-   						var jsonObj = eval('('+data+')');
-   						$("#nowDate").html(jsonObj.date);
-   						$("#rq").val(jsonObj.rq);
-   						$("#h").val(jsonObj.h);
-   						$("#m").val(jsonObj.m);
-   						$("#s").val(jsonObj.s);
-   						showDate();
-   					}
-   				});
-            
-            var count = 180; 
-            var btn="";
-            var countdown="";
-            $('#ebtn').click(function () { 
-				$("#reg").val(2);
-            	var email=$("#email").val();
-            	if(email == ""){
-            		alert("请输入邮箱!");
-            		return false;
-            	}
-				count = 180;
-				btn="ebtn";
-				$.ajax({
-   					type:"post",
-  					url:"/user/getVerifyCode.htm",
-  					data:{
-  						email:email,
-  						sendKey:44427
-  					},
-   					success:function(data){
-   						if(confirm('发送成功，现在去邮箱查看验证码？')){
-							var mail = email.substring(email.indexOf('@') + 1);
-							queryEmail.href = "http://mail."+mail; 
-   							queryEmail.click();
-   						}
-   						countdown = setInterval(CountDown, 1000); 
-   					}
-   				});
-			}) 
-			
-			$('#mbtn').click(function () { 
-				$("#reg").val(1);
-				var mobile=$("#mobile").val();
-				if(mobile == ""){
-            		alert("请输入手机!");
-            		return false;
-            	}
-            	
-            	var regMobile = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
- 				if(!regMobile.test(mobile)) {
-      				alert("手机号码格式有误");
-      				return false;
- 				}
-				count = 180;
-				btn="mbtn";
-				$.ajax({
-   					type:"post",
-  					url:"/user/getVerifyCode.htm",
-  					data:{
-  						mobile:mobile,
-  						sendKey:44427
-  					},
-   					success:function(data){
-   						var jsonObj = eval('('+data+')');
-   						var flag = jsonObj.flag;
-   						if(flag == "00"){
-   							alert("发送成功!");
-   							countdown = setInterval(CountDown, 1000); 
-   						}else{
-   							alert("发送失败:手机号已存在!");
-   						}
-   					}
-   				});
-			}) 
-			
-			function CountDown() { 
-				$("#"+btn).attr("disabled", true); 
-				$("#"+btn).val("重新获取(" + count + ")"); 
-				if (count == 0) { 
-					$("#"+btn).val("重新获取验证码").removeAttr("disabled"); 
-					clearInterval(countdown); 
-				} 
-				count--; 
-			} 
-        });
-       
-       
-       function checkForm(){
-       		var reg = $("#reg").val();
-       		if(reg == '1'){
-       			var Password_2 = $("#Password_2").val();
-       			var ConfirmPassword_2 = $("#ConfirmPassword_2").val();
-       			if(Password_2!=ConfirmPassword_2){
-       				alert("两次密码输入不一致");
-       				return false
-       			}
-       		}else{
-       			var Password_1 = $("#Password1").val();
-       			var ConfirmPassword_1 = $("#ConfirmPassword1").val();
-       			if(Password_1!=ConfirmPassword_1){
-       				alert("两次密码输入不一致");
-       				return false
-       			}
-       		}
-       		$("#regForm").submit();
-       }
-       
-       (function(m, ei, q, i, a, j, s) {
-	        m[a] = m[a] || function() {
-	            (m[a].a = m[a].a || []).push(arguments)
-	        };
-	        j = ei.createElement(q),
-	            s = ei.getElementsByTagName(q)[0];
-	        j.async = true;
-	        j.src = i;
-	        s.parentNode.insertBefore(j, s)
-	    })(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
-	    _MEIQIA('entId', 3273);
-	  
-	    setInterval("showDate()",1000);
-		function showDate(){
-			var rq = $("#rq").val();
-   			var h =  $("#h").val();
-   			var m =  $("#m").val();
-   			var s =  $("#s").val();
-   			
-   			s = Number(s)+1;
-   			if(s < 10){
-   			   s = "0" + s;
-   			}
-   			if(Number(s) == 60){
-   				s = "0";
-   				m = Number(m)+1;
-   			}
-   			if(m.length == 1){
-   			    m = "0" + m;
-   			}
-   			if(Number(m) == 60){
-   				m = "0";
-   				h = Number(h)+1;
-   			}
-   			if(h.length == 1){
-   				h = "0" + h;
-   			}
-   			$("#rq").val(rq);
-   			$("#h").val(h);
-   			$("#m").val(m);
-   			$("#s").val(s);
-   			
-   			var nowTime = rq+" "+h+":"+m+":"+s;
-   			$("#nowDate").html(nowTime);
-		}
-    </script>
-<!--     </html> -->
 
         <!--主题-->
        <div class="index_c">

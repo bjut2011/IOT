@@ -22,7 +22,7 @@
    var markerArr = new Array();
    $.ajax({
    					type:"post",
-  					url:"/devices/getDevices",
+  					url:"/devices/getDevices?pid=<%= @user_id%>",
    					success:function(data){
    						var flag = data.code;
    						if(flag == 0){//有数据
@@ -34,7 +34,7 @@
                                                                 position[0]=dataObj[i].lon;
                                                                 position[1]=dataObj[i].lat;
                                                                 marker = new AMap.Marker({
-                                                                icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+                                                                icon: "/img/mark_b.png",
                                                                 position: position
                                                                 });
                                                                 marker.setMap(map);

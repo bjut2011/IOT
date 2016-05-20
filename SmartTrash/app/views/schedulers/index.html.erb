@@ -35,26 +35,21 @@ var _hmt = _hmt || [];
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
  <script type="text/javascript">
-       function deleteDevice(id){
-          if(confirm('您确定要删除该设备吗？')){
-               $.ajax({
-	               url:"/device/queryLineSensorByDevice.htm",
-	               type:"POST",
-	               data:{"deviceId":id}, 
-	               success:function (data) {
-	                 var jsonObj = $.parseJSON(data);
-	                 if("00" == jsonObj.flag){
-	                    if(Number(jsonObj.num) > 0){
-	                       alert('设备存在在线的传感器，请先断开该设备所有的传感器！')
-	                    }else{
-	                       window.location.href='/device/deleteDevice.htm?deviceId='+id;
-	                    }
-	                 }
-	               }
-               });
-          }
-       
-       }
+        function delscheduler(id){
+            if(confirm('确实要删除任务？')){
+            $.ajax({url:"/schedulers/"+id, 
+	                type:"DELETE",
+	                data:{'id':id,'status':status},
+		            success:function (data) {
+					if (0 == data.code) {
+                                              alert("删除成功");
+                                              window.location.reload();
+					} else {
+						alert("删除失败");
+					}
+			}});	
+        } 
+     }   
     
     </script>
 <style>
@@ -117,14 +112,14 @@ function demoLogin(){
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/index.htm">
-                         <img src="../img/logo.jpg" height="45">
                     </a>
                 </div>
                 <div class=" navbar-collapse"  style="height:60px">
                     <ul class="nav navbar-nav">
                         <!--                 <li><a href="/">首页</a></li> -->
+                        <li><img src="../img/logo_1.png"></li>
+                        <li><img src="../img/img2.jpg"></li>
                         
-                        <li><a href="/devices/monitor?pid=<%=@project_id%>">监控中心</a></li>
                         
                     </ul>
                     <div class="navbar-right" style="padding-right: 15px;">
@@ -403,71 +398,7 @@ function demoLogin(){
         });
        
        
-       function checkForm(){
-       		var reg = $("#reg").val();
-       		if(reg == '1'){
-       			var Password_2 = $("#Password_2").val();
-       			var ConfirmPassword_2 = $("#ConfirmPassword_2").val();
-       			if(Password_2!=ConfirmPassword_2){
-       				alert("两次密码输入不一致");
-       				return false
-       			}
-       		}else{
-       			var Password_1 = $("#Password1").val();
-       			var ConfirmPassword_1 = $("#ConfirmPassword1").val();
-       			if(Password_1!=ConfirmPassword_1){
-       				alert("两次密码输入不一致");
-       				return false
-       			}
-       		}
-       		$("#regForm").submit();
-       }
        
-       (function(m, ei, q, i, a, j, s) {
-	        m[a] = m[a] || function() {
-	            (m[a].a = m[a].a || []).push(arguments)
-	        };
-	        j = ei.createElement(q),
-	            s = ei.getElementsByTagName(q)[0];
-	        j.async = true;
-	        j.src = i;
-	        s.parentNode.insertBefore(j, s)
-	    })(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
-	    _MEIQIA('entId', 3273);
-	  
-	    setInterval("showDate()",1000);
-		function showDate(){
-			var rq = $("#rq").val();
-   			var h =  $("#h").val();
-   			var m =  $("#m").val();
-   			var s =  $("#s").val();
-   			
-   			s = Number(s)+1;
-   			if(s < 10){
-   			   s = "0" + s;
-   			}
-   			if(Number(s) == 60){
-   				s = "0";
-   				m = Number(m)+1;
-   			}
-   			if(m.length == 1){
-   			    m = "0" + m;
-   			}
-   			if(Number(m) == 60){
-   				m = "0";
-   				h = Number(h)+1;
-   			}
-   			if(h.length == 1){
-   				h = "0" + h;
-   			}
-   			$("#rq").val(rq);
-   			$("#h").val(h);
-   			$("#m").val(m);
-   			$("#s").val(s);
-   			
-   			var nowTime = rq+" "+h+":"+m+":"+s;
-   			$("#nowDate").html(nowTime);
-		}
     </script>
 <!--     </html> -->
 
@@ -538,10 +469,10 @@ function demoLogin(){
             <!--中间部分-->
              <div class="trigger_centen">
 				<div class="trigger_pa">
-				    <h3 class="trigger_font">定时任务管理</h3>
+				    <h3 class="trigger_font">广告管理</h3>
 				    
-					    <a href="/schedulers/new?pid=<%=@project_id%>"><p>新增定时任务</p></a>
-					 	<a href="/schedulers?pid=<%=@project_id%>"><p>我的定时任务</p></a>
+					    <a href="/schedulers/new?pid=<%=@project_id%>"><p>新增广告</p></a>
+					 	<a href="/schedulers?pid=<%=@project_id%>"><p>我的广告</p></a>
 				    
 				</div>
             </div>               
@@ -554,8 +485,8 @@ function demoLogin(){
         
         <div class="col-sm-8 alarm_lo">
         <form action="/scheduler/queryUserScheduler.htm" method="post" id="queryForm">
-           <div class="alarm_p" style="width: 100%;">
-              <p>定时任务列表</p>
+           <div class="alarm_p" style="width: 100%;display:none">
+              <p>广告列表</p>
                <span>
 	                 任务状态:
 		           <select class="form-control" name="status" style="width: 120px;display: inline;" onchange="gotoForm()">
@@ -573,9 +504,6 @@ function demoLogin(){
             <table style="margin-top: 30px;width: 100%;overflow: scroll" class="table">
                 <tbody><tr style="background: #e2e1dd;">
                     <th>名称</th>
-                    <th>发送方式</th>
-                    <th>计划时间</th>
-                    <th>设备协议</th>
                     <th>任务状态</th>
                     <th>发送内容</th>
                     <th>操作</th>
@@ -584,27 +512,7 @@ function demoLogin(){
                   
                   <tr>
                    <td><%= sc.name%></td>
-                    <td>
-                        
-                                重复执行
-                        
-                        
-                        
-                    </td>
-                    <td>
-                     
-                         
-                         
-                              星期一，2时00分32秒
-                         
                       
-                   </td>
-                    <td>
-                      
-                      
-                            tcp
-                      
-                    </td>
                     <td>
                        
                        
@@ -616,16 +524,16 @@ function demoLogin(){
                       
                          
                          
-                             ddd
+                             <%= sc.sendval%>
                          
                       
                     </td>
                     <td>
-                       <a href="javascript:updateStatus('<%=sc.id%>','1');" title="启动定时任务调度">启动</a> &nbsp;
-                       <a href="javascript:updateStatus('<%=sc.id%>','0');" title="停止定时任务调度">停止</a> &nbsp;
-                       <a href="javascript:schedulerInfo('<%=sc.id%>');" title="定时任务详情"><span data-toggle="modal" data-target="#schedulerInfo">任务详情</span></a> &nbsp;
-                       <a href="/scheduler/toUpdateScheduler.htm?id=121" title="修改定时任务">修改</a> &nbsp;
-                       <a href="/scheduler/deleteScheduler.htm?id=121" onclick="return confirm('您确定要删除该任务吗？')" title="删除定时任务调度">删除</a>
+                       <a href="javascript:updateStatus('<%=sc.id%>','1');" title="启动定时任务调度" style="display:none">启动</a> &nbsp;
+                       <a href="javascript:updateStatus('<%=sc.id%>','0');" title="停止定时任务调度" style="display:none">停止</a> &nbsp;
+                       <a href="javascript:schedulerInfo('<%=sc.id%>');" title="广告任务详情"><span data-toggle="modal" data-target="#schedulerInfo">广告详情</span></a> &nbsp;
+                       <a href="/schedulers/<%= sc.id%>/edit?" title="修改广告任务">修改</a> &nbsp;
+                       <a  onclick="delscheduler('<%=sc.id%>');" title="删除广告任务调度">删除</a>
                     </td>
                 </tr>
 
@@ -654,43 +562,62 @@ function demoLogin(){
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div>
+        <script type="text/javascript">
+         $(function(){
+            $("#_queryPage").find('li').click(function(){
+				var index = $(this).data('index');		
+				gotoFormPage(index);
+			})
+          });
 
-
-    <script type="text/javascript">
-	   function updateAlarms(id){
-		      var src = "/alarms/toUpdateAlarms.htm?alarmsId="+id;
-		      var title = '修改触发器';
-		      if('' == id){
-		         title = '添加触发器';
-		         src = '/alarms/toAddAlarms?pid=<%=@project_id%>';
-		      }
-		      $.get(src, function(data){
-		      	$("#alarmsTitle").html(title);
-				$("#myBody").html(data);
-				//$("#addAlarms").modal("show");
-			  }); 
+        function gotoFormPage(currPage){
+			$("#currPage").val(currPage);
+			$("#queryForm").submit();
 		}
-	  function activeAlarms(active,alarmsId){
-	     var tip =  active == '1' ? '开启' : '关闭';
-	     if(confirm('您确定要'+tip+'触发器吗?')){
-				$.ajax({url: "/alarms/activeAlarms.htm", type:"POST", data:{"alarmsId":alarmsId,"active" : active}, success:function (data) {
-					var jsonObj = $.parseJSON(data);
-					if ("00" == jsonObj.flag) {
-					   window.location.reload();
+    
+        function addScheduler(){
+           	window.location.href="/scheduler/toAddScheduler.htm";
+        }
+        function schedulerInfo(id){
+	      var src = "/scheduler/schedulerInfo.htm?id="+id;
+	      $.get(src, function(data){
+			$("#myBody").html(data);
+		  }); 
+		}
+        function updateStatus(id,status){
+            $.ajax({url:"/scheduler/updateSchedulerStatus.htm", 
+	                type:"POST",
+	                data:{'id':id,'status':status},
+		            success:function (data) {
+	                var jsonObj = $.parseJSON(data);
+					if ('00' == jsonObj.flag) {
+						if("1" == status){
+					    	$("#_status"+id).attr("style","color:green");
+					    	$("#_status"+id).html("运行中");
+					    }else{
+					    	$("#_status"+id).attr("style","color:red");
+					    	$("#_status"+id).html("未启动");
+					    }
 					} else {
-					   alert(jsonObj.msg);
+						alert(jsonObj.msg);
 					}
-				}});
-		   }	
-		}
-	   function deleteAlarms(alarmsId){
-   	       if(confirm('数据删除后不能恢复，您确定要删除吗？')){
-    	       var url = "/alarms/deleteAlarms.htm?alarmsId="+alarmsId+"&queryType="+$("#active_").val();
-    	       window.location.href = url;
-    	   }
-   	   }
-	</script>
-
+			}});	
+        } 
+        function delscheduler(id){
+            if(confirm('确实要删除任务？')){
+            $.ajax({url:"/scheduler/"+id, 
+	                type:"DELETE",
+	                data:{'id':id,'status':status},
+		            success:function (data) {
+					if (0 == data.code) {
+                                              alert(删除成功);
+                                              window.location.reload();
+					} else {
+						alert("删除失败");
+					}
+			}});	
+        } 
+    </script>
 
 <div id="MEIQIA-PANEL-HOLDER"><iframe id="MEIQIA-IFRAME" src="http://eco-api.meiqia.com/dist/desktop-fiesta.html?5dxg4coo14gkqpvi" frameborder="0" scrolling="no" allowtransparency="true"></iframe> </div><div id="MEIQIA-BTN-HOLDER"><a id="MEIQIA-BTN"> <span id="MEIQIA-BTN-ICON" class="MEIQIA-ICON MEIQIA-ICON-CHAT1"></span> <span id="MEIQIA-BTN-LINE"></span> <span id="MEIQIA-CIRCLE"></span> <div id="MEIQIA-BUBBLE"> <span id="MEIQIA-BUBBLE-ARROW1"></span> <span id="MEIQIA-BUBBLE-ARROW2"></span> <span id="MEIQIA-BUBBLE-CLOSE" class="MEIQIA-ICON"></span> <div id="MEIQIA-BUBBLE-INSIDE"> <img id="MEIQIA-BUBBLE-AVATAR"> <span id="MEIQIA-BUBBLE-NAME"></span> <div id="MEIQIA-BUBBLE-MSG"></div> </div> </div> </a></div><div id="MEIQIA-INVITE"><span id="MEIQIA-INVITE-CLOSE" class="MEIQIA-ICON"></span> <div id="MEIQIA-INVITE-INSIDE">您好，当前有专业客服人员在线，让我们来帮助您吧。</div> <span id="MEIQIA-INVITE-ARROW1"></span> <span id="MEIQIA-INVITE-ARROW2"></span></div></body>
 

@@ -20,11 +20,17 @@ class SchedulersController < ApplicationController
   def new
     @project_id=params[:pid]
     @scheduler = Scheduler.new
-    @devices= Device.where(project_id:params[:pid])
+    @devices= Device.where(user_id:params[:pid])
   end
 
   # GET /schedulers/1/edit
   def edit
+    @scheduler = Scheduler.find(params[:id])
+    @curdevice = Device.find(@scheduler.device_id) 
+    logger.info @scheduler.device_id
+    logger.info @curdevice
+    @devices= Device.where(user_id:@curdevice.user_id)
+    @project_id=@curdevice.user_id
   end
 
   # POST /schedulers
@@ -62,8 +68,7 @@ class SchedulersController < ApplicationController
   def destroy
     @scheduler.destroy
     respond_to do |format|
-      format.html { redirect_to schedulers_url, notice: 'Scheduler was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render :json => {:code =>0,:msg =>"Device was successfully destroyed.",:redirect_uri =>""} }
     end
   end
 

@@ -65,6 +65,7 @@ class DevicesController < ApplicationController
        @devices=User.find(pid).device
        @project_name=User.find(pid).name
        @project_id=User.find(pid).id
+       @user_id=User.find(pid).id
     end
   end
   # GET /devices/1

@@ -27,10 +27,13 @@ thread_alarm(void *arg)
 	pthread_cond_t		cond = PTHREAD_COND_INITIALIZER;
 	pthread_mutex_t		cond_mutex = PTHREAD_MUTEX_INITIALIZER;
 	struct	timespec	timeout;
-	connect_init();
 	while (1) {
 		/* Make sure we check the servers at the very begining */
-		alarm_send();
+	        connect_init();
+                if(sockfd!=-1){
+		  alarm_send();
+                  close(sockfd);
+                }
 		
 		/* Sleep for config.checkinterval seconds... */
 		timeout.tv_sec = time(NULL) + 6000;
@@ -45,7 +48,6 @@ thread_alarm(void *arg)
 		/* No longer needs to be locked */
 		pthread_mutex_unlock(&cond_mutex);
 	}
-        close(sockfd);
 }
 
 static void connect_init(void){
