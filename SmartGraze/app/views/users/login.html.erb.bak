@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户登录 - 传感云</title>
+<script src="/js/user/jquery.min.js"></script>
+<script src="/js/user/jquery.validate.min.js"></script>
+<link href="css/user/login.css" type="text/css" rel="stylesheet">
+<link href="css/user/public2.css" type="text/css" rel="stylesheet">
+<link rel="shortcut icon" href="/public/images/favicon.png">
+<script type="text/javascript">
+function fn_focus(ele){
+	if(ele.value == ele.defaultValue){
+		ele.value = '';
+		ele.style.color = 'rgb(51,51,51)';
+	}
+}
+function fn_blur(ele){
+	var reg = /^[\s]*$/;
+	if(reg.test(ele.value) || ele.value == ele.defaultValue){
+		ele.value = ele.defaultValue;
+		ele.style.color = 'rgb(200,200,200)';
+	}
+}
+$(document).ready(function() {
+	$("#loginBtn").click(function() {
+		var loginName = $("#loginName").val(); // 用户名
+		var loginPwd  = $("#loginPwd").val();  // 密码
+		var result = $("#loginForm").valid();
+		var remeber="";
+		if ($("#remeberMe").is(":checked")){
+			remeber="&remeberMe=on";
+		}
+		if(result){
+			$("#loginBtn").attr("disabled","disabled"); 
+			$("#loginBtn").val("登录中...");
+			$.ajax({
+				type : "POST",
+				url : "/login",
+				data: "name="+loginName+"&password="+loginPwd+remeber,
+				dataType : "json",
+				success : function(data) {
+					if(data.code==0){
+						window.location.href = ""+data.redirect_uri;
+					}else{
+						$("#loginBtn").removeAttr("disabled"); 
+						$("#loginBtn").val("登  录");
+						$("#errorTip").css('display','');
+						$("#errorMsg").html(data.errorMsg);
+					}
+				}
+			});
+		}else{
+			return false;
+		}
+	});
+});
+
+$(document).ready(function() {
+	$("#loginForm").validate({
+		errorElement:"span",
+		errorClass: "error_error",
+		rules: {
+			loginName: {
+				required: true
+				//#email: true
+			},
+			loginPwd: {
+				required: true
+			}
+		},
+		messages: {
+			loginName: {
+				required: "<b>用户名不能为空</b>",
+				email:"<b>请输入正确的用户名</b>"
+			},
+			loginPwd: {
+				required: "<b>密码不能为空</b>"
+			}
+		},
+		errorPlacement : function(error, element) {
+			error.appendTo(element.parent());
+		}
+	});
+	if ( $("#loginCode").length > 0 ){
+		$("#loginCode").rules("add", { required: true,messages:{required: "<b>验证码不能为空</b>"} });
+	}
+});
+$(document).keyup(function(event){
+	if(event.keyCode ==13){
+		$("#loginBtn").trigger("click");
+	}
+});
+</script>
+</head>
+<body>
+<div class="head-warp">
+    <div class="header2">
+      <div class="logo">
+        <a href="/"><img src="/img/logo_smart.jpg" alt="平台"><span>平台</span></a>
+        <a href="/"><img src="/img/img1.jpg" alt="平台"><span>平台</span></a>
+      </div>
+      <div class="navType nav-box" id="navbar">
+        <ul>
+            <li class="" style="display:none"><a href="/">首页</a></li>
+            <li class="" style="display:none"><a href="#">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+</div>
+
+<div class="wrap">
+	<div class="main">
+	<div class="content">
+		<div class="c_left">
+			<div class="tit_div"><h1>登录</h1></div>
+			<div class="sign_div">
+				<div class="step3" style="display: none" id="errorTip">
+					<p class="p3" style="color: red" id="errorMsg"></p>
+				</div>
+				<div class="step1">
+					<div class="form">
+					<form action="/account/doLogin" method="post" name="loginForm" id="loginForm" novalidate="novalidate">
+						<dl>
+							<dt><label for="regEmail">用户名：</label></dt>
+							<dd><input type="text" name="loginName" id="loginName" class="txt" value="" onfocus="fn_focus(this);" onblur="fn_blur(this);" style="color: rgb(200, 200, 200);"></dd>
+						</dl>
+						<dl>
+							<dt><label for="pwd">密码：</label></dt>
+							<dd><input type="password" name="loginPwd" id="loginPwd" class="txt" onfocus="fn_focus(this);" onblur="fn_blur(this);" style="color: rgb(200, 200, 200);"></dd>
+						</dl>
+					
+						<dl style="display: none;">
+							<dt></dt>
+							<dd>
+								<input type="checkbox" class="checkbox" name="remeberMe" id="remeberMe" value="on" checked="checked">
+								<span class="ag">记住用户名</span>
+							</dd>
+						</dl>
+						<dl id="loginDl">
+							<dt></dt>
+							<dd><input type="button" id="loginBtn" value="登&nbsp;&nbsp;录" class="yj-btn-blue btn_submit"></dd>
+						</dl>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="c_right">
+			<p class="p1">还没有帐号</p>
+			<a href="/register" class="yj-btn btn-login" style="background: url(/css/user/login/btn_zc.png)">注&nbsp;&nbsp;册</a>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="w footer">
+	<div class="w ftop">
+		<div class="warp ma clearfix">
+			<div class="fl mgy_logo">
+				<dt><a href="">关于</a>&nbsp;&nbsp;<a href="#" target="_blank">合作伙伴</a>&nbsp;&nbsp;<a href="#" target="_blank">加入我们</a>&nbsp;&nbsp;<a href="#">联系我们</a></dt>
+				<span class="fl"><a href="/">
+				<!--img src="/public/images/web/public/logo_foot.png" width="269" alt="传感云">--></a></span>
+			</div>
+			<dl class="fr fmenu ar">
+				<dd class="c_gray">中国电信北京研究院　　<a href="#" target="_blank"></a>&nbsp;&nbsp;
+				Copyright©2015 ctbri.com Rights Reserved<strong></strong></dd>
+				</dl>
+		</div>
+	</div>
+</div>
+
+
+</body></html>

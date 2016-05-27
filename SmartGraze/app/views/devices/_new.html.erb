@@ -1,0 +1,202 @@
+<div class="col-sm-10 all_device">
+            <div style="margin-left:290px;" class="form-horizontal personU_theRight">
+                <p class="personU_sen_title">
+                   &nbsp; 添加设备
+                </p>
+                <div class="addDevice_div">
+                <form id="add-device-form" class="form-horizontal" action="/devices" method="post">
+                    
+                    	<input type="hidden" name="deviceId" id="deviceId" value="3180">
+                    
+                    <div class="form-group">
+                        <label class="col-md-1 control-label pd0" for="deviceName">设备名称</label>
+                        <div class="col-md-6">
+                            <input type="text" id="deviceName" class="form-control" name="deviceName" placeholder="设备名称" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-1 control-label pd0" for="sn">序列号</label>
+                        <div class="col-md-6">
+                            <input type="text" id="sn" class="form-control" name="sn" placeholder="序列号" value="">
+                        </div>
+                    </div>
+                   <div class="form-group" style="display:none">
+                        <label class="col-md-1 control-label pd0" for="deviceProtocol">链接协议</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="deviceProtocol">
+                             	<option value="mqtt">MQTT</option>
+
+                                <option value="tcp" selected="selected">TCP</option>
+                                <option value="modbus">MB RTU</option>
+                            </select>  
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-1 control-label pd0" for="devicePeriod">上报周期</label>
+                        <div class="col-md-6">
+                            <label class="radio-inline">
+                              <input type="radio" name="periodOption" value="0" checked="checked"> 自定义
+                            </label>
+                            <label style="width:150px;" class="radio-inline">
+                              <input type="radio" name="periodOption" value="1"> 推荐值
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 cen_mins" id="devicePeriod">
+	                        
+	                        	<input class="form-control" name="deviceDuration" value="60" onblur="check(this)" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')">
+	                        
+                        	
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-1 control-label pd0" for="deviceSensors">传感器</label>
+                        <div class="col-md-6">
+                            <button id="addSingleSensorBtn" type="button" class="btn btn-default">追加</button>
+                            <button id="addMutilSensorBtn" type="button" class="btn btn-default" data-toggle="modal" data-target="#mutilSensorDialog">批量追加</button>
+                        </div>
+                    </div>
+                    <div class="form-group" id="deviceSensorList">
+                        
+                      	  <input type="hidden" id="deleteSensorId" name="deleteSensorId">
+                            
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-1 control-label pd0" for="deviceShare">是否公开</label>
+                        <div class="col-md-6">
+                            <label class="radio-inline">
+                              <input type="radio" name="deviceIsShare" value="0" checked="checked"> 否
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="deviceIsShare" value="1"> 是
+                            </label>
+                        </div>    
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10 collapse in pd0" id="devicePosition">
+                            <input type="hidden" name="devicePositionLng" id="devicePositionLng" value="114.048121">
+                            <input type="hidden" name="devicePositionLat" id="devicePositionLat" value="22.578761">
+                            <div id="allmap" style="height: 350px; width: 100%; overflow: hidden; position: relative; z-index: 0; color: rgb(0, 0, 0); text-align: left; background-color: rgb(243, 241, 236);"><div style="overflow: visible; position: absolute; z-index: 0; left: 0px; top: 0px; cursor: url(http://api0.map.bdimg.com/images/openhand.cur) 8 8, default;"><div class="BMap_mask" style="position: absolute; left: 0px; top: 0px; z-index: 9; overflow: hidden; -webkit-user-select: none; width: 671px; height: 350px;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 200;"><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 800;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 700;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 600;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 500;"><label class="BMapLabel" unselectable="on" style="position: absolute; display: none; cursor: inherit; border: 1px solid rgb(190, 190, 190); padding: 1px; white-space: nowrap; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: arial, sans-serif; z-index: -20000; color: rgb(190, 190, 190); background-color: rgb(190, 190, 190);">shadow</label></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 400;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 300;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 201;"></div><div style="position: absolute; height: 0px; width: 0px; left: 0px; top: 0px; z-index: 200;"></div></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 1;"><div style="position: absolute; overflow: visible; z-index: -100; left: 336px; top: 175px; display: block; transform: translate3d(0px, 0px, 0px);"><img src="http://online3.map.bdimg.com/tile/?qt=tile&amp;x=386&amp;y=77&amp;z=11&amp;styles=pl&amp;scaler=1&amp;udt=20160401" style="position: absolute; border: none; width: 256px; height: 256px; left: -309px; top: -25px; max-width: none; opacity: 1;"><img src="http://online4.map.bdimg.com/tile/?qt=tile&amp;x=386&amp;y=78&amp;z=11&amp;styles=pl&amp;scaler=1&amp;udt=20160401" style="position: absolute; border: none; width: 256px; height: 256px; left: -309px; top: -281px; max-width: none; opacity: 1;"><img src="http://online4.map.bdimg.com/tile/?qt=tile&amp;x=387&amp;y=77&amp;z=11&amp;styles=pl&amp;scaler=1&amp;udt=20160401" style="position: absolute; border: none; width: 256px; height: 256px; left: -53px; top: -25px; max-width: none; opacity: 1;"><img src="http://online0.map.bdimg.com/tile/?qt=tile&amp;x=388&amp;y=77&amp;z=11&amp;styles=pl&amp;scaler=1&amp;udt=20160401" style="position: absolute; border: none; width: 256px; height: 256px; left: 203px; top: -25px; max-width: none; opacity: 1;"><img src="http://online1.map.bdimg.com/tile/?qt=tile&amp;x=388&amp;y=78&amp;z=11&amp;styles=pl&amp;scaler=1&amp;udt=20160401" style="position: absolute; border: none; width: 256px; height: 256px; left: 203px; top: -281px; max-width: none; opacity: 1;"><img src="http://online3.map.bdimg.com/tile/?qt=tile&amp;x=385&amp;y=78&amp;z=11&amp;styles=pl&amp;scaler=1&amp;udt=20160401" style="position: absolute; border: none; width: 256px; height: 256px; left: -565px; top: -281px; max-width: none; opacity: 1;"><img src="http://online2.map.bdimg.com/tile/?qt=tile&amp;x=385&amp;y=77&amp;z=11&amp;styles=pl&amp;scaler=1&amp;udt=20160401" style="position: absolute; border: none; width: 256px; height: 256px; left: -565px; top: -25px; max-width: none; opacity: 1;"><img src="http://online0.map.bdimg.com/tile/?qt=tile&amp;x=387&amp;y=78&amp;z=11&amp;styles=pl&amp;scaler=1&amp;udt=20160401" style="position: absolute; border: none; width: 256px; height: 256px; left: -53px; top: -281px; max-width: none; opacity: 1;"></div></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 2; display: none; visibility: hidden;"><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 0; display: none;"></div></div><div style="position: absolute; overflow: visible; top: 0px; left: 0px; z-index: 3;"></div></div><div class="pano_close" title="退出全景" style="z-index: 1201; display: none;"></div><a class="pano_pc_indoor_exit" title="退出室内景" style="z-index: 1201; display: none;"><span style="float:right;margin-right:12px;">出口</span></a><div class=" anchorBL" style="height: 32px; position: absolute; z-index: 30; bottom: 0px; right: auto; top: auto; left: 1px;"><a title="到百度地图查看此区域" target="_blank" href="http://map.baidu.com/?sr=1" style="outline: none;"><img style="border:none;width:77px;height:32px" src="http://api0.map.bdimg.com/images/copyright_logo.png"></a></div><div id="zoomer" style="position: absolute; z-index: 0; top: 15px; left: 455px; overflow: hidden; visibility: hidden; cursor: url(http://api0.map.bdimg.com/images/openhand.cur) 8 8, default; width: 60px; height: 46px;"><div class="BMap_zoomer" style="top: 0px; left: 0px; background-position: -7px -7px;"></div><div class="BMap_zoomer" style="top: 0px; right: 0px; background-position: 0px -7px;"></div><div class="BMap_zoomer" style="bottom: 0px; left: 0px; background-position: -7px 0px;"></div><div class="BMap_zoomer" style="bottom: 0px; right: 0px; background-position: 0px 0px;"></div></div><div unselectable="on" class=" BMap_cpyCtrl BMap_noprint anchorBL" style="cursor: default; white-space: nowrap; color: black; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 11px; line-height: 15px; font-family: arial, sans-serif; bottom: 2px; right: auto; top: auto; left: 81px; position: absolute; z-index: 10; background: none;"><span _cid="1" style="display: inline;"><span style="font-size:11px">© 2016 Baidu&nbsp;- Data © <a target="_blank" href="http://www.navinfo.com/" style="display:inline;">NavInfo</a> &amp; <a target="_blank" href="http://www.cennavi.com.cn/" style="display:inline;">CenNavi</a> &amp; <a target="_blank" href="http://www.365ditu.com/" style="display:inline;">道道通</a></span></span></div></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 pd0">
+                        	
+                            <button  type="button"  onclick="checkLng();" class="btn btn-default">保存设备</button>
+                            
+                        </div>
+                    </div>
+                </form>
+               </div>
+            </div>
+        </div>
+
+
+
+<script type="text/javascript">
+      function delMapping(id){
+         if(null != $("#_mapping"+id).html() && "" != $("#_mapping"+id).html().trim()){
+	         if(confirm('您确认要删除映射吗？')){
+	            $.ajax({url:"/device/deleteMapping.htm", 
+		                type:"POST",
+		                data:{sensorId : id},
+		                success:function (data) {
+			                var jsonObj = $.parseJSON(data);
+							if ('00' == jsonObj.flag) {
+							    $("#_mapping"+id).html("");
+							    $("#field1"+id).val("");
+							    $("#field2"+id).val("");
+							    $("#field3"+id).val("");
+							    $("#field4"+id).val("");
+							} else {
+								alert(jsonObj.msg);
+					}
+				}});	
+	         }
+	      }else{
+	         alert("没有要删除的映射值！");
+	      }
+      }
+  
+  	function checkLng(){
+  		 if($("#sensorName").length == 0 ){
+      			alert("请至少添加一个传感器！");
+     			return false;
+     	 }
+     	 if($("input[name='deviceIsShare']:checked").val() == '1'){
+	   		 if($("#devicePositionLng").val() == "" || $("#devicePositionLng").val() == "0" ){
+	  			alert("请在地图上设置设备所在位置!");
+	  			return false;
+	  		 }  
+	     }
+              var str='{"deviceName":"'+$("#deviceName").val()+'",';
+              str+='"deviceDuration":"'+$("input[name='deviceDuration']").val()+'",';
+              str+='"sn":"'+$("input[name='sn']").val()+'",';
+              str+='"devicePositionLng":"'+$("input[name='devicePositionLng']").val()+'",';
+              str+='"devicePositionLat":"'+$("input[name='devicePositionLat']").val()+'",';
+              str+='"deviceSensorList":[';
+              i=0;
+               $("#deviceSensorList").children().each(function(){
+                   //str+="{";
+                   if (i!=0){
+                      str+=",";
+                   }
+                                   
+                   $(this).find("[name='sensorName']").each(function(){ 
+                           i++;
+                           str+="{";
+                           str+='"sensorName":"'+$(this).val()+'",';
+                    });
+                   $(this).find("[name='sensorId']").each(function(){ 
+                           str+='"sensorId":"'+$(this).val()+'",';
+                    });
+                   $(this).find("[name='sensorType']").each(function(){ 
+                           str+='"sensorType":"'+$(this).val()+'",';
+                    });
+                   $(this).find("[name='sensorSign']").each(function(){ 
+                           str+='"sensorSign":"'+$(this).val()+'",';
+                    });
+                   $(this).find("[name='sensorUnit']").each(function(){ 
+                           str+='"sensorUnit":"'+$(this).val()+'"';
+                          str+="}";
+                    });
+                   //str+="},";
+               });
+              str+="]";
+              str+="}";
+              //alert(str);
+              //alert(JSON.parse(str));
+               var data = $("#add-device-form").serializeArray();
+  		// $("#add-device-form").submit();
+                $.post('/devices?pid=<%=@project_id%>',JSON.parse(str), 
+            //回调函数 
+            function(theback) 
+            {
+                //输出结果
+                $("#div_2").html('第一个数：'+theback.num1+'<br />'+'第二个数：'+theback.num2+'<br />'+'算法类型：'+theback.type+'<br />'+'计算结果：'+theback.result);
+            },
+            //返回类型
+            "json"
+            );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  	}	
+  </script>

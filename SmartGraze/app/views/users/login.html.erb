@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script id="MapSrc" src="http://ditu.google.cn/maps/api/js?sensor=false&language=cn" type="text/javascript"></script>
+<script src="/js/user/language01-zh-cn.js" type="text/javascript"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+
+</title>
+    <script src="/js/user/jquery-1.6.min.js" type="text/javascript"></script>
+    <script src="/js/user/jquery.validate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/user/loginrf.css" />
+    <script src="/js/user/initmap-Google.js" type="text/javascript"></script>
+    <script src="/js/user/PublicCookie.js" type="text/javascript"></script>
+    <script src="/js/user/rf.pop.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+    $(document).ready(function() {
+	$("#btnLoginImei").click(function() {
+		var loginName = $("#loginName").val(); // 用户名
+		var loginPwd  = $("#loginPwd").val();  // 密码
+		var result = $("#loginForm").valid();
+		var remeber="";
+		if(result){
+			$("#btnLoginImei").attr("disabled","disabled"); 
+			//$("#btnLoginImei").val("登录中...");
+			$.ajax({
+				type : "POST",
+				url : "/login",
+				data: "name="+loginName+"&password="+loginPwd+remeber,
+				dataType : "json",
+				success : function(data) {
+					if(data.code==0){
+						window.location.href = ""+data.redirect_uri;
+					}else{
+						$("#btnLoginImei").removeAttr("disabled"); 
+						//$("#btnLoginImei").val("登  录");
+						//$("#errorTip").css('display','');
+						//$("#errorMsg").html(data.errorMsg);
+					}
+				}
+			});
+		}else{
+			return false;
+		}
+	});
+});
+
+$(document).ready(function() {
+	$("#loginForm").validate({
+		errorElement:"span",
+		errorClass: "error_error",
+		rules: {
+			loginName: {
+				required: true
+				//#email: true
+			},
+			loginPwd: {
+				required: true
+			}
+		},
+		messages: {
+			loginName: {
+				required: "<b>用户名不能为空</b>",
+				email:"<b>请输入正确的用户名</b>"
+			},
+			loginPwd: {
+				required: "<b>密码不能为空</b>"
+			}
+		},
+		errorPlacement : function(error, element) {
+			error.appendTo(element.parent());
+		}
+	});
+});
+$(document).keyup(function(event){
+	if(event.keyCode ==13){
+		$("#btnLoginImei").trigger("click");
+	}
+});
+    function initTitle() {
+        //document.title = loginPage.title;
+        //parent.document.title = loginPage.title;
+    }
+    function loginFaild() {
+        alert(loginPage.loginMsg);
+    }
+    function loginFaild2() {
+        alert(loginPage.loginMsg2);
+    }
+    function loginFaild3() {
+        alert(loginPage.loginMsg3);
+    }
+    initTitle();
+
+
+    function loginType2(v) {
+        var bAccount = document.getElementById("divAccount");
+        var pImei = document.getElementById("divImei");
+
+        bAccount.style.display = "none";
+        pImei.style.display = "none";
+        if (v == "B") {
+            bAccount.style.display = "block";
+            document.getElementById("txtCheckUser").checked = false;
+            document.getElementById("txtCheckAccount").checked = true;
+        } else {
+            pImei.style.display = "block";
+            document.getElementById("txtCheckUser").checked = true;
+            document.getElementById("txtCheckAccount").checked = false;
+        }
+    }
+
+    function checkLogin(t) {
+
+        if (t == 0) {
+            var username = document.getElementById("txtUserName").value;
+            var password = document.getElementById("txtAccountPassword").value;
+            if (username == "" || password == "") {
+                return false;
+            }
+            setUserCookie();
+            return;
+        } else {
+            var imeino = document.getElementById("txtImeiNo").value;
+            var password = document.getElementById("txtImeiPassword").value;
+            if (imeino == "" || password == "") {
+                return false;
+            }
+            setUserCookie();
+            return;
+        }
+
+    }
+
+    function setUserCookie() {
+        var user = document.getElementById("txtUserName").value;
+        if (user != "") {
+            setCookie("loginAspxUser", user);
+        }
+        var imei = document.getElementById("txtImeiNo").value;
+        if (imei != "") {
+            setCookie("loginAspxImei", imei);
+        }
+
+        var userCheck = document.getElementById("chkUserPass").checked;
+        if (userCheck) {
+            var userPass = document.getElementById("txtAccountPassword").value;
+            setCookie("loginHtmlUserPass", userPass);
+        } else {
+            setCookie("loginHtmlUserPass", "");
+        }
+
+        var imeiCheck = document.getElementById("chkUserIMEI").checked;
+        if (imeiCheck) {
+            var imeiPass = document.getElementById("txtImeiPassword").value;
+            setCookie("loginHtmlImeiPass", imeiPass);
+        } else {
+            setCookie("loginHtmlImeiPass", "");
+        }
+        return true;
+    }
+    window.onload = function () {
+        var user = getCookie("loginAspxUser");
+        var imei = getCookie("loginAspxImei");
+        if (user) {
+            document.getElementById("txtUserName").value = user;
+        }
+        if (imei) {
+            document.getElementById("txtImeiNo").value = imei;
+        }
+
+        var userPass = getCookie("loginHtmlUserPass");
+        var imeiPass = getCookie("loginHtmlImeiPass");
+        if (userPass) {
+            document.getElementById("txtAccountPassword").value = userPass;
+        }
+        if (imeiPass) {
+            document.getElementById("txtImeiPassword").value = imeiPass;
+        }
+        initmap();
+	var lan = 'zh-cn';
+	if (lan == "zh-cn") {
+		var pop=new Pop("","");
+	}else{
+		var pop=new Pope("","");	
+	}
+    };
+
+    var map = null;
+    function initmap() {
+        initGoogleMap(0, 0, 0);
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                map.setCenter(initialLocation);
+                map.setZoom(12);
+            }, function () {
+           
+            });
+        } else if (google.gears) {
+            var geo = google.gears.factory.create('beta.geolocation');
+            geo.getCurrentPosition(function (position) {
+                var initialLocation = new google.maps.LatLng(position.latitude, position.longitude);
+                map.setCenter(initialLocation);
+                map.setZoom(12);
+            }, function () {
+               
+            });
+        } else {
+        } 
+
+    }
+</script>
+<body>
+    <form method="post" action="./LoginRF.aspx" id="loginForm">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE0MDg2MDkzNTYPZBYCAgIPZBYIZg8WAh4Dc3JjBRQuLi9pbWcvemhvbmd4aW5nLnBuZ2QCAQ8WAh8ABRQuLi9pbWcvemhvbmd4aW5nLnBuZ2QCCA8WAh4EaHJlZgUraHR0cHM6Ly9hcHBkb3dubG9hZC5vcmcvYW55dHJhY2tpbmcvQXBwLmFwa2QCCQ8WAh4Fc3R5bGUFW3dpZHRoOjQ1OXB4O21hcmdpbjowIGF1dG87aGVpZ2h0OjEyN3B4O2JhY2tncm91bmQtaW1hZ2U6dXJsKC4uL0ltYWdlcy9yZkltYWdlcy9sZzVfMDcucG5nKTtkZP9F888LNSs3ROAt1lGg0rdYC58mYKL8l12/kIc14sl8" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="06D46FC9" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAgryUXpLe8ICiV4yxQ8SbS1Y3plgk0YBAefRz3MyBlTcFLjjDlf1pHasIXq6PwX+2mmOcJV4EUyig57cKpLq8XzNrCvSGNuFdeFMwCGRRdMYynOv2pF4+I0UjrsS5djHRmG2EWK69+Bra2eLwDxNXKO2+iJucUre8fSklL5708fnUoXqBRwI1oxtNMuT/VRsckdSJWQYwIyltE9lGZ82HJq" />
+</div>
+<div class="head-top">
+<div style="position:absolute; margin-left:300px; margin-top:20px;">
+<!--<a href="http://old.gps123.org/" target="_blank" id="aold">查看旧版历史轨迹</a>-->
+</div>
+    <div class="top-logo" style="background: url(/img/user/neuter_logo.png) no-repeat;" id="logobg"><h1></h1></div>
+    <div class="top-title" id="titlebg"></div>
+    <div style=" right:200px; position:absolute;display:none">
+        <div style="height:20px; margin-top:23px; text-indent:10px;"><script type="text/javascript">writePage(loginPage.languageMsg)</script>:</div>
+        <div class="top-lang" style="display:none">
+            <ul class="nav" style="padding: 10px 0 0 3px;">
+                <li><a  title='中文' href="LoginRF.aspx?language=zh-cn"><img src="../images/lan/zh.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='English' href="LoginRF.aspx?language=en-us"><img src="../images/en-us.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='Polska' href="LoginRF.aspx?language=pl"><img src="../images/pl.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='Việt Nam' href="LoginRF.aspx?language=vi"><img src="../images/vi.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='Turkey' href="LoginRF.aspx?language=tr"><img src="../images/tr.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='' href="LoginRF.aspx?language=ar"><img src="../images/ar.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='' href="LoginRF.aspx?language=nb-NO"><img src="../images/nb-NO.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+            </ul>
+            <ul class="nav" style="clear:left;padding: 3px 0 0 3px;">
+                <li><a  title='русский' href="LoginRF.aspx?language=ru"><img src="../images/ru.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='Deutsch' href="LoginRF.aspx?language=de"><img src="../images/de.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='Français' href="LoginRF.aspx?language=fr"><img src="../images/fr.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='Spanish' href="LoginRF.aspx?language=es"><img src="../images/es.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='Portuguese' href="LoginRF.aspx?language=pt"><img src="../images/pt1.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='' href="LoginRF.aspx?language=it-IT"><img src="../images/it-IT.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+                <li><a title='' href="LoginRF.aspx?language=zh-hk"><img src="../images/hk.jpg" alt="" style="border:0px; width:26px; height:17px;" /></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="top-border">&nbsp;</div>
+
+
+<div class="body-main">
+<div id="map_canvas" style="position:absolute; height:500px; width:100%; z-index:88;"></div>
+    
+    <div id="divIOSImg" style="z-index:9999; position:absolute; right:450px; top:380px; width:154px; height:173px; background-color:White; display:none;">
+                <table width="100%" border="0">
+                  <tr align="center"><td><b>IOS APP</b></td></tr>
+                  <tr align="center">
+                    <td><img src="/img/user/zhongxing.png" id="imgIosApp" height="150" width="150" /></td>
+                  </tr>
+                </table>    
+    </div>
+
+    <div id="divANDROIDImg" style="z-index:9999; position:absolute; right:450px; top:430px; width:154px; height:173px; background-color:White; display:none;">
+                <table width="100%" border="0">
+                  <tr align="center"><td><b>Android APP</b></td></tr>
+                  <tr align="center">
+                    <td><img src="/img/user/zhongxing.png" id="imgAndroidAPP" height="150" width="150" /></td>
+                  </tr>
+                </table>    
+    </div>
+
+    <div id="divWeixin" style="z-index:9999; position:absolute; right:450px; top:470px; width:154px; height:173px; background-color:White; display:none;">
+                <table width="100%" border="0">
+                  <tr align="center"><td><b>微信查车</b></td></tr>
+                  <tr align="center">
+                    <td><img src="/img/user/weixin.png" height="150" width="150" /></td>
+                  </tr>
+                </table>    
+    </div>
+
+
+<div class="main-login" id="loginbg" style="z-index:9998; position:absolute; right:200px;">
+<div class="login-box">
+    <input type="hidden" value="0" id="txtLanguage" />
+    <div style="color:White;height:30px;">
+        <input type="radio" id="txtCheckAccount" onclick="loginType2('B')" name="loginType" style="cursor:pointer;"/><span id="titlect0" onclick="loginType2('B')" style="cursor:pointer;"><script type="text/javascript">
+                                                                                                                                                                                               writePage(loginPage.accountTab)
+                         </script></span>
+    </div>
+     <div id="divAccount" style="display:none;">
+        <div style="margin:0px 0px 0px 7px;">
+            <input name="txtUserName" type="text" id="txtUserName" style="height: 24px;margin:0px;border: 0px;padding-left:2px; font-size: 12px;width: 170px;" />
+        </div>
+        <div style="margin:15px 0px 0px 7px;">
+            <input name="txtAccountPassword" type="password" id="txtAccountPassword" style="height: 24px;border: 0px;padding-left:2px; font-size: 12px;width: 170px;" />
+        </div>
+        <div style="margin:10px 0px 0px 0px;">
+            <input type="checkbox" name="chkUserPass" id="chkUserPass" value="0" checked="checked" /><label id="lblPass"></label>&nbsp;&nbsp;
+            <a id="aDemo" href="../UrlLoginGet.aspx?loginType=0&txtUserName=888&txtUserPassword=123456" style="text-decoration:none; color:Black;"></a>
+        </div>
+        <div style="margin:10px 0px 0px 0px;">
+                        <input type="submit" name="login_button" value="" onclick="return checkLogin(0);" id="login_button" />
+        </div>
+    </div>
+     
+     <div id="divImei" style=" display:block;">
+        <div style="margin:0px 0px 0px 7px;">
+            <input name="loginName" type="text" id="loginName" style="height: 24px;margin:0px;border: 0px;padding-left:2px; font-size: 12px;width: 170px;" />
+        </div>
+        <div style="margin:15px 0px 0px 7px;">
+            <input name="loginPwd" type="password" id="loginPwd" style="height: 24px;border: 0px;padding-left:2px; font-size: 12px;width: 170px;" />
+        </div>
+        <div style="margin:10px 0px 0px 0px;">
+            <input type="checkbox" name="chkUserIMEI" id="chkUserIMEI" value="0" checked="checked" /><label id="lblPass2"></label>&nbsp;&nbsp;
+            <a id="aDemo2" href="../UrlLoginGet.aspx?loginType=0&txtUserName=888&txtUserPassword=123456" style="text-decoration:none; color:Black;"></a>
+        </div>
+        <div style="margin:10px 0px 0px 0px;">
+                        <input type="button" name="btnLoginImei" value=""  id="btnLoginImei" />
+        </div>
+     </div>
+
+    <div style="margin:10px 0px 0px 0px;">
+        <a href="javascript:void(0);" onmouseout="$('#divIOSImg').hide();" onmouseover="$('#divIOSImg').show();" ><img alt="" id="iphonect" src="/img/user/zh_iphone.png" style="border:0px;" /></a>
+    </div>
+    <div style="margin:10px 0px 0px 0px;">
+          <a href="https://appdownload.org/anytracking/App.apk" id="aAndrodDownload" onmouseout="$(&#39;#divANDROIDImg&#39;).hide();" onmouseover="$(&#39;#divANDROIDImg&#39;).show();" class="dl andriod"><img alt="" id="andriodct" src="/img/user/zh_andriod.png" style="border:0px;" /></a>
+    </div>
+   
+</div>
+   
+</div>
+
+</div>
+<div class="bottom">
+    <div id="divFooter" style="width:459px;margin:0 auto;height:127px;background-image:url(../Images/rfImages/lg5_07.png);"></div>
+</div>
+<input name="hidPinpai" type="hidden" id="hidPinpai" value="0" />
+<script type="text/javascript">
+    function changePic() {
+        var lan = 'zh-cn';
+        var isPinpai = $("#hidPinpai").val();
+        if (lan == "zh-cn") {
+			//note 
+			
+			//note end
+            if (isPinpai == "1") {
+                $("#logobg").css("background", "url(/img/user/zh_logo.png) no-repeat");
+            } else {
+                $("#logobg").css("background", "url(/img/user/neuter_logo.png) no-repeat");
+            }
+            $("#logobg").css("margin-left", "0px");
+            $("#logobg").css("margin-top", "26px");
+            $("#titlebg").css("background", "url(/img/user/zh_top_title.png) no-repeat");
+            $("#loginbg").css("background", "url(/img/user/login.png) no-repeat");
+            $("#login_button").css("background", "url(/img/user/zh_loginx.png) no-repeat");
+            $("#btnLoginImei").css("background", "url(/img/user/zh_loginx.png) no-repeat");
+			
+			$("#iphonect").attr("src", "/img/user/pp-zh_iphone.png");
+            $("#andriodct").attr("src", "/img/user/pp-zh_andriod.png");
+				
+            $("#wechatct").attr("src", "/img/user/zh_wechat.png");
+            $("#wechattx").html("了解更多：微信公众号二维码");
+            $("#lblPass").html("记住密码");
+            $("#lblPass2").html("记住密码");
+            $("#aDemo").html("我要体验");
+            $("#aDemo2").html("我要体验");
+            $("#aold").html("查看旧版历史轨迹");
+        } else {
+			//note 
+			
+			//note end
+            if (isPinpai == "1") {
+                $("#logobg").css("background", "url(/img/user/en_logo.png) no-repeat");
+            } else {
+                $("#logobg").css("background", "url(/img/user/neuter_logo.png) no-repeat");
+            }
+            $("#logobg").css("margin-left", "80px");
+            $("#logobg").css("margin-top", "10px");
+            $("#titlebg").css("background", "url(/img/user/en_top_title.png) no-repeat");
+            $("#loginbg").css("background", "url(/img/user/en_login.png) no-repeat");
+            $("#login_button").css("background", "url(/img/user/en_loginx.png) no-repeat");
+            $("#btnLoginImei").css("background", "url(/img/user/en_loginx.png) no-repeat");
+			
+			$("#iphonect").attr("src", "/img/user/pp-en_iphone.png");
+            $("#andriodct").attr("src", "/img/user/pp-en_andriod.png");
+				
+            $("#wechatct").attr("src", "/img/user/en_wechat.png");
+            $("#wechattx").html("Wechat QR Code:");
+            $("#lblPass").html("Remember password");
+            $("#lblPass2").html("Remember password");
+            $("#aDemo").html("Demo");
+            $("#aDemo2").html("Demo");
+            $("#aold").html("check the history with old platform ");
+        }
+    }
+    changePic();
+
+</script>
+    </form>
+    
+
+
+
+
+<div id="pope" class="pop" style="display:none; z-index:99999;">
+	<style type="text/css">
+	#popHead #popClosee{position:absolute;right:10px;top:1px;}
+	#popHead a#popClosee:hover{color:#f00;cursor:pointer;}
+	</style>
+	<div id="popHead">
+	<a id="popClosee" title="CLOSE">CLOSE</a>
+	<h2>Note</h2>
+	</div>
+	<div id="popContent">
+	<dl>
+		<dd id="popIntro">In order to provide customers better products and services,our company invest huge money to upgrade the platform roundly.The new APP is easy to use ,no need to remember and send complex command.All the functions can be realized by simply click,please download to use.</dd>
+<dd id="popIntro">Besides,because of platform upgrade, the wechat binding will be failure,please send ID+ password to rebinding,use way is same as before.</dd>
+	</dl>
+	</div>
+</div>
+    <div>
+        <iframe id="ifm" frameborder="0" width="100%" height="100%"></iframe>
+        
+		<div align="center" style=" background:#dfdfe0;">
+        Copyright &copy; 2007 - 2016 中国电信股份有限公司北京研究院 All rights reserved.
+        <br /><br />
+公司旗下网站：<a href="#" target="_blank">智能放牧农场平台</a></div>
+		
+    </div>
+</body>
+</html>
+

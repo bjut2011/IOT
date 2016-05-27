@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0025)http://#/ -->
+<HTML><HEAD><TITLE>New Connection平台</TITLE>
+<META charset=utf-8>
+<META name=renderer content=webkit>
+<META content=IE=Edge,chrome=1 http-equiv=X-UA-Compatible>
+<META content=251034410766174610006636 property="qc:admins">
+<META content=98f31a051ed51991 property="wb:webmaster">
+<META name=description 
+content="New Connection平台是由打造的PaaS物联网开放平台。平台能够帮助开发者轻松实现设备接入与设备连接， 快速完成产品开发部署，为智能硬件、智能家居、可穿戴式设备等消费电子产品，无线抄表、智慧能源等行业物联网应用，提供综合性的物联网解决方案，实现物联网设备的数据获取，数据存储，数据展现。">
+<META name=keywords 
+content=" 智慧城市 物联网开放平台 物联网应用 可穿戴式 物联网云平台 物联网解决方案 物联网 创客 智能硬件 开发者 车联网 设备接入 智能家居 设备云">
+<LINK rel="shortcut icon" type=image/x-icon href="http://#/static/files/favicon.ico">
+<LINK rel=stylesheet type=text/css href=<%=  "css/home/global_60a4ced.css" %> >
+<LINK rel=stylesheet type=text/css href=<%=  "css/home/index_9bf3eb6.css" %> >
+<SCRIPT>
+            var IOT = {
+                userData: {
+                    nickname: 'super2016',
+                    avatar: 'http://#/123/2015/08/07/644b9c547ffcc44a195273804ee25f39.jpg'
+                },
+                staticUrl: 'http://#/static',
+                host: '#',
+                imageUrl: 'http://#',
+                defaultAvatar: 'http://#/static/files/image_cliper/default-200.jpg',
+                i18n: 'zh_CN'
+            };
+        </SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.7601.18913"></HEAD>
+<BODY><!--[if lte IE 7]>
+        <div class="alert-box alert header-alert">
+            你正在使用本平台<strong>不支持</strong>的IE低级浏览器，<br />为了更好的使用New Connection平台，请您立即<a class="blue" href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie" target="_blank">升级IE浏览器</a>或者用更快更安全的<a class="blue" href="https://www.google.com/chrome/browser/desktop/index.html?hl=zh-CN&standalone=1" target="_blank">谷歌浏览器Chrome</a> 。
+        </div>
+        <![endif]-->
+
+<div class="header">
+    <div class="h-top grid">
+        <a href="/" class="logo fl " title="首页"></a>
+        <div class="info fr clearfix ">
+            <!-- <div class="search fl">
+                <span><input type="text"/></span>
+                <span class="po-img"><a href="#"><img src="/static/common/img/search.png" alt=""/></a></span>
+            </div> -->
+            <a href="/about" class="a-style fl">关于我们</a>
+            <a href="/about/contact" class="a-style fl">联系我们</a>
+                <div class="e5 fl">|</div>
+            <% if current_admin %>
+                <div class="fl tran" style="width: 121px;">
+                    <a href="/logout" data-method="delete" class="a-style fl hide" style="display: none;">退出登录</a>
+                    <a href="/user/baseinfo" class="a-style fl hide" style="display: none;">设置</a>
+                    <a href="/favorite" class="a-style fl hide" style="display: none;">我的收藏</a>
+                    <a class="a-style fr unhover"><%= current_admin.name %></a>
+                </div>
+            <% else %>
+                 <a href="/reg/tel" class="a-style fl">注册</a>
+                <a href="/login" class="a-style fl">登录</a>
+            
+            </div>
+            <% end %>
+
+
+            <!--<a href="javascript:;" class="a-style fl" onclick="IOT.setI18n('en_US', '/');">English</a>
+            <div class="e5 fl">|</div>
+            <a href="javascript:;" class="a-style fl" onclick="IOT.setI18n('zh_CN', '/');">中文</a>
+            -->
+        </div>
+    </div>
+</div>
+<H1 class=hide>物联网设备数据托管,首选New Connection平台</H1>
+<DIV class="nav grid">
+
+<DIV class="menu fl ">
+	<DIV class="mv-underline index"></DIV>
+	<UL class=clearfix>
+	  <LI><A class="title1 active" title=Home   href="http://#/">首页</A></LI>
+	  <LI><A class="title2 " title=Case   href="http://#/case">案例</A></LI>
+	  <LI><A class="title3 " title=Discover   href="http://#/discover">发现</A></LI>
+	  <LI><A class="title4 " title=Experience   href="http://#/try">体验</A></LI>
+	  <LI><A class="title5 " title=Develop   href="http://#/develop">开发者中心</A></LI>
+	  <LI><A class="title6 " title=BBS href="http://#/bbs"   target=_blank>社区</A></LI></UL></DIV>
+  
+<DIV class="link fr">
+<DIV class="access fl"><A href="http://#/device/add"><SPAN 
+class=icon-plug></SPAN><IMG alt="" src=<%= asset_path "home/m_device.png" %> > <SPAN 
+class=icon-right-open></SPAN></A></DIV>
+<DIV class="e5 fl">|</DIV>
+<DIV class="develop fl clearfix"><A 
+href="projects"><SPAN 
+class=icon-desktop></SPAN><IMG alt="" src=<%= asset_path "home/m_pro.png" %> > <SPAN 
+class=icon-right-open></SPAN></A></DIV></DIV></DIV>
+
+<DIV class=content data-lang="zh_CN">
+<DIV class=c-outer>
+<DIV class=sliders>
+</DIV></DIV>
+<DIV class=c-experience>
+<DIV class="c-e-layout grid ">
+<P>手机扫一扫，体验开放平台的神奇</P>
+<DIV><A href="http://#/try"><BUTTON 
+type=submit>体验&nbsp;开放平台<I class=icon-right-open></I></BUTTON></A> 
+</DIV></DIV></DIV>
+<DIV class=c-line></DIV>
+<DIV class="c-function ">
+<DIV class=grid>
+<DIV class=title><IMG alt="" src=<%= asset_path "home/i_bf0108.png" %> ></DIV>
+<DIV class="c-f-li clearfix">
+<UL>
+  <LI>
+  <DIV class=link-container>
+  <DIV class=remain>
+  <H2>泛连接</H2>
+  <P>开放平台，从连接开始</P></DIV>
+  <DIV class=after><IMG src=<%= asset_path "home/bg_link.jpg" %> > 
+  <DIV class=char>
+  <DIV class=bg></DIV>
+  <P>平台支持多种网络接入协议，轻松接入各种物体、智能家居、汽车、穿戴设备、行业终端</P></DIV></DIV><I 
+  class=icon-link></I></DIV></LI>
+  <LI>
+  <DIV class=cloud>
+  <DIV class=cloud-wrap>
+  <DIV class=cloud-info>
+  <DIV class=front><I class=icon-cloud></I>
+  <H2>云平台</H2>
+  <P>无处不在，自由拓展</P></DIV>
+  <DIV class=back><I class=icon-cloud-1></I>
+  <P>专注物联网PaaS云服务，满足原型开发、产品商用和运营管理</P></DIV></DIV>
+  <DIV class=cloud-info-forIE>
+  <DIV class=bottom><IMG alt="" src=<%= asset_path "home/bg_cloud.jpg" %> ></DIV>
+  <DIV class=word><I class=icon-cloud-1></I>
+  <P>专注物联网PaaS云服务，满足原型开发、产品商用和运营管理</P></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class=app>
+  <DIV class=inner>
+  <DIV class=front><I class="icon-paper-plane inner-front"></I>
+  <H2>轻应用</H2>
+  <P>快速生成，变现创意</P></DIV>
+  <DIV class=bg-app></DIV>
+  <DIV class=bg-flight></DIV>
+  <DIV class=flight-path><I class=icon-paper-plane></I></DIV>
+  <DIV class=bg-word>
+  <P>借助开放平台提供的轻应用业务孵化平台，5分钟即可搭建并分发您的快平台应用</P></DIV></DIV></DIV></LI>
+  <LI>
+  <DIV class=data>
+  <DIV class=front>
+  <H2>大数据</H2>
+  <P>海量数据，洞悉未来</P></DIV>
+  <DIV class=chart>
+  <DIV class=part1></DIV>
+  <DIV class=part2></DIV>
+  <DIV class=part3></DIV>
+  <DIV class=part4></DIV></DIV>
+  <DIV class=data-word>
+  <P>开放平台提供海量大数据分析引擎，助您从海量数据中遇见未来</P></DIV><I 
+  class=icon-chart-bar-outline></I></DIV></LI></UL></DIV></DIV></DIV>
+  
+<DIV class="c-contact unslider-wrapper grid ">
+<UL>
+  <LI class=grid-contact>
+  <P>您可以直接联系我们进行合作，物联网平台值得你信赖；您也可以尝试接入设备，体验平台无穷魅力</P>
+  <DIV>
+  <A href="http://#/about/contact"><BUTTON class=contact-us   type=submit>联系我们</BUTTON></A> 
+  <A   href="http://#/device/add"><BUTTON class=access-device   type=submit>接入设备</BUTTON></A> </DIV></LI>
+  <LI class=grid-zcdb><A  href="http://#/event/5298509816500?utm_source=%E6%90%9C%E7%B4%A2%E9%A1%B5&amp;utm_medium=&amp;utm_campaign=searchpage" 
+  target=_blank></A></LI></UL>
+  </DIV>
+  
+<DIV class=c-case>
+<DIV class=grid>
+<DIV class=title><IMG alt="" src=<%= asset_path "home/i_ae0108.png" %> > 
+<DIV><A href="http://#/case">更多案例<I class=icon-angle-double-right></I></A></DIV></DIV>
+<DIV class="c-c-li clearfix">
+<UL>
+  <LI>
+  <H3><A href="http://#/case/detail?id=6">空气污染在线监控平台...</A></H3>
+  <P class="gray mb20">案例作者：
+  <A   href="http://#/discover/user?id=10441">NewConnection</A></P>
+  <A   href="http://#/case/detail?id=6"><IMG alt=""   src=<%= asset_path "home/0e2ce516b02a4b9a13b6c31434afd374.jpg" %> > </A>
+  <P   class=mt20>关注大气污染问题，监控颗粒物污染情况、扬尘污染、有毒气体污染以及污染源气象信息等，抓拍污染源照片以帮助监管者更好的监控污染源头。</P></LI>
+  <LI>
+  <H3><A href="/case/detail?id=4">利用WiFi进行智能精准营销...</A></H3>
+  <P class="gray mb20">案例作者：
+  <A   href="http://#/discover/user?id=10441">NewConnection</A></P>
+  <A   href="/case/detail?id=4"><IMG alt=""   src=<%= asset_path "home/e0f028f516f8e19668602e83ae5db6ff.jpg" %> > </A>
+  <P   class=mt20>可以看到客流统计、基于探针的动态热力图等，合作中的诺华可以看到家居生活体验馆的视频图像。</P></LI>
+  <LI>
+  <H3><A href="http://#/case/detail?id=8">智慧农业...</A></H3>
+  <P class="gray mb20">案例作者：
+  <A   href="http://#/discover/user?id=10441">New Connection</A></P>
+  <A   href="http://#/case/detail?id=8"><IMG alt=""   src=<%= asset_path "home/f9c4207295f12c1b4b5509bb8637d45b.jpg" %> > </A>
+  <P 
+  class=mt20>实时采集大棚光照、空气的温度、湿度、二氧化碳，土壤中的水分、温度、湿度等数据，之后进行统计分析、自动预警、自动控制，实现农业的高效、科学管理。</P></LI></UL></DIV>
+<DIV class=mb135></DIV></DIV></DIV>
+<DIV class=c-partner>
+<DIV class=grid>
+<DIV class=title><IMG alt="" src=<%= asset_path "home/i_cp0108.png" %> ></DIV>
+<DIV class=c-p-logo>
+<!--UL>
+  <LI class=ibm></LI>
+  <LI class=zhongyuan></LI>
+  <LI class=ieslab></LI>
+  <LI class=docomo></LI>
+  <LI class=kt></LI>
+  <LI class=aotu></LI>
+  <LI class=chunbang></LI>
+  <LI class=grand></LI>
+  <LI class=ench></LI>
+  <LI class=honey></LI></UL-->
+<img src=<%= asset_path "home/partner.png" %> >
+</DIV></DIV></DIV></DIV>
+<DIV class="footer clearfix ">
+<DIV class="f-info grid clearfix">
+<UL class=clearfix>
+  <LI class=mr50>
+  <H3>关于我们</H3>
+  <DIV class=u-l-red></DIV>
+  <P class=mb15><A href="http://#/about">我们是谁</A></P>
+  <P class=mb15><A href="http://#/case">成功案例</A></P>
+  <P class=mb15><A href="http://#/try">体验产品</A></P>
+  <P><A href="http://#/" target=_blank>加入我们</A></P></LI>
+  <LI class=mr50>
+  <H3>开发者</H3>
+  <DIV class=u-l-red></DIV>
+  <P class=mb15><A href="http://#/develop">快速接入设备</A></P>
+  <P class=mb15><A href="http://#/apidoc">API文档</A></P>
+  <P class=mb15><A href="http://#/help">接入文档</A></P>
+  <P><A href="http://#/debugtool">调试工具</A></P></LI>
+  <LI class=mr180>
+  <H3>友情链接</H3>
+  <DIV class=u-l-red></DIV>
+  <P class=mb15><A href="http://#/" target=_blank></A></P>
+  <P class=mb15><A href="http://#/priv-net" 
+  target=_blank>物联网专网</A></P>
+  <P class=mb15><A href="http://www.arduino.cn/forum-94-1.html" 
+  target=_blank>arduino中文社区</A></P>
+  <P class=mb15><A href="http://www.hemax.net/" target=_blank>智能硬件</A></P>
+  <P class=mb15><A href="http://ec.#/" 
+  target=_blank>物联网业务管理平台</A></P></LI>
+  <LI class=multi-lang>
+  <H3>APP下载</H3>
+  <DIV class=u-l-red></DIV>
+  <DIV class=q-code><IMG src=<%= asset_path "home/getQrcode.png" %> > 
+  <P class=q-code-p>
+  <A   href="https://itunes.apple.com/xx"   target=_blank>iOS</A> / 
+  <A   href="http://upfiles.yyyyyy.com/xx.apk"   target=_blank>Android</A></P></DIV></LI>
+  <LI class=clearfix>
+  <H3>联系方式</H3>
+  <DIV class=u-l-red></DIV>
+  <P class=mb15><A class=j_contact href="javascript:;">18900000000</A></P>
+  <P class=mb15><A>QQ交流群: 888888</A></P>
+  <P class=mb15><A href="mailto:admin@ctbri.com.cn">admin@ctbri.com.cn</A></P>
+  <P><A href="http://j.map.baidu.com/RyXtk" 
+  target=_blank>北京市昌平区未来科技城</A></P></LI></UL>
+<DIV class="grid f-line"><SPAN><IMG alt="" src=<% asset_path "home/u_l_half.png" %> ></SPAN> 
+<SPAN class=fr><IMG alt="" src=<%= asset_path "home/u_l_half.png" %> ></SPAN> </DIV>
+<DIV class=f-logo><IMG alt="New Connection Copyright here!" src=<%=  "logo_footer_ctbri.png" %> ></DIV>
+<P class=f-signature><SPAN><A href="http://#/"></A></SPAN> 
+<SPAN>版权所有 (c)</SPAN> <SPAN>2016 </SPAN></P></DIV></DIV>
+<SCRIPT type=text/javascript charset=utf-8 src=<%=  "js/home/auto_combine_26020_6907625.js" %> ></SCRIPT>
+
+<SCRIPT type=text/javascript charset=utf-8 src=<%=   "js/home/parsley.i18n_52b6c6e.js"%> ></SCRIPT>
+
+<SCRIPT type=text/javascript charset=utf-8 src=<%=  "js/home/auto_combine_dd8ff_a8412c5.js"%> ></SCRIPT>
+</BODY></HTML>
+

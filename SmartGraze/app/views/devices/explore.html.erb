@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0025)http://#/ -->
+<HTML>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="icon" href="/images/favicon.ico">
+</script><script src="../js/device/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../js/device/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/device/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/device/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="../css/device/myIndex.css">
+<link rel="stylesheet" type="text/css" href="../css/device/style.min.css">
+<script type="text/javascript" src="../js/device/jquery-form.js"></script>
+<script type="text/javascript" src="../js/device/navbar.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&amp;ak=67a317d89a8a609485cf3c21840dfd5b"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+})();
+</script>
+
+
+  
+    <base>
+   <title>Tlink物联网-监控中心,TLINK物联网-中国最大的物联网开放平台</title>
+    <meta name="Keywords" content="TLINK|物联网|智能物联|数字农业|仪器仪表物联网|物联网平台|物联网云服务|物联网开放平台">
+    <meta name="Description" content="TLINK物联网是深圳市模拟科技有限公司面向物联网产品的开放平台">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+ <script type="text/javascript">
+       function deleteDevice(id){
+          if(confirm('您确定要删除该设备吗？')){
+               $.ajax({
+	               url:"/device/queryLineSensorByDevice.htm",
+	               type:"POST",
+	               data:{"deviceId":id}, 
+	               success:function (data) {
+	                 var jsonObj = $.parseJSON(data);
+	                 if("00" == jsonObj.flag){
+	                    if(Number(jsonObj.num) > 0){
+	                       alert('设备存在在线的传感器，请先断开该设备所有的传感器！')
+	                    }else{
+	                       window.location.href='/device/deleteDevice.htm?deviceId='+id;
+	                    }
+	                 }
+	               }
+               });
+          }
+       
+       }
+    
+    </script>
+<style type="">
+       .small_gps_img {width:45px;height:45px;}
+       .small_gps_img:hover{ border:solid #808080 2px;cursor:pointer;}
+       .small_pa_left{margin-left:7px;}
+       .xieyiHelp{line-height:33px;display:block;padding:0px 5px;}
+       .xieyiHelp:focus{outline:none;}
+       .xieyiHelp img{width:24px;}
+</style>
+<style>
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+  <style type="text/css">#MEIQIA-PANEL-HOLDER { position: fixed; bottom: 0;  right: 60px;  z-index: -1; width: 320px; height: 480px; overflow: hidden; visibility: hidden; background-color: transparent; box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15); border: 1px solid #eee\0; *border: 1px solid #eee; } #MEIQIA-IFRAME { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: none; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; float: none; background: none; }</style><style type="text/css">.MEIQIA-ICON { background-size: 40px auto; background-repeat: no-repeat; background-image: url("http://app-widget-cdn-s0.b0.upaiyun.com/dist/images/icon-mq.png?v=5dxg4coo14gkqpvi"); } @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2) { .MEIQIA-ICON { background-image: url("http://app-widget-cdn-s0.b0.upaiyun.com/dist/images/icon-mq@2x.png?v=5dxg4coo14gkqpvi"); } } .MEIQIA-ICON-CHAT1 { background-position: 0 0; } .MEIQIA-ICON-CHAT2 { background-position: 0 -20px; } .MEIQIA-ICON-CHAT3 { background-position: 0 -40px; } .MEIQIA-ICON-CHAT4 { background-position: 0 -60px; } .MEIQIA-ICON-CHAT5 { background-position: 0 -80px; } .MEIQIA-ICON-CHAT6 { background-position: 0 -100px; } .MEIQIA-ICON-CHAT7 { background-position: 0 -120px; } .MEIQIA-ICON-CHAT8 { background-position: 0 -140px; } .MEIQIA-ICON-CHAT9 { background-position: 0 -160px; } .MEIQIA-ICON-CHAT10 { background-position: 0 -180px; } .MEIQIA-ICON-CHAT11 { background-position: 0 -200px; } .MEIQIA-ICON-CHAT12 { background-position: 0 -220px; } .MEIQIA-ICON-TICKET1 { background-position: -20px 0; } .MEIQIA-ICON-TICKET2 { background-position: -20px -20px; } .MEIQIA-ICON-TICKET3 { background-position: -20px -40px; } .MEIQIA-ICON-TICKET4 { background-position: -20px -60px; } .MEIQIA-ICON-TICKET5 { background-position: -20px -80px; } .MEIQIA-ICON-TICKET6 { background-position: -20px -100px; } .MEIQIA-ICON-TICKET7 { background-position: -20px -120px; } .MEIQIA-ICON-TICKET8 { background-position: -20px -140px; } .MEIQIA-ICON-TICKET9 { background-position: -20px -160px; } .MEIQIA-ICON-TICKET10 { background-position: -20px -180px; } .MEIQIA-ICON-TICKET11 { background-position: -20px -200px; } .MEIQIA-ICON-TICKET12 { background-position: -20px -220px; }</style><style type="text/css">#MEIQIA-BTN-HOLDER { position: fixed; bottom: 0;  right: 60px;  z-index: 2147483639; width: auto; font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background-color: transparent; } #MEIQIA-BTN { display: block; height: 40px; font-size: 16px; color: #fff; text-align: center; border-left: 1px solid rgba(0, 0, 0, .1); border-top: 1px solid rgba(0, 0, 0, .1); border-right: 1px solid rgba(0, 0, 0, .1); box-shadow: 0 0 14px 0 rgba(0, 0, 0, .16); cursor: pointer; text-decoration: none; background-color: #007aff; } #MEIQIA-BTN-ICON { display: block; float: left; width: 20px; height: 20px; margin: 10px 10px 0; } #MEIQIA-BTN-LINE { display: block; float: left; width: 1px; height: 100%; background-color: rgba(0, 0, 0, .08); background-color: #000\9; opacity: .1\9; filter: alpha(opacity=10)\9; vertical-align: middle; } #MEIQIA-BTN-TEXT { display: block; float: left; height: 40px; margin: 0 10px; line-height: 40px; overflow-y: hidden; font-size: 16px; color: #fff; } #MEIQIA-CIRCLE { position: absolute; top: -13px; left: -13px; display: none; width: 26px; height: 26px; text-align: center; line-height: 26px; font-size: 14px; color: #fff; border-radius: 15px; background-color: #ff3b30; } #MEIQIA-BUBBLE { position: absolute; bottom: 64px; display: none; width: 260px; border: 1px solid #f7f7f7; border-radius: 4px; color: #000; text-align: left; box-shadow: 0 0 14px 0 rgba(0, 0, 0, .16); line-height: 1.428571429; background-color: #fff; } #MEIQIA-BUBBLE-ARROW1 { position: absolute; z-index: 2; font-size: 0; line-height: 0; border-width: 8px 7px 0px; border-color: #fff transparent; border-style: solid dashed dashed; } #MEIQIA-BUBBLE-ARROW2 { position: absolute; z-index: 1; font-size: 0; line-height: 0; border-width: 10px 8px 0px; border-color: #f7f7f7 transparent; border-style: solid dashed dashed; }  #MEIQIA-BUBBLE { right: 0; } #MEIQIA-BUBBLE-ARROW1 { right: 12px; bottom: -8px; } #MEIQIA-BUBBLE-ARROW2 { right: 11px; bottom: -10px; }  #MEIQIA-BUBBLE-CLOSE { position: absolute; display: none; top: 12px; right: 12px; width: 10px; height: 10px; background-position: -5px -245px; cursor: pointer; } #MEIQIA-BUBBLE:hover #MEIQIA-BUBBLE-CLOSE { display: block; } #MEIQIA-BUBBLE-INSIDE { margin: 12px 18px; } #MEIQIA-BUBBLE-AVATAR { width: 26px; height: 26px; border-radius: 13px; margin-right: 6px; vertical-align: top; box-shadow: 0 0 8px 0 rgba(0, 0, 0, .15); } #MEIQIA-BUBBLE-NAME { display: inline-block; margin-top: 3px; font-size: 16px; color: #000; } #MEIQIA-BUBBLE-MSG { *height: 40px; max-height: 40px; margin-top: 5px; font-size: 14px; overflow: hidden; color: #000; } #MEIQIA-BUBBLE-MSG img { width: 16px; height: 16px; } </style><style type="text/css">#MEIQIA-INVITE { position: fixed; z-index: 2147483639; display: none; width: 340px; height: 130px; margin-bottom: 64px; border: 1px solid #f7f7f7; border-radius: 4px; box-shadow: 0 0 14px 0 rgba(0, 0, 0, .16); text-align: left; cursor: pointer; color: #000; line-height: 1.428571429; background-color: #fff; } #MEIQIA-INVITE-ARROW1, #MEIQIA-INVITE-ARROW2 { position: absolute; font-size: 0; line-height: 0; } #MEIQIA-INVITE-ARROW1 { z-index: 2; } #MEIQIA-INVITE-ARROW2 { z-index: 1; }   #MEIQIA-INVITE { bottom: 0; left: 0px; } #MEIQIA-INVITE-ARROW1 { left: 12px; bottom: -8px; border-top: 8px solid #fff; border-right: 7px solid transparent; border-left: 7px solid transparent; } #MEIQIA-INVITE-ARROW2 { left: 11px; bottom: -10px; border-top: 9px solid #f7f7f7; border-right: 8px solid transparent; border-left: 8px solid transparent; }     #MEIQIA-INVITE-CLOSE { position: absolute; right: -20px; top: -20px; width: 40px; height: 40px; background-position: 0 -260px; cursor: pointer; } #MEIQIA-INVITE-CLOSE:hover { background-position: 0 -300px; } #MEIQIA-INVITE-INSIDE { width: 300px; height: 44px; margin: 46px 20px 0; text-align: left; font-size: 14px; line-height: 22px; overflow: hidden; color: #000; word-break: break-all; } </style></head>
+
+<body>
+     <div class="container-fluid index_header">
+         <!--头部-->
+         
+
+
+<!-- <html xmlns:wb="http://open.weibo.com/wb"> -->
+
+<!-- <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=887122606" type="text/javascript" charset="utf-8"></script> -->
+<!-- <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101293792" data-redirecturi="http://www.tlink.io/user/userIndex.htm" charset="utf-8"></script> -->
+
+<script type="text/javascript">
+function demoLogin(){
+	$("#lo_userName").val("tlink");
+	$("#lo_password").val("123123");
+	$("#loginForm").submit();
+}
+
+</script>
+<!--<script type="text/javascript" src="http://meet.xpro.im/v2/api/xmeet.api.js?xnest=yourNameSpace&xnest_name=聊天室"></script>  -->
+<nav class="navbar navbar-default navbar-fixed-top" style="height:60px">
+            <div class="container-fluid"  style="height:60px">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">展开/隐藏导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index.htm">
+                    </a>
+                </div>
+                <div class=" navbar-collapse"  style="height:60px">
+                    <ul class="nav navbar-nav">
+                        <!--                 <li><a href="/">首页</a></li> -->
+                        
+                        <li><img src="../img/logo_1.png"></li>
+                        <li><img src="../img/img2.jpg"></li>
+                        
+                    </ul>
+                    <div class="navbar-right" style="padding-right: 15px;">
+                        <ul class="nav navbar-nav serverTime">
+                       		<li>当前时间：</li>
+                       		<li id="nowDate">2016-04-11 10:54:43</li>
+                       		<li>&nbsp;
+                       		<input type="hidden" id="rq" value="2016-04-11">
+                       		<input type="hidden" id="h" value="10">
+                       		<input type="hidden" id="m" value="54">
+                       		<input type="hidden" id="s" value="43">
+                       		</li>
+                        </ul>
+                    	
+                		
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_admin.name%> <span class="caret"></span></a>
+                            	<ul class="dropdown-menu" role="menu">
+                                	<li><a href="/devices/monitor?pid=<%=@project_id%>"">监控中心</a></li>
+                                	<li><a href="/logout">退出</a></li>
+                            	</ul>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+</nav>
+
+<!-- 登录 注册 -->
+<div class="modal fade" id="myModal_logo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form action="/user/login.htm" method="post" id="loginForm">
+            <div class="modal-dialog" style="margin-top:8%;">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div style="padding-bottom:10px;" class="modal-password">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                        </div>
+
+                        <div style="margin-bottom:0px;" class="modal-password">
+                            <input class="form-control login_input" data-val="true" data-val-required="The 请输入用户名/邮箱 field is required." id="lo_userName" name="loginAccount" placeholder="请输入用户名/邮箱" type="text" value="">
+                            <p class="glyphicon glyphicon-user"></p>
+                        </div>
+                        <div style="margin-bottom:0px;" class="modal-password">
+                            <input class="form-control login_input" data-val="true" data-val-required="The 请输入密码 field is required." id="lo_password" name="loginPassword" placeholder="请输入密码" type="password">
+                            <p class="glyphicon glyphicon-lock"></p>
+                           </div>
+                           <div>
+<!--                             <span id="qq_login_btn"><img src="/images/qqdenglu.png"/></span>  -->
+                            
+                            
+                            
+                     
+                     <script type="text/javascript">
+   // callback function
+// });
+                 </script>    
+<!--                      <wb:login-button type="3,2" onlogin="login" onlogout="logout" >登录按钮</wb:login-button> -->
+                     
+                     </div>
+                     
+
+            
+                      
+	                         
+
+	                         
+	                         
+                                                
+                        <div class="modal-checkbox">
+                            <div class="pull-left">
+                            <input data-val="true" data-val-required="演示账号登录" id="RememberMe" name="RememberMe" type="checkbox" value="1" onclick="demoLogin();">
+                                演示账号登录
+                            </div>
+                            <div class="pull-right">
+                                <a href="/find_pwd_1.htm">忘记密码？</a>
+                            </div>
+                        </div>
+                        <input style="margin-top:20px;color:#fff;" type="submit" class="btn btn-lg btn-block btn_logo" value="登录">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<input type="hidden" id="reg" value="1">
+        <form id="regForm" action="/user/registe.htm" method="post">
+            <div class="modal-dialog" style="margin-top:8%;">
+                <!-- 手机注册 -->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div>
+                            <ul class="nav nav-tabs nav-justified">
+                                <li class="li_hover">手机注册</li>
+                                <li id="modal-toggle2" class="li_defaul">邮箱注册</li>
+                                <li class="li_defaul">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        ×
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-required="手机号码不能为空" id="mobile" name="mobile" placeholder="请输入手机号码" type="text" required="">
+                        </div>
+                        <div class="modal-password">
+                            <div class="col-sm-6 pd0">
+                                <input class="form-control" data-val="true" data-val-required="请输入验证码" id="mobilecode" name="mobilecode" placeholder="短信验证码" type="text" required="">
+                            </div>
+                            <div class="col-sm-6 pd0">
+                                <input type="button" id="mbtn" class="btn btn-primary" value="获取短信验证码">
+                            </div>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-length="密码必须至少包含6 个字符。" data-val-length-max="100" data-val-length-min="6" data-val-required="密码不能为空" id="Password1" name="password1" placeholder="请输入账号密码" type="password" required="">
+                            <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-equalto="密码和确认密码不匹配。" data-val-equalto-other="*.Password" id="ConfirmPassword1" name="ConfirmPassword1" placeholder="请输入确认密码 " type="password" required="">
+                            <span class="field-validation-valid" data-valmsg-for="ConfirmPassword" data-valmsg-replace="true"></span>
+                        </div>
+                        <input type="button" class="btn btn-lg btn-block modal-login" value="注册" onclick="checkForm();">
+                    </div>
+                </div>
+                
+                <!-- 邮箱注册 -->
+                <div class="modal-content" style="display:none;">
+                    <div class="modal-body">
+                        <div>
+                            <ul class="nav nav-tabs nav-justified">
+                                <li id="modal-toggle1" class="li_defaul">手机注册</li>
+                                <li class="li_hover">邮箱注册</li>
+                                <li class="li_defaul">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        ×
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-password">
+                            <div class="form-group postionrl">
+                                <input class="form-control" data-val="true" data-val-regex="邮箱格式不正确" data-val-regex-pattern="^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$" data-val-required="邮箱不能为空" id="email" name="email" placeholder="请输入邮箱" type="text" required="">
+                                <span class="field-validation-valid" data-valmsg-for="Email_" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="modal-password">
+                            <div class="col-sm-6 pd0">
+                                <input class="form-control" data-val="true" data-val-required="请输入邮箱验证码" id="emailcode" name="emailcode" placeholder="邮箱验证码" type="text" required="">
+                            </div>
+                            <div class="col-sm-6 pd0">
+                                <input class="btn btn-primary" type="button" id="ebtn" value="获取邮箱验证码">
+                            </div>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-length="密码 必须至少包含 6 个字符。" data-val-length-max="100" data-val-length-min="6" data-val-required="密码必填" id="Password_2" name="password2" placeholder="请输入账号密码" type="password" required="">
+                            <span class="field-validation-valid" data-valmsg-for="Password_" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-equalto="密码和确认密码不匹配。" data-val-equalto-other="*.Password" id="ConfirmPassword_2" name="ConfirmPassword_2" placeholder="请输入确认密码 " type="password" required="">
+                            <span class="field-validation-valid" data-valmsg-for="ConfirmPassword_" data-valmsg-replace="true"></span>
+                        </div>
+                        <input type="button" class="btn btn-primary btn-lg btn-block modal-login" value="注册" onclick="checkForm();">
+                    </div>
+
+                </div>
+            </div>
+            
+            
+            <a data-ajax="true" data-ajax-mode="replace" data-ajax-update="#tlink_menu" href="/" id="UserCar" style="display:none">头部</a>
+        </form>
+    </div>
+
+        <!--主题-->
+       <div class="index_c">
+             <!--左侧栏-->
+             
+
+
+
+
+  
+   <title>TLINK-物联网,工业、农业、智能家居等相关物联网云服务运营专家</title>
+    <meta name="Keywords" content="TLINK|物联网|智能物联|数字农业|仪器仪表物联网|物联网平台|物联网云服务|物联网开放平台">
+    <meta name="Description" content="TLINK物联网是深圳市模拟科技有限公司面向物联网产品的开放平台">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+  
+  
+    <div class="index_theLeft">
+    <br>
+                <ul class="dashboard-menu">
+                    <li>
+                        <a href="/devices/monitor?pid=<%=@project_id%>">
+                            <i class="glyphicon glyphicon-record"></i>
+                            <h5>监控中心</h5>
+                        </a>
+                    </li>
+                    
+	                    <li>
+	                        <a href="/devices?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-blackboard"></i>
+	                            <h5>设备</h5>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="/alarms?pid=<%= @project_id%>">
+	                            <i class="glyphicon glyphicon-bell"></i>
+	                            <h5>报警</h5>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="/schedulers?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-arrow-down"></i>
+	                            <h5>广告</h5>
+	                        </a>
+	                    </li>
+	                    <li class="active">
+	                        <a href="/devices/explore?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-map-marker"></i>
+	                            <h5>分布图</h5>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="">
+	                            <i class="glyphicon glyphicon-user"></i>
+	                            <h5>用户中心</h5>
+	                        </a>
+	                    </li>
+                    
+                    
+                </ul>
+            </div>
+  
+
+
+            <!--中间部分-->
+            <!--<div class="personU_centen">
+                
+<div class="trigger_pa">
+    <h3 class="trigger_font">我的设备</h3>
+    
+	    <a href="/devices?pid=<%=@project_id%>"><p>所有设备</p></a>
+	 	<a href="/devices?pid=<%=@project_id%>&status=1"><p>已链接设备</p></a>
+	    <a href="/devices?pid=<%=@project_id%>&status=0"> <p>未链接设备</p></a>
+    
+    <br>
+    <h3 class="trigger_font">管理设备</h3>
+    
+   	 <a href="/devices/new"><p class="p_border_">添加设备</p></a>
+    
+</div>
+            </div>-->
+        </div>     
+        <!--右边部分-->
+        <%= render 'explore' %>       
+  
+
+</div><div id="MEIQIA-PANEL-HOLDER"><iframe id="MEIQIA-IFRAME" src="http://eco-api.meiqia.com/dist/desktop-fiesta.html?5dxg4coo14gkqpvi" frameborder="0" scrolling="no" allowtransparency="true"></iframe> </div><div id="MEIQIA-BTN-HOLDER"><a id="MEIQIA-BTN"> <span id="MEIQIA-BTN-ICON" class="MEIQIA-ICON MEIQIA-ICON-CHAT1"></span> <span id="MEIQIA-BTN-LINE"></span> <span id="MEIQIA-CIRCLE"></span> <div id="MEIQIA-BUBBLE"> <span id="MEIQIA-BUBBLE-ARROW1"></span> <span id="MEIQIA-BUBBLE-ARROW2"></span> <span id="MEIQIA-BUBBLE-CLOSE" class="MEIQIA-ICON"></span> <div id="MEIQIA-BUBBLE-INSIDE"> <img id="MEIQIA-BUBBLE-AVATAR"> <span id="MEIQIA-BUBBLE-NAME"></span> <div id="MEIQIA-BUBBLE-MSG"></div> </div> </div> </a></div><div id="MEIQIA-INVITE"><span id="MEIQIA-INVITE-CLOSE" class="MEIQIA-ICON"></span> <div id="MEIQIA-INVITE-INSIDE">您好，当前有专业客服人员在线，让我们来帮助您吧。</div> <span id="MEIQIA-INVITE-ARROW1"></span> <span id="MEIQIA-INVITE-ARROW2"></span></div></body>
+
+
+</HTML>
+

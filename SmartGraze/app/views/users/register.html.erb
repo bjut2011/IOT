@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户登录 - </title>
+<script src="/js/user/jquery.min.js"></script>
+<script src="/js/user/jquery.validate.min.js"></script>
+<script src="/js/user/main.js"></script>
+<script src="/js/user/passwordStrength.js"></script>
+<link href="css/user/login.css" type="text/css" rel="stylesheet">
+<link href="css/user/public2.css" type="text/css" rel="stylesheet">
+<link rel="shortcut icon" href="/public/images/favicon.png">
+<script type="text/javascript">
+function fn_focus(ele){
+	if(ele.value == ele.defaultValue){
+		ele.value = '';
+		ele.style.color = 'rgb(51,51,51)';
+	}
+}
+
+function fn_blur(ele){
+	var reg = /^[\s]*$/;
+	if(reg.test(ele.value) || ele.value == ele.defaultValue){
+		ele.value = ele.defaultValue;
+		ele.style.color = 'rgb(200,200,200)';
+	}
+}
+
+$(document).ready(function(){
+	$('#userPwd').passwordStrength();
+});
+
+$(document).ready(function() {
+	$("#regSubmit").click(function() {
+		var loginName = $("#nickname").val(); // 用户名
+		var loginPwd  = $("#userPwd").val();  // 密码
+		var remeber="";
+		if(true){
+			$("#regSubmit").attr("disabled","disabled"); 
+			$("#regSubmit").val("注册中...");
+			$.ajax({
+				type : "POST",
+				url : "/register",
+				data: "name="+loginName+"&password="+loginPwd+remeber,
+				dataType : "json",
+				success : function(data) {
+					if(data.code==0){
+                                                alert("注册成功");
+						window.location.href = ""+data.redirect_uri;
+					}else{
+					}
+				}
+			});
+		}else{
+			return false;
+		}
+	});
+});
+
+	
+$(document).ready(function(){
+	$("#tiaokuan").attr("checked",false);
+	$("#userPwd").val("");
+	$("#nickname").val("");
+	$("#tiaokuan").click(function(){
+		var tiaokuan=document.getElementById("tiaokuan");
+		if(tiaokuan.checked){
+			$("#regSubmit").attr("disabled",false); 
+			$("#regSubmit").attr("class","yj-btn btn_submit");
+		}else{
+			$("#regSubmit").attr("disabled",true); 
+			$("#regSubmit").attr("class","yj-btn btn_submit gray");
+		}
+	});
+	
+	$("#regForm").validate({
+		errorElement:"span",
+		errorClass: "error_error",
+		rules: {
+			userPwd: {
+				required : true,
+				rangelength : [8, 16]
+			},
+			rePwd: {
+				required : true,
+				equalTo : "#userPwd"
+			},
+			nickname: {
+				required : true,
+				byteRangeLength : [4, 15],
+				validNickname : true,
+				remote: {
+					url: "/account/checkNickname",
+					type: "POST",
+					cache: false,
+					data: {
+						nickname:function(){
+							return $("#nickname").val();
+						}
+					}
+				}
+			}
+		},
+		messages: {
+			userPwd: {
+				required : "<b><font color='red'>密码不能为空</font></b>",
+				rangelength : "<b><font color='red'>密码长度为8~16位</font></b>"
+			},
+			rePwd: {
+				required : "<b><font color='red'>确认密码不能为空</font></b>",
+				equalTo : "<b><font color='red'>两次输入密码不一致</font></b>"
+			},
+			nickname: {
+				required : "<b><font color='red'>昵称不能为空</font></b>",
+				byteRangeLength : "<b><font color='red'>昵称长度为4~15个字符</font></b>",
+				validNickname : "<b><font color='red'>请输入符合规则的昵称</font></b>",
+				remote : "<b><font color='red'>该昵称已被使用</font></b>"
+			}
+		},
+		errorPlacement : function(error, element) {
+			error.appendTo(element.parent());
+		}
+	});
+});
+</script>
+</head>
+<body>
+<div class="head-warp">
+    <div class="header2">
+      <div class="logo">
+        <a href="/"><img src="/img/logo_smart.jpg" alt="平台"><span>平台</span></a>
+        <a href="/"><img src="/img/img1.jpg" alt="平台"><span>平台</span></a>
+      </div>
+      <div class="navType nav-box" id="navbar">
+        <ul>
+            <li class="" style="display:none"><a href="/">首页</a></li>
+            <li class="" style="display:none"><a href="#">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+</div>
+
+<div class="wrap">
+	<div class="main">
+        <div class="content">
+      <div class="c_left">
+        <div class="tit_div">
+          <h1>注册</h1>
+        </div>
+        <div class="sign_div">
+          <div class="step1">
+            <div class="form">
+              <form name="regForm" id="regForm" method="post" action="/account/doRegister" novalidate="novalidate">
+               <dl>
+                  <dt>
+                    <label for="name">用户名：</label>
+                  </dt>
+                  <dd>
+                    <input type="text" name="nickname" id="nickname" class="txt" value="" onfocus="fn_focus(this);" onblur="fn_blur(this);">
+                    <p class="tishi">允许输入数字、字母、汉字、"-"、"_",4-15个字符</p>
+                  </dd>
+                </dl>
+                <dl style="display:none">
+                  <dt>
+                    <label for="regEmail">邮箱：</label>
+                  </dt>
+                  <dd>
+                    <input type="text" name="email" id="email" class="txt" value="" onfocus="fn_focus(this);" onblur="fn_blur(this);" style="color: rgb(200, 200, 200);">
+                    <p class="tishi">很重要！需要通过邮箱认证，并且只允许使用邮箱登录</p>
+                  </dd>
+                </dl>
+                <dl>
+                  <dt>
+                    <label for="pwd">密码：</label>
+                  </dt>
+                  <dd>
+                    <input type="password" name="userPwd" id="userPwd" class="txt" value="" onfocus="fn_focus(this);" onblur="fn_blur(this);">
+                    <div class="lenbox lenH" style="display:none" id="pwdPower"><span class="s1">弱</span><span class="s2">中</span><span class="s3">强</span></div>
+                  </dd>
+                </dl>
+                <dl>
+                  <dt>
+                    <label for="confirmPwd">确认密码：</label>
+                  </dt>
+                  <dd>
+                    <input type="password" name="rePwd" id="rePwd" class="txt" value="" onfocus="fn_focus(this);" onblur="fn_blur(this);">
+                 </dd>
+                </dl>
+                
+                <dl>
+                  <dt></dt>
+                  <dd>
+                    <input type="checkbox" class="checkbox" id="tiaokuan" name="tiaokuan">
+                    <span class="ag">同意<a href="/" target="_blank">《平台服务条款》</a></span></dd>
+                </dl>
+                <dl>
+                  <dt></dt>
+                  <dd>
+                    <input type="button" id="regSubmit" name="regSubmit" value="注&nbsp;&nbsp;册" class="yj-btn btn_submit gray" disabled="disabled">
+                  </dd>
+                </dl>
+              </form>
+            </div>
+          </div>
+         </div>
+        </div>
+      <div class="c_right">
+      	<p class="p1">已有帐号</p>
+        <a href="/" class="yj-btn-blue btn-login">登&nbsp;&nbsp;录</a>
+      </div>
+        </div>
+	</div>
+</div>
+<div class="w footer">
+	<div class="w ftop">
+		<div class="warp ma clearfix">
+			<div class="fl mgy_logo">
+				<dt><a href="/about/contactus">关于</a> &nbsp;&nbsp;<a href="" target="_blank">合作伙伴</a>&nbsp;&nbsp;<a href="" target="_blank">加入我们</a>&nbsp;&nbsp;<a href="#">联系我们</a></dt>
+				<span class="fl"><a href="/">
+				<!--img src="/public/images/web/public/logo_foot.png" width="269" alt="传感云">--></a></span>
+			</div>
+			<dl class="fr fmenu ar">
+				<dd class="c_gray">中国电信北京研究院　　<a href="#" target="_blank"></a> &nbsp;&nbsp;
+				Copyright©2013 ctbri.com Rights Reserved<strong></strong></dd>
+				</dl>
+		</div>
+	</div>
+</div>
+
+
+</body></html>

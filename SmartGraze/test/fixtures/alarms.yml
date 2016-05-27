@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  alarmType: MyString
+  alarmType_Name: MyString
+  alarmTypeDiv: MyString
+  target: MyString
+  target_name: MyString
+  switchVal: MyString
+
+two:
+  name: MyString
+  alarmType: MyString
+  alarmType_Name: MyString
+  alarmTypeDiv: MyString
+  target: MyString
+  target_name: MyString
+  switchVal: MyString

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_id: MyString
+  device_name: MyString
+  device_mark: MyString
+  device_details: MyString
+  device_img: MyString
+  create_time: 2016-04-07 12:57:54
+  lon: 1.5
+  lat: 1.5
+
+two:
+  project_id: MyString
+  device_name: MyString
+  device_mark: MyString
+  device_details: MyString
+  device_img: MyString
+  create_time: 2016-04-07 12:57:54
+  lon: 1.5
+  lat: 1.5

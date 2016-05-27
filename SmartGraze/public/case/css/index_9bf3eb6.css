@@ -1,0 +1,534 @@
+.load SPAN {
+	WIDTH: 10px; DISPLAY: inline-block; BACKGROUND: #e63939; HEIGHT: 10px; MARGIN-LEFT: 15px; border-radius: 50%; -webkit-animation: load .8s infinite ease-in-out; animation: load .8s infinite ease-in-out
+}
+.c-outer {
+	BACKGROUND-COLOR: #f0f0f0
+}
+.c-outer .sliders {
+	POSITION: relative; MARGIN: 0px auto; MAX-WIDTH: 1920px; HEIGHT: 566px
+}
+.c-outer .sliders .loading {
+	Z-INDEX: 5; POSITION: absolute; BACKGROUND-COLOR: #f0f0f0; WIDTH: 100%; HEIGHT: 100%
+}
+.c-outer .sliders .loading .spin {
+	POSITION: relative; MARGIN-LEFT: -30px; TOP: 270px; LEFT: 50%
+}
+.c-outer .sliders .outer {
+	POSITION: absolute; HEIGHT: 100%; OVERFLOW: hidden
+}
+.c-outer .sliders .outer IMG {
+	POSITION: absolute
+}
+.c-outer .sliders .outer .inner A {
+	WIDTH: 100%; DISPLAY: block; HEIGHT: 100%
+}
+.c-outer .sliders .outer .inner-slider {
+	Z-INDEX: 1; POSITION: absolute; MARGIN: auto; WIDTH: 1185px; BOTTOM: 0px; HEIGHT: 300px; VISIBILITY: hidden; TOP: 0px; RIGHT: 0px; LEFT: 0px
+}
+.c-outer .sliders .outer .inner-slider .inner-slider-img {
+	WIDTH: 450px; HEIGHT: 102px
+}
+.c-outer .sliders .outer .inner-slider BUTTON {
+	BORDER-BOTTOM: 0px; BORDER-LEFT: 0px; BACKGROUND-COLOR: #e63939; MARGIN-TOP: 80px; WIDTH: 240px; FONT-FAMILY: "Microsoft YaHei", sans-serif; HEIGHT: 55px; COLOR: #fff; FONT-SIZE: 20px; BORDER-TOP: 0px; CURSOR: pointer; BORDER-RIGHT: 0px
+}
+.c-outer .sliders .outer .visible.inner-slider {
+	Z-INDEX: 5; VISIBILITY: visible; opacity: 1; -moz-animation: mainButton 1s ease; -o-animation: mainButton 1s ease; -webkit-animation: mainButton 1s ease; animation: mainButton 1s ease; -webkit-transform: translateX(0px); -moz-transform: translateX(0px); -o-transform: translateX(0px); transform: translateX(0px)
+}
+.c-outer .sliders .outer .inner {
+	POSITION: absolute; HEIGHT: 566px; -webkit-background-size: cover; background-size: cover
+}
+.c-outer .sliders .outer .inner-line {
+	POSITION: absolute; HEIGHT: 566px; -webkit-background-size: cover; background-size: cover
+}
+.c-outer .sliders .outer .inner-line {
+	opacity: 0
+}
+.c-outer .sliders .outer .inner-line IMG {
+	FILTER: alpha(opacity=0); opacity: 0
+}
+.c-outer .sliders .outer .animate-line.inner-line {
+	-moz-animation: bgWord .3s ease-in 1s 1 normal; -o-animation: bgWord .3s ease-in 1s 1 normal; -webkit-animation: bgWord .3s ease-in 1s 1 normal; animation: bgWord .3s ease-in 1s 1 normal; -webkit-animation-fill-mode: forwards; -moz-animation-fill-mode: forwards; -o-animation-fill-mode: forwards; animation-fill-mode: forwards
+}
+.c-outer .sliders .outer .animate-line.inner-line IMG {
+	FILTER: alpha(opacity=100); opacity: 1
+}
+.c-outer .sliders OL {
+	TEXT-ALIGN: center; DISPLAY: block; PADDING-TOP: 580px
+}
+.c-outer .sliders OL LI {
+	BACKGROUND-COLOR: #e6e6e6; WIDTH: 88px; DISPLAY: inline-block; HEIGHT: 5px; CURSOR: pointer; MARGIN-RIGHT: 10px
+}
+.content {
+	BACKGROUND: url( "/assets/home/bg_2_ffc0496.jpg") fixed no-repeat center center; background-size: cover
+}
+.content .c-experience {
+	BACKGROUND-COLOR: #f0f0f0; HEIGHT: 260px
+}
+.content .c-experience P {
+	TEXT-ALIGN: center; COLOR: #888; PADDING-TOP: 70px
+}
+.content .c-experience .c-e-layout DIV {
+	TEXT-ALIGN: center; MARGIN-TOP: 30px
+}
+.content .c-experience .c-e-layout BUTTON {
+	BORDER-BOTTOM: #333 2px solid; POSITION: relative; BORDER-LEFT: #333 2px solid; BACKGROUND-COLOR: #fff; OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px; WIDTH: 315px; FONT-FAMILY: Microsoft YaHei, sans-serif; HEIGHT: 60px; COLOR: #1255b3; FONT-SIZE: 20px; BORDER-TOP: #333 2px solid; CURSOR: pointer; BORDER-RIGHT: #333 2px solid; -webkit-transition: color .2s ease-in, background-color .2s ease-in, border-color .2s ease-in, width .2s ease-out; -moz-transition: color .2s ease-in, background-color .2s ease-in, border-color .2s ease-in, width .2s ease-out; -ms-transition: color .2s ease-in, background-color .2s ease-in, border-color .2s ease-in, width .2s ease-out; -o-transition: color .2s ease-in, background-color .2s ease-in, border-color .2s ease-in, width .2s ease-out; transition: color .2s ease-in, background-color .2s ease-in, border-color .2s ease-in, width .2s ease-out
+}
+.content .c-experience .c-e-layout BUTTON .icon-right-open {
+	POSITION: absolute; FILTER: alpha(opacity=0); FONT-SIZE: 15px; RIGHT: 50px; -webkit-transition: all .2s ease-in; -moz-transition: all .2s ease-in; -ms-transition: all .2s ease-in; -o-transition: all .2s ease-in; transition: all .2s ease-in; opacity: 0
+}
+.content .c-experience .c-e-layout BUTTON:hover {
+	BORDER-BOTTOM-COLOR: #1255b3; BACKGROUND-COLOR: #1255b3; BORDER-TOP-COLOR: #1255b3; WIDTH: 400px; COLOR: #fff; BORDER-RIGHT-COLOR: #1255b3; BORDER-LEFT-COLOR: #1255b3
+}
+.content .c-experience .c-e-layout BUTTON:hover .icon-right-open {
+	FILTER: alpha(opacity=100); FONT-SIZE: 20px; RIGHT: 30px; opacity: 1
+}
+.content .c-experience .ru_RU.c-e-layout BUTTON {
+	WIDTH: 582px
+}
+.content .c-experience .ru_RU.c-e-layout BUTTON:hover {
+	WIDTH: 640px
+}
+.content .c-experience .ru_RU.c-e-layout BUTTON:hover .icon-right-open {
+	RIGHT: 0px
+}
+.content .c-experience .de_DE.c-e-layout BUTTON {
+	WIDTH: 715px
+}
+.content .c-experience .de_DE.c-e-layout BUTTON:hover {
+	WIDTH: 750px
+}
+.content .c-experience .de_DE.c-e-layout BUTTON:hover .icon-right-open {
+	RIGHT: 0px
+}
+.content .c-line {
+	WIDTH: 100%; BACKGROUND: url(/static/index/img/u_l_fa252c4.png) #fff no-repeat; HEIGHT: 1px
+}
+.content .c-function {
+	BACKGROUND-COLOR: #f0f0f0; HEIGHT: 688px; OVERFLOW: hidden
+}
+.content .c-function .title {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 65px; PADDING-TOP: 100px
+}
+.content .c-function .c-f-li {
+	WIDTH: 1270px
+}
+.content .c-function UL LI {
+	FLOAT: left; MARGIN-RIGHT: 70px
+}
+.content .c-function UL LI .link-container {
+	POSITION: relative; BACKGROUND-COLOR: #e6e6e6; WIDTH: 246px; HEIGHT: 312px; OVERFLOW: hidden
+}
+.content .c-function UL LI .link-container .remain {
+	Z-INDEX: 1; POSITION: absolute; TEXT-ALIGN: center; BACKGROUND-COLOR: #f4f5f5; MARGIN: 8px; WIDTH: 230px; HEIGHT: 296px
+}
+.content .c-function UL LI .link-container .remain H2 {
+	MARGIN-TOP: 180px; FONT-WEIGHT: 400; -webkit-transition: -webkit-transform .4s; -moz-transition: -moz-transform .4s; transition: transform .4s
+}
+.content .c-function UL LI .link-container .remain P {
+	MARGIN-TOP: 180px; FONT-WEIGHT: 400; -webkit-transition: -webkit-transform .4s; -moz-transition: -moz-transform .4s; transition: transform .4s
+}
+.content .c-function UL LI .link-container .remain P {
+	MARGIN-TOP: 20px; COLOR: #bfbfbf
+}
+.content .c-function UL LI .link-container .after {
+	Z-INDEX: 2; POSITION: absolute; WIDTH: 246px; DISPLAY: none; HEIGHT: 180px; -webkit-transition: all .4s ease-in; -moz-transition: all .4s ease-in; -ms-transition: all .4s ease-in; -o-transition: all .4s ease-in; transition: all .4s ease-in; opacity: 0
+}
+.content .c-function UL LI .link-container .after .char {
+	POSITION: absolute; LINE-HEIGHT: 30px; WIDTH: 100%; HEIGHT: 180px; TOP: 55%; -webkit-transition: -webkit-transform .4s; -moz-transition: -moz-transform .4s; transition: transform .4s; -webkit-transform: translateY(100%); -moz-transform: translateY(100%); transform: translateY(100%); -ms-transform: translateY(100%)
+}
+.content .c-function UL LI .link-container .after .char .bg {
+	POSITION: absolute; BACKGROUND-COLOR: #1255b3; WIDTH: 246px; HEIGHT: 180px; -webkit-transition: all .4s ease-in; -moz-transition: all .4s ease-in; -ms-transition: all .4s ease-in; -o-transition: all .4s ease-in; transition: all .4s ease-in; opacity: 1
+}
+.content .c-function UL LI .link-container .after .char P {
+	POSITION: absolute; MARGIN: 36px; WIDTH: 202px; HEIGHT: 180px; COLOR: #d5dded; -webkit-transition: all .4s ease-in; -moz-transition: all .4s ease-in; -ms-transition: all .4s ease-in; -o-transition: all .4s ease-in; transition: all .4s ease-in
+}
+.content .c-function UL LI .link-container I {
+	Z-INDEX: 3; POSITION: absolute; MARGIN: 0px auto; DISPLAY: block; COLOR: #525252; FONT-SIZE: 60px; TOP: 75px; LEFT: 35%; -webkit-transition: -webkit-transform .4s, color .2s ease-in; -moz-transition: -moz-transform .4s, color .2s ease-in; transition: transform .4s, color .2s ease-in
+}
+.content .c-function UL LI .link-container:hover .remain H2 {
+	-webkit-transform: translateY(60px); -moz-transform: translateY(60px); transform: translateY(60px); -ms-transform: translateY(60px)
+}
+.content .c-function UL LI .link-container:hover .remain P {
+	-webkit-transform: translateY(60px); -moz-transform: translateY(60px); transform: translateY(60px); -ms-transform: translateY(60px)
+}
+.content .c-function UL LI .link-container:hover .after {
+	opacity: 1
+}
+.content .c-function UL LI .link-container:hover .after .char {
+	-webkit-transition: -webkit-transform .4s; -moz-transition: -moz-transform .4s; transition: transform .4s; -webkit-transform: translateY(0px); -moz-transform: translateY(0px); transform: translateY(0px); -ms-transform: translateY(0px)
+}
+.content .c-function UL LI .link-container:hover .after .char .bg {
+	opacity: 0
+}
+.content .c-function UL LI .link-container:hover I {
+	COLOR: #525252; -webkit-transform: translateY(-40px); -moz-transform: translateY(-40px); transform: translateY(-40px); -ms-transform: translateY(-40px)
+}
+.content .c-function UL LI .cloud {
+	POSITION: relative; WIDTH: 230px; HEIGHT: 296px; TOP: 0px; LEFT: 0px
+}
+.content .c-function UL LI .cloud .cloud-wrap {
+	WIDTH: 100%; HEIGHT: 100%; -webkit-transition: all .4s ease-in-out; -moz-transition: all .4s ease-in-out; -o-transition: all .4s ease-in-out; transition: all .4s ease-in-out; box-shadow: 0 0 0 8px #e6e6e6, inset 0 0 3px #f0f0f0; -webkit-perspective: 800px; -moz-perspective: 800px; -o-perspective: 800px; -ms-perspective: 800px; perspective: 800px
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info {
+	POSITION: absolute; WIDTH: 100%; HEIGHT: 100%; -webkit-transition: all .4s ease-in-out; -moz-transition: all .4s ease-in-out; -o-transition: all .4s ease-in-out; transition: all .4s ease-in-out; transform-style: preserve-3d; -moz-transform-style: preserve-3d; -webkit-transform-style: preserve-3d
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info DIV {
+	BORDER-BOTTOM: #e6e6e6 8px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #e6e6e6 8px solid; BACKGROUND-COLOR: #f4f5f5; WIDTH: 100%; DISPLAY: block; HEIGHT: 100%; BORDER-TOP: #e6e6e6 8px solid; BORDER-RIGHT: #e6e6e6 8px solid; -moz-backface-visibility: hidden; -webkit-backface-visibility: hidden; backface-visibility: hidden
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info DIV I {
+	MARGIN-TOP: 75px; DISPLAY: block; COLOR: #525252; FONT-SIZE: 60px
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info DIV H2 {
+	MARGIN-TOP: 45px; FONT-WEIGHT: 400
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info DIV P {
+	MARGIN-TOP: 20px; COLOR: #bfbfbf
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info DIV.back {
+	DISPLAY: none; BACKGROUND: url(/static/index/img/bg_cloud_e69dfb2.jpg) no-repeat; -webkit-transform: rotate3d(0, 1, 0, 180deg); -moz-transform: rotate3d(0, 1, 0, 180deg); transform: rotate3d(0, 1, 0, 180deg)
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info DIV.back .icon-cloud-1 {
+	COLOR: #fcbebf
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info DIV.back P {
+	TEXT-ALIGN: left; LINE-HEIGHT: 30px; MARGIN-TOP: 36px; WIDTH: 185px; COLOR: #f6e0e3; MARGIN-LEFT: 30px
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info-forIE {
+	POSITION: absolute; WIDTH: 100%; DISPLAY: block; HEIGHT: 100%
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info-forIE IMG {
+	Z-INDEX: 10; POSITION: absolute; WIDTH: 0px; HEIGHT: 100%; LEFT: 50%; -webkit-transition: all .3s ease-out; -moz-transition: all .3s ease-out; -ms-transition: all .3s ease-out; -o-transition: all .3s ease-out; transition: all .3s ease-out
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info-forIE IMG.hover {
+	WIDTH: 100%; LEFT: 0px
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info-forIE .word {
+	Z-INDEX: 11; POSITION: absolute; opacity: 0
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info-forIE .hover.word {
+	-moz-animation: bgWord .2s ease-in .3s 1 normal; -o-animation: bgWord .2s ease-in .3s 1 normal; -webkit-animation: bgWord .2s ease-in .3s 1 normal; animation: bgWord .2s ease-in .3s 1 normal; -webkit-animation-fill-mode: forwards; -moz-animation-fill-mode: forwards; -o-animation-fill-mode: forwards; animation-fill-mode: forwards
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info-forIE .word .icon-cloud-1 {
+	TEXT-ALIGN: center; MARGIN-TOP: 75px; DISPLAY: block; COLOR: #fcbebf; FONT-SIZE: 60px
+}
+.content .c-function UL LI .cloud .cloud-wrap .cloud-info-forIE .word P {
+	TEXT-ALIGN: left; LINE-HEIGHT: 30px; MARGIN-TOP: 36px; WIDTH: 185px; COLOR: #f6e0e3; MARGIN-LEFT: 30px
+}
+.content .c-function UL LI .cloud:hover .cloud-wrap {
+	-webkit-box-shadow: 0 0 0 4px #e6e6e6; -moz-box-shadow: 0 0 0 4px #e6e6e6; box-shadow: 0 0 0 4px #e6e6e6
+}
+.content .c-function UL LI .cloud:hover .cloud-info {
+	-webkit-transform: rotate3d(0, 1, 0, -180deg); -moz-transform: rotate3d(0, 1, 0, -180deg); transform: rotate3d(0, 1, 0, -180deg); -ms-transform: rotate3d(0, 1, 0, 0)
+}
+.content .c-function UL LI .app {
+	POSITION: relative; BACKGROUND-COLOR: #e6e6e6; WIDTH: 246px; HEIGHT: 312px; -moz-backface-visibility: hidden; -webkit-backface-visibility: hidden; backface-visibility: hidden; -o-backface-visibility: hidden
+}
+.content .c-function UL LI .app .inner {
+	POSITION: absolute; WIDTH: 100%; DISPLAY: block; HEIGHT: 100%; OVERFLOW: hidden; -webkit-perspective: 100px; -moz-perspective: 100px; -ms-perspective: 100px; perspective: 100px; transform-style: preserve-3d; -moz-transform-style: preserve-3d; -webkit-transform-style: preserve-3d; -ms-transform-style: preserve-3d
+}
+.content .c-function UL LI .app .inner .front {
+	Z-INDEX: 1; POSITION: absolute; TEXT-ALIGN: center; MARGIN: 8px; WIDTH: 230px; BACKGROUND: #f4f5f5; HEIGHT: 296px; OVERFLOW: hidden; opacity: 1
+}
+.content .c-function UL LI .app .inner .hover.front {
+	-moz-animation: frontOpacity .3s ease-in .3s 1 normal; -o-animation: frontOpacity .3s ease-in .3s 1 normal; -webkit-animation: frontOpacity .3s ease-in .3s 1 normal; animation: frontOpacity .3s ease-in .3s 1 normal; -webkit-animation-fill-mode: forwards; -moz-animation-fill-mode: forwards; -o-animation-fill-mode: forwards; animation-fill-mode: forwards
+}
+.content .c-function UL LI .app .inner .front .inner-front {
+	POSITION: relative; MARGIN-TOP: 67px; DISPLAY: block; COLOR: #525252; FONT-SIZE: 55px; TOP: 0px; LEFT: 0px
+}
+.content .c-function UL LI .app .inner .front .hover.inner-front {
+	-moz-animation: bgApp .5s ease-in 0s 1 normal; -o-animation: bgApp .5s ease-in 0s 1 normal; -webkit-animation: bgApp .5s ease-in 0s 1 normal; animation: bgApp .5s ease-in 0s 1 normal; -webkit-animation-fill-mode: forwards; -moz-animation-fill-mode: forwards; -o-animation-fill-mode: forwards; animation-fill-mode: forwards
+}
+.content .c-function UL LI .app .inner .front H2 {
+	-webkit-transition: all .3s cubic-bezier(0.19, 1, .22, 1) 0s; -moz-transition: all .3s cubic-bezier(0.19, 1, .22, 1) 0s; -o-transition: all .3s cubic-bezier(0.19, 1, .22, 1) 0s; transition: all .3s cubic-bezier(0.19, 1, .22, 1) 0s
+}
+.content .c-function UL LI .app .inner .front P {
+	-webkit-transition: all .3s cubic-bezier(0.19, 1, .22, 1) 0s; -moz-transition: all .3s cubic-bezier(0.19, 1, .22, 1) 0s; -o-transition: all .3s cubic-bezier(0.19, 1, .22, 1) 0s; transition: all .3s cubic-bezier(0.19, 1, .22, 1) 0s
+}
+.content .c-function UL LI .app .inner .front H2 {
+	MARGIN-TOP: 55px; FONT-WEIGHT: 400
+}
+.content .c-function UL LI .app .inner .front P {
+	MARGIN-TOP: 20px; COLOR: #bfbfbf
+}
+.content .c-function UL LI .app .inner .bg-app {
+	Z-INDEX: 2; POSITION: absolute; WIDTH: 100%; DISPLAY: none; BACKGROUND: url(/static/index/img/bg_app_78396cb.jpg) no-repeat; HEIGHT: 100%; -webkit-transition: all .01s ease-out .5s; -moz-transition: all .01s ease-out .5s; -o-transition: all .01s ease-out .5s; transition: all .01s ease-out .5s; opacity: 0
+}
+.content .c-function UL LI .app .inner .bg-flight {
+	Z-INDEX: 3; POSITION: absolute; WIDTH: 100%; DISPLAY: none; BACKGROUND: url(/static/index/img/bg_flight_7956849.png) no-repeat -248px 0px; HEIGHT: 100%; opacity: 0
+}
+.content .c-function UL LI .app .inner .hover.bg-flight {
+	-moz-animation: bgFlightHover .3s ease-in .5s 1 normal; -o-animation: bgFlightHover .3s ease-in .5s 1 normal; -webkit-animation: bgFlightHover .3s ease-in .5s 1 normal; animation: bgFlightHover .3s ease-in .5s 1 normal; -webkit-animation-fill-mode: forwards; -moz-animation-fill-mode: forwards; -o-animation-fill-mode: forwards; animation-fill-mode: forwards
+}
+.content .c-function UL LI .app .inner .unhover.hover.bg-flight {
+	opacity: 1; -moz-animation: bgFlightUnHover .3s ease-in 0s 1 normal; -o-animation: bgFlightUnHover .3s ease-in 0s 1 normal; -webkit-animation: bgFlightUnHover .3s ease-in 0s 1 normal; animation: bgFlightUnHover .3s ease-in 0s 1 normal; -webkit-animation-fill-mode: forwards; -moz-animation-fill-mode: forwards; -o-animation-fill-mode: forwards; animation-fill-mode: forwards
+}
+.content .c-function UL LI .app .inner .flight-path {
+	Z-INDEX: 0; POSITION: absolute; WIDTH: 200px; DISPLAY: block; HEIGHT: 250px; COLOR: #fff; FONT-SIZE: 55px; TOP: 220px; LEFT: -200px
+}
+.content .c-function UL LI .app .inner .flight-path I {
+	POSITION: absolute; TOP: 0px; RIGHT: -5px
+}
+.content .c-function UL LI .app .inner .flight-path P {
+	LINE-HEIGHT: 30px; MARGIN-TOP: 110px; WIDTH: 185px; MARGIN-LEFT: 20px; FONT-SIZE: 16px
+}
+.content .c-function UL LI .app .inner .hover.flight-path {
+	Z-INDEX: 4; -moz-animation: flightPath .3s ease-in .8s 1 normal; -o-animation: flightPath .3s ease-in .8s 1 normal; -webkit-animation: flightPath .3s ease-in .8s 1 normal; animation: flightPath .3s ease-in .8s 1 normal; -webkit-animation-fill-mode: forwards; -moz-animation-fill-mode: forwards; -o-animation-fill-mode: forwards; animation-fill-mode: forwards
+}
+.content .c-function UL LI .app .inner .bg-word {
+	Z-INDEX: 5; POSITION: absolute; LINE-HEIGHT: 30px; MARGIN: 140px 35px 35px; DISPLAY: none; COLOR: #fff; opacity: 0
+}
+.content .c-function UL LI .app .inner .hover.bg-word {
+	-moz-animation: bgWord .6s ease-in .8s 1 normal; -o-animation: bgWord .6s ease-in .8s 1 normal; -webkit-animation: bgWord .6s ease-in .8s 1 normal; animation: bgWord .6s ease-in .8s 1 normal; -webkit-animation-fill-mode: forwards; -moz-animation-fill-mode: forwards; -o-animation-fill-mode: forwards; animation-fill-mode: forwards
+}
+.content .c-function UL LI .app:hover .inner .bg-app {
+	opacity: 1
+}
+.content .c-function UL LI .data {
+	POSITION: relative; BACKGROUND-COLOR: #e6e6e6; WIDTH: 248px; HEIGHT: 312px
+}
+.content .c-function UL LI .data .front {
+	Z-INDEX: 1; POSITION: absolute; TEXT-ALIGN: center; MARGIN: 8px; WIDTH: 230px; BACKGROUND: #f4f5f5; HEIGHT: 296px
+}
+.content .c-function UL LI .data .front H2 {
+	MARGIN-TOP: 180px; FONT-WEIGHT: 400
+}
+.content .c-function UL LI .data .front P {
+	MARGIN-TOP: 20px; COLOR: #bfbfbf
+}
+.content .c-function UL LI .data .chart {
+	Z-INDEX: 2; POSITION: absolute; WIDTH: 248px; DISPLAY: none; HEIGHT: 312px
+}
+.content .c-function UL LI .data .chart .part1 {
+	WIDTH: 0px; BACKGROUND: url(/static/index/img/bg_data_1_8441b45.jpg) no-repeat; HEIGHT: 78px; -webkit-transition: all .3s ease-in; -moz-transition: all .3s ease-in; -ms-transition: all .3s ease-in; -o-transition: all .3s ease-in; transition: all .3s ease-in
+}
+.content .c-function UL LI .data .chart .part2 {
+	WIDTH: 0px; BACKGROUND: url(/static/index/img/bg_data_2_73ea615.jpg) no-repeat; HEIGHT: 78px; -webkit-transition: all .3s ease-in .075s; -moz-transition: all .3s ease-in .075s; -ms-transition: all .3s ease-in .075s; -o-transition: all .3s ease-in .075s; transition: all .3s ease-in .075s
+}
+.content .c-function UL LI .data .chart .part3 {
+	WIDTH: 0px; BACKGROUND: url(/static/index/img/bg_data_3_a8bb867.jpg) no-repeat; HEIGHT: 78px; -webkit-transition: all .3s ease-in .15s; -moz-transition: all .3s ease-in .15s; -ms-transition: all .3s ease-in .15s; -o-transition: all .3s ease-in .15s; transition: all .3s ease-in .15s
+}
+.content .c-function UL LI .data .chart .part4 {
+	WIDTH: 0px; BACKGROUND: url(/static/index/img/bg_data_4_74e9ef5.jpg) no-repeat; HEIGHT: 78px; -webkit-transition: all .3s ease-in .225s; -moz-transition: all .3s ease-in .225s; -ms-transition: all .3s ease-in .225s; -o-transition: all .3s ease-in .225s; transition: all .3s ease-in .225s
+}
+.content .c-function UL LI .data .data-word {
+	Z-INDEX: 3; POSITION: absolute; LINE-HEIGHT: 30px; MARGIN: 130px 30px 30px; DISPLAY: none; COLOR: #fff; opacity: 0
+}
+.content .c-function UL LI .data .hover.data-word {
+	-moz-animation: bgWord .2s ease-in .525s 1 normal; -o-animation: bgWord .2s ease-in .525s 1 normal; -webkit-animation: bgWord .2s ease-in .525s 1 normal; animation: bgWord .2s ease-in .525s 1 normal; -webkit-animation-fill-mode: forwards; -moz-animation-fill-mode: forwards; -o-animation-fill-mode: forwards; animation-fill-mode: forwards
+}
+.content .c-function UL LI .data I {
+	Z-INDEX: 4; POSITION: absolute; TEXT-ALIGN: center; WIDTH: 100%; DISPLAY: block; COLOR: #525252; FONT-SIZE: 55px; TOP: 75px; -webkit-transition: all .525s ease-in; -moz-transition: all .525s ease-in; -ms-transition: all .525s ease-in; -o-transition: all .525s ease-in; transition: all .525s ease-in
+}
+.content .c-function UL LI .data:hover .chart .part1 {
+	WIDTH: 248px
+}
+.content .c-function UL LI .data:hover .chart .part2 {
+	WIDTH: 248px
+}
+.content .c-function UL LI .data:hover .chart .part3 {
+	WIDTH: 248px
+}
+.content .c-function UL LI .data:hover .chart .part4 {
+	WIDTH: 248px
+}
+.content .c-function UL LI .data:hover I {
+	COLOR: #525252; TOP: 75px
+}
+.content .unslider-wrapper {
+	POSITION: relative; OVERFLOW: auto
+}
+.content .unslider-wrapper LI {
+	LIST-STYLE-TYPE: none; WIDTH: 100%; FLOAT: left; LIST-STYLE-IMAGE: none
+}
+.content .c-contact {
+	HEIGHT: 240px
+}
+.content .c-contact P {
+	TEXT-ALIGN: center; COLOR: #f2f2f2; PADDING-TOP: 62px
+}
+.content .c-contact DIV {
+	TEXT-ALIGN: center; MARGIN-TOP: 38px
+}
+.content .c-contact DIV .contact-us {
+	BORDER-BOTTOM: #cc334c 2px solid; BORDER-LEFT: #cc334c 2px solid; BACKGROUND-COLOR: #cc334c; OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px; WIDTH: 175px; FONT-FAMILY: Microsoft YaHei, sans-serif; HEIGHT: 50px; COLOR: #fff; FONT-SIZE: 16px; BORDER-TOP: #cc334c 2px solid; CURSOR: pointer; MARGIN-RIGHT: 40px; BORDER-RIGHT: #cc334c 2px solid; -webkit-transition: all .3s ease-in; -moz-transition: all .3s ease-in; -ms-transition: all .3s ease-in; -o-transition: all .3s ease-in; transition: all .3s ease-in
+}
+.content .c-contact DIV .contact-us:hover {
+	BORDER-BOTTOM-COLOR: #e63956; BACKGROUND-COLOR: #e63956; BORDER-TOP-COLOR: #e63956; BORDER-RIGHT-COLOR: #e63956; BORDER-LEFT-COLOR: #e63956
+}
+.content .c-contact DIV .access-device {
+	BORDER-BOTTOM: #1255b3 2px solid; BORDER-LEFT: #1255b3 2px solid; BACKGROUND-COLOR: #1255b3; OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px; WIDTH: 175px; FONT-FAMILY: Microsoft YaHei, sans-serif; HEIGHT: 50px; COLOR: #fff; FONT-SIZE: 16px; BORDER-TOP: #1255b3 2px solid; CURSOR: pointer; BORDER-RIGHT: #1255b3 2px solid; -webkit-transition: all .3s ease-in; -moz-transition: all .3s ease-in; -ms-transition: all .3s ease-in; -o-transition: all .3s ease-in; transition: all .3s ease-in
+}
+.content .c-contact DIV .access-device:hover {
+	BACKGROUND-COLOR: #1255b3
+}
+.content .c-case {
+	BACKGROUND-COLOR: #f0f0f0; HEIGHT: 600px; OVERFLOW: hidden
+}
+.content .c-case .title {
+	POSITION: relative; TEXT-ALIGN: center; PADDING-BOTTOM: 65px; PADDING-TOP: 100px
+}
+.content .c-case .title DIV {
+	POSITION: absolute; TOP: 150px; RIGHT: 0px
+}
+.content .c-case .c-c-li {
+	WIDTH: 1280px
+}
+.content .c-case UL LI {
+	WIDTH: 325px; FLOAT: left; COLOR: #333; MARGIN-RIGHT: 100px
+}
+.content .c-case UL LI A IMG {
+	WIDTH: 100%
+}
+.content .c-case UL LI H3 {
+	MARGIN-BOTTOM: 10px; FONT-WEIGHT: 400
+}
+.content .c-case UL LI H3 A {
+	COLOR: #333; FONT-SIZE: 16px
+}
+.content .c-case UL LI H3 A:hover {
+	COLOR: #1255b3
+}
+.content .c-case UL LI .gray {
+	COLOR: #888
+}
+.content .c-case UL LI .mb20 {
+	MARGIN-BOTTOM: 20px; FONT-SIZE: 14px
+}
+.content .c-case UL LI .mt20 {
+	LINE-HEIGHT: 18px; MARGIN-TOP: 20px; FONT-SIZE: 14px
+}
+.content .c-case .mb135 {
+	MARGIN-TOP: 20px; MARGIN-BOTTOM: 135px
+}
+.content .c-partner {
+	BACKGROUND-COLOR: #f2f2f2; HEIGHT: 620px
+}
+.content .c-partner .title {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 40px; PADDING-TOP: 100px
+}
+.content .c-partner .c-p-logo {
+	MARGIN: 0px auto; WIDTH: 1200px
+}
+.content .c-partner .c-p-logo UL LI {
+	WIDTH: 180px; MARGIN-BOTTOM: 20px; BACKGROUND: url(/static/index/img/logo_partner_0201_72c0084.jpg); FLOAT: left; HEIGHT: 65px; MARGIN-LEFT: 60px
+}
+.content .c-partner .c-p-logo .ibm {
+	WIDTH: 160px; BACKGROUND-POSITION: 8px -4px
+}
+.content .c-partner .c-p-logo .ibm:hover {
+	BACKGROUND-POSITION: 8px 148px
+}
+.content .c-partner .c-p-logo .zhongyuan {
+	BACKGROUND-POSITION: 936px 0px
+}
+.content .c-partner .c-p-logo .zhongyuan:hover {
+	BACKGROUND-POSITION: 936px 152px
+}
+.content .c-partner .c-p-logo .ieslab {
+	BACKGROUND-POSITION: 655px 0px
+}
+.content .c-partner .c-p-logo .ieslab:hover {
+	BACKGROUND-POSITION: 655px 152px
+}
+.content .c-partner .c-p-logo .docomo {
+	BACKGROUND-POSITION: 380px 0px
+}
+.content .c-partner .c-p-logo .docomo:hover {
+	BACKGROUND-POSITION: 380px 152px
+}
+.content .c-partner .c-p-logo .kt {
+	WIDTH: 145px; BACKGROUND-POSITION: 140px 0px
+}
+.content .c-partner .c-p-logo .kt:hover {
+	BACKGROUND-POSITION: 140px 152px
+}
+.content .c-partner .c-p-logo .aotu {
+	WIDTH: 160px; BACKGROUND-POSITION: 5px 220px
+}
+.content .c-partner .c-p-logo .aotu:hover {
+	BACKGROUND-POSITION: 5px 372px
+}
+.content .c-partner .c-p-logo .chubang {
+	BACKGROUND-POSITION: 936px 220px
+}
+.content .c-partner .c-p-logo .chubang:hover {
+	BACKGROUND-POSITION: 936px 372px
+}
+.content .c-partner .c-p-logo .grand {
+	BACKGROUND-POSITION: 655px 220px
+}
+.content .c-partner .c-p-logo .grand:hover {
+	BACKGROUND-POSITION: 655px 372px
+}
+.content .c-partner .c-p-logo .ench {
+	BACKGROUND-POSITION: 390px 220px
+}
+.content .c-partner .c-p-logo .ench:hover {
+	BACKGROUND-POSITION: 390px 372px
+}
+.content .c-partner .c-p-logo .honey {
+	WIDTH: 145px; BACKGROUND-POSITION: 150px 220px
+}
+.content .c-partner .c-p-logo .honey:hover {
+	BACKGROUND-POSITION: 150px 372px
+}
+.content .en_US.c-function .link-container .after .char P {
+	LINE-HEIGHT: 28px; FONT-SIZE: 12px
+}
+.content .de_DE.c-function .link-container .after .char P {
+	LINE-HEIGHT: 28px; FONT-SIZE: 12px
+}
+.content .ru_RU.c-function .link-container .after .char P {
+	LINE-HEIGHT: 28px; FONT-SIZE: 12px
+}
+.content .en_US.c-function .cloud .cloud-wrap .cloud-info .back P {
+	LINE-HEIGHT: 20px; FONT-SIZE: 12px
+}
+.content .de_DE.c-function .cloud .cloud-wrap .cloud-info .back P {
+	LINE-HEIGHT: 20px; FONT-SIZE: 12px
+}
+.content .ru_RU.c-function .cloud .cloud-wrap .cloud-info .back P {
+	LINE-HEIGHT: 20px; FONT-SIZE: 12px
+}
+.content .en_US.c-function .bg-word P {
+	LINE-HEIGHT: 30px; FONT-SIZE: 12px
+}
+.content .de_DE.c-function .bg-word P {
+	LINE-HEIGHT: 30px; FONT-SIZE: 12px
+}
+.content .ru_RU.c-function .bg-word P {
+	LINE-HEIGHT: 30px; FONT-SIZE: 12px
+}
+.content .en_US.c-function .data-word P {
+	LINE-HEIGHT: 36px; FONT-SIZE: 12px
+}
+.content .de_DE.c-function .data-word P {
+	LINE-HEIGHT: 36px; FONT-SIZE: 12px
+}
+.content .ru_RU.c-function .data-word P {
+	LINE-HEIGHT: 36px; FONT-SIZE: 12px
+}
+.content .ru_RU.c-function .cloud .cloud-wrap .cloud-info .back P {
+	MARGIN-TOP: -6px
+}
+.content .ru_RU.c-function .bg-word P {
+	LINE-HEIGHT: 21px
+}
+.content .ru_RU.c-function .data-word P {
+	LINE-HEIGHT: 29px
+}
+.content .de_DE.c-function .link-container .after .char P {
+	LINE-HEIGHT: 22px
+}
+.content .de_DE.c-function .cloud .cloud-wrap .cloud-info .back P {
+	MARGIN-TOP: 15px
+}
+.content .ru_RU.c-contact P {
+	LINE-HEIGHT: 30px
+}
+.content .de_DE.c-contact P {
+	LINE-HEIGHT: 30px
+}
+.content .ru_RU.c-contact DIV .access-device {
+	WIDTH: 223px
+}

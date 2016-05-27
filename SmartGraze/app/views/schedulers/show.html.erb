@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @scheduler.name %>
+</p>
+
+<p>
+  <strong>Sendval:</strong>
+  <%= @scheduler.sendval %>
+</p>
+
+<p>
+  <strong>Sendflag:</strong>
+  <%= @scheduler.sendflag %>
+</p>
+
+<p>
+  <strong>Week:</strong>
+  <%= @scheduler.week %>
+</p>
+
+<p>
+  <strong>Hr:</strong>
+  <%= @scheduler.hr %>
+</p>
+
+<p>
+  <strong>Min:</strong>
+  <%= @scheduler.min %>
+</p>
+
+<p>
+  <strong>Sec:</strong>
+  <%= @scheduler.sec %>
+</p>
+
+<%= link_to 'Edit', edit_scheduler_path(@scheduler) %> |
+<%= link_to 'Back', schedulers_path %>

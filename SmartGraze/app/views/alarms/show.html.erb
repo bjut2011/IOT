@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @alarm.name %>
+</p>
+
+<p>
+  <strong>Alarmtype:</strong>
+  <%= @alarm.alarmType %>
+</p>
+
+<p>
+  <strong>Alarmtype name:</strong>
+  <%= @alarm.alarmType_Name %>
+</p>
+
+<p>
+  <strong>Alarmtypediv:</strong>
+  <%= @alarm.alarmTypeDiv %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @alarm.target %>
+</p>
+
+<p>
+  <strong>Target name:</strong>
+  <%= @alarm.target_name %>
+</p>
+
+<p>
+  <strong>Switchval:</strong>
+  <%= @alarm.switchVal %>
+</p>
+
+<%= link_to 'Edit', edit_alarm_path(@alarm) %> |
+<%= link_to 'Back', alarms_path %>

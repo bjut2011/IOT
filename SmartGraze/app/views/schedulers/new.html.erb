@@ -1,0 +1,831 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0025)http://#/ -->
+<HTML>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="icon" href="/images/favicon.ico">
+<script charset="utf-8" src="http://trust.baidu.com/vcard/v.js?siteid=6673544&amp;url=http%3A%2F%2Fwww.tlink.io%2Fdevice%2Fdevices.htm&amp;source=&amp;rnd=2103403076&amp;hm=1"></script><script async="" src="//eco-api.meiqia.com/dist/meiqia.js"></script><script src="//hm.baidu.com/hm.js?cab9d2db73648c24a142c1d8df07c285"></script><script src="../js/device/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../js/device/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/device/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/device/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="../css/device/myIndex.css">
+<link rel="stylesheet" type="text/css" href="../css/device/style.min.css">
+<script type="text/javascript" src="../js/device/jquery-form.js"></script>
+<script type="text/javascript" src="../js/device/navbar.js"></script>
+<script type="text/javascript" src="../js/device/jquery.datetimepicker.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cab9d2db73648c24a142c1d8df07c285";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+    <base>
+   <title>Tlink物联网-监控中心,TLINK物联网-中国最大的物联网开放平台</title>
+    <meta name="Keywords" content="TLINK|物联网|智能物联|数字农业|仪器仪表物联网|物联网平台|物联网云服务|物联网开放平台">
+    <meta name="Description" content="TLINK物联网是深圳市模拟科技有限公司面向物联网产品的开放平台">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+ <script type="text/javascript">
+       function deleteDevice(id){
+          if(confirm('您确定要删除该设备吗？')){
+               $.ajax({
+	               url:"/device/queryLineSensorByDevice.htm",
+	               type:"POST",
+	               data:{"deviceId":id}, 
+	               success:function (data) {
+	                 var jsonObj = $.parseJSON(data);
+	                 if("00" == jsonObj.flag){
+	                    if(Number(jsonObj.num) > 0){
+	                       alert('设备存在在线的传感器，请先断开该设备所有的传感器！')
+	                    }else{
+	                       window.location.href='/device/deleteDevice.htm?deviceId='+id;
+	                    }
+	                 }
+	               }
+               });
+          }
+       
+       }
+    
+    </script>
+<style>
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>
+
+
+
+
+
+
+
+
+
+  <style type="text/css">#MEIQIA-PANEL-HOLDER { position: fixed; bottom: 0;  right: 60px;  z-index: -1; width: 320px; height: 480px; overflow: hidden; visibility: hidden; background-color: transparent; box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15); border: 1px solid #eee\0; *border: 1px solid #eee; } #MEIQIA-IFRAME { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: none; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; float: none; background: none; }</style><style type="text/css">.MEIQIA-ICON { background-size: 40px auto; background-repeat: no-repeat; background-image: url("http://app-widget-cdn-s0.b0.upaiyun.com/dist/images/icon-mq.png?v=5dxg4coo14gkqpvi"); } @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2) { .MEIQIA-ICON { background-image: url("http://app-widget-cdn-s0.b0.upaiyun.com/dist/images/icon-mq@2x.png?v=5dxg4coo14gkqpvi"); } } .MEIQIA-ICON-CHAT1 { background-position: 0 0; } .MEIQIA-ICON-CHAT2 { background-position: 0 -20px; } .MEIQIA-ICON-CHAT3 { background-position: 0 -40px; } .MEIQIA-ICON-CHAT4 { background-position: 0 -60px; } .MEIQIA-ICON-CHAT5 { background-position: 0 -80px; } .MEIQIA-ICON-CHAT6 { background-position: 0 -100px; } .MEIQIA-ICON-CHAT7 { background-position: 0 -120px; } .MEIQIA-ICON-CHAT8 { background-position: 0 -140px; } .MEIQIA-ICON-CHAT9 { background-position: 0 -160px; } .MEIQIA-ICON-CHAT10 { background-position: 0 -180px; } .MEIQIA-ICON-CHAT11 { background-position: 0 -200px; } .MEIQIA-ICON-CHAT12 { background-position: 0 -220px; } .MEIQIA-ICON-TICKET1 { background-position: -20px 0; } .MEIQIA-ICON-TICKET2 { background-position: -20px -20px; } .MEIQIA-ICON-TICKET3 { background-position: -20px -40px; } .MEIQIA-ICON-TICKET4 { background-position: -20px -60px; } .MEIQIA-ICON-TICKET5 { background-position: -20px -80px; } .MEIQIA-ICON-TICKET6 { background-position: -20px -100px; } .MEIQIA-ICON-TICKET7 { background-position: -20px -120px; } .MEIQIA-ICON-TICKET8 { background-position: -20px -140px; } .MEIQIA-ICON-TICKET9 { background-position: -20px -160px; } .MEIQIA-ICON-TICKET10 { background-position: -20px -180px; } .MEIQIA-ICON-TICKET11 { background-position: -20px -200px; } .MEIQIA-ICON-TICKET12 { background-position: -20px -220px; }</style><style type="text/css">#MEIQIA-BTN-HOLDER { position: fixed; bottom: 0;  right: 60px;  z-index: 2147483639; width: auto; font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background-color: transparent; } #MEIQIA-BTN { display: block; height: 40px; font-size: 16px; color: #fff; text-align: center; border-left: 1px solid rgba(0, 0, 0, .1); border-top: 1px solid rgba(0, 0, 0, .1); border-right: 1px solid rgba(0, 0, 0, .1); box-shadow: 0 0 14px 0 rgba(0, 0, 0, .16); cursor: pointer; text-decoration: none; background-color: #007aff; } #MEIQIA-BTN-ICON { display: block; float: left; width: 20px; height: 20px; margin: 10px 10px 0; } #MEIQIA-BTN-LINE { display: block; float: left; width: 1px; height: 100%; background-color: rgba(0, 0, 0, .08); background-color: #000\9; opacity: .1\9; filter: alpha(opacity=10)\9; vertical-align: middle; } #MEIQIA-BTN-TEXT { display: block; float: left; height: 40px; margin: 0 10px; line-height: 40px; overflow-y: hidden; font-size: 16px; color: #fff; } #MEIQIA-CIRCLE { position: absolute; top: -13px; left: -13px; display: none; width: 26px; height: 26px; text-align: center; line-height: 26px; font-size: 14px; color: #fff; border-radius: 15px; background-color: #ff3b30; } #MEIQIA-BUBBLE { position: absolute; bottom: 64px; display: none; width: 260px; border: 1px solid #f7f7f7; border-radius: 4px; color: #000; text-align: left; box-shadow: 0 0 14px 0 rgba(0, 0, 0, .16); line-height: 1.428571429; background-color: #fff; } #MEIQIA-BUBBLE-ARROW1 { position: absolute; z-index: 2; font-size: 0; line-height: 0; border-width: 8px 7px 0px; border-color: #fff transparent; border-style: solid dashed dashed; } #MEIQIA-BUBBLE-ARROW2 { position: absolute; z-index: 1; font-size: 0; line-height: 0; border-width: 10px 8px 0px; border-color: #f7f7f7 transparent; border-style: solid dashed dashed; }  #MEIQIA-BUBBLE { right: 0; } #MEIQIA-BUBBLE-ARROW1 { right: 12px; bottom: -8px; } #MEIQIA-BUBBLE-ARROW2 { right: 11px; bottom: -10px; }  #MEIQIA-BUBBLE-CLOSE { position: absolute; display: none; top: 12px; right: 12px; width: 10px; height: 10px; background-position: -5px -245px; cursor: pointer; } #MEIQIA-BUBBLE:hover #MEIQIA-BUBBLE-CLOSE { display: block; } #MEIQIA-BUBBLE-INSIDE { margin: 12px 18px; } #MEIQIA-BUBBLE-AVATAR { width: 26px; height: 26px; border-radius: 13px; margin-right: 6px; vertical-align: top; box-shadow: 0 0 8px 0 rgba(0, 0, 0, .15); } #MEIQIA-BUBBLE-NAME { display: inline-block; margin-top: 3px; font-size: 16px; color: #000; } #MEIQIA-BUBBLE-MSG { *height: 40px; max-height: 40px; margin-top: 5px; font-size: 14px; overflow: hidden; color: #000; } #MEIQIA-BUBBLE-MSG img { width: 16px; height: 16px; } </style><style type="text/css">#MEIQIA-INVITE { position: fixed; z-index: 2147483639; display: none; width: 340px; height: 130px; margin-bottom: 64px; border: 1px solid #f7f7f7; border-radius: 4px; box-shadow: 0 0 14px 0 rgba(0, 0, 0, .16); text-align: left; cursor: pointer; color: #000; line-height: 1.428571429; background-color: #fff; } #MEIQIA-INVITE-ARROW1, #MEIQIA-INVITE-ARROW2 { position: absolute; font-size: 0; line-height: 0; } #MEIQIA-INVITE-ARROW1 { z-index: 2; } #MEIQIA-INVITE-ARROW2 { z-index: 1; }   #MEIQIA-INVITE { bottom: 0; left: 0px; } #MEIQIA-INVITE-ARROW1 { left: 12px; bottom: -8px; border-top: 8px solid #fff; border-right: 7px solid transparent; border-left: 7px solid transparent; } #MEIQIA-INVITE-ARROW2 { left: 11px; bottom: -10px; border-top: 9px solid #f7f7f7; border-right: 8px solid transparent; border-left: 8px solid transparent; }     #MEIQIA-INVITE-CLOSE { position: absolute; right: -20px; top: -20px; width: 40px; height: 40px; background-position: 0 -260px; cursor: pointer; } #MEIQIA-INVITE-CLOSE:hover { background-position: 0 -300px; } #MEIQIA-INVITE-INSIDE { width: 300px; height: 44px; margin: 46px 20px 0; text-align: left; font-size: 14px; line-height: 22px; overflow: hidden; color: #000; word-break: break-all; } </style></head>
+
+<body>
+     <div class="container-fluid index_header">
+         <!--头部-->
+         
+
+
+<!-- <html xmlns:wb="http://open.weibo.com/wb"> -->
+
+<!-- <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=887122606" type="text/javascript" charset="utf-8"></script> -->
+<!-- <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101293792" data-redirecturi="http://www.tlink.io/user/userIndex.htm" charset="utf-8"></script> -->
+
+<script type="text/javascript">
+function demoLogin(){
+	$("#lo_userName").val("tlink");
+	$("#lo_password").val("123123");
+	$("#loginForm").submit();
+}
+
+</script>
+<!--<script type="text/javascript" src="http://meet.xpro.im/v2/api/xmeet.api.js?xnest=yourNameSpace&xnest_name=聊天室"></script>  -->
+<nav class="navbar navbar-default navbar-fixed-top" style="height:60px">
+            <div class="container-fluid"  style="height:60px">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">展开/隐藏导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/index.htm">
+                    </a>
+                </div>
+                <div class=" navbar-collapse"  style="height:60px">
+                    <ul class="nav navbar-nav">
+                        <!--                 <li><a href="/">首页</a></li> -->
+                        <li><img src="../img/logo_1.png"></li>
+                        <li><img src="../img/img2.jpg"></li>
+                        
+                        
+                    </ul>
+                    <div class="navbar-right" style="padding-right: 15px;">
+                        <ul class="nav navbar-nav serverTime">
+                       		<li>当前时间：</li>
+                       		<li id="nowDate">2016-04-11 10:54:43</li>
+                       		<li>&nbsp;
+                       		<input type="hidden" id="rq" value="2016-04-11">
+                       		<input type="hidden" id="h" value="10">
+                       		<input type="hidden" id="m" value="54">
+                       		<input type="hidden" id="s" value="43">
+                       		</li>
+                        </ul>
+                    	
+                		
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_admin.name%> <span class="caret"></span></a>
+                            	<ul class="dropdown-menu" role="menu">
+                                	<li><a href="/logout">退出</a></li>
+                            	</ul>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+</nav>
+
+<!-- 登录 注册 -->
+<div class="modal fade" id="myModal_logo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form action="/user/login.htm" method="post" id="loginForm">
+            <div class="modal-dialog" style="margin-top:8%;">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div style="padding-bottom:10px;" class="modal-password">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                        </div>
+
+                        <div style="margin-bottom:0px;" class="modal-password">
+                            <input class="form-control login_input" data-val="true" data-val-required="The 请输入用户名/邮箱 field is required." id="lo_userName" name="loginAccount" placeholder="请输入用户名/邮箱" type="text" value="">
+                            <p class="glyphicon glyphicon-user"></p>
+                        </div>
+                        <div style="margin-bottom:0px;" class="modal-password">
+                            <input class="form-control login_input" data-val="true" data-val-required="The 请输入密码 field is required." id="lo_password" name="loginPassword" placeholder="请输入密码" type="password">
+                            <p class="glyphicon glyphicon-lock"></p>
+                           </div>
+                           <div>
+<!--                             <span id="qq_login_btn"><img src="/images/qqdenglu.png"/></span>  -->
+                            
+                            
+                            
+                     
+                     <script type="text/javascript">
+   // callback function
+// });
+                 </script>    
+<!--                      <wb:login-button type="3,2" onlogin="login" onlogout="logout" >登录按钮</wb:login-button> -->
+                     
+                     </div>
+                     
+
+            
+                      
+	                         
+
+	                         
+	                         
+                                                
+                        <div class="modal-checkbox">
+                            <div class="pull-left">
+                            <input data-val="true" data-val-required="演示账号登录" id="RememberMe" name="RememberMe" type="checkbox" value="1" onclick="demoLogin();">
+                                演示账号登录
+                            </div>
+                            <div class="pull-right">
+                                <a href="/find_pwd_1.htm">忘记密码？</a>
+                            </div>
+                        </div>
+                        <input style="margin-top:20px;color:#fff;" type="submit" class="btn btn-lg btn-block btn_logo" value="登录">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<input type="hidden" id="reg" value="1">
+        <form id="regForm" action="/user/registe.htm" method="post">
+            <div class="modal-dialog" style="margin-top:8%;">
+                <!-- 手机注册 -->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div>
+                            <ul class="nav nav-tabs nav-justified">
+                                <li class="li_hover">手机注册</li>
+                                <li id="modal-toggle2" class="li_defaul">邮箱注册</li>
+                                <li class="li_defaul">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        ×
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-required="手机号码不能为空" id="mobile" name="mobile" placeholder="请输入手机号码" type="text" required="">
+                        </div>
+                        <div class="modal-password">
+                            <div class="col-sm-6 pd0">
+                                <input class="form-control" data-val="true" data-val-required="请输入验证码" id="mobilecode" name="mobilecode" placeholder="短信验证码" type="text" required="">
+                            </div>
+                            <div class="col-sm-6 pd0">
+                                <input type="button" id="mbtn" class="btn btn-primary" value="获取短信验证码">
+                            </div>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-length="密码必须至少包含6 个字符。" data-val-length-max="100" data-val-length-min="6" data-val-required="密码不能为空" id="Password1" name="password1" placeholder="请输入账号密码" type="password" required="">
+                            <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-equalto="密码和确认密码不匹配。" data-val-equalto-other="*.Password" id="ConfirmPassword1" name="ConfirmPassword1" placeholder="请输入确认密码 " type="password" required="">
+                            <span class="field-validation-valid" data-valmsg-for="ConfirmPassword" data-valmsg-replace="true"></span>
+                        </div>
+                        <input type="button" class="btn btn-lg btn-block modal-login" value="注册" onclick="checkForm();">
+                    </div>
+                </div>
+                
+                <!-- 邮箱注册 -->
+                <div class="modal-content" style="display:none;">
+                    <div class="modal-body">
+                        <div>
+                            <ul class="nav nav-tabs nav-justified">
+                                <li id="modal-toggle1" class="li_defaul">手机注册</li>
+                                <li class="li_hover">邮箱注册</li>
+                                <li class="li_defaul">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        ×
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-password">
+                            <div class="form-group postionrl">
+                                <input class="form-control" data-val="true" data-val-regex="邮箱格式不正确" data-val-regex-pattern="^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$" data-val-required="邮箱不能为空" id="email" name="email" placeholder="请输入邮箱" type="text" required="">
+                                <span class="field-validation-valid" data-valmsg-for="Email_" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="modal-password">
+                            <div class="col-sm-6 pd0">
+                                <input class="form-control" data-val="true" data-val-required="请输入邮箱验证码" id="emailcode" name="emailcode" placeholder="邮箱验证码" type="text" required="">
+                            </div>
+                            <div class="col-sm-6 pd0">
+                                <input class="btn btn-primary" type="button" id="ebtn" value="获取邮箱验证码">
+                            </div>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-length="密码 必须至少包含 6 个字符。" data-val-length-max="100" data-val-length-min="6" data-val-required="密码必填" id="Password_2" name="password2" placeholder="请输入账号密码" type="password" required="">
+                            <span class="field-validation-valid" data-valmsg-for="Password_" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="modal-password">
+                            <input class="form-control" data-val="true" data-val-equalto="密码和确认密码不匹配。" data-val-equalto-other="*.Password" id="ConfirmPassword_2" name="ConfirmPassword_2" placeholder="请输入确认密码 " type="password" required="">
+                            <span class="field-validation-valid" data-valmsg-for="ConfirmPassword_" data-valmsg-replace="true"></span>
+                        </div>
+                        <input type="button" class="btn btn-primary btn-lg btn-block modal-login" value="注册" onclick="checkForm();">
+                    </div>
+
+                </div>
+            </div>
+            
+            
+            <a data-ajax="true" data-ajax-mode="replace" data-ajax-update="#tlink_menu" href="/" id="UserCar" style="display:none">头部</a>
+        </form>
+    </div>
+<!--  登录 注册 结束-->
+
+ <script type="text/javascript">
+        $(document).ready(function () {
+           //getCurrentDate();
+            $("#modal-toggle1").click(function () {
+                $(".modal-content").toggle();
+            })
+            $("#modal-toggle2").click(function () {
+                $(".modal-content").toggle();
+            })
+            
+            
+            $.ajax({
+   					type:"post",
+  					url:"/get_server_date.htm",
+   					success:function(data){
+   						var jsonObj = eval('('+data+')');
+   						$("#nowDate").html(jsonObj.date);
+   						$("#rq").val(jsonObj.rq);
+   						$("#h").val(jsonObj.h);
+   						$("#m").val(jsonObj.m);
+   						$("#s").val(jsonObj.s);
+   						showDate();
+   					}
+   				});
+            
+            var count = 180; 
+            var btn="";
+            var countdown="";
+            $('#ebtn').click(function () { 
+				$("#reg").val(2);
+            	var email=$("#email").val();
+            	if(email == ""){
+            		alert("请输入邮箱!");
+            		return false;
+            	}
+				count = 180;
+				btn="ebtn";
+				$.ajax({
+   					type:"post",
+  					url:"/user/getVerifyCode.htm",
+  					data:{
+  						email:email,
+  						sendKey:44427
+  					},
+   					success:function(data){
+   						if(confirm('发送成功，现在去邮箱查看验证码？')){
+							var mail = email.substring(email.indexOf('@') + 1);
+							queryEmail.href = "http://mail."+mail; 
+   							queryEmail.click();
+   						}
+   						countdown = setInterval(CountDown, 1000); 
+   					}
+   				});
+			}) 
+			
+			$('#mbtn').click(function () { 
+				$("#reg").val(1);
+				var mobile=$("#mobile").val();
+				if(mobile == ""){
+            		alert("请输入手机!");
+            		return false;
+            	}
+            	
+            	var regMobile = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+ 				if(!regMobile.test(mobile)) {
+      				alert("手机号码格式有误");
+      				return false;
+ 				}
+				count = 180;
+				btn="mbtn";
+				$.ajax({
+   					type:"post",
+  					url:"/user/getVerifyCode.htm",
+  					data:{
+  						mobile:mobile,
+  						sendKey:44427
+  					},
+   					success:function(data){
+   						var jsonObj = eval('('+data+')');
+   						var flag = jsonObj.flag;
+   						if(flag == "00"){
+   							alert("发送成功!");
+   							countdown = setInterval(CountDown, 1000); 
+   						}else{
+   							alert("发送失败:手机号已存在!");
+   						}
+   					}
+   				});
+			}) 
+			
+			function CountDown() { 
+				$("#"+btn).attr("disabled", true); 
+				$("#"+btn).val("重新获取(" + count + ")"); 
+				if (count == 0) { 
+					$("#"+btn).val("重新获取验证码").removeAttr("disabled"); 
+					clearInterval(countdown); 
+				} 
+				count--; 
+			} 
+        });
+       
+       
+       function checkForm(){
+       		var reg = $("#reg").val();
+       		if(reg == '1'){
+       			var Password_2 = $("#Password_2").val();
+       			var ConfirmPassword_2 = $("#ConfirmPassword_2").val();
+       			if(Password_2!=ConfirmPassword_2){
+       				alert("两次密码输入不一致");
+       				return false
+       			}
+       		}else{
+       			var Password_1 = $("#Password1").val();
+       			var ConfirmPassword_1 = $("#ConfirmPassword1").val();
+       			if(Password_1!=ConfirmPassword_1){
+       				alert("两次密码输入不一致");
+       				return false
+       			}
+       		}
+       		$("#regForm").submit();
+       }
+       
+       (function(m, ei, q, i, a, j, s) {
+	        m[a] = m[a] || function() {
+	            (m[a].a = m[a].a || []).push(arguments)
+	        };
+	        j = ei.createElement(q),
+	            s = ei.getElementsByTagName(q)[0];
+	        j.async = true;
+	        j.src = i;
+	        s.parentNode.insertBefore(j, s)
+	    })(window, document, 'script', '//eco-api.meiqia.com/dist/meiqia.js', '_MEIQIA');
+	    _MEIQIA('entId', 3273);
+	  
+	    setInterval("showDate()",1000);
+		function showDate(){
+			var rq = $("#rq").val();
+   			var h =  $("#h").val();
+   			var m =  $("#m").val();
+   			var s =  $("#s").val();
+   			
+   			s = Number(s)+1;
+   			if(s < 10){
+   			   s = "0" + s;
+   			}
+   			if(Number(s) == 60){
+   				s = "0";
+   				m = Number(m)+1;
+   			}
+   			if(m.length == 1){
+   			    m = "0" + m;
+   			}
+   			if(Number(m) == 60){
+   				m = "0";
+   				h = Number(h)+1;
+   			}
+   			if(h.length == 1){
+   				h = "0" + h;
+   			}
+   			$("#rq").val(rq);
+   			$("#h").val(h);
+   			$("#m").val(m);
+   			$("#s").val(s);
+   			
+   			var nowTime = rq+" "+h+":"+m+":"+s;
+   			$("#nowDate").html(nowTime);
+		}
+    </script>
+<!--     </html> -->
+
+        <!--主题-->
+       <div class="index_c">
+             <!--左侧栏-->
+             
+
+
+
+
+  
+   <title>TLINK-物联网,工业、农业、智能家居等相关物联网云服务运营专家</title>
+    <meta name="Keywords" content="TLINK|物联网|智能物联|数字农业|仪器仪表物联网|物联网平台|物联网云服务|物联网开放平台">
+    <meta name="Description" content="TLINK物联网是深圳市模拟科技有限公司面向物联网产品的开放平台">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+  
+  
+    <div class="index_theLeft">
+    <br>
+                <ul class="dashboard-menu">
+                    <li>
+                        <a href="/devices/monitor?pid=<%=@project_id%>">
+                            <i class="glyphicon glyphicon-record"></i>
+                            <h5>监控中心</h5>
+                        </a>
+                    </li>
+                    
+	                    <li>
+	                        <a href="/devices?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-blackboard"></i>
+	                            <h5>设备</h5>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="/alarms?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-bell"></i>
+	                            <h5>报警</h5>
+	                        </a>
+	                    </li>
+	                    <li class="active">
+	                        <a href="/schedulers?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-arrow-down"></i>
+	                            <h5>广告</h5>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="/devices/explore?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-map-marker"></i>
+	                            <h5>分布图</h5>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="">
+	                            <i class="glyphicon glyphicon-user"></i>
+	                            <h5>用户中心</h5>
+	                        </a>
+	                    </li>
+                    
+                    
+                </ul>
+            </div>
+  
+
+
+            <!--中间部分-->
+             <div class="trigger_centen">
+				<div class="trigger_pa">
+				    <h3 class="trigger_font">广告管理</h3>
+				    
+					    <a href="/schedulers/new?pid=<%=@project_id%>"><p>新增广告</p></a>
+					 	<a href="/schedulers?pid=<%=@project_id%>"><p>我的广告</p></a>
+				    
+				</div>
+            </div>               
+
+
+
+
+        </div>     
+        <!--右边部分-->
+        
+        <div class="col-sm-10 all_device">
+            <div style="margin-left:290px;" class="form-horizontal personU_theRight">
+                <p class="personU_sen_title">
+                   &nbsp; 新增广告
+                </p>
+                <div class="addDevice_div">
+                <form id="add-form" class="form-horizontal" action="/schedulers" method="post">
+                   	<input type="hidden" name="id" value="">
+                    <input type="hidden" name="name" id="name" value="">
+                    <input type="hidden" id="expre" value="">
+                    <div class="form-group">
+                        <label class="col-md-1 control-label pd0" for="deviceName">选择设备</label>
+                        <div class="col-md-6">
+                            <select id="device" class="form-control" name="deviceId" onchange="changerDevice(this)">
+	                           <%@devices.each do |de| %>  
+	                                 <option value="<%= de.id %>" linktype="tcp"><%= de.device_name%></option>
+	                             
+	                             
+	                             <%end%>
+                            </select>
+                        </div>
+                    </div>
+                   <div class="form-group" style="display:none">
+                        <label class="col-md-1 control-label pd0">传感器</label>
+                        <div class="col-md-6">
+                            <select id="sensor" class="form-control" name="sensorId" onchange="showModbus(this.value);showLinkType();">
+                                
+                                 <option value="16262" _type="1"></option>
+                                
+                                 <option value="16733" _type="1"></option>
+                                
+                                 <option value="17020" _type="2"></option>
+                               
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="display:none">
+                    	<label class="col-md-1 control-label pd0">链接协议</label>
+                        <div class="col-md-6">
+                           <input type="text" name="linktype" id="_linktype" value="" class="form-control" placeholder="默认为Modbus" readonly="readonly">
+                           <input type="hidden" name="sensortype" id="_sensortype" value="1">
+                        </div>
+                    </div>
+                    
+                   
+                    <div class="form-group" id="_datatype" style="">
+                        <label class="col-md-1 control-label pd0">数据类型</label>
+                        <div class="col-md-6">
+                           <input type="radio" name="datatype" value="1" checked="checked"> 字符串 
+                           <input type="radio" name="datatype" value="2"> 十六进制 
+                        </div>
+                    </div>
+	                    
+                    <div class="form-group" id="_sendval">
+                        <label class="col-md-1 control-label pd0">发送数据</label>
+                        <div class="col-md-6">
+                           <textarea class="form-control" rows="4" cols="300" name="sendval" id="sendval"></textarea>
+                        </div>
+                    </div>
+	                    
+                    <div class="form-group" style="display:none">
+                        <label class="col-md-1 control-label pd0">计划时间</label>
+                        <div class="col-md-7">
+                           <p><input type="checkbox" name="week" value="2" id="wk_2"> 星期一 <input type="checkbox" name="week" value="3" id="wk_3"> 星期二  <input type="checkbox" name="week" value="4" id="wk_4"> 星期三 
+                              <input type="checkbox" name="week" value="5" id="wk_5"> 星期四 <input type="checkbox" name="week" value="6" id="wk_6"> 星期五  <input type="checkbox" name="week" value="7" id="wk_7"> 星期六 
+                              <input type="checkbox" name="week" value="1" id="wk_1"> 星期日
+                           </p>
+                           <p style="width: 100%">
+                             	</p><div style="float:left;">
+									<span style="float:left">
+										<select name="hr" class="form-control" id="hr">
+											<option value="">请选择</option>
+										<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>
+									</span>
+									<span style="float:left;padding:5px 0px 0px 10px"> 
+										时 &nbsp;
+									</span>
+								 </div>		
+								<div style="float:left;">
+									<span style="float:left;"> 
+										<select id="min" class="form-control" name="min">
+											<option value="">请选择</option>
+										<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option></select>
+									</span>
+									<span style="float:left;padding:5px 0px 0px 10px">
+										分 &nbsp;
+									</span>
+								</div>		
+								<div style="float:left;">
+									<span style="float:left;"> 
+										<select id="sec" class="form-control" name="sec">
+											<option value="">请选择</option>
+										<option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option></select>
+									</span>
+									<span style="float:left;padding:5px 0px 0px 10px">
+										秒
+									</span>
+								 </div>
+	                           <input type="hidden" value="" id="_hr">
+	                           <input type="hidden" value="" id="_min">
+	                           <input type="hidden" value="" id="_sec">
+                           <p></p>
+                           <div style="clear:both;height:10px;"></div>
+                           <p><input type="radio" name="sendflag" value="1" checked="checked"> 重复执行 
+                              <input type="radio" name="sendflag" value="2"> 定时执行 
+                              <input type="radio" name="sendflag" value="3"> 执行一次
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                              <a title="" data-html="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="top" data-content="重复执行：以上述选择的“时分秒”为间隔周期，循环执行下发，每星期执行，每天可执行多次。<br/>定时执行：以上述选择的“时分秒”为指定时间，定时执行下发，每星期执行，每天只执行一次。<br/>执行一次：以上述选择的“时分秒”为指定时间，定时执行下发，执行一次以后任务销毁。" data-original-title="">
+	                        	<img src="../../img/xieyiHelp.gif" width="20px" height="20px">
+	                          </a>
+                           </p>
+                       </div>    
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 pd0">
+                           	<button type="button" onclick="check();" class="btn btn-default">
+                            	添加广告
+                            	
+                           	</button>
+                           	<button type="button" onclick="window.history.go(-1);" class="btn btn-default">
+                            	返 回
+                           	</button>
+                        </div>
+                    </div>
+                </form>
+               </div>
+            </div>
+        </div>
+        
+
+
+
+       
+  
+
+</div>
+
+     <div class="modal fade" id="addAlarms">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        <h4 class="modal-title" id="alarmsTitle"></h4>
+	      </div>
+	      <div class="modal-body" id="myBody">
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div>
+       
+
+        <script type="text/javascript">
+    $(document).ready(function(){
+       $("[data-toggle='popover']").popover();
+        var expr = $("#expre").val();
+        if(""!=expr){
+          if("*" == expr){
+              for(var i = 1;i <= 7;i++){
+	             $("#wk_"+i).attr("checked","checked");
+	           }
+           }else{
+	           var array = expr.split(",");
+	           for(var i = 0;i<array.length;i++){
+	             $("#wk_"+array[i]).attr("checked","checked");
+	           }
+	       }
+        }
+        //时
+        var hr = $("#_hr").val();
+        for(var i=0;i <= 23;i++){
+           if(hr == (i+"")){
+             $("#hr").append("<option value='"+i+"' selected='selected'>"+i+"</option>");
+           }else{
+          	 $("#hr").append("<option value='"+i+"'>"+i+"</option>");
+           }
+        }
+        //分
+        var min = $("#_min").val();
+        for(var i=0;i<= 59;i++){
+            if(min == (i+"")){
+               $("#min").append("<option value='"+i+"' selected='selected'>"+i+"</option>");
+            }else{
+               $("#min").append("<option value='"+i+"'>"+i+"</option>");
+            }
+        }
+        //秒
+        var sec = $("#_sec").val();
+        for(var i = 30;i<= 59;i++){
+           if(sec == (i+"")){
+            	$("#sec").append("<option value='"+i+"' selected='selected'>"+i+"</option>");
+            }else{
+            	$("#sec").append("<option value='"+i+"'>"+i+"</option>");
+            }
+        }
+        showLinkType();
+        showModbus($("#sensor").find("option:selected").val());
+    })
+	function changerDevice(obj) {
+		var deviceId = $(obj).val();
+		showLinkType();
+	    $("#deviceName").val($(obj).find("option:selected").text());
+		if ("" != deviceId) {
+			$.ajax({url:"/alarms/querySensorByDeviceId.htm", type:"POST", data:{"deviceId":deviceId}, success:function (data) {
+				if ("" != data && null != data) {
+					var jsonObj = $.parseJSON(data);
+					var selectVal = "";
+					$.each(jsonObj[0].sensorList, function (i, o) {
+						selectVal += "<option value=" + o.sensorId + " _type="+o.sensorType+">" + o.sensorName + "</option>";
+					});
+					$("#sensor").html(selectVal);
+					showModbus(jsonObj[0].sensorList[0].sensorId);
+				} else {
+					$("#sensor").html("<option value='' >---请选择---</option>");
+				}
+			}});	
+		}
+	}   
+	function showModbus(sensorId){
+		 var linktype = $("#device").find("option:selected").attr("linktype"); // 链接类型
+		 if(linktype == "" || linktype == "modbus"){
+		     $.ajax({url:"/scheduler/queryModbusById.htm", type:"POST", data:{"sensorId":sensorId}, success:function (data) {
+					if ("" != data && null != data) {
+						 var jsonObj = $.parseJSON(data);
+						 if("00" == jsonObj.flag){
+						    $("#sendval").val(jsonObj.symbol);
+						 }
+					 }
+			  }});	
+		}
+	}
+	
+	function showLinkType(){
+	   var linktype = $("#device").find("option:selected").attr("linktype"); // 链接类型
+	   var sensortype = $("#sensor").find("option:selected").attr("_type");
+	   $("#_linktype").val(linktype);
+	   $("#_sensortype").val(sensortype);
+	   if(linktype == "tcp"){
+	      $("#_datatype").show();
+	      $("#_tran").show();
+	   }else{
+	   	 $("#_datatype").hide();
+	   	  $("#_tran").hide();
+	   }
+	}
+	function check(){
+	     var linktype = $("#device").find("option:selected").attr("linktype"); // 链接类型
+	     if($("#device").val() == ''){
+   			alert("请选择设备!");
+   			return false;
+     	 }
+     	 if(""!=linktype && "modbus"!=linktype||true){
+     	  var sensortype = $("#sensor").find("option:selected").attr("_type");
+     	    if($("#sensor").val() == '' && false){
+	   			alert("请选择传感器!");
+	   			return false;
+	    }
+	        if(true||sensortype!="2"){
+	     	   if($("#sendval").val() == ''){
+		  		 alert("请填写发送的内容!");
+		  		 return false;
+			   }
+		}
+     	   }
+	    $("#name").val($("#device").find("option:selected").text()+":"+$("#sensor").find("option:selected").text());
+  		$("#add-form").submit();
+  	}	
+  </script>
+
+
+
+
+
+<div id="MEIQIA-PANEL-HOLDER"><iframe id="MEIQIA-IFRAME" src="http://eco-api.meiqia.com/dist/desktop-fiesta.html?5dxg4coo14gkqpvi" frameborder="0" scrolling="no" allowtransparency="true"></iframe> </div><div id="MEIQIA-BTN-HOLDER"><a id="MEIQIA-BTN"> <span id="MEIQIA-BTN-ICON" class="MEIQIA-ICON MEIQIA-ICON-CHAT1"></span> <span id="MEIQIA-BTN-LINE"></span> <span id="MEIQIA-CIRCLE"></span> <div id="MEIQIA-BUBBLE"> <span id="MEIQIA-BUBBLE-ARROW1"></span> <span id="MEIQIA-BUBBLE-ARROW2"></span> <span id="MEIQIA-BUBBLE-CLOSE" class="MEIQIA-ICON"></span> <div id="MEIQIA-BUBBLE-INSIDE"> <img id="MEIQIA-BUBBLE-AVATAR"> <span id="MEIQIA-BUBBLE-NAME"></span> <div id="MEIQIA-BUBBLE-MSG"></div> </div> </div> </a></div><div id="MEIQIA-INVITE"><span id="MEIQIA-INVITE-CLOSE" class="MEIQIA-ICON"></span> <div id="MEIQIA-INVITE-INSIDE">您好，当前有专业客服人员在线，让我们来帮助您吧。</div> <span id="MEIQIA-INVITE-ARROW1"></span> <span id="MEIQIA-INVITE-ARROW2"></span></div></body>
+
+
+</HTML>
+

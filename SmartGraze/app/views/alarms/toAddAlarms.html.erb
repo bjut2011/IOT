@@ -1,0 +1,249 @@
+
+    <meta charset="UTF-8">
+    <title>Tlink物联网-添加/编辑触发器,TLINK物联网-中国最大的物联网开放平台</title>
+    <meta name="Keywords" content="TLINK|物联网|智能物联|数字农业|仪器仪表物联网|物联网平台|物联网云服务|物联网开放平台">
+    <meta name="Description" content="TLINK物联网是深圳市模拟科技有限公司面向物联网产品的开放平台">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+
+
+
+	<input type="hidden" id="isBind" value="">
+    <div class="container-fluid" style="width: 100%;padding:0px;font-size:15px;">
+                <form class="form-horizontal" action="/alarms/addAlarms" onsubmit="return getQueryType();" method="POST">
+                     <input type="hidden" name="alarmsId" value="">
+                     <input type="hidden" name="deviceName" id="deviceName" value="">
+                     <input type="hidden" name="queryType" id="queryType">
+                     <input type="hidden" name="contactId" id="contactId">	
+                    <div class="form-group"> 
+                        <label class="col-md-3 control-label pd0">选择设备</label>
+                        <div class="col-md-9">
+                            <select id="device" class="form-control" name="deviceId" onchange="changerDevice(this)">
+                               <%@devices.each do |de|%>                       
+                                 <option value="<%=de.id%>"><%=de.device_name%></option>
+                                  
+                               <%end%>
+                            </select>                       
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label pd0">选择传感器</label>
+                        <div class="col-md-9">
+                            <select id="sensor" class="form-control" name="sensorId">
+                              <%@sensors.each do |se|%>
+                                <option value="<%= se.id  %>"><%=se.name%></option>
+                              <%end%> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label pd0">触发条件</label>
+                        <div class="col-md-9">
+                            <select id="alarmType" class="form-control" name="alarmType" onchange="changerAlarmTtype(this.value)">
+                                <option value="val_above">数值高于X</option>
+                                <option value="val_below">数值低于Y</option>
+                                <option value="val_above_below">数值高于X低于Y</option>
+                                <option value="val_between">数值在X和Y之间</option>
+                                <option value="val_above_bound">数值超过M分钟高于X</option>
+                                <option value="val_below_bound">数值超过M分钟低于Y</option>
+                                <option value="offline">传感器断开</option>
+                                <option value="offline_for_minutes">超过M分钟断开</option>
+                                <option value="switch_on">开关开启</option>
+                                <option value="switch_off">开关关闭</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-9 col-md-offset-3" id="alarmTypeDiv">                                                                     
+                            
+                           	 <div class="col-md-6"><div class="form-group"><input type="text" class="form-control" name="upperBoundC" placeholder="X" onkeyup="this.value=this.value.replace(/[^\- \d.]/g,'')" onafterpaste="this.value=value.replace(/[^\- \d.]/g,'')"></div></div>
+                            
+                            
+							
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label pd0">选择报警方式</label>
+                        <div class="col-md-9">
+                            <select id="target" class="form-control" name="target" onchange="showOrHideDive();">
+                            	<option value="WeiXin">微信</option>
+                                <option value="Email">邮箱</option>
+                                <option value="SMS">短信</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                   
+	                   <div class="form-group" id="triWechat">
+	                        <label class="col-md-3 control-label pd0"></label>
+	                        <div class="col-md-9">
+	                           	<a href="/wechat_alarm.htm" target="_blank">如何设置微信报警?</a>
+	                        </div>
+	                    </div>
+	                    <div class="form-group" style="display: none;" id="triEmail">
+	                        <label class="col-md-3 control-label pd0">选择联系人</label>
+	                        <div class="col-md-9">
+	                            <select class="form-control" name="email_alarms" id="email_alarms">
+	                                  <% @contacts.each do |co|%>
+	                                      <option value="<%=co.id%>"><%= co.name%> ---- <%= co.email%></option>
+	                                  <%end%>
+	                            </select>
+	                        </div>
+	                    </div>
+                        <div class="form-group" style="display: none;" id="triSMS">
+                        <label class="col-md-3 control-label pd0">选择联系人</label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="mobile_alarms" id="mobile_alarms">
+	                               <% @contacts.each do |co|%>
+	                                    <option value="<%=co.id%>"><%= co.name%> ---- <%= co.mobile%></option>
+	                               <%end%>
+                                  
+                                  
+                            </select>
+                        </div>
+                    </div>
+                   
+                   <div class="form-group" style="display:none">
+                        <label class="col-md-3 control-label pd0" for="message">触发开关</label>
+                        <div class="col-md-9">
+                            <select id="message" class="form-control" name="message">
+                               <option value="">---请选择---</option>
+                                
+                               
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group"  style="display:none">
+                        <div class="col-md-9 col-md-offset-3">                                                                     
+                           	 <div class="col-md-9"><div class="form-group"><input type="text" class="form-control" id="switchVal" name="switchVal" placeholder="下发数据" value=""></div></div>
+                         </div>
+                     </div>     
+                    
+                    <div class="form-group pull-right" align="center">
+                            <button type="submit" class="btn btn-default">创建报警</button>
+                            
+	                            
+                            
+                             &nbsp;
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+                    </div>
+                </form>
+            </div>
+    	<input type="hidden" id="basePath" value="">
+    	<script type="text/javascript">
+    		function showOrHideDive(){
+    			var target = $("#target").val();
+    			if(target == 'Email'){
+    				$("#triEmail").show();
+    				$("#triWechat").hide();
+    				$("#triSMS").hide();
+    			}else if(target == 'SMS'){
+    			    $("#triEmail").hide();
+    				$("#triWechat").hide();
+    				$("#triSMS").show();
+    			}else{
+    				$("#triEmail").hide();
+    				$("#triWechat").show();
+    				$("#triSMS").hide();
+    				var isBind = $("#isBind").val();
+    				if(isBind == '0'){
+    					alert("您还未绑定微信账号,请关注TLINK公众号进行绑定，否则将无法收到报警信息");
+    				}
+    			}
+    		}
+    	
+    	    function getQueryType(){
+    	        $("#queryType").attr("value",$("#active_").val());
+    	        $("#deviceName").val($("#device").find('option:selected').text());
+    	        var target = $("#target").val();
+    	        if('Email' == target){
+    	          $("#contactId").val($("#email_alarms").val());
+    	        }else if('SMS' == target){
+    	           $("#contactId").val($("#mobile_alarms").val());
+    	        }
+    	        if('' == $("#email_alarms").val() && ''== $("#mobile_alarms").val()){
+    	            alert('请去用户中心添加联系人！');
+    	            return false;
+    	        }
+    	        if("2" == $("#message").find("option:selected").attr("_type")){
+    	          var switchVal = $("#switchVal").val();
+    	          if("0"!=switchVal && "1" != switchVal){
+    	             alert("开关值只能是\"0\"或\"1\"");
+    	             return false;
+    	          }
+    	        }
+    	        return true;
+    	    }
+    	    function deleteAlarms(alarmsId){
+    	       if(confirm('数据删除后不能恢复，您确定要删除吗？')){
+	    	       var url = "/alarms/deleteAlarms.htm?alarmsId="+alarmsId+"&queryType="+$("#active_").val();
+	    	       window.location.href = url;
+	    	   }
+    	    }
+    	   /***
+			选择设备改变传感器数据
+			**/
+			function changerDevice(obj) {
+				var deviceId = $(obj).val();
+			    $("#deviceName").val($(obj).find("option:selected").text());
+				if ("" != deviceId) {
+					$.ajax({url:"/alarms/querySensorByDeviceId", type:"POST", data:{"deviceId":deviceId}, success:function (data) {
+						if ("" != data && null != data) {
+							var selectVal = "";
+
+							$.each(data.sensorList, function (i, o) {
+								selectVal += "<option value=" + o.id + " _type="+o.sensorType+">" + o.name + "</option>";
+							});
+							$("#sensor").html(selectVal);
+							var switchVal = "<option value='' >---请选择---</option>";
+							$("#message").html(switchVal+selectVal);
+							$("#switchVal").val("");
+						} else {
+							$("#sensor").html("");
+							$("#message").html("<option value='' >---请选择---</option>");
+						}
+					}});	
+				}
+			}   
+			function changerAlarmTtype(type) {
+				var typeHtml = "";
+				var x ='<div class="col-md-6"><div class="form-group"><input type="text" class="form-control" name="upperBoundC" placeholder="X" onkeyup="value=value.replace(/[^\\- \\d.]/g,\'\')" onafterpaste="this.value=this.value.replace(/[^\\- \\d.]/g,\'\')"></div></div>';
+				var y ='<div class="col-md-6"><div class="form-group"><input type="text" class="form-control" name="lowerBoundC" placeholder="Y" onkeyup="value=value.replace(/[^\\- \\d.]/g,\'\')" onafterpaste="this.value=this.value.replace(/[^\\- \\d.]/g,\'\')"></div></div>';
+				var m ='<div class="col-md-6"><div class="form-group"><input type="text" class="form-control" name="duration" placeholder="M" onkeyup="this.value=this.value.replace(/\\D/g,\'\')" onafterpaste="this.value=this.value.replace(/\\D/g,\'\')"></div></div>';
+				switch (type) {
+				  case "val_above":
+					typeHtml = x;
+					break;
+				  case "val_below":
+					typeHtml = y;
+					break;
+				  case "val_above_below" :
+				    typeHtml = x+y;
+				    break;	
+				  case "val_between":
+					typeHtml = x+y;
+					break;
+				  case "val_above_bound":
+					typeHtml = m+x;
+					break;
+				  case "val_below_bound":
+					typeHtml = m+y
+					break;
+				  case "offline":
+					typeHtml = "如果传感器断开";
+					break;
+				  case "offline_for_minutes":
+					typeHtml = m;
+					break;
+				  case "switch_on" :
+				   	typeHtml = "开关开启";
+					break;
+				  case "switch_off" :
+				  	typeHtml = "开关关闭";
+					break;	
+				  	
+				}
+				$("#alarmTypeDiv").html(typeHtml);
+			}
+    	</script>
+

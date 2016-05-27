@@ -1,0 +1,107 @@
+﻿*{margin:0px;padding:0px;}
+body {
+	background: #FFFFFF; font-family: "微软雅黑" , "宋体"; font-size: 14px;
+}
+input {
+	font-family: "微软雅黑" , "宋体";
+}
+.head-top{
+    width:100%;
+    height:139px;
+    background-color:#fff;
+    background: url("../../img/user/lg2_02.png");
+}
+.top-logo
+{
+    height:113px;
+    background: url("../../img/user/zh_logo.png") no-repeat;
+    margin-top:26px;
+    width:240px;
+    float:left;
+}
+.top-border
+{
+    margin:auto;
+    height:9px;
+    width:100%;
+    background: url("../../img/user/top_border.png");
+}
+.top-title
+{
+    height:68px;
+    width:391px;
+    background: url("../../img/user/zh_top_title.png");
+    margin-top:43px;
+    float:left;
+}
+.top-lang
+{
+    height:73px;
+    width:246px;
+    clear:both;
+    margin:0px 20px 0 0;
+    background: url("../../img/user/top_lang.png") no-repeat;
+}
+
+.nav li {
+    float: left;
+    text-align: center;
+    padding: 0 0px 0 7px;
+    list-style: none;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+}
+.body-main
+{
+    margin:auto;
+    height:500px;
+    width:100%;
+}
+.main-login
+{
+    height:416px;
+    width:295px;
+    background: url("../../img/user/login.png") no-repeat;
+    margin-top:70px;
+    float:right;
+    margin-right:17px;
+}
+.login-box
+{
+    height:310px;
+    width:230px;
+    margin:auto;
+    margin-top:73px;
+    margin-left:52px;
+}
+
+.bottom
+{
+    margin:auto;
+    height:127px;
+    width:100%;
+    background: url("../../img/user/lg2_05.png");
+}
+
+
+#login_button
+{
+    width:68px;
+    height:32px;
+    border:0px;
+    padding-top:10px;
+    background: url("../../img/user/zh_loginx.png") no-repeat;
+    cursor:pointer;
+}
+
+
+#btnLoginImei
+{
+    width:68px;
+    height:32px;
+    border:0px;
+    padding-top:10px;
+    background: url("../../img/user/zh_loginx.png") no-repeat;
+    cursor:pointer;
+}
