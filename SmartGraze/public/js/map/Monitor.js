@@ -255,9 +255,9 @@ function redirect(v) {
                     $("#" + divID).attr("src", "map.aspx?id=" + id + "&n=" + loginName + "&p=" + p);
                 } else if (divID == "pageShowFrame_Report") {
                     if (loginType == 1) {
-                        $("#" + divID).attr("src", "Report/Report.aspx?id=" + id + "&deviceid=0");
+                        $("#" + divID).attr("src", "/Report?id=" + id + "&deviceid=0");
                     } else {
-                        $("#" + divID).attr("src", "Report/Report.aspx?id=" + id + "&deviceid=" + loginDeviceID);
+                        $("#" + divID).attr("src", "/Report?id=" + id + "&deviceid=" + loginDeviceID);
                     }
                 } else if (divID == "pageShowFrame_Device") {
                     $("#" + divID).attr("src", "DeviceList.aspx?id=" + id + "&n=" + loginName + "&sday=0");

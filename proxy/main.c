@@ -20,6 +20,7 @@ static pthread_t tid_query = 0;
 mongoc_client_t *mgclient;
 queue_t g_qalarm;
 int main(){
+  setbuf(stdout, NULL);
   //start(); 
   /* Start heartbeat thread */
   printf("strlen %d\n",strlen("中国人"));

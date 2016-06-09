@@ -27,6 +27,32 @@ class DevicesController < ApplicationController
   
   def dmap
   end
+ 
+  def Report 
+  end
+
+  def gettracking
+    respond_to do |format|
+      format.json { render :json => {:code =>1,:msg =>"ok",:redirect_uri =>"/"} }
+    end
+
+  end
+
+  def Tracking 
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    @user_id=current_admin.id
+    if params[:deviceid]
+       @device=Device.find(params[:deviceid])
+    end
+  end
+ 
+  def Playback 
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    @user_id=current_admin.id
+    if params[:deviceid]
+       @device=Device.find(params[:deviceid])
+    end
+  end
 
   def alarmsms
     str='您的验证码是：123。请不要把验证码泄露给其他人。'
@@ -50,15 +76,12 @@ class DevicesController < ApplicationController
   def getDevices
     current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     @devices = Device.all
-    if params["pid"] and current_admin.type!=0
-       pid=params["pid"]
-       logger.info pid
-       @devices=User.find(pid).device
-       @project_name=User.find(pid).name
-       @project_id=User.find(pid).id
+    if current_admin.type!=0
+       @devices=User.find(current_admin.id).device
+       @user_id=current_admin.id
     end
     respond_to do |format|
-      format.json {render :json => {:code =>0,:data => @devices}}
+      format.json {render :json => {:code =>0,:data => @devices,:d => {:devices => @devices}}}
     end
   end
 

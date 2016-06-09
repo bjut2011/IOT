@@ -232,7 +232,8 @@ function ajaxGetDevices() {
             //alert(result.d + "  " );
             if (true) {
                 //alert(result.d);
-                var json = eval("(" + "{devices:[{id:119742,name:\"GX02A-78546\",sn:\"868120129078546\",model:\"11\",modelName:\"GX02A\",state:-1,speedLimit:\"0.00\",icon:\"1\",carNum:\"\",locationID:\"1\",groupID:-1,serverUtcDate:\"2016-05-27 09:54:14\",deviceUtcDate:\"2016-05-27 09:54:14\",baiduLat:\"31.99004\",baiduLng:\"118.79200\",ofl:\"0\",speed:\"0.00\",course:\"66\",dataType:\"1\",dataContext:\"\",distance:\"16047.5050\",isStop:1,stopTimeMinute:2026,carStatus:\"\",status:\"Stop\"}]}" + ")");
+                var json = result.d;
+                //var json = eval("(" + "{devices:[{id:119742,name:\"GX02A-78546\",sn:\"868120129078546\",model:\"11\",modelName:\"GX02A\",state:-1,speedLimit:\"0.00\",icon:\"1\",carNum:\"\",locationID:\"1\",groupID:-1,serverUtcDate:\"2016-05-27 09:54:14\",deviceUtcDate:\"2016-05-27 09:54:14\",baiduLat:\"31.99004\",baiduLng:\"118.79200\",ofl:\"0\",speed:\"0.00\",course:\"66\",dataType:\"1\",dataContext:\"\",distance:\"16047.5050\",isStop:1,stopTimeMinute:2026,carStatus:\"\",status:\"Stop\"}]}" + ")");
                 if (allDevices) {
                     for (var i = 0; i < json.devices.length; i++) {
                         var isCz = false;
@@ -410,8 +411,8 @@ function showDevicesTable(s) {
 
             html.push('<div id="' + idTab + '" class="' + divClass + '" style="clear:left;width:243px; margin-left:10px; cursor:pointer;  color:' + color + ';line-height:135%;" ');
             if (isShowMore) {
-                html.push('onclick="showMoreDivDevice(' + allDevices.devices[i].id + ',\'' + carStatus + '\')">');
-                devicesListHtml.push('<tr id="' + deviceListTRID + '" class="' + divClass + '" onclick="showMoreDivDevice(' + allDevices.devices[i].id + ',\'' + carStatus + '\')" style="cursor:pointer;">');
+                html.push('onclick="showMoreDivDevice(\'' + allDevices.devices[i].id + '\',\'' + carStatus + '\')">');
+                devicesListHtml.push('<tr id="' + deviceListTRID + '" class="' + divClass + '" onclick="showMoreDivDevice(\'' + allDevices.devices[i].id + '\',\'' + carStatus + '\')" style="cursor:pointer;">');
             } else {
                 html.push('>');
                 devicesListHtml.push('<tr id="' + deviceListTRID + '">');
@@ -442,7 +443,7 @@ function showDevicesTable(s) {
             var id = "divTabDeviceMore" + allDevices.devices[i].id;
             showMoreDivDeviceArr.push(allDevices.devices[i].id);
             if (isShowMore) {
-                html.push('<div id="' + id + '" style="clear:left;color:' + color + '; margin-left:80px; display:' + display + ';">' + '<a href="javascript:void(0);" onclick="openPage(\'Tracking.aspx\',' + loginUserID + ',' + allDevices.devices[i].id + ')" >' + allPage.tracking + '</a>  <a href="javascript:void(0);"  onclick="openPage(\'Playback.aspx\',' + loginUserID + ',' + allDevices.devices[i].id + ')">' + allPage.playback + '</a>  <a href="javascript:void(0);" onclick="clkShowMoreMenu(' + loginUserID + ',' + allDevices.devices[i].id + ',' + allDevices.devices[i].model + ',\'' + allDevices.devices[i].name + '\',\'' + allDevices.devices[i].sn + '\');">' + allPage.more + '▼</a>' + '</div>');
+                html.push('<div id="' + id + '" style="clear:left;color:' + color + '; margin-left:80px; display:' + display + ';">' + '<a href="javascript:void(0);" onclick="openPage(\'Tracking\',' + loginUserID + ',\'' + allDevices.devices[i].id + '\')" >' + allPage.tracking + '</a>  <a href="javascript:void(0);"  onclick="openPage(\'Playback\',' + loginUserID + ',\'' + allDevices.devices[i].id + '\')">' + allPage.playback + '</a>  <a href="javascript:void(0);" onclick="clkShowMoreMenu(' + loginUserID + ',\'' + allDevices.devices[i].id + '\',' + allDevices.devices[i].model + ',\'' + allDevices.devices[i].name + '\',\'' + allDevices.devices[i].sn + '\');">' + allPage.more + '▼</a>' + '</div>');
             }
             html.push('</div>');
 
@@ -728,9 +729,9 @@ function clkShowMoreMenu(userid, deviceid, model, name, sn) {
     var html = [];
     html.push('<div style="margin-top:5px;">');
 
-    html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);" onclick="showDivIframe(\'ProductUpdate.aspx\',' + deviceid + ');">' + mapPage.divicesInfo + '</a></div>');
+    html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);" onclick="showDivIframe(\'ProductUpdate.aspx\',\'' + deviceid + '\');">' + mapPage.divicesInfo + '</a></div>');
 
-    html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);" onclick="openPage(\'Geofences.aspx\',' + UserId + ',' + deviceid + ')" target="_blank">' + mapPage.geofence + '</a></div>');
+    html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);" onclick="openPage(\'Geofences\',' + UserId + ',\'' + deviceid + '\')" target="_blank">' + mapPage.geofence + '</a></div>');
 
     html.push('<div style="padding-top:2px;" class="showdivs" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);">' + mapPage.moveToGroup + '</a>');
     html.push('<div id="divLeftMenuGroup" class="showitems"></div>');
@@ -828,7 +829,7 @@ function clkShowMoreMenu(userid, deviceid, model, name, sn) {
     html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:showCommandList(' + deviceid + ',\'' + sn + '\',1);" >' + mapPage.checkCommand + '</a></div>');
     html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);" onclick="showDivIframe(\'DownloadLocation.aspx\',' + deviceid + ');">' + mapPage.downloadLocation + '</a></div>');
     if (language == "zh-cn" && loginType == 1) {
-        html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="Geofences2.aspx?id=' + UserId + '&deviceid=' + deviceid + '" target="_blank">电子栅栏(多边形)</a></div>');
+        html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="Geofences?id=' + UserId + '&deviceid=' + deviceid + '" target="_blank">电子栅栏(多边形)</a></div>');
         html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="RoutePlanning.aspx?id=' + UserId + '" target="_blank">路线偏离设置</a></div>');
         html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="POI.aspx?id=' + UserId + '" target="_blank">用户POI管理</a></div>');
     }

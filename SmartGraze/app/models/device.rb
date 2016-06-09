@@ -15,5 +15,29 @@ class Device
   many :sensor
   belongs_to :project   
   belongs_to :user   
-
+  
+  key :sn, String
+  key :name, String
+  key :model, String
+  key :modelName, String
+  key :state, Integer
+  key :speedLimit, String
+  key :icon, String
+  key :carNum, String
+  key :locationID, String
+  key :groupID, Integer
+  key :serverUtcDate, String
+  key :deviceUtcDate, String
+  key :baiduLat, String
+  key :baiduLng, String
+  key :ofl, String
+  key :speed, String
+  key :course, String
+  key :dataType, String
+  key :dataContext, String
+  key :distance, String
+  key :isStop, Integer
+  key :stopTimeMinute, Integer
+  key :carStatus, String
+  key :status, String
 end

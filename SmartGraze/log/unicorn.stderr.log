@@ -1,0 +1,559 @@
+I, [2016-06-08T11:58:18.830268 #61614]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-08T11:58:18.830658 #61614]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-08T11:58:18.830810 #61614]  INFO -- : worker=0 spawning...
+I, [2016-06-08T11:58:18.831543 #61614]  INFO -- : worker=1 spawning...
+I, [2016-06-08T11:58:18.832026 #61617]  INFO -- : worker=0 spawned pid=61617
+I, [2016-06-08T11:58:18.832226 #61614]  INFO -- : worker=2 spawning...
+I, [2016-06-08T11:58:18.832222 #61617]  INFO -- : Refreshing Gem list
+I, [2016-06-08T11:58:18.832675 #61620]  INFO -- : worker=1 spawned pid=61620
+I, [2016-06-08T11:58:18.832913 #61620]  INFO -- : Refreshing Gem list
+I, [2016-06-08T11:58:18.832879 #61614]  INFO -- : worker=3 spawning...
+I, [2016-06-08T11:58:18.833293 #61623]  INFO -- : worker=2 spawned pid=61623
+I, [2016-06-08T11:58:18.833379 #61614]  INFO -- : worker=4 spawning...
+I, [2016-06-08T11:58:18.833479 #61623]  INFO -- : Refreshing Gem list
+I, [2016-06-08T11:58:18.833998 #61626]  INFO -- : worker=3 spawned pid=61626
+I, [2016-06-08T11:58:18.834173 #61626]  INFO -- : Refreshing Gem list
+I, [2016-06-08T11:58:18.840975 #61614]  INFO -- : worker=5 spawning...
+I, [2016-06-08T11:58:18.848983 #61629]  INFO -- : worker=4 spawned pid=61629
+I, [2016-06-08T11:58:18.849212 #61629]  INFO -- : Refreshing Gem list
+I, [2016-06-08T11:58:18.850225 #61614]  INFO -- : worker=6 spawning...
+I, [2016-06-08T11:58:18.850887 #61632]  INFO -- : worker=5 spawned pid=61632
+I, [2016-06-08T11:58:18.851067 #61632]  INFO -- : Refreshing Gem list
+I, [2016-06-08T11:58:18.856919 #61614]  INFO -- : worker=7 spawning...
+I, [2016-06-08T11:58:18.865017 #61614]  INFO -- : worker=8 spawning...
+I, [2016-06-08T11:58:18.868888 #61614]  INFO -- : master process ready
+I, [2016-06-08T11:58:18.868921 #61635]  INFO -- : worker=6 spawned pid=61635
+I, [2016-06-08T11:58:18.869119 #61635]  INFO -- : Refreshing Gem list
+I, [2016-06-08T11:58:18.883031 #61640]  INFO -- : worker=8 spawned pid=61640
+I, [2016-06-08T11:58:18.883308 #61640]  INFO -- : Refreshing Gem list
+I, [2016-06-08T11:58:18.890914 #61637]  INFO -- : worker=7 spawned pid=61637
+I, [2016-06-08T11:58:18.891131 #61637]  INFO -- : Refreshing Gem list
+I, [2016-06-08T11:58:22.811786 #61632]  INFO -- : worker=5 ready
+I, [2016-06-08T11:58:22.897211 #61623]  INFO -- : worker=2 ready
+I, [2016-06-08T11:58:23.057238 #61626]  INFO -- : worker=3 ready
+I, [2016-06-08T11:58:23.081715 #61620]  INFO -- : worker=1 ready
+I, [2016-06-08T11:58:23.122157 #61629]  INFO -- : worker=4 ready
+I, [2016-06-08T11:58:23.272819 #61635]  INFO -- : worker=6 ready
+I, [2016-06-08T11:58:23.377733 #61640]  INFO -- : worker=8 ready
+I, [2016-06-08T11:58:23.398089 #61637]  INFO -- : worker=7 ready
+I, [2016-06-08T11:58:23.424756 #61617]  INFO -- : worker=0 ready
+I, [2016-06-08T13:14:52.617935 #65284]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-08T13:14:52.618327 #65284]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-08T13:14:52.618449 #65284]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-08T13:14:52.618586 #65284]  INFO -- : worker=0 spawning...
+I, [2016-06-08T13:14:52.619315 #65284]  INFO -- : worker=1 spawning...
+I, [2016-06-08T13:14:52.619737 #65287]  INFO -- : worker=0 spawned pid=65287
+I, [2016-06-08T13:14:52.619932 #65287]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:14:52.619915 #65284]  INFO -- : worker=2 spawning...
+I, [2016-06-08T13:14:52.620391 #65290]  INFO -- : worker=1 spawned pid=65290
+I, [2016-06-08T13:14:52.620577 #65290]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:14:52.620737 #65284]  INFO -- : worker=3 spawning...
+I, [2016-06-08T13:14:52.621204 #65284]  INFO -- : worker=4 spawning...
+I, [2016-06-08T13:14:52.621879 #65293]  INFO -- : worker=2 spawned pid=65293
+I, [2016-06-08T13:14:52.622104 #65293]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:14:52.622247 #65284]  INFO -- : worker=5 spawning...
+I, [2016-06-08T13:14:52.623985 #65298]  INFO -- : worker=4 spawned pid=65298
+I, [2016-06-08T13:14:52.624232 #65298]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:14:52.624910 #65295]  INFO -- : worker=3 spawned pid=65295
+I, [2016-06-08T13:14:52.625091 #65295]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:14:52.627218 #65284]  INFO -- : worker=6 spawning...
+I, [2016-06-08T13:14:52.637069 #65302]  INFO -- : worker=5 spawned pid=65302
+I, [2016-06-08T13:14:52.637188 #65284]  INFO -- : worker=7 spawning...
+I, [2016-06-08T13:14:52.637284 #65302]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:14:52.637732 #65284]  INFO -- : worker=8 spawning...
+I, [2016-06-08T13:14:52.647551 #65284]  INFO -- : master process ready
+I, [2016-06-08T13:14:52.648923 #65305]  INFO -- : worker=6 spawned pid=65305
+I, [2016-06-08T13:14:52.649129 #65305]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:14:52.653134 #65307]  INFO -- : worker=7 spawned pid=65307
+I, [2016-06-08T13:14:52.653340 #65307]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:14:52.660919 #65309]  INFO -- : worker=8 spawned pid=65309
+I, [2016-06-08T13:14:52.661127 #65309]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:14:56.742316 #65295]  INFO -- : worker=3 ready
+I, [2016-06-08T13:14:56.782791 #65287]  INFO -- : worker=0 ready
+I, [2016-06-08T13:14:56.789063 #65298]  INFO -- : worker=4 ready
+I, [2016-06-08T13:14:57.023973 #65293]  INFO -- : worker=2 ready
+I, [2016-06-08T13:14:57.035298 #65307]  INFO -- : worker=7 ready
+I, [2016-06-08T13:14:57.070968 #65290]  INFO -- : worker=1 ready
+I, [2016-06-08T13:14:57.105981 #65302]  INFO -- : worker=5 ready
+I, [2016-06-08T13:14:57.153315 #65305]  INFO -- : worker=6 ready
+I, [2016-06-08T13:14:57.163982 #65309]  INFO -- : worker=8 ready
+I, [2016-06-08T13:55:53.142580 #978]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-08T13:55:53.142963 #978]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-08T13:55:53.143098 #978]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-08T13:55:53.143342 #978]  INFO -- : worker=0 spawning...
+I, [2016-06-08T13:55:53.144015 #978]  INFO -- : worker=1 spawning...
+I, [2016-06-08T13:55:53.144501 #981]  INFO -- : worker=0 spawned pid=981
+I, [2016-06-08T13:55:53.144694 #981]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:55:53.144669 #978]  INFO -- : worker=2 spawning...
+I, [2016-06-08T13:55:53.145071 #984]  INFO -- : worker=1 spawned pid=984
+I, [2016-06-08T13:55:53.145259 #984]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:55:53.148946 #978]  INFO -- : worker=3 spawning...
+I, [2016-06-08T13:55:53.149375 #978]  INFO -- : worker=4 spawning...
+I, [2016-06-08T13:55:53.149343 #987]  INFO -- : worker=2 spawned pid=987
+I, [2016-06-08T13:55:53.149536 #987]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:55:53.150038 #990]  INFO -- : worker=3 spawned pid=990
+I, [2016-06-08T13:55:53.150221 #990]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:55:53.152927 #978]  INFO -- : worker=5 spawning...
+I, [2016-06-08T13:55:53.160994 #993]  INFO -- : worker=4 spawned pid=993
+I, [2016-06-08T13:55:53.161216 #993]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:55:53.164869 #978]  INFO -- : worker=6 spawning...
+I, [2016-06-08T13:55:53.176951 #996]  INFO -- : worker=5 spawned pid=996
+I, [2016-06-08T13:55:53.177172 #996]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:55:53.178709 #978]  INFO -- : worker=7 spawning...
+I, [2016-06-08T13:55:53.188896 #978]  INFO -- : worker=8 spawning...
+I, [2016-06-08T13:55:53.189626 #999]  INFO -- : worker=6 spawned pid=999
+I, [2016-06-08T13:55:53.189821 #999]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:55:53.192832 #978]  INFO -- : master process ready
+I, [2016-06-08T13:55:53.196959 #1001]  INFO -- : worker=7 spawned pid=1001
+I, [2016-06-08T13:55:53.197174 #1001]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:55:53.217056 #1004]  INFO -- : worker=8 spawned pid=1004
+I, [2016-06-08T13:55:53.217292 #1004]  INFO -- : Refreshing Gem list
+I, [2016-06-08T13:55:57.261755 #981]  INFO -- : worker=0 ready
+I, [2016-06-08T13:55:57.262231 #1001]  INFO -- : worker=7 ready
+I, [2016-06-08T13:55:57.438170 #990]  INFO -- : worker=3 ready
+I, [2016-06-08T13:55:57.551735 #999]  INFO -- : worker=6 ready
+I, [2016-06-08T13:55:57.655185 #984]  INFO -- : worker=1 ready
+I, [2016-06-08T13:55:57.672481 #996]  INFO -- : worker=5 ready
+I, [2016-06-08T13:55:57.690554 #993]  INFO -- : worker=4 ready
+I, [2016-06-08T13:55:57.696971 #987]  INFO -- : worker=2 ready
+I, [2016-06-08T13:55:57.702339 #1004]  INFO -- : worker=8 ready
+I, [2016-06-08T14:07:32.105004 #1450]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-08T14:07:32.105421 #1450]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-08T14:07:32.105593 #1450]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-08T14:07:32.105745 #1450]  INFO -- : worker=0 spawning...
+I, [2016-06-08T14:07:32.106486 #1450]  INFO -- : worker=1 spawning...
+I, [2016-06-08T14:07:32.106909 #1453]  INFO -- : worker=0 spawned pid=1453
+I, [2016-06-08T14:07:32.107109 #1453]  INFO -- : Refreshing Gem list
+I, [2016-06-08T14:07:32.107101 #1450]  INFO -- : worker=2 spawning...
+I, [2016-06-08T14:07:32.107533 #1456]  INFO -- : worker=1 spawned pid=1456
+I, [2016-06-08T14:07:32.107725 #1456]  INFO -- : Refreshing Gem list
+I, [2016-06-08T14:07:32.108778 #1450]  INFO -- : worker=3 spawning...
+I, [2016-06-08T14:07:32.109199 #1450]  INFO -- : worker=4 spawning...
+I, [2016-06-08T14:07:32.109926 #1459]  INFO -- : worker=2 spawned pid=1459
+I, [2016-06-08T14:07:32.110172 #1459]  INFO -- : Refreshing Gem list
+I, [2016-06-08T14:07:32.110608 #1461]  INFO -- : worker=3 spawned pid=1461
+I, [2016-06-08T14:07:32.110795 #1461]  INFO -- : Refreshing Gem list
+I, [2016-06-08T14:07:32.120903 #1450]  INFO -- : worker=5 spawning...
+I, [2016-06-08T14:07:32.126362 #1465]  INFO -- : worker=4 spawned pid=1465
+I, [2016-06-08T14:07:32.126647 #1465]  INFO -- : Refreshing Gem list
+I, [2016-06-08T14:07:32.132946 #1450]  INFO -- : worker=6 spawning...
+I, [2016-06-08T14:07:32.140829 #1450]  INFO -- : worker=7 spawning...
+I, [2016-06-08T14:07:32.141560 #1468]  INFO -- : worker=5 spawned pid=1468
+I, [2016-06-08T14:07:32.141764 #1468]  INFO -- : Refreshing Gem list
+I, [2016-06-08T14:07:32.144826 #1450]  INFO -- : worker=8 spawning...
+I, [2016-06-08T14:07:32.148757 #1470]  INFO -- : worker=6 spawned pid=1470
+I, [2016-06-08T14:07:32.148979 #1470]  INFO -- : Refreshing Gem list
+I, [2016-06-08T14:07:32.156965 #1473]  INFO -- : worker=7 spawned pid=1473
+I, [2016-06-08T14:07:32.157195 #1473]  INFO -- : Refreshing Gem list
+I, [2016-06-08T14:07:32.161091 #1450]  INFO -- : master process ready
+I, [2016-06-08T14:07:32.164931 #1478]  INFO -- : worker=8 spawned pid=1478
+I, [2016-06-08T14:07:32.165152 #1478]  INFO -- : Refreshing Gem list
+I, [2016-06-08T14:07:36.109593 #1456]  INFO -- : worker=1 ready
+I, [2016-06-08T14:07:36.134767 #1478]  INFO -- : worker=8 ready
+I, [2016-06-08T14:07:36.308999 #1468]  INFO -- : worker=5 ready
+I, [2016-06-08T14:07:36.398114 #1453]  INFO -- : worker=0 ready
+I, [2016-06-08T14:07:36.516859 #1459]  INFO -- : worker=2 ready
+I, [2016-06-08T14:07:36.521949 #1461]  INFO -- : worker=3 ready
+I, [2016-06-08T14:07:36.558113 #1465]  INFO -- : worker=4 ready
+I, [2016-06-08T14:07:36.601052 #1470]  INFO -- : worker=6 ready
+I, [2016-06-08T14:07:36.637382 #1473]  INFO -- : worker=7 ready
+I, [2016-06-09T22:34:15.623675 #31114]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T22:34:15.624045 #31114]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T22:34:15.624214 #31114]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T22:34:15.624437 #31114]  INFO -- : worker=0 spawning...
+I, [2016-06-09T22:34:15.625107 #31114]  INFO -- : worker=1 spawning...
+I, [2016-06-09T22:34:15.625554 #31117]  INFO -- : worker=0 spawned pid=31117
+I, [2016-06-09T22:34:15.625770 #31117]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:34:15.625753 #31114]  INFO -- : worker=2 spawning...
+I, [2016-06-09T22:34:15.626207 #31120]  INFO -- : worker=1 spawned pid=31120
+I, [2016-06-09T22:34:15.626395 #31120]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:34:15.628747 #31114]  INFO -- : worker=3 spawning...
+I, [2016-06-09T22:34:15.629423 #31123]  INFO -- : worker=2 spawned pid=31123
+I, [2016-06-09T22:34:15.629593 #31123]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:34:15.632783 #31114]  INFO -- : worker=4 spawning...
+I, [2016-06-09T22:34:15.633424 #31126]  INFO -- : worker=3 spawned pid=31126
+I, [2016-06-09T22:34:15.633606 #31126]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:34:15.636847 #31114]  INFO -- : worker=5 spawning...
+I, [2016-06-09T22:34:15.640980 #31129]  INFO -- : worker=4 spawned pid=31129
+I, [2016-06-09T22:34:15.641179 #31129]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:34:15.644713 #31114]  INFO -- : worker=6 spawning...
+I, [2016-06-09T22:34:15.648901 #31132]  INFO -- : worker=5 spawned pid=31132
+I, [2016-06-09T22:34:15.649171 #31132]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:34:15.656906 #31114]  INFO -- : worker=7 spawning...
+I, [2016-06-09T22:34:15.663115 #31114]  INFO -- : worker=8 spawning...
+I, [2016-06-09T22:34:15.664882 #31114]  INFO -- : master process ready
+I, [2016-06-09T22:34:15.665771 #31135]  INFO -- : worker=6 spawned pid=31135
+I, [2016-06-09T22:34:15.665964 #31135]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:34:15.673473 #31139]  INFO -- : worker=8 spawned pid=31139
+I, [2016-06-09T22:34:15.673699 #31139]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:34:15.676023 #31137]  INFO -- : worker=7 spawned pid=31137
+I, [2016-06-09T22:34:15.676212 #31137]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:34:19.398635 #31129]  INFO -- : worker=4 ready
+I, [2016-06-09T22:34:19.513658 #31126]  INFO -- : worker=3 ready
+I, [2016-06-09T22:34:19.825104 #31135]  INFO -- : worker=6 ready
+I, [2016-06-09T22:34:20.083327 #31139]  INFO -- : worker=8 ready
+I, [2016-06-09T22:34:20.094678 #31123]  INFO -- : worker=2 ready
+I, [2016-06-09T22:34:20.097210 #31137]  INFO -- : worker=7 ready
+I, [2016-06-09T22:34:20.097558 #31117]  INFO -- : worker=0 ready
+I, [2016-06-09T22:34:20.156514 #31132]  INFO -- : worker=5 ready
+I, [2016-06-09T22:34:20.221792 #31120]  INFO -- : worker=1 ready
+I, [2016-06-09T22:48:43.242291 #31810]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T22:48:43.242650 #31810]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T22:48:43.242785 #31810]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T22:48:43.242982 #31810]  INFO -- : worker=0 spawning...
+I, [2016-06-09T22:48:43.243668 #31810]  INFO -- : worker=1 spawning...
+I, [2016-06-09T22:48:43.244069 #31813]  INFO -- : worker=0 spawned pid=31813
+I, [2016-06-09T22:48:43.244262 #31813]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:48:43.244243 #31810]  INFO -- : worker=2 spawning...
+I, [2016-06-09T22:48:43.244680 #31816]  INFO -- : worker=1 spawned pid=31816
+I, [2016-06-09T22:48:43.244867 #31816]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:48:43.248757 #31810]  INFO -- : worker=3 spawning...
+I, [2016-06-09T22:48:43.249189 #31810]  INFO -- : worker=4 spawning...
+I, [2016-06-09T22:48:43.249180 #31819]  INFO -- : worker=2 spawned pid=31819
+I, [2016-06-09T22:48:43.249373 #31819]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:48:43.249819 #31822]  INFO -- : worker=3 spawned pid=31822
+I, [2016-06-09T22:48:43.249998 #31822]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:48:43.260169 #31810]  INFO -- : worker=5 spawning...
+I, [2016-06-09T22:48:43.264811 #31810]  INFO -- : worker=6 spawning...
+I, [2016-06-09T22:48:43.264948 #31825]  INFO -- : worker=4 spawned pid=31825
+I, [2016-06-09T22:48:43.265150 #31825]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:48:43.275355 #31828]  INFO -- : worker=5 spawned pid=31828
+I, [2016-06-09T22:48:43.275581 #31828]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:48:43.276902 #31810]  INFO -- : worker=7 spawning...
+I, [2016-06-09T22:48:43.285014 #31831]  INFO -- : worker=6 spawned pid=31831
+I, [2016-06-09T22:48:43.285217 #31831]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:48:43.293001 #31810]  INFO -- : worker=8 spawning...
+I, [2016-06-09T22:48:43.297806 #31834]  INFO -- : worker=7 spawned pid=31834
+I, [2016-06-09T22:48:43.298133 #31834]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:48:43.305471 #31810]  INFO -- : master process ready
+I, [2016-06-09T22:48:43.317250 #31837]  INFO -- : worker=8 spawned pid=31837
+I, [2016-06-09T22:48:43.317542 #31837]  INFO -- : Refreshing Gem list
+I, [2016-06-09T22:48:47.427138 #31813]  INFO -- : worker=0 ready
+I, [2016-06-09T22:48:47.480015 #31831]  INFO -- : worker=6 ready
+I, [2016-06-09T22:48:47.501513 #31834]  INFO -- : worker=7 ready
+I, [2016-06-09T22:48:47.556901 #31825]  INFO -- : worker=4 ready
+I, [2016-06-09T22:48:47.608119 #31816]  INFO -- : worker=1 ready
+I, [2016-06-09T22:48:47.775973 #31822]  INFO -- : worker=3 ready
+I, [2016-06-09T22:48:47.792005 #31819]  INFO -- : worker=2 ready
+I, [2016-06-09T22:48:47.882092 #31828]  INFO -- : worker=5 ready
+I, [2016-06-09T22:48:47.977953 #31837]  INFO -- : worker=8 ready
+I, [2016-06-09T23:25:38.821908 #32396]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T23:25:38.822331 #32396]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T23:25:38.822500 #32396]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T23:25:38.822647 #32396]  INFO -- : worker=0 spawning...
+I, [2016-06-09T23:25:38.823320 #32396]  INFO -- : worker=1 spawning...
+I, [2016-06-09T23:25:38.823930 #32396]  INFO -- : worker=2 spawning...
+I, [2016-06-09T23:25:38.823889 #32399]  INFO -- : worker=0 spawned pid=32399
+I, [2016-06-09T23:25:38.824086 #32399]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:25:38.824425 #32402]  INFO -- : worker=1 spawned pid=32402
+I, [2016-06-09T23:25:38.824703 #32402]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:25:38.824753 #32396]  INFO -- : worker=3 spawning...
+I, [2016-06-09T23:25:38.825271 #32396]  INFO -- : worker=4 spawning...
+I, [2016-06-09T23:25:38.825991 #32405]  INFO -- : worker=2 spawned pid=32405
+I, [2016-06-09T23:25:38.826172 #32405]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:25:38.826438 #32407]  INFO -- : worker=3 spawned pid=32407
+I, [2016-06-09T23:25:38.826636 #32407]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:25:38.832928 #32396]  INFO -- : worker=5 spawning...
+I, [2016-06-09T23:25:38.840928 #32396]  INFO -- : worker=6 spawning...
+I, [2016-06-09T23:25:38.841710 #32411]  INFO -- : worker=4 spawned pid=32411
+I, [2016-06-09T23:25:38.841918 #32411]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:25:38.844814 #32396]  INFO -- : worker=7 spawning...
+I, [2016-06-09T23:25:38.849025 #32413]  INFO -- : worker=5 spawned pid=32413
+I, [2016-06-09T23:25:38.849235 #32413]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:25:38.854126 #32416]  INFO -- : worker=6 spawned pid=32416
+I, [2016-06-09T23:25:38.854407 #32416]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:25:38.860991 #32396]  INFO -- : worker=8 spawning...
+I, [2016-06-09T23:25:38.873126 #32396]  INFO -- : master process ready
+I, [2016-06-09T23:25:38.874126 #32420]  INFO -- : worker=7 spawned pid=32420
+I, [2016-06-09T23:25:38.874342 #32420]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:25:38.876762 #32422]  INFO -- : worker=8 spawned pid=32422
+I, [2016-06-09T23:25:38.877052 #32422]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:25:42.739386 #32416]  INFO -- : worker=6 ready
+I, [2016-06-09T23:25:42.921419 #32405]  INFO -- : worker=2 ready
+I, [2016-06-09T23:25:43.177680 #32411]  INFO -- : worker=4 ready
+I, [2016-06-09T23:25:43.209541 #32407]  INFO -- : worker=3 ready
+I, [2016-06-09T23:25:43.269270 #32399]  INFO -- : worker=0 ready
+I, [2016-06-09T23:25:43.297748 #32402]  INFO -- : worker=1 ready
+I, [2016-06-09T23:25:43.380534 #32413]  INFO -- : worker=5 ready
+I, [2016-06-09T23:25:43.428931 #32420]  INFO -- : worker=7 ready
+I, [2016-06-09T23:25:43.538639 #32422]  INFO -- : worker=8 ready
+I, [2016-06-09T23:28:32.468864 #32533]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T23:28:32.469237 #32533]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T23:28:32.469420 #32533]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T23:28:32.469659 #32533]  INFO -- : worker=0 spawning...
+I, [2016-06-09T23:28:32.470415 #32533]  INFO -- : worker=1 spawning...
+I, [2016-06-09T23:28:32.470872 #32536]  INFO -- : worker=0 spawned pid=32536
+I, [2016-06-09T23:28:32.471079 #32536]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:28:32.471081 #32533]  INFO -- : worker=2 spawning...
+I, [2016-06-09T23:28:32.471468 #32539]  INFO -- : worker=1 spawned pid=32539
+I, [2016-06-09T23:28:32.471662 #32539]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:28:32.472768 #32533]  INFO -- : worker=3 spawning...
+I, [2016-06-09T23:28:32.473243 #32533]  INFO -- : worker=4 spawning...
+I, [2016-06-09T23:28:32.473914 #32542]  INFO -- : worker=2 spawned pid=32542
+I, [2016-06-09T23:28:32.474015 #32533]  INFO -- : worker=5 spawning...
+I, [2016-06-09T23:28:32.474106 #32542]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:28:32.474630 #32544]  INFO -- : worker=3 spawned pid=32544
+I, [2016-06-09T23:28:32.474819 #32544]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:28:32.480919 #32533]  INFO -- : worker=6 spawning...
+I, [2016-06-09T23:28:32.480970 #32547]  INFO -- : worker=4 spawned pid=32547
+I, [2016-06-09T23:28:32.481185 #32547]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:28:32.489039 #32533]  INFO -- : worker=7 spawning...
+I, [2016-06-09T23:28:32.489054 #32551]  INFO -- : worker=5 spawned pid=32551
+I, [2016-06-09T23:28:32.489269 #32551]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:28:32.501079 #32533]  INFO -- : worker=8 spawning...
+I, [2016-06-09T23:28:32.501064 #32554]  INFO -- : worker=6 spawned pid=32554
+I, [2016-06-09T23:28:32.501286 #32554]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:28:32.501832 #32557]  INFO -- : worker=7 spawned pid=32557
+I, [2016-06-09T23:28:32.502021 #32557]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:28:32.509011 #32533]  INFO -- : master process ready
+I, [2016-06-09T23:28:32.520988 #32560]  INFO -- : worker=8 spawned pid=32560
+I, [2016-06-09T23:28:32.521221 #32560]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:28:36.627324 #32547]  INFO -- : worker=4 ready
+I, [2016-06-09T23:28:36.841023 #32536]  INFO -- : worker=0 ready
+I, [2016-06-09T23:28:36.844234 #32542]  INFO -- : worker=2 ready
+I, [2016-06-09T23:28:36.859897 #32554]  INFO -- : worker=6 ready
+I, [2016-06-09T23:28:36.943876 #32560]  INFO -- : worker=8 ready
+I, [2016-06-09T23:28:37.013403 #32551]  INFO -- : worker=5 ready
+I, [2016-06-09T23:28:37.039206 #32539]  INFO -- : worker=1 ready
+I, [2016-06-09T23:28:37.058818 #32544]  INFO -- : worker=3 ready
+I, [2016-06-09T23:28:37.107850 #32557]  INFO -- : worker=7 ready
+I, [2016-06-09T23:30:05.760196 #32662]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T23:30:05.760637 #32662]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T23:30:05.760763 #32662]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T23:30:05.760905 #32662]  INFO -- : worker=0 spawning...
+I, [2016-06-09T23:30:05.761643 #32662]  INFO -- : worker=1 spawning...
+I, [2016-06-09T23:30:05.762025 #32665]  INFO -- : worker=0 spawned pid=32665
+I, [2016-06-09T23:30:05.762216 #32665]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:30:05.762260 #32662]  INFO -- : worker=2 spawning...
+I, [2016-06-09T23:30:05.762678 #32668]  INFO -- : worker=1 spawned pid=32668
+I, [2016-06-09T23:30:05.762871 #32668]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:30:05.764807 #32662]  INFO -- : worker=3 spawning...
+I, [2016-06-09T23:30:05.765277 #32662]  INFO -- : worker=4 spawning...
+I, [2016-06-09T23:30:05.765808 #32673]  INFO -- : worker=3 spawned pid=32673
+I, [2016-06-09T23:30:05.765997 #32673]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:30:05.765933 #32671]  INFO -- : worker=2 spawned pid=32671
+I, [2016-06-09T23:30:05.766112 #32671]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:30:05.768752 #32662]  INFO -- : worker=5 spawning...
+I, [2016-06-09T23:30:05.780968 #32677]  INFO -- : worker=4 spawned pid=32677
+I, [2016-06-09T23:30:05.781196 #32677]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:30:05.782495 #32662]  INFO -- : worker=6 spawning...
+I, [2016-06-09T23:30:05.782851 #32680]  INFO -- : worker=5 spawned pid=32680
+I, [2016-06-09T23:30:05.783039 #32680]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:30:05.783000 #32662]  INFO -- : worker=7 spawning...
+I, [2016-06-09T23:30:05.792836 #32683]  INFO -- : worker=6 spawned pid=32683
+I, [2016-06-09T23:30:05.793132 #32683]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:30:05.800995 #32662]  INFO -- : worker=8 spawning...
+I, [2016-06-09T23:30:05.809045 #32686]  INFO -- : worker=7 spawned pid=32686
+I, [2016-06-09T23:30:05.809267 #32686]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:30:05.812771 #32662]  INFO -- : master process ready
+I, [2016-06-09T23:30:05.820990 #32689]  INFO -- : worker=8 spawned pid=32689
+I, [2016-06-09T23:30:05.821214 #32689]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:30:09.817320 #32689]  INFO -- : worker=8 ready
+I, [2016-06-09T23:30:09.857694 #32677]  INFO -- : worker=4 ready
+I, [2016-06-09T23:30:09.971980 #32671]  INFO -- : worker=2 ready
+I, [2016-06-09T23:30:10.130137 #32668]  INFO -- : worker=1 ready
+I, [2016-06-09T23:30:10.133491 #32673]  INFO -- : worker=3 ready
+I, [2016-06-09T23:30:10.262390 #32683]  INFO -- : worker=6 ready
+I, [2016-06-09T23:30:10.311873 #32665]  INFO -- : worker=0 ready
+I, [2016-06-09T23:30:10.360906 #32680]  INFO -- : worker=5 ready
+I, [2016-06-09T23:30:10.429436 #32686]  INFO -- : worker=7 ready
+I, [2016-06-09T23:34:47.713014 #32782]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T23:34:47.713386 #32782]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T23:34:47.713515 #32782]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T23:34:47.713721 #32782]  INFO -- : worker=0 spawning...
+I, [2016-06-09T23:34:47.714427 #32782]  INFO -- : worker=1 spawning...
+I, [2016-06-09T23:34:47.714846 #32785]  INFO -- : worker=0 spawned pid=32785
+I, [2016-06-09T23:34:47.715048 #32785]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:34:47.715027 #32782]  INFO -- : worker=2 spawning...
+I, [2016-06-09T23:34:47.715450 #32788]  INFO -- : worker=1 spawned pid=32788
+I, [2016-06-09T23:34:47.715649 #32788]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:34:47.716812 #32782]  INFO -- : worker=3 spawning...
+I, [2016-06-09T23:34:47.717259 #32782]  INFO -- : worker=4 spawning...
+I, [2016-06-09T23:34:47.717900 #32791]  INFO -- : worker=2 spawned pid=32791
+I, [2016-06-09T23:34:47.718087 #32791]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:34:47.718603 #32782]  INFO -- : worker=5 spawning...
+I, [2016-06-09T23:34:47.719227 #32793]  INFO -- : worker=3 spawned pid=32793
+I, [2016-06-09T23:34:47.719505 #32793]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:34:47.724941 #32782]  INFO -- : worker=6 spawning...
+I, [2016-06-09T23:34:47.726363 #32796]  INFO -- : worker=4 spawned pid=32796
+I, [2016-06-09T23:34:47.726588 #32796]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:34:47.728950 #32782]  INFO -- : worker=7 spawning...
+I, [2016-06-09T23:34:47.735308 #32799]  INFO -- : worker=5 spawned pid=32799
+I, [2016-06-09T23:34:47.735530 #32799]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:34:47.736942 #32782]  INFO -- : worker=8 spawning...
+I, [2016-06-09T23:34:47.737635 #32802]  INFO -- : worker=6 spawned pid=32802
+I, [2016-06-09T23:34:47.737844 #32802]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:34:47.740965 #32805]  INFO -- : worker=7 spawned pid=32805
+I, [2016-06-09T23:34:47.741165 #32805]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:34:47.745065 #32782]  INFO -- : master process ready
+I, [2016-06-09T23:34:47.757016 #32809]  INFO -- : worker=8 spawned pid=32809
+I, [2016-06-09T23:34:47.757252 #32809]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:34:51.583670 #32788]  INFO -- : worker=1 ready
+I, [2016-06-09T23:34:51.891958 #32799]  INFO -- : worker=5 ready
+I, [2016-06-09T23:34:52.037707 #32793]  INFO -- : worker=3 ready
+I, [2016-06-09T23:34:52.196177 #32809]  INFO -- : worker=8 ready
+I, [2016-06-09T23:34:52.292743 #32791]  INFO -- : worker=2 ready
+I, [2016-06-09T23:34:52.298013 #32796]  INFO -- : worker=4 ready
+I, [2016-06-09T23:34:52.312680 #32805]  INFO -- : worker=7 ready
+I, [2016-06-09T23:34:52.324684 #32785]  INFO -- : worker=0 ready
+I, [2016-06-09T23:34:52.480424 #32802]  INFO -- : worker=6 ready
+I, [2016-06-09T23:43:21.411289 #33011]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T23:43:21.411641 #33011]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T23:43:21.411843 #33011]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T23:43:21.411993 #33011]  INFO -- : worker=0 spawning...
+I, [2016-06-09T23:43:21.412988 #33011]  INFO -- : worker=1 spawning...
+I, [2016-06-09T23:43:21.413429 #33014]  INFO -- : worker=0 spawned pid=33014
+I, [2016-06-09T23:43:21.413611 #33014]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:43:21.413672 #33011]  INFO -- : worker=2 spawning...
+I, [2016-06-09T23:43:21.414128 #33011]  INFO -- : worker=3 spawning...
+I, [2016-06-09T23:43:21.414105 #33017]  INFO -- : worker=1 spawned pid=33017
+I, [2016-06-09T23:43:21.414296 #33017]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:43:21.414581 #33011]  INFO -- : worker=4 spawning...
+I, [2016-06-09T23:43:21.415043 #33011]  INFO -- : worker=5 spawning...
+I, [2016-06-09T23:43:21.415677 #33022]  INFO -- : worker=3 spawned pid=33022
+I, [2016-06-09T23:43:21.415855 #33022]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:43:21.417151 #33024]  INFO -- : worker=4 spawned pid=33024
+I, [2016-06-09T23:43:21.417336 #33024]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:43:21.420882 #33020]  INFO -- : worker=2 spawned pid=33020
+I, [2016-06-09T23:43:21.421071 #33020]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:43:21.424920 #33011]  INFO -- : worker=6 spawning...
+I, [2016-06-09T23:43:21.432970 #33011]  INFO -- : worker=7 spawning...
+I, [2016-06-09T23:43:21.433827 #33029]  INFO -- : worker=5 spawned pid=33029
+I, [2016-06-09T23:43:21.434099 #33029]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:43:21.441015 #33031]  INFO -- : worker=6 spawned pid=33031
+I, [2016-06-09T23:43:21.441222 #33031]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:43:21.445495 #33011]  INFO -- : worker=8 spawning...
+I, [2016-06-09T23:43:21.457006 #33035]  INFO -- : worker=7 spawned pid=33035
+I, [2016-06-09T23:43:21.457227 #33035]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:43:21.460966 #33011]  INFO -- : master process ready
+I, [2016-06-09T23:43:21.472364 #33038]  INFO -- : worker=8 spawned pid=33038
+I, [2016-06-09T23:43:21.472613 #33038]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:43:25.331602 #33017]  INFO -- : worker=1 ready
+I, [2016-06-09T23:43:25.596555 #33014]  INFO -- : worker=0 ready
+I, [2016-06-09T23:43:25.751548 #33022]  INFO -- : worker=3 ready
+I, [2016-06-09T23:43:25.783303 #33020]  INFO -- : worker=2 ready
+I, [2016-06-09T23:43:25.815959 #33031]  INFO -- : worker=6 ready
+I, [2016-06-09T23:43:25.897522 #33029]  INFO -- : worker=5 ready
+I, [2016-06-09T23:43:25.965769 #33038]  INFO -- : worker=8 ready
+I, [2016-06-09T23:43:26.009472 #33024]  INFO -- : worker=4 ready
+I, [2016-06-09T23:43:26.049613 #33035]  INFO -- : worker=7 ready
+I, [2016-06-09T23:46:48.246224 #33129]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T23:46:48.246664 #33129]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T23:46:48.246791 #33129]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T23:46:48.246968 #33129]  INFO -- : worker=0 spawning...
+I, [2016-06-09T23:46:48.247678 #33129]  INFO -- : worker=1 spawning...
+I, [2016-06-09T23:46:48.248131 #33132]  INFO -- : worker=0 spawned pid=33132
+I, [2016-06-09T23:46:48.248380 #33132]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:46:48.248357 #33129]  INFO -- : worker=2 spawning...
+I, [2016-06-09T23:46:48.248826 #33135]  INFO -- : worker=1 spawned pid=33135
+I, [2016-06-09T23:46:48.249023 #33135]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:46:48.252810 #33129]  INFO -- : worker=3 spawning...
+I, [2016-06-09T23:46:48.253210 #33138]  INFO -- : worker=2 spawned pid=33138
+I, [2016-06-09T23:46:48.253403 #33138]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:46:48.256813 #33129]  INFO -- : worker=4 spawning...
+I, [2016-06-09T23:46:48.257518 #33141]  INFO -- : worker=3 spawned pid=33141
+I, [2016-06-09T23:46:48.257718 #33141]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:46:48.260859 #33129]  INFO -- : worker=5 spawning...
+I, [2016-06-09T23:46:48.264927 #33144]  INFO -- : worker=4 spawned pid=33144
+I, [2016-06-09T23:46:48.265151 #33144]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:46:48.267226 #33129]  INFO -- : worker=6 spawning...
+I, [2016-06-09T23:46:48.268755 #33129]  INFO -- : worker=7 spawning...
+I, [2016-06-09T23:46:48.273005 #33147]  INFO -- : worker=5 spawned pid=33147
+I, [2016-06-09T23:46:48.273221 #33147]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:46:48.285005 #33129]  INFO -- : worker=8 spawning...
+I, [2016-06-09T23:46:48.285834 #33149]  INFO -- : worker=6 spawned pid=33149
+I, [2016-06-09T23:46:48.286040 #33149]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:46:48.288937 #33152]  INFO -- : worker=7 spawned pid=33152
+I, [2016-06-09T23:46:48.289135 #33152]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:46:48.293006 #33129]  INFO -- : master process ready
+I, [2016-06-09T23:46:48.317004 #33156]  INFO -- : worker=8 spawned pid=33156
+I, [2016-06-09T23:46:48.317243 #33156]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:46:52.359158 #33141]  INFO -- : worker=3 ready
+I, [2016-06-09T23:46:52.493355 #33149]  INFO -- : worker=6 ready
+I, [2016-06-09T23:46:52.712975 #33132]  INFO -- : worker=0 ready
+I, [2016-06-09T23:46:52.715448 #33152]  INFO -- : worker=7 ready
+I, [2016-06-09T23:46:52.811501 #33135]  INFO -- : worker=1 ready
+I, [2016-06-09T23:46:52.834222 #33156]  INFO -- : worker=8 ready
+I, [2016-06-09T23:46:52.860159 #33138]  INFO -- : worker=2 ready
+I, [2016-06-09T23:46:52.910141 #33144]  INFO -- : worker=4 ready
+I, [2016-06-09T23:46:53.022058 #33147]  INFO -- : worker=5 ready
+I, [2016-06-09T23:51:34.591198 #33305]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T23:51:34.591605 #33305]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T23:51:34.591730 #33305]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T23:51:34.591929 #33305]  INFO -- : worker=0 spawning...
+I, [2016-06-09T23:51:34.592637 #33305]  INFO -- : worker=1 spawning...
+I, [2016-06-09T23:51:34.593055 #33308]  INFO -- : worker=0 spawned pid=33308
+I, [2016-06-09T23:51:34.593253 #33308]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:51:34.593218 #33305]  INFO -- : worker=2 spawning...
+I, [2016-06-09T23:51:34.593659 #33311]  INFO -- : worker=1 spawned pid=33311
+I, [2016-06-09T23:51:34.593849 #33311]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:51:34.596812 #33305]  INFO -- : worker=3 spawning...
+I, [2016-06-09T23:51:34.597263 #33305]  INFO -- : worker=4 spawning...
+I, [2016-06-09T23:51:34.597227 #33314]  INFO -- : worker=2 spawned pid=33314
+I, [2016-06-09T23:51:34.597422 #33314]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:51:34.597707 #33305]  INFO -- : worker=5 spawning...
+I, [2016-06-09T23:51:34.598397 #33317]  INFO -- : worker=3 spawned pid=33317
+I, [2016-06-09T23:51:34.598577 #33317]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:51:34.600879 #33319]  INFO -- : worker=4 spawned pid=33319
+I, [2016-06-09T23:51:34.601146 #33319]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:51:34.604964 #33305]  INFO -- : worker=6 spawning...
+I, [2016-06-09T23:51:34.608987 #33323]  INFO -- : worker=5 spawned pid=33323
+I, [2016-06-09T23:51:34.609204 #33323]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:51:34.615537 #33305]  INFO -- : worker=7 spawning...
+I, [2016-06-09T23:51:34.620946 #33326]  INFO -- : worker=6 spawned pid=33326
+I, [2016-06-09T23:51:34.621307 #33326]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:51:34.622934 #33305]  INFO -- : worker=8 spawning...
+I, [2016-06-09T23:51:34.633011 #33305]  INFO -- : master process ready
+I, [2016-06-09T23:51:34.641017 #33329]  INFO -- : worker=7 spawned pid=33329
+I, [2016-06-09T23:51:34.641278 #33329]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:51:34.652758 #33331]  INFO -- : worker=8 spawned pid=33331
+I, [2016-06-09T23:51:34.652987 #33331]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:51:38.530958 #33311]  INFO -- : worker=1 ready
+I, [2016-06-09T23:51:38.711171 #33317]  INFO -- : worker=3 ready
+I, [2016-06-09T23:51:38.929868 #33319]  INFO -- : worker=4 ready
+I, [2016-06-09T23:51:38.998096 #33323]  INFO -- : worker=5 ready
+I, [2016-06-09T23:51:39.020110 #33308]  INFO -- : worker=0 ready
+I, [2016-06-09T23:51:39.137101 #33326]  INFO -- : worker=6 ready
+I, [2016-06-09T23:51:39.222670 #33331]  INFO -- : worker=8 ready
+I, [2016-06-09T23:51:39.225389 #33329]  INFO -- : worker=7 ready
+I, [2016-06-09T23:51:39.249855 #33314]  INFO -- : worker=2 ready
+I, [2016-06-09T23:57:50.290101 #33433]  INFO -- : listening on addr=0.0.0.0:8012 fd=10
+I, [2016-06-09T23:57:50.290501 #33433]  INFO -- : unlinking existing socket=/home/smartwifi/SmartGraze/tmp/unicorn.sock
+I, [2016-06-09T23:57:50.290663 #33433]  INFO -- : listening on addr=/home/smartwifi/SmartGraze/tmp/unicorn.sock fd=11
+I, [2016-06-09T23:57:50.290864 #33433]  INFO -- : worker=0 spawning...
+I, [2016-06-09T23:57:50.291592 #33433]  INFO -- : worker=1 spawning...
+I, [2016-06-09T23:57:50.291998 #33436]  INFO -- : worker=0 spawned pid=33436
+I, [2016-06-09T23:57:50.292203 #33436]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:57:50.292209 #33433]  INFO -- : worker=2 spawning...
+I, [2016-06-09T23:57:50.292677 #33439]  INFO -- : worker=1 spawned pid=33439
+I, [2016-06-09T23:57:50.292739 #33433]  INFO -- : worker=3 spawning...
+I, [2016-06-09T23:57:50.292926 #33439]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:57:50.293419 #33442]  INFO -- : worker=2 spawned pid=33442
+I, [2016-06-09T23:57:50.293607 #33442]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:57:50.295777 #33433]  INFO -- : worker=4 spawning...
+I, [2016-06-09T23:57:50.296460 #33445]  INFO -- : worker=3 spawned pid=33445
+I, [2016-06-09T23:57:50.296649 #33445]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:57:50.298270 #33433]  INFO -- : worker=5 spawning...
+I, [2016-06-09T23:57:50.308970 #33448]  INFO -- : worker=4 spawned pid=33448
+I, [2016-06-09T23:57:50.309302 #33448]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:57:50.313061 #33433]  INFO -- : worker=6 spawning...
+I, [2016-06-09T23:57:50.319754 #33451]  INFO -- : worker=5 spawned pid=33451
+I, [2016-06-09T23:57:50.319970 #33451]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:57:50.324966 #33433]  INFO -- : worker=7 spawning...
+I, [2016-06-09T23:57:50.325391 #33454]  INFO -- : worker=6 spawned pid=33454
+I, [2016-06-09T23:57:50.325593 #33454]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:57:50.349086 #33433]  INFO -- : worker=8 spawning...
+I, [2016-06-09T23:57:50.356910 #33433]  INFO -- : master process ready
+I, [2016-06-09T23:57:50.357859 #33457]  INFO -- : worker=7 spawned pid=33457
+I, [2016-06-09T23:57:50.358069 #33457]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:57:50.364960 #33459]  INFO -- : worker=8 spawned pid=33459
+I, [2016-06-09T23:57:50.365193 #33459]  INFO -- : Refreshing Gem list
+I, [2016-06-09T23:57:54.427579 #33436]  INFO -- : worker=0 ready
+I, [2016-06-09T23:57:54.524274 #33448]  INFO -- : worker=4 ready
+I, [2016-06-09T23:57:54.550425 #33442]  INFO -- : worker=2 ready
+I, [2016-06-09T23:57:54.725353 #33445]  INFO -- : worker=3 ready
+I, [2016-06-09T23:57:54.792402 #33439]  INFO -- : worker=1 ready
+I, [2016-06-09T23:57:54.847259 #33459]  INFO -- : worker=8 ready
+I, [2016-06-09T23:57:54.857925 #33454]  INFO -- : worker=6 ready
+I, [2016-06-09T23:57:54.900764 #33457]  INFO -- : worker=7 ready
+I, [2016-06-09T23:57:55.070193 #33451]  INFO -- : worker=5 ready

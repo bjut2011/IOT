@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+
+</title><link rel="stylesheet" href="/css/map/all.css" type="text/css" /><link href="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.css" rel="stylesheet" type="text/css" /><script id="MapSrc" src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script><script id="MapSrc" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js" type="text/javascript"></script>
+    <script src="/js/map/language02-zh-cn.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/map/WdatePicker.js"></script>
+    <script src="/js/map/Config.js" type="text/javascript"></script>
+    <script src="/js/map/PublicMap.js" type="text/javascript"></script>
+    <script src="/js/map/jquery-1.6.min.js" type="text/javascript"></script>
+    <script src="/js/map/_.js" type="text/javascript"></script>
+    <script src="/js/map/initmap-Baidu.js" type="text/javascript"></script>
+    <script src="/js/map/Tracking-Baidu.js" type="text/javascript"></script>
+    <script src="/js/map/popupmarker-Baidu.js" type="text/javascript"></script>
+    <script src="/js/map/Tracking.js" type="text/javascript"></script>
+</head>
+<style>
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	overflow:hidden;
+}
+</style>
+<body>
+    <form method="post" action="Tracking.aspx?id=2&amp;deviceid=119742&amp;p=9915442459c2505" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTkwNzE2Njk4M2RkFkxHZhccStlKagC86eHHZTDS8OS+qcwBSgN6XACBYoY=" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="414E4794" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAjwy3vgRSyuUYwNpNv8iPYcwsYQpfr+0vh5mICgP8EIOgJGqZ27oArvd2fDWxTsnY6UrLulE1MftRpgG8G9cXEoTRpOxYCxMCogS9q63SeE7BGDTy4obJKGYZKy7pkwBovMNbSr3ROOilgHKwgiJt+AVggpvtCfkURCcwcMBsRBFjZ9BfzOOHOo4rfgd+IXanof+d9Uf8KnteYkA4GEPc13" />
+</div>
+    <div>
+        <div id="disSecond" style="position:absolute; width:800px; height:20px; background-color:White; margin-left:0px; font-size:13px; margin-top:0px; line-height:150%; z-index:999;">
+            <span id="spanSecond" style="color:Red;"></span>
+                            <script type="text/javascript">
+                                writePage(trackingPage.secondMsg);
+                            </script>&nbsp;&nbsp;<span id="divMarkerAddress"></span>
+        </div>
+        <div id="divPanoImg" onclick="showHidePano();" style="position:absolute; cursor:pointer; width:60px; height:32px; background-color:White; margin-top:80px;z-index:999;">
+            <table>
+                <tr>
+                    <td><img src="Images/streetview-ani.gif" /></td>
+                    <td>街景</td>
+                </tr>
+            </table>
+        </div>
+        <div id="map_canvas" style="position:absolute;" ></div>
+        <iframe frameborder="0" id="divIframe" src="" style="position:absolute; display:none;"></iframe>
+
+        <span id="spanMapPopupContentSize"></span>
+        <input name="hidLanguage" type="hidden" id="hidLanguage" value="zh-cn" />
+        <input name="hidUserID" type="hidden" id="hidUserID" value="<%= @user_id%>" />
+        <input name="hidDeviceID" type="hidden" id="hidDeviceID" value="<%= @device_id%>" />
+        <input name="hidIcon" type="hidden" id="hidIcon" value="1" />
+        <input name="hidTimeZone" type="hidden" id="hidTimeZone" value="China Standard Time" />
+        <input name="hidDeviceName" type="hidden" id="hidDeviceName" value="GX02A-78546" />
+        <input name="hidStatus" type="hidden" id="hidStatus" value="0" />
+    </div>
+    </form>
+</body>
+</html>
+

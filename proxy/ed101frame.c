@@ -7,6 +7,7 @@ unsigned char VerifyIED101Frame(unsigned char * pTemp_Buf, unsigned short usTemp
     for(;i<usTemp_Length;i++){
        printf("%02x",pTemp_Buf[i]);
     }
+
     printf("\n");
     //BYTE *dsrc=(BYTE *)malloc(sizeof(BYTE)*strlen(pTemp_Buf)/2);
     //memset(dsrc,0,sizeof(BYTE)*strlen(pTemp_Buf)/2);
@@ -21,7 +22,7 @@ unsigned char VerifyIED101Frame(unsigned char * pTemp_Buf, unsigned short usTemp
      printf("0x87\n");
      upperquery(dsrc);
     }
-    
+
 
 
     //free(dsrc);
@@ -102,16 +103,33 @@ void insertSensorRecord( mongoc_collection_t * sensorcoll,bson_oid_t *de_oid,mon
     time_t timep;
     time(&timep);
     BSON_APPEND_TIME_T (doc, "time", timep);
-
     if (!mongoc_collection_insert (sensorlogcoll, MONGOC_INSERT_NONE, doc, NULL, &error)) {
         fprintf (stderr, "%s\n", error.message);
     }
-    char *pstr=(char*)malloc(sizeof(char)*25);
-    memset(pstr,0,sizeof(char)*25);
-    bson_oid_to_string (&se_oid, pstr);
-    enQueue(&g_qalarm,str);
- 
     bson_destroy (doc);
+   //
+    time(&timep);
+    //bson_t *updatedoc = bson_new();
+
+    //bson_t child;
+    
+    //BSON_APPEND_INT32(updatedoc, "value", (value));
+    //BSON_APPEND_TIME_T (updatedoc, "time", timep);
+    //bson_append_document_begin(updatedoc, "value", value, &child);
+    //BSON_APPEND_TIME_T (&child, "update_time", timep);
+    //bson_append_document_end(updatedoc, &child);
+    bson_t reply;
+    query = bson_new ();
+    BSON_APPEND_OID (query, "_id",&se_oid);
+    bson_t *update = BCON_NEW ("$set", "{", "value", BCON_DOUBLE(value),"updatetime",BCON_DOUBLE(timep), "}");
+
+    if (!mongoc_collection_find_and_modify (sensorcoll, query, NULL, update, NULL, false, false, true, &reply, &error)) {
+      fprintf (stderr, "find_and_modify() failure: %s\n", error.message);
+    }
+    //bson_destroy (updatedoc);
+    bson_destroy (query);
+    bson_destroy (update);
+   //
 }
 
 void insertYX0Record( mongoc_collection_t * sensorcoll,bson_oid_t *de_oid,mongoc_collection_t * sensorlogcoll,int value){
@@ -231,6 +249,14 @@ void insertYX2Record( mongoc_collection_t * sensorcoll,bson_oid_t *de_oid,mongoc
    {
      insertSensorRecord(sensorcoll,de_oid,sensorlogcoll,1,"副电池故障",2,"","副电池故障");
    }
+   if(value&64)
+   {
+     insertSensorRecord(sensorcoll,de_oid,sensorlogcoll,1,"传感器故障",2,"","传感器故障");
+   }
+   if(value&128)
+   {
+     insertSensorRecord(sensorcoll,de_oid,sensorlogcoll,1,"垃圾满",2,"","垃圾满");
+   }
 }
 
 void upperquery(unsigned char * info)
@@ -247,7 +273,10 @@ void upperquery(unsigned char * info)
    char *str;
    bson_oid_t de_oid;
    query = bson_new ();
-   BSON_APPEND_UTF8 (query, "device_sn", "13810139056");
+   char phone[15];
+   sprintf(phone,"%c%c%c%c%c%c%c%c%C%C%C",info[80],info[81],info[82],info[83],info[84],info[85],info[86],info[87],info[88],info[89],info[90]);
+   BSON_APPEND_UTF8 (query, "device_sn", phone);
+   printf("phone:%s\n",phone);
 
    cursor = mongoc_collection_find (collection, MONGOC_QUERY_NONE, 0, 0, 0, query, NULL, NULL);
    
@@ -354,8 +383,20 @@ void upperquery(unsigned char * info)
    int iSecond =0;
    iSecond=info[26];
    printf("second %d\n",iSecond);
-
-   
+///
+        float lng;    
+        lng =  ( ((info[29] & 0xFF)<<24)  
+            |((info[30] & 0xFF)<<16)  
+            |((info[31] & 0xFF)<<8)  
+            |(info[32] & 0xFF)); 
+       
+        float lat;    
+        lat =  ( ((info[35] & 0xFF)<<24)  
+            |((info[36] & 0xFF)<<16)  
+            |((info[37] & 0xFF)<<8)  
+            |(info[38] & 0xFF)); 
+   printf("Lat:%f,%f\n",lng,lat);
+   ///
    int iLongitudeMark =0;
    iLongitudeMark=info[27];
    printf("Longitude mark %d\n",iLongitudeMark);
@@ -364,6 +405,7 @@ void upperquery(unsigned char * info)
    fLongitude=info[28];
    float fm=info[29]/10.0+info[30]/100.0+info[31]/1000.0+info[32]/10000.0;
    fLongitude +=fm;
+   //fLongitude=convertGPS(fLongitude);
    printf("Longitude  %.04f\n",fLongitude);
 
 
@@ -375,6 +417,8 @@ void upperquery(unsigned char * info)
    fLatitude=info[34];
    fm=info[35]/10.0+info[36]/100.0+info[37]/1000.0+info[38]/10000.0;
    fLatitude +=fm;
+   //fLatitude=convertGPS(fLatitude);
+
    printf("latitude  %.04f\n",fLatitude);
 
    //
@@ -382,7 +426,7 @@ void upperquery(unsigned char * info)
    bson_error_t error;
    query = bson_new ();
    BSON_APPEND_OID (query, "_id",&de_oid);
-   bson_t *update = BCON_NEW ("$set", "{", "lon", BCON_DOUBLE(fLongitude), "lat",BCON_DOUBLE(fLatitude),"}");
+   bson_t *update = BCON_NEW ("$set", "{", "lon", BCON_DOUBLE(fLongitude), "lat",BCON_DOUBLE(fLatitude),"MainBatteryVoltage",BCON_DOUBLE(iMainBatteryVoltage),"}");
    if (!mongoc_collection_find_and_modify (collection, query, NULL, update, NULL, false, false, true, &reply, &error)) {
       fprintf (stderr, "find_and_modify() failure: %s\n", error.message);
    }
@@ -504,27 +548,80 @@ void upperquery(unsigned char * info)
    iPLCStopMinute2=info[75];
    printf("The Stop time of PLC lights minute 2 %d\n",iPLCStopMinute2);
 
-   int iMainMinBatteryVoltage=0;
-   iMainMinBatteryVoltage=(info[77]<<8)|info[76];
-   printf("Minimum voltage of main battery %d\n",iMainMinBatteryVoltage);
-   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iMainMinBatteryVoltage,"主电池运行最低电压",1,"V","主电池运行最低电压");
+   int iStartBatteryVoltage=0;
+   iStartBatteryVoltage=info[76];
+   printf("Start voltage of main battery %d %02x\n",iStartBatteryVoltage,info[76]);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iStartBatteryVoltage,"主电池运行开启电压",1,"V","主电池运行开启电压");
    
+   int iCloseBatteryVoltage=0;
+   iCloseBatteryVoltage=info[77];
+   printf("close voltage of main battery %d %02x\n",iCloseBatteryVoltage,info[77]);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iCloseBatteryVoltage,"主电池运行关闭电压",1,"V","主电池运行关闭电压");
+   
+   int iAuxiliaryOpenBatteryVoltage=0;
+   iAuxiliaryOpenBatteryVoltage=info[78];
+   printf("Open voltage of Auxiliary battery %d\n",iAuxiliaryOpenBatteryVoltage);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iAuxiliaryOpenBatteryVoltage,"副电池运行开启电压",1,"V","副电池运行开启电压");
 
-   int iAuxiliaryMinBatteryVoltage=0;
-   iAuxiliaryMinBatteryVoltage=(info[79]<<8)|info[78];
-   printf("Minimum voltage of Auxiliary battery %d\n",iAuxiliaryMinBatteryVoltage);
-   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iAuxiliaryMinBatteryVoltage,"副电池运行最低电压",1,"V","副电池运行最低电压");
+   int iAuxiliaryCloseBatteryVoltage=0;
+   iAuxiliaryCloseBatteryVoltage=info[79];
+   printf("Close voltage of Auxiliary battery %d\n",iAuxiliaryCloseBatteryVoltage);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iAuxiliaryCloseBatteryVoltage,"副电池运行关闭电压",1,"V","副电池运行关闭电压");
 
-   BYTE* pmeg = (BYTE*)malloc(sizeof(BYTE) * 42);
-   memset(pmeg,0,sizeof(BYTE) * 42);
+   printf("在线报告时间:%02x%02x",info[91],info[92]);
+   printf("重连时间间隔:%02x%02x",info[93],info[94]);
+   int iLEDMovingSpeed=0;
+   iLEDMovingSpeed=info[163]&0x0F;
+   printf("LED moving speed %d\n",iLEDMovingSpeed);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iLEDMovingSpeed,"LED移动速度",1,"V","LED移动速度");
+
+   int iLEDLightness=0;
+   iLEDLightness=info[163]>>4;
+   printf("LED lightness %d\n",iLEDLightness);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iLEDLightness,"LED亮度",1,"V","LED亮度");
+
+   int iOpenNumY=0;
+   iOpenNumY=(info[165]<<8)|info[164];
+   printf("Cumulative number of times yesterday %d\n",iOpenNumY);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iOpenNumY,"昨天开门次数累计",1,"V","昨天开门次数累计");
+
+   int iStartNumY=0;
+   iStartNumY=(info[167]<<8)|info[166];
+   printf("70% start compression times yesterday %d\n",iStartNumY);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iStartNumY,"昨天70%启动压缩次数",1,"V","昨天70%启动压缩次数");
+
+   int iNumY=0;
+   iNumY=(info[169]<<8)|info[168];
+   printf("90% start compression times yesterday %d\n",iNumY);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iNumY,"昨天90%启动压缩次数",1,"V","昨天90%启动压缩次数");
+
+   int iOpenNumT=0;
+   iOpenNumT=(info[171]<<8)|info[170];
+   printf("Cumulative number of times today %d\n",iOpenNumT);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iOpenNumT,"今天开门次数累计",1,"V","今天开门次数累计");
+
+   int iStartNumT=0;
+   iStartNumT= (info[173]<<8)|info[172];
+   printf("70% start compression times today %d\n",iStartNumT);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iStartNumT,"今天70%启动压缩次数",1,"V","今天70%启动压缩次数");
+
+   int iNumT=0;
+   iNumT=(info[175])<<8|info[174];
+   printf("90% start compression times today %d\n",iNumT);
+   insertSensorRecord(sensorcoll,&de_oid,sensorlogcoll,iNumT,"今天90%启动压缩次数",1,"V","今天90%启动压缩次数");
+
+   BYTE* pmeg = (BYTE*)malloc(sizeof(BYTE) * 62);
+   memset(pmeg,0,sizeof(BYTE) * 62);
    int i=0;
-   for( i=0;i<40;i++)
+   for( i=0;i<60;i++)
    {
-      pmeg[i]=info[122+i];
+      //pmeg[i]=info[122+i];
+      pmeg[i]=info[103+i];
    }
-   char buf2[10];  
+   char buf2[128];  
    g2u(pmeg, strlen(pmeg), buf2, sizeof(buf2)); 
-   printf("memg %s\n ",buf2);
+   printf("memg:%s,%d\n",buf2,strlen(buf2));
+   free(pmeg);
    mongoc_collection_destroy (collection);
    mongoc_collection_destroy (sensorcoll);
    mongoc_collection_destroy (sensorlogcoll);

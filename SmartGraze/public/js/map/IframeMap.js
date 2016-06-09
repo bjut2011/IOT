@@ -148,7 +148,7 @@ function GetInfoWContx(data) {
 
 function GetPopupHtml(data) {
     var html = [];
-    var imghtml = "<a style='top: 1px; right: 1px; position: absolute;' href='javascript:void(0);'><img style='float:right' onclick='HideDeviceInfo(" + data.id + ")' height='10' border='0' src='/img/map/iw_close.gif'/></a>";
+    var imghtml = "<a style='top: 1px; right: 1px; position: absolute;' href='javascript:void(0);'><img style='float:right' onclick='HideDeviceInfo(\"" + data.id + "\")' height='10' border='0' src='/img/map/iw_close.gif'/></a>";
     html.push("<b>" + data.name + "</b>" + imghtml + "<br />");
     html.push("<b>" + allPage.imeiNo + ":</b>" + data.sn + "<br />");
     var status = getDeviceStatus(data.status);
@@ -389,10 +389,10 @@ function GetPopupHtml(data) {
     gpslbs = data.dataType == "3" ? "WIFI" : gpslbs;
     html.push("<b>" + allPage.positionType + ":</b>" + gpslbs + "<br />");
     html.push('<span>');
-    html.push('<a href="javascript:void(0);" onclick="openPage(\'Tracking.aspx\',' + UserId + ',' + data.id + ')" >' + allPage.tracking + '</a>&nbsp;');
-    html.push('<a href="javascript:void(0);"  onclick="openPage(\'Playback.aspx\',' + UserId + ',' + data.id + ')">' + allPage.playback + '</a>&nbsp;');
-    html.push('<a href="javascript:void(0);"  onclick="openPage(\'Geofences.aspx\',' + UserId + ',' + data.id + ')">' + geofencesPage.geofence + '</a>&nbsp;');
-    html.push('<a href="javascript:void(0);"  onclick="clkShowMoreMenu(' + data.id + ',' + data.model + ',\'' + data.name + '\',\'' + data.sn + '\');">' + allPage.more + '▼</a>');
+    html.push('<a href="javascript:void(0);" onclick="openPage(\'Tracking.aspx\',' + UserId + ',\'' + data.id + '\')" >' + allPage.tracking + '</a>&nbsp;');
+    html.push('<a href="javascript:void(0);"  onclick="openPage(\'Playback.aspx\',' + UserId + ',\'' + data.id + '\')">' + allPage.playback + '</a>&nbsp;');
+    html.push('<a href="javascript:void(0);"  onclick="openPage(\'Geofences.aspx\',' + UserId + ',\'' + data.id + '\')">' + geofencesPage.geofence + '</a>&nbsp;');
+    html.push('<a href="javascript:void(0);"  onclick="clkShowMoreMenu(\'' + data.id + '\',' + data.model + ',\'' + data.name + '\',\'' + data.sn + '\');">' + allPage.more + '▼</a>');
     html.push('</span>');
     html.push("<br />&nbsp;&nbsp;");
     return html.join('');

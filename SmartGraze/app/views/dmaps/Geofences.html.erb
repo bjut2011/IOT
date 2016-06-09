@@ -1,0 +1,125 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script id="MapSrc" src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	多边形电子栅栏
+</title><link rel="stylesheet" href="/css/map/all.css" type="text/css" /><link rel="stylesheet" type="text/css" href="/css/map/form.css" />
+    <script src="/js/map/jquery-1.6.min.js" type="text/javascript"></script>
+    <script src="/js/map/_.js" type="text/javascript"></script>
+    <script src="/js/map/PublicMap.js" type="text/javascript"></script>
+    <script src="/js/map/initmap-Baidu.js" type="text/javascript"></script>
+    <script src="/js/map/Geofences2-Baidu.js" type="text/javascript"></script>
+    <script src="/js/map/popupmarker-Baidu.js" type="text/javascript"></script>
+    <script src="/js/map/Geofences2.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/map/WdatePicker.js"></script>
+</head>
+<style>
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+.tab td{text-align:center;}
+.tab .txt{text-align:left;padding-left:6px;}
+.tc{text-align:center;}
+.item{width:auto;height:23px;line-height:23px;padding-left:10px;cursor:pointer;padding-right:10px;}
+a:link,a:visited{text-decoration:none;color:#0077ff; font-size:12px;}
+a:hover,a:active{text-decoration:underline;color:#ff3300;font-size:12px; }
+.thead{font-size:13px;height:26px;line-height:26px;background:url(../images/top/thead.gif) repeat-x;}
+.input_none{border:none;background:none;}
+/*表格样式，与统计页面统一*/
+.tab{border-left: 1px solid #BBB;width:100%;border-top: 1px solid #BBB;empty-cells:show;border-collapse: collapse;}
+/*单元格样式*/
+.tab th,.tab td{text-align: center;line-height:22px;border-bottom: 1px solid #BBB;border-right: 1px solid #BBB;}
+/*表头*/
+.tab th{background-color: #ddd;font-weight: bold;}
+/*偶数行样式*/
+.even{background-color: #fff;}
+/*奇数行样式*/
+.odd{background-color: #eee;}
+/*高亮行*/
+.highlight{background-color:#FFFFE0}
+/*行CHECKBOX被选中*/
+.selected{background-color: #cff;}
+.tcont2{height:22px;line-height:22px;background:#F3F3F3;}
+.spe{width:75px;float:left;}
+.padding_t{padding:6px;}
+.left{width:5%;float:left;}
+.center{width:90%;float:left;}
+.right{width:5%;float:left;}
+
+</style>
+<body>
+    <form method="post" action="./Geofences2.aspx?id=188&amp;deviceid=52816" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTgyNjY0NjcwNmRk0tdfS0ugtKG2weYV4dbnk94zXWBH0uwQ/GEDJOr5TLk=" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="F65F0F93" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAVLYSLcllRdSBwpnUQ2bPDmAkapnbugCu93Z8NbFOydjpSsu6UTUx+1GmAbwb1xcSgRg08uKGyShmGSsu6ZMAaLzDW0q90TjopYBysIIibfgDzSgVZt8lCutPaBv5dLggWezzatfzEVfTkbvILwYHM1" />
+</div>
+	<div id="divSearchLatlng" style="position:absolute; width:220px; height:120px; border:3px solid #66CCFF; z-index:999; background-color:White; display:none;">
+		<div id="div2" style="height:25px; background-color:#3399FF; color:#FFFFFF;">
+		<table width="100%" border="0">
+		  <tr>
+			<td><b>经纬度查询</b></td>
+			<td width="20"><img src="Images/iw_close.gif" border="0" onclick="closeDiv2('divSearchLatlng')" style="cursor:pointer;" /></td>
+		  </tr>
+		</table>
+		</div>
+		<div>			
+            <table width="100%" border="0">
+              <tr>
+                <td>纬度:</td>
+                <td><input type="text" id="txtSearchLat" style="width:120px;" />
+                </td>
+              </tr>
+              <tr>
+                <td>经度:</td>
+                <td><input type="text" id="txtSearchLng" style="width:120px;" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center">
+		            <input id="btnSearchLatlng" name="" class="btn_submit" type="button" value="" onclick="showMapLatlng();" />&nbsp;&nbsp;
+		            <input id="btnCancelLatlng" name="" class="btn_reset" type="reset" value="" onclick="closeDiv2('divSearchLatlng');" />
+	            </td>
+              </tr>
+            </table>
+		</div>
+	</div>  
+
+    	<div id="divOperation" style="border:1px #CCCCCC solid; background-color:White; width:250px;position:absolute; z-index:9999;">
+            电子栅栏名称:<input id="txtGeofenceName" type="text" style="width:150px;" maxlength="50"/>
+            <div id="divCheckDevices" style="height:200px; overflow:auto;">
+                     
+            </div>
+            <div style=" margin-top:8px; margin-left:6px;">
+            <input type="button" onclick="polySave();" value="保 存" />
+            </div>
+        </div>
+            <div id="divGeofence" style="border:1px #CCCCCC solid; background-color:White; top:260px; width:250px;position:absolute; z-index:9999;">
+                 <a href="javascript:initPolygon(true);">新增电子栅栏</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <a href="javascript:void(0);" onclick="searchLatlng();">经纬度查询</a>
+                 <div id="divGeofenceTable" style="overflow:auto;"></div>
+            </div>
+           
+    <div>
+        <div id="map_canvas" style=""></div>
+    </div>
+        <input name="hidUserID" type="hidden" id="hidUserID" value="188" />
+        <input name="hidDeviceID" type="hidden" id="hidDeviceID" value="52816" />
+        <input name="hidTimeZone" type="hidden" id="hidTimeZone" value="China Standard Time" />
+        <input name="hidDeviceName" type="hidden" id="hidDeviceName" />
+    </form>
+</body>
+</html>
+

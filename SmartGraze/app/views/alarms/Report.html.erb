@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<script src="/js/map/language02-zh-cn.js" type="text/javascript"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+
+</title><link rel="stylesheet" type="text/css" href="/css/map/ecar_v3.css" /><link rel="stylesheet" type="text/css" href="/css/map/report.css" /><link rel="stylesheet" type="text/css" href="/css/map/global.css" /> 	
+	<script src="/js/map/jquery-1.6.min.js" type="text/javascript"></script>
+    <script src="/js/map/report.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/map/WdatePicker.js"></script>
+    <style> 
+*{font-size:12px;}
+.tab td{text-align:center;}
+.tab .txt{text-align:left;padding-left:6px;}
+.tc{text-align:center;}
+.item{width:auto;height:23px;line-height:23px;padding-left:10px;cursor:pointer;padding-right:10px;}
+.thead{font-size:13px;height:26px;line-height:26px;background:url(../images/top/thead.gif) repeat-x;}
+.input_none{border:none;background:none;}
+/*表格样式，与统计页面统一*/
+.tab{width:100%;empty-cells:show;border-collapse: collapse;}
+/*单元格样式*/
+.tab th,.tab td{text-align: center;line-height:22px;}
+/*表头*/
+.tab th{background-color: #ddd;font-weight: bold;}
+/*偶数行样式*/
+.even{background-color: #fff;}
+/*奇数行样式*/
+.odd{background-color: #eee;}
+/*高亮行*/
+.highlight{background-color:#FFFFE0}
+/*行CHECKBOX被选中*/
+.selected{background-color: #cff;}
+.tcont2{height:22px;line-height:22px;background:#F3F3F3;}
+.spe{width:75px;float:left;}
+.padding_t{padding:6px;}
+.left{width:5%;float:left;}
+.center{width:90%;float:left;}
+.right{width:5%;float:left;}
+
+tr.type span{background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #EEEEEE;display: inline-block;margin: 0 4px 0 0;padding: 2px 0 2px 5px;} 
+    </style>
+
+<script language="javascript" type="text/javascript">
+// <![CDATA[
+
+function btnToExcel_onclick() {
+
+}
+
+// ]]>
+</script>
+</head>
+<body>
+    <form method="post" action="./Report.aspx?id=188&amp;deviceid=0" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNjEyMjI5ODQ3D2QWAgIBD2QWBmYPFgIeBXN0eWxlBQ5kaXNwbGF5OmJsb2NrO2QCAQ8WAh4Hb25jbGljawVoV2RhdGVQaWNrZXIoe2xhbmc6J3poLWNuJyxlbDokZHAuJCgnYmVnaW5UaW1lJyksZGF0ZUZtdDoneXl5eS1NTS1kZCBISDptbScsbWF4RGF0ZTogJzIwMTYtMDYtMDkgMDA6MDAnfSlkAgIPFgIfAQVmV2RhdGVQaWNrZXIoe2xhbmc6J3poLWNuJyxlbDokZHAuJCgnZW5kVGltZScpLGRhdGVGbXQ6J3l5eXktTU0tZGQgSEg6bW0nLG1heERhdGU6ICcyMDE2LTA2LTA5IDAwOjAwJ30pZGQnGzm82OQ+Wl3v9KBXucQkbyziboxAUPCe8Z8GnW9OVQ==" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="F96F2D5F" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAfyzlA6h2+dKfJ9OsQjO5/0kfIcPPz7ic4dXBy2Xc3sCrARYVRMgGuAYddBeBlbAjrIWfKr+B0UnO1rOEyjCG+bAkapnbugCu93Z8NbFOydjhGDTy4obJKGYZKy7pkwBouUrLulE1MftRpgG8G9cXEoSLn+22pGbLkg0UZH0gk0/vat+Ak0nkoTZGVu7HoP2RY=" />
+</div>
+
+<div id="bd">
+		<div class="col-min">
+		
+		<!-- leftmenu [[ -->
+		<div id="leftnav">
+			<div class="mod-nav"><!-- class=[close] -->
+				<div class="hd" style="color:White;background-color:#1f8ccc; height:35px;">
+                    <table height="100%">
+                        <tr valign="middle">
+                            <td width="25"></td>
+                            <td width="205"><b><script type="text/javascript">writePage(allPage.tab3)</script></b></td>
+                        </tr>
+                    </table>
+				</div>
+				<div class="bd">
+					<ul>
+					<li class="first on">
+						<a hidefocus><script type="text/javascript">
+						                 writePage(allPage.tab1)
+                            </script></a>
+					</li>
+					<li><a href="RunIndex.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                        writePage(overSpeedPage.distancePage);
+                            </script> </a></li>
+					<li><a href="OverSpeed.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                         writePage(overSpeedPage.overspeedDetail);
+                            </script> </a></li>
+					<li><a href="StopDetail.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                          writePage(overSpeedPage.stopDetail);
+                            </script> </a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="mod-nav">
+				<div class="hd" style="color:White;background-color:#1f8ccc; height:35px;">
+                    <table height="100%">
+                        <tr valign="middle">
+                            <td width="25"></td>
+                            <td width="205"><b><script type="text/javascript">writePage(alarmDetailPage.alarmCount)</script></b></td>
+                        </tr>
+                    </table>
+				</div>
+				<div class="bd">
+					<ul>
+					<li class="first">
+						<a hidefocus href="AlarmSum.aspx?id=188&deviceid=0">
+							<script type="text/javascript">
+							    writePage(allPage.tab2)
+                            </script>
+						</a>
+					</li>
+					<li><a href="AlarmIndex.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                          writePage(alarmDetailPage.alarmCount)
+                            </script> </a></li>
+					<li><a href="AlarmDetail.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                           writePage(alarmDetailPage.alarmDetail);
+                            </script></a></li>					
+					<li class="end"><a href="GeofenceDetail.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                                          writePage(geofencesPage.geofence);
+                            </script></a></li>
+                    <li id="divOffsetRoad" class="end" style="display:block;"><a href="RoadOffsetWarn.aspx?id=188&deviceid=0">路线纠偏报警</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- leftmenu]] -->		
+	</div>
+	<!-- col-main [[ -->	
+		<div class="col-main" id="col-main">
+			<div class="mod-report">
+
+<div class="hd"><h2><script type="text/javascript">
+                        writePage(reportPage.title);
+                            </script>
+					</h2>
+				</div>
+				<div class="bd">
+					<div class="block-forms">
+						<div class="rr">
+                        <script type="text/javascript">
+                            writePage(allPage.startTime)
+                            </script>:<input name="beginTime" type="text" id="beginTime" size="15" readonly="" class="Wdate" style="height:18px;" value="2016-06-08 00:00" onclick="WdatePicker({lang:&#39;zh-cn&#39;,el:$dp.$(&#39;beginTime&#39;),dateFmt:&#39;yyyy-MM-dd HH:mm&#39;,maxDate: &#39;2016-06-09 00:00&#39;})" />
+                        <script type="text/javascript">
+                            writePage(allPage.endTime)
+                            </script>:<input name="endTime" type="text" id="endTime" size="15" readonly="" class="Wdate" style="height:18px;" value="2016-06-09 00:00" onclick="WdatePicker({lang:&#39;zh-cn&#39;,el:$dp.$(&#39;endTime&#39;),dateFmt:&#39;yyyy-MM-dd HH:mm&#39;,maxDate: &#39;2016-06-09 00:00&#39;})" />
+                        &nbsp;&nbsp;
+                            <button id="btnSearch"  type="button" onclick="ajaxGetReport();" style="background-color:#1f8ccc;cursor:pointer; font-weight:bold; width:60px; height:23px; border:0px; color:White;"></button>
+						</div>
+					</div>
+					<div class="block-data">
+
+						<!-- listing [[ -->
+						<div class="rr">
+							<div class="yunxing">
+								<div id="divLoading" style="width:32px; margin:0 auto; display:block;"><img src="../icons/loading.gif" width="32" height="32" /></div>
+								<div id="divReportTable" style="overflow:hidden; display:none;"></div>
+								<div class="pager">
+									<em>
+                                        <input type="submit" name="btnToExcel" value="" id="btnToExcel" style="background-color:#1f8ccc;cursor:pointer; font-weight:bold; width:80px; height:23px; border:0px; color:White;" />
+									</em>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			
+		</div>
+	</div>				
+
+        
+        <div id="divReport" style="display:none;"></div>
+        <input name="hidUserID" type="hidden" id="hidUserID" value="188" />
+        <input name="hidTimeZone" type="hidden" id="hidTimeZone" value="China Standard Time" />
+        <input name="hidDeviceID" type="hidden" id="hidDeviceID" value="0" />
+
+    </form>
+</body>
+</html>
+

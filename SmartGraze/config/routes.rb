@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :polygodetails
+  resources :geofences
   resources :schedulers
   get 'dmaps/layout' =>"dmaps#layout"
   resources :dmaps
@@ -9,9 +11,16 @@ Rails.application.routes.draw do
   post 'alarms/querySensorByDeviceId' =>"alarms#querySensorByDeviceId"
   post 'alarms/addAlarms' =>"alarms#addAlarms"
   get 'map' =>"devices#map"
+  post 'getPolygonList' =>"geofences#getPolygonList"
+  post 'getPolygonDetail' =>"geofences#getPolygonDetail"
+  get 'Tracking' =>"devices#Tracking"
+  get 'Playback' =>"devices#Playback"
+  get 'gettracking' =>"devices#gettracking"
   get 'dmap' =>"devices#dmap"
+  get 'Geofences' =>"dmaps#Geofences"
   get 'devices/monitor' =>"devices#monitor"
   get 'monitor' =>"devices#monitor"
+  get 'Report' =>"devices#Report"
   get 'devices/layout' =>"devices#layout"
   get 'devices/explore' =>"devices#explore"
   get 'devices/queryLineData' =>"devices#queryLineData"

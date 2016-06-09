@@ -1,0 +1,199 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+
+</title><link rel="stylesheet" href="/css/map/all.css" type="text/css" /><link href="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.css" rel="stylesheet" type="text/css" /><script id="MapSrc" src="http://api.map.baidu.com/api?v=1.4" type="text/javascript"></script><script id="MapSrc" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js" type="text/javascript"></script>
+    <script src="/js/map/language02-zh-cn.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/map/WdatePicker.js"></script>
+    <script src="/js/map/Config.js" type="text/javascript"></script>
+    <script src="/js/map/PublicMap.js" type="text/javascript"></script>
+    <script src="/js/map/jquery-1.6.min.js" type="text/javascript"></script>
+    <script src="/js/map/jquery.ui.widget.min.js" type="text/javascript"></script>
+    <script src="/js/map/jquery.ui.mouse.min.js" type="text/javascript"></script>
+    <script src="/js/map/jquery.ui.core.min.js" type="text/javascript"></script>
+    <script src="/js/map/jquery.ui.slider.min.js" type="text/javascript"></script>
+    <script src="/js/map/_.js" type="text/javascript"></script>
+    <script src="/js/map/initmap-Baidu.js" type="text/javascript"></script>
+    <script src="/js/map/Playback-Baidu.js" type="text/javascript"></script>
+    <script src="/js/map/popupmarker-Baidu.js" type="text/javascript"></script>
+    <script src="/js/map/Playback.js" type="text/javascript"></script>
+
+</head>
+<style>
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	overflow:hidden;
+}
+/* Overlays */
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+
+
+/* Component containers
+----------------------------------*/
+.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }
+.ui-widget .ui-widget { font-size: 1em; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
+.ui-widget-content { border: 1px solid #aaaaaa; background: #ffffff  50% 50% repeat-x; color: #222222; }
+.ui-widget-content a { color: #222222; }
+.ui-widget-header a { color: #222222; }
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #3399FF; background: #3399FF 50% 50% repeat-x; font-weight: normal; color: #5c9dc4; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #3399FF; text-decoration: none; }
+.ui-state-hover a, .ui-state-hover a:hover { color: #3399FF; text-decoration: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #3399FF; background: #3399FF 50% 50% repeat-x; font-weight: normal; color: #3399FF; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #3399FF; text-decoration: none; }
+.ui-widget :active { outline: none; }
+
+.ui-slider { position: relative; text-align: left;  }
+.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 12px; height: 12px; cursor: e-resize; }
+.ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
+
+.ui-slider-horizontal { height: .8em; }
+.ui-slider-horizontal .ui-slider-handle { top: -.3em; margin-left: -.6em; }
+.ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
+.ui-slider-horizontal .ui-slider-range-min { left: 0; }
+.ui-slider-horizontal .ui-slider-range-max { right: 0; }
+
+.ui-slider-vertical { width: .8em; height: 100px; }
+.ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
+.ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
+.ui-slider-vertical .ui-slider-range-min { bottom: 0; }
+.ui-slider-vertical .ui-slider-range-max { top: 0; }
+</style>
+<body style="overflow:hidden;">
+    <form method="post" action="./Playback.aspx?id=188&amp;deviceid=52816&amp;p=960167221bfd105" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTI3MTYwNDA4OA9kFgICAw9kFgQCAw8PZBYCHgdvbmNsaWNrBU9XZGF0ZVBpY2tlcih7bGFuZzonemgtY24nLGVsOiRkcC4kKCd0eHRTdGFydERhdGUnKSxkYXRlRm10Oid5eXl5LU1NLWRkIEhIOm1tJ30pZAIFDw9kFgIfAAVNV2RhdGVQaWNrZXIoe2xhbmc6J3poLWNuJyxlbDokZHAuJCgndHh0RW5kRGF0ZScpLGRhdGVGbXQ6J3l5eXktTU0tZGQgSEg6bW0nfSlkZDdK/oRGAk+r3PefGVtg7muN9PNh0TqIVqF7vuHhyvFn" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="AED9B2BA" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAy8zLymhKKnGjmpz21+vCe3E6xT88eU23mXQtKt61lAGFDrnzM85amiq0HGwa5wnb/CdJyfgDWvjusbWYtykvpHO1iJVNcH1xDbpRgob2PfsQJGqZ27oArvd2fDWxTsnY6UrLulE1MftRpgG8G9cXEoEYNPLihskoZhkrLumTAGi8w1tKvdE46KWAcrCCIm34AoyGCydKJcV8+XNdgxpuCDjzu6eU4Hausu2p0cg5X52/x3P0e9UlhNOEYOhDJ4DNinKRDHomfEvZs1bLtRXTtwktgfMlXcDHywlK/IOp2IAA==" />
+</div>
+    <div>
+
+	<div id="divGPSReport" style="border:1px #CCCCCC solid; background-color:#EFEFEF;width:100%; height:150px; overflow:auto; display:none; position:absolute; top:30px; z-index:9999; left:0px;">
+    
+    </div>
+
+	<div id="divEventList" style="border:1px #CCCCCC solid; width:370px; display:none; position:absolute; z-index:9999; left:0px;">
+		<div id="divEventListHead" style="background-color:#EFEFEF; height:25px;">
+			<table width="100%" border="0">
+			  <tr>
+				<td>
+					<b>
+                            <script type="text/javascript">
+                                writePage(allPage.event);
+                            </script>                     
+                    </b> 
+				</td>
+				<td width="30">
+					<img src="icons/iw_min.gif" border="0" onclick="showEventListDiv(0);" style="cursor:pointer;" />
+					<img src="icons/iw_max.gif" border="0" onclick="showEventListDiv(1);" style="cursor:pointer;"/>
+				</td>
+			  </tr>
+			</table>
+		
+		</div>
+		<div id="divEventListInfo" style="height:425px; background-color:White;  overflow-y:auto; display:none;">
+
+		</div>
+		
+	</div>
+
+        
+        <div style="background-color:#CCCCCC; z-index:9999; position:absolute; height:30px; width:100%;">
+            <table width="100%" border="0">
+              <tr>
+                <td width="630">
+                    &nbsp;&nbsp;<span id="lblTargetName"></span>
+                    &nbsp;<script type="text/javascript">
+                                writePage(playbackPage.from);
+                            </script>:<input name="txtStartDate" type="text" value="2016-06-09 17:10" id="txtStartDate" class="Wdate" onclick="WdatePicker({lang:&#39;zh-cn&#39;,el:$dp.$(&#39;txtStartDate&#39;),dateFmt:&#39;yyyy-MM-dd HH:mm&#39;})" />
+                    &nbsp;<script type="text/javascript">
+                              writePage(playbackPage.to);
+                            </script><input name="txtEndDate" type="text" value="2016-06-09 22:10" id="txtEndDate" class="Wdate" onclick="WdatePicker({lang:&#39;zh-cn&#39;,el:$dp.$(&#39;txtEndDate&#39;),dateFmt:&#39;yyyy-MM-dd HH:mm&#39;})" />
+                    &nbsp;&nbsp;<input name="" id="btnPlay" type="button" value="" onclick="serchLocation()" />
+                    <span id="spanMsg" style="color:Red;"></span>
+                    &nbsp;&nbsp;<input id="btnPause" type="button" value="" onclick="changePlay(0)" disabled />
+                    &nbsp;&nbsp;<input id="btnNext" type="button" value="" onclick="changePlay(1)" disabled />    
+                              
+                </td>
+                <td>
+                    <table width="100%" border="0">
+                      <tr>
+                        <td width="30">                          
+                            <script type="text/javascript">
+                                writePage(playbackPage.fast);
+                            </script></td>
+                        <td width="125"><div id="PlaySpeed" style="height: 7px; width: 120px;" ></div></td>
+                        <td>
+                             <script type="text/javascript">
+                                 writePage(playbackPage.slow);
+                            </script>                         
+                        
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" value=""  onclick="checkShowLBS(this.checked);" />
+                            <script type="text/javascript">
+                                writePage(playbackPage.showLBS);
+                            </script>              
+                        </td>
+                        <td>
+                            <a id="btnExcel" href="javascript:__doPostBack(&#39;btnExcel&#39;,&#39;&#39;)"><script type="text/javascript">
+                                                                                                      writePage(yiwen201505.download);
+                            </script></a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="javascript:void(0)" onclick="showHideGPSReport();" ><script type="text/javascript">
+                                                                                             writePage(yiwen201505.details);
+                            </script></a></td>
+                      </tr>
+                    </table>
+
+               </td>
+              </tr>
+            </table>
+        </div>
+        <div id="map_canvas" style="position:absolute; top:28px;"></div>
+        <span id="spanMapPopupContentSize"></span>
+        <input name="hidSpeedLimit" type="hidden" id="hidSpeedLimit" value="0.00" />
+        <input name="hidUserID" type="hidden" id="hidUserID" value="188" />
+        <input name="hidDeviceID" type="hidden" id="hidDeviceID" value="52816" />
+        <input name="hidTimeZone" type="hidden" id="hidTimeZone" value="China Standard Time" />
+        <input name="hidDeviceName" type="hidden" id="hidDeviceName" value="V30-71066" />
+        <input name="hidMapType" type="hidden" id="hidMapType" value="Baidu" />
+        <input name="hidIsShowLBS" type="hidden" id="hidIsShowLBS" value="0" />
+        <input name="hidModel" type="hidden" id="hidModel" value="156" />
+    </div>
+    </form>
+</body>
+</html>
+

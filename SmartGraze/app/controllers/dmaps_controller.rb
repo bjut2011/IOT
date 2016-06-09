@@ -25,6 +25,9 @@ class DmapsController < ApplicationController
   def edit
   end
 
+  def Geofences
+  end
+
   # POST /dmaps
   # POST /dmaps.json
   def create

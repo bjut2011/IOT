@@ -10,14 +10,13 @@
 #include<string.h>          //Func :memset
 #include<unistd.h>          //Func :close,write,read
 #include "util.h"
-
-#define SOCK_PORT 9988
+#include "ddp.h"
+#define SOCK_PORT 24912
 
 static void Data_handle(void * sock_fd){
    int fd = *((int *)sock_fd);
    int i_recvBytes;
     BYTE data_recv[BUFFER_LENGTH];
-    const char * data_send = "Server has received your request!\n";
  
     while(1)
       {
@@ -36,17 +35,38 @@ static void Data_handle(void * sock_fd){
              fprintf(stderr,"read error!\n");
            break;
         }
-        if(strcmp(data_recv,"quit")==0)
-         {
-             printf("Quit command!\n");
-             break;                           //Break the while loop.
+        int j=0;
+        for(;j<i_recvBytes;j++){
+          printf("%02x",data_recv[j]);
         }
-        VerifyIED101Frame(data_recv,i_recvBytes,0);
-        printf("read from client : %s\n",data_recv);
-        if(write(fd,data_send,strlen(data_send)) == -1)
-         {
-            break;
-         }
+        printf("\n");
+        BYTE data_send[BUFFER_LENGTH];
+        memset(data_send,0,BUFFER_LENGTH);
+        if(data_recv[0]==0x7B){
+            int len = VerifyDDPFrame(data_recv,i_recvBytes,0,data_send);
+             int k=4;
+             for(;k<15;k++){
+               data_send[k]=data_recv[k];
+             }
+             send(fd,data_send,len,0);
+             k=0;
+             printf("reg send:");
+             for(;k<len;k++){
+               printf("%02x",data_send[k]);
+             }
+             printf("\n");
+        }
+        else{
+          printf("101\n");
+          VerifyIED101Frame(data_recv,i_recvBytes,0);
+          data_send[0]=0x0B;
+          send(fd,data_send,1,0);
+        }
+        //send(fd,data_send,1,0);
+        //if(write(fd,data_send,1) == -1)
+         //{
+         //   break;
+         //}
      }
  
    //Clear
