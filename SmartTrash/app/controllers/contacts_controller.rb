@@ -1,10 +1,13 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token
 
   # GET /contacts
   # GET /contacts.json
   def index
     @contacts = Contact.all
+    @user_id=params[:pid]
+    
   end
 
   # GET /contacts/1
@@ -15,39 +18,38 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   def new
     @contact = Contact.new
+    @user_id=params[:pid]
   end
 
   # GET /contacts/1/edit
   def edit
+    @contact=Contact.find(params[:id])
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    @user_id=current_admin.id
   end
 
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(contact_params)
-
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    @contact = Contact.new(name:params[:name],user_id:current_admin.id,mobile:params[:mobile],email:params[:email])
+    @contact.save
     respond_to do |format|
-      if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
-        format.json { render :show, status: :created, location: @contact }
-      else
-        format.html { render :new }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
+        format.html { redirect_to "/contacts?pid="+current_admin.id, notice: 'Scheduler was successfully created.' }
     end
   end
 
   # PATCH/PUT /contacts/1
   # PATCH/PUT /contacts/1.json
   def update
+    id=params[:id]
+    contact=Contact.find(id)
+    if contact
+      contact.update_attributes(name:params[:name],email:params[:email],mobile:params[:mobile])
+       
+    end
     respond_to do |format|
-      if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
-        format.json { render :show, status: :ok, location: @contact }
-      else
-        format.html { render :edit }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
+      format.json { render :json => {:code =>0,:msg =>"ok",:redirect_uri =>"/"} }
     end
   end
 
@@ -56,8 +58,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render :json => {:code =>0,:msg =>"Device was successfully destroyed.",:redirect_uri =>""} }
     end
   end
 

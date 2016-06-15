@@ -23,7 +23,7 @@ class SensorlogsController < ApplicationController
   end
   
   def getData
-    @sensorlog=Sensorlog.where(sensor_id:params[:sensorid]).limit(12)
+    @sensorlog=Sensorlog.where(sensor_id:params[:sensorid]).sort(:time => :desc).limit(12)
     logger.info params
     respond_to do |format|
       format.json {render :json => {:code =>0,:data => @sensorlog}}

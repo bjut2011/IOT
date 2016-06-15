@@ -1,5 +1,6 @@
 class SensorsController < ApplicationController
   before_action :set_sensor, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token
 
   # GET /sensors
   # GET /sensors.json
@@ -19,6 +20,14 @@ class SensorsController < ApplicationController
 
   # GET /sensors/1/edit
   def edit
+  end
+
+  def querySensorDataDetail
+    sensorId=params[:sensorId]
+    @sensors = Sensorlog.where(sensor_id:sensorId).sort(:time => :desc).limit(100)
+    respond_to do |format|
+      format.json {render :json => {:code =>0,:dataList => @sensors}}
+    end
   end
 
   # POST /sensors
@@ -56,8 +65,7 @@ class SensorsController < ApplicationController
   def destroy
     @sensor.destroy
     respond_to do |format|
-      format.html { redirect_to sensors_url, notice: 'Sensor was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json {render :json => {:code =>0,:msg =>"OK"}}
     end
   end
 

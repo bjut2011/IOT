@@ -8,14 +8,20 @@ Rails.application.routes.draw do
   get 'alarms/toUpdateAlarms' =>"alarms#toUpdateAlarms"
   post 'alarms/querySensorByDeviceId' =>"alarms#querySensorByDeviceId"
   post 'alarms/addAlarms' =>"alarms#addAlarms"
+  post 'alarms/:id/update' =>"alarms#update"
   get 'devices/monitor' =>"devices#monitor"
   get 'devices/layout' =>"devices#layout"
   get 'devices/explore' =>"devices#explore"
   get 'devices/queryLineData' =>"devices#queryLineData"
   post 'devices/:id/update' =>"devices#update"
   post 'devices/getDevices' =>"devices#getDevices"
+  post 'history' =>"devices#history"
+  get 'history' =>"devices#history"
+  post 'goHistoryLine' =>"devices#goHistoryLine"
+  get 'goHistoryLine' =>"devices#goHistoryLine"
   get 'sensorlogs/getData' =>"sensorlogs#getData"
   post 'sensorlogs/getData' =>"sensorlogs#getData"
+  post 'querySensorDataDetail' =>"sensors#querySensorDataDetail"
   resources :devices
   resources :projects
   resources :sensorlogs

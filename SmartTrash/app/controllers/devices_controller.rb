@@ -18,8 +18,25 @@ class DevicesController < ApplicationController
        @project_name=User.find(pid).name
        @project_id=User.find(pid).id
     end
+    @status=-1
+    if params[:status]
+     @status=params[:status]
+    end
   end
   def layout
+  end
+
+  def history
+
+   @sensorId=params[:sensorId]
+   @deviceId=params[:deviceId]
+   @seobject=Sensor.find(@sensorId);
+   @deobject=Device.find(@deviceId);
+   logger.info @deobject
+   logger.info  @deviceId
+  end
+  
+  def goHistoryLine
   end
 
   def alarmsms
@@ -86,7 +103,11 @@ class DevicesController < ApplicationController
        @devices=User.find(pid).device
        @project_name=User.find(pid).name
        @project_id=User.find(pid).id
-    end
+   end
+   @status=-1
+   if params[:status]
+     @status=params[:status]
+   end
   end
   
   def modify

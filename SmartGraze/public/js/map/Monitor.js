@@ -167,7 +167,7 @@ function showDivIframe(url) {
         var loginName = $("#hidLoginName").val();
         loginName = encodeURIComponent(loginName);
         $("#ifmPage").attr("src", url + "?id=" + userID + "&n=" + loginName + "&randon=" + randomnumber);
-    } else if (url == "DevicesFxtj.aspx") {
+    } else if (url == "DevicesFxtj") {
         $("#ifmPage").hide();
         $("#ifmFxtjPage").show();
 
@@ -193,13 +193,13 @@ function ClkShowPage(t) {
     } else if (t == 10) {
         url = "UserInfo.aspx?id=" + id + "&n=" + loginName + "&type=" + 1;
     } else if (t == 1) {
-        url = "DeviceList.aspx?id=" + id + "&n=" + loginName + "&sday=" + 0;
+        url = "devices?id=" + id + "&n=" + loginName + "&sday=" + 0;
     } else if (t == 2) {
-        url = "DeviceList.aspx?id=" + id + "&n=" + loginName + "&sday=" + 7;
+        url = "devices?id=" + id + "&n=" + loginName + "&sday=" + 7;
     } else if (t == 3) {
-        url = "DeviceList.aspx?id=" + id + "&n=" + loginName + "&sday=" + 60;
+        url = "devices?id=" + id + "&n=" + loginName + "&sday=" + 60;
     } else if (t == 4) {
-        url = "DeviceList.aspx?id=" + id + "&n=" + loginName + "&sday=" + -1;
+        url = "devices?id=" + id + "&n=" + loginName + "&sday=" + -1;
     } else if (t == 11) {
         url = "WarnMessage.aspx?id=" + id + "&n=" + loginName;
     } else if (t == 12) {
@@ -260,7 +260,7 @@ function redirect(v) {
                         $("#" + divID).attr("src", "/Report?id=" + id + "&deviceid=" + loginDeviceID);
                     }
                 } else if (divID == "pageShowFrame_Device") {
-                    $("#" + divID).attr("src", "DeviceList.aspx?id=" + id + "&n=" + loginName + "&sday=0");
+                    $("#" + divID).attr("src", "devices?id=" + id + "&n=" + loginName + "&sday=0");
                 } else if (divID == "pageShowFrame_Money") {
                     $("#" + divID).attr("src", "MoneyTransaction.aspx?id=" + id + "&n=" + loginName);
                 } else {

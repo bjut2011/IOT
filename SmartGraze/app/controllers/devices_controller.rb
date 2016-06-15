@@ -31,6 +31,9 @@ class DevicesController < ApplicationController
   def Report 
   end
 
+  def DevicesFxtj
+  end
+
   def gettracking
     respond_to do |format|
       format.json { render :json => {:code =>1,:msg =>"ok",:redirect_uri =>"/"} }

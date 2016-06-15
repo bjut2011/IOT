@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :dmaps
   resources :contacts
   resources :sensors
+  get 'AlarmDetail' =>"alarms#AlarmDetail"
   get 'alarms/toAddAlarms' =>"alarms#toAddAlarms"
   get 'alarms/toUpdateAlarms' =>"alarms#toUpdateAlarms"
   post 'alarms/querySensorByDeviceId' =>"alarms#querySensorByDeviceId"
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   post 'getPolygonDetail' =>"geofences#getPolygonDetail"
   get 'Tracking' =>"devices#Tracking"
   get 'Playback' =>"devices#Playback"
+  get 'DevicesFxtj' =>"devices#DevicesFxtj"
   get 'gettracking' =>"devices#gettracking"
   get 'dmap' =>"devices#dmap"
   get 'Geofences' =>"dmaps#Geofences"

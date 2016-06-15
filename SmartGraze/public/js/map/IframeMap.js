@@ -415,7 +415,7 @@ function clkShowMoreMenu(deviceid, model, name, sn) {
     var html = [];
     html.push('<div style="margin-top:5px;">');
 
-    html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a style="text-decoration:none;" href="javascript:void(0);" onclick="parent.showDivIframe(\'ProductUpdate.aspx\',' + deviceid + ');">' + mapPage.divicesInfo + '</a></div>');
+    html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a style="text-decoration:none;" href="javascript:void(0);" onclick="parent.showDivIframe(\'ProductUpdate.aspx\',\'' + deviceid + '\');">' + mapPage.divicesInfo + '</a></div>');
 
 
     html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a style="text-decoration:none;" href="javascript:parent.showCommandList(' + deviceid + ',\'' + sn + '\',1);" >' + mapPage.checkCommand + '</a></div>');

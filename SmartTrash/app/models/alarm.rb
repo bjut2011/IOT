@@ -6,6 +6,9 @@ class Alarm
   key :alarmType_Name, String
   key :alarmTypeDiv, String
   key :target, String
+  key :duration, String
+  key :lowerBoundC, String
+  key :upperBoundC, String
   key :target_name, String
   key :switchVal, String
   key :projectId, String

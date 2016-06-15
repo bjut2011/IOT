@@ -527,7 +527,7 @@ function demoLogin(){
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="">
+	                        <a href="/contacts?pid=<%=@project_id%>">
 	                            <i class="glyphicon glyphicon-user"></i>
 	                            <h5>用户中心</h5>
 	                        </a>
@@ -565,19 +565,25 @@ function demoLogin(){
                 </p>
                
                <div style="margin-top:0px;" class="col-sm-12 device_imageE_D">
-                   
                    <% @devices.each do |pd|%> 
+                    <% if (@status=='0' and (pd.update_time.nil? or pd.update_time == nil or ((Time.new.to_i-pd.update_time) >180))) or (@status=='1' and (pd.update_time and  (Time.new.to_i-pd.update_time) <180)) or (@status==-1)%>
                   <div class="col-sm-12 allDe_N">
 			        <div class="col-sm-4 allDe_imgName">
-			            <a href="/device/updateDevice.htm?deviceId=3180" title="编辑协议，建立连接">                     
+			            <a href="#" title="编辑协议，建立连接">                     
+				                <%if pd.update_time and  (Time.new.to_i-pd.update_time) >180%>
+				                    <img src="../../img/NotConnected.png" title="增加协议，建立连接">
+                                                <%elsif pd.update_time%>
+				                    <img src="../../img/Connected.png" title="增加协议，建立连接">
+                                                <%else%>
+				                    <img src="../../img/NotConnected.png" title="增加协议，建立连接">
+				                <%end%>
 			               
-	                          <img src="../img/NotConnected.png" alt="增加协议，建立连接">
 	                       
 	                       
 	                      </a>
 			            <div class="allDe_imgName_nt">
-			                <a href="/device/updateDevice.htm?deviceId=3180"><%= pd.device_name%></a> <br>
-			                <span>ID:</span>
+			                <a href="#"><%= pd.device_name%></a> <br>
+			                <span>ID:<%=pd.device_sn%></span>
 			            </div>
 			        </div>
 			        <div class="col-sm-3 allDe_UpTime">
@@ -593,6 +599,7 @@ function demoLogin(){
 			            <a onclick="javascript:deleteDevice('<%=pd.id%>')">删除设备</a>
 			        </div>
 			    </div>
+                    <%end%>
                   <%end%>
                    
                   

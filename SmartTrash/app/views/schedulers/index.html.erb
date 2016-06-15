@@ -454,7 +454,7 @@ function demoLogin(){
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="#">
+	                        <a href="/contacts?pid=<%=@project_id%>">
 	                            <i class="glyphicon glyphicon-user"></i>
 	                            <h5>用户中心</h5>
 	                        </a>
@@ -531,7 +531,7 @@ function demoLogin(){
                     <td>
                        <a href="javascript:updateStatus('<%=sc.id%>','1');" title="启动定时任务调度" style="display:none">启动</a> &nbsp;
                        <a href="javascript:updateStatus('<%=sc.id%>','0');" title="停止定时任务调度" style="display:none">停止</a> &nbsp;
-                       <a href="javascript:schedulerInfo('<%=sc.id%>');" title="广告任务详情"><span data-toggle="modal" data-target="#schedulerInfo">广告详情</span></a> &nbsp;
+                       <a href="javascript:schedulerInfo('<%=sc.id%>');" title="广告任务详情" style="display:none"><span data-toggle="modal" data-target="#schedulerInfo">广告详情</span></a> &nbsp;
                        <a href="/schedulers/<%= sc.id%>/edit?" title="修改广告任务">修改</a> &nbsp;
                        <a  onclick="delscheduler('<%=sc.id%>');" title="删除广告任务调度">删除</a>
                     </td>

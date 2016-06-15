@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script id="MapSrc" src="http://ditu.google.cn/maps/api/js?sensor=false&language=cn" type="text/javascript"></script>
+<script src="/js/map/language02-zh-cn.js" type="text/javascript"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	报警详单
+</title><link rel="stylesheet" type="text/css" href="/css/map/dialog.css" /><link rel="stylesheet" type="text/css" href="/css/map/ecar_v3.css" /><link rel="stylesheet" type="text/css" href="/css/map/report.css" /><link rel="stylesheet" type="text/css" href="/css/map/global.css" /> 
+    <script src="/js/map/jquery-1.6.min.js" type="text/javascript"></script>
+    <script src="/js/map/jquery.easydrag.js" type="text/javascript"></script>
+    <script src="/js/map/Config.js" type="text/javascript"></script>
+    <script src="/js/map/AddressResolution.js" type="text/javascript"></script>
+    <script src="js/map/AlarmDetail.js" type="text/javascript"></script>
+    <script src="/js/map/ExceptionType.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/map/WdatePicker.js"></script>
+    <style> 
+*{font-size:12px;}
+.tab td{text-align:center;}
+.tab .txt{text-align:left;padding-left:6px;}
+.tc{text-align:center;}
+.item{width:auto;height:23px;line-height:23px;padding-left:10px;cursor:pointer;padding-right:10px;}
+.thead{font-size:13px;height:26px;line-height:26px;background:url(../images/top/thead.gif) repeat-x;}
+.input_none{border:none;background:none;}
+/*表格样式，与统计页面统一*/
+.tab{width:100%;empty-cells:show;border-collapse: collapse;}
+/*单元格样式*/
+.tab th,.tab td{text-align: center;line-height:22px;}
+/*表头*/
+.tab th{background-color: #ddd;font-weight: bold;}
+/*偶数行样式*/
+.even{background-color: #fff;}
+/*奇数行样式*/
+.odd{background-color: #eee;}
+/*高亮行*/
+.highlight{background-color:#FFFFE0}
+/*行CHECKBOX被选中*/
+.selected{background-color: #cff;}
+.tcont2{height:22px;line-height:22px;background:#F3F3F3;}
+.spe{width:75px;float:left;}
+.padding_t{padding:6px;}
+.left{width:5%;float:left;}
+.center{width:90%;float:left;}
+.right{width:5%;float:left;}
+
+tr.type span{background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #EEEEEE;display: inline-block;margin: 0 4px 0 0;padding: 2px 0 2px 5px;}  	    
+    </style>
+</head>
+<body>
+    <form method="post" action="./AlarmDetail.aspx?id=188&amp;deviceid=0" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNDM4ODM3MTUwD2QWAgICD2QWCGYPFgIeBXN0eWxlBQ5kaXNwbGF5OmJsb2NrO2QCAQ8QDxYGHg1EYXRhVGV4dEZpZWxkBQpEZXZpY2VOYW1lHg5EYXRhVmFsdWVGaWVsZAUIRGV2aWNlSUQeC18hRGF0YUJvdW5kZ2QQFRQEZ2lybAxSRi1WMTAtNzEyNzMMUkYtVjEwLTgxMDA4A1YxMANWMTAKVjEwKy0xMjg3NwpWMTArLTEyODc3ClYxMCstMTkwMjANdjEwK+aRqeaJmOi9pg1WMTAr5pGp5omY6L2mCVYxMy0xNDU0MAlWMTYtMzUzNTADVjIwCVYzMC03MDIxNwlWMzAtNzEwMjIJVjMwLTcxMDY2CVYzMC03NDI4OQlWNistMTMwMDUJVjYrLTgxMDA2AnY4FRQFMjg0ODgFNDc5MDIFNDgwNDkFNDgwMjYFNDgwNDgFNDgwNTAFNDg1MjQFNTY0NTgFMjkyNjIFNDg1MjUFMjQxNDcFMTcyMDQFMjg0NTEFMzY4OTQFNDYwODMFNTI4MTYFNDI2NDAFNDc3MTYFNDgwNDcFMjA3MzQUKwMUZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dkZAICDxYCHgdvbmNsaWNrBUZXZGF0ZVBpY2tlcih7bGFuZzonemgtY24nLGVsOiRkcC4kKCdiZWdpblRpbWUnKSxkYXRlRm10Oid5eXl5LU1NLWRkJ30pZAIDDxYCHwQFRFdkYXRlUGlja2VyKHtsYW5nOid6aC1jbicsZWw6JGRwLiQoJ2VuZFRpbWUnKSxkYXRlRm10Oid5eXl5LU1NLWRkJ30pZGRVfiWnww+LCSHt1YPzSkRcHxWZyOjIvHUjw0BVLU5tnQ==" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="86851E50" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAB0v4QtD+xdNh7+pPkSY6oFkuT6rVXTwEAokg7+kkBdsvfpQAX8BVsb/+BpysOODu4RUkqh806D6RAs5Zo+ISVPNk1MtySu0NNZxgP7e6YSAx6ko9YiyZOewW4dswqNk51XeHqu8j2/VM6xUKRjBk2GSdHxk0MlyhWRPucixqudzslEiXGS3KWt4vCreIvkVavhKrRUqa1xwbBdySxS5CfealdgqgXkutBzLD3tfT3KPqtby+cr7s5z/eBVfeUKjl2E5uTbAJKY+1bGsM9yWpkbOFVcuzIHuRpF37OKbJ/cfoUya8wfIAaHBSUOuOSLy19JmGiwUofALsuZyySCrR8SSt0cRXol8CH+twlqhRoAHvCsww+rB9J+9t52CBKli/ohLmwN7BWt6yUXdmOwnu90dj9I1tqR8NRcw6/hPdzxh7qAhUy2Nl2lQcm8vCUyMvg2R8hw8/PuJzh1cHLZdzewKsBFhVEyAa4Bh10F4GVsCOshZ8qv4HRSc7Ws4TKMIb5sCRqmdu6AK73dnw1sU7J2OwsYQpfr+0vh5mICgP8EIOpSsu6UTUx+1GmAbwb1xcSgD6TTaDZQBU2g4BVqurzzZEYNPLihskoZhkrLumTAGi0O7RHZychPciICMDSq16ekpqByofy5iPa23aMeQwPTp" />
+</div>
+	<div class="gm_dialog" id="divIframe" style="width:653px; height:468px;">
+        <div id="divIframeTitle" class="gm_dialog_head">
+	        <div class="gm_dialog_title"><span id="spanIframeTitle"></span></div>
+	        <div class="gm_dialog_func">			
+		        <a class="gm_dialog_close" href="javascript:closeDiv('divIframe');"><img src="../images/iw_close.gif"></a>	</div>
+        </div>
+		<div>
+            <iframe frameborder="0" id="ifmPage" src="" width="650" height="440"></iframe>
+		</div>
+	</div>
+
+    
+<div id="bd">
+		<div class="col-min">
+		
+		<!-- leftmenu [[ -->
+		<div id="leftnav">
+			<div class="mod-nav" style="display:none"><!-- class=[close] -->
+				<div class="hd" style="color:White;background-color:#1f8ccc; height:35px;">
+                    <table height="100%">
+                        <tr valign="middle">
+                            <td width="25"></td>
+                            <td width="205"><b><script type="text/javascript">                                                   writePage(allPage.tab3)</script></b></td>
+                        </tr>
+                    </table>
+				</div>
+				<div class="bd">
+					<ul>
+					<li>
+						<a href="Report.aspx?id=188&deviceid=0"><script type="text/javascript">
+						                                                                  writePage(allPage.tab1)
+                            </script> </a>
+					</li>
+					<li><a href="RunIndex.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                        writePage(overSpeedPage.distancePage);
+                            </script> </a></li>
+					<li><a href="OverSpeed.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                         writePage(overSpeedPage.overspeedDetail);
+                            </script> </a></li>
+					<li><a href="StopDetail.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                          writePage(overSpeedPage.stopDetail);
+                            </script> </a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="mod-nav">
+				<div class="hd" style="color:White;background-color:#1f8ccc; height:35px;">
+                    <table height="100%">
+                        <tr valign="middle">
+                            <td width="25"></td>
+                            <td width="205"><b><script type="text/javascript">                                                   writePage(alarmDetailPage.alarmCount)</script></b></td>
+                        </tr>
+                    </table>
+				</div>
+				<div class="bd">
+					<ul>
+					<li class="first">
+						<a hidefocus href="AlarmSum.aspx?id=188&deviceid=0">
+							<script type="text/javascript">
+							    writePage(allPage.tab2)
+                            </script>
+						</a>
+					</li>
+					<li><a href="AlarmIndex.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                          writePage(alarmDetailPage.alarmCount)
+                            </script> </a></li>
+					<li class="first on"><a hidefocus><script type="text/javascript">
+					                                      writePage(alarmDetailPage.alarmDetail);
+                            </script></a></li>					
+					<li class="end"><a href="GeofenceDetail.aspx?id=188&deviceid=0"><script type="text/javascript">
+					                                                                                          writePage(geofencesPage.geofence);
+                            </script></a></li>
+					<li id="divOffsetRoad" class="end" style="display:block;"><a href="RoadOffsetWarn.aspx?id=188&deviceid=0">路线纠偏报警</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- leftmenu]] -->		
+	</div>
+	<!-- col-main [[ -->	
+		<div class="col-main" id="col-main">
+			<div class="mod-report">
+
+    <div class="hd"><h2><script type="text/javascript">
+                            writePage(alarmDetailPage.alarmDetail);
+                            </script> 
+					</h2>
+				</div>
+				<div class="bd">
+					<div class="block-forms">
+						<div class="rr">
+
+		                    <div id="divDeviceName" style="width: auto; padding-top: 2px;"><script type="text/javascript">
+		                                                                                       writePage(allPage.deviceName);
+                            </script>：
+                                      <select name="ddlDevices" id="ddlDevices">
+	<option value="28488">girl</option>
+	<option value="47902">RF-V10-71273</option>
+	<option value="48049">RF-V10-81008</option>
+
+</select>
+	                        </div>
+                            <div style="margin-top:10px; ">
+                                <script type="text/javascript">
+                                    writePage(alarmDetailPage.alarmType);
+                            </script>:&nbsp;
+                <select id="selAlarmType">
+                  <option value="0" selected="selected"><script type="text/javascript">
+                                                            writePage(allPage.all);
+                            </script></option>
+                  <option value="1">
+                     <script type="text/javascript">
+                         writePage(alarmIndexPage.geofenceIn);
+                     </script>                 
+                  </option>
+                  <option value="2">
+                     <script type="text/javascript">
+                         writePage(alarmIndexPage.geofenceOut);
+                     </script>                   
+                  </option>
+                  <option value="3">
+                     <script type="text/javascript">
+                         writePage(alarmIndexPage.lowBattery);
+                     </script>                   
+                  </option>
+                  <option value="5">
+                     <script type="text/javascript">
+                         writePage(alarmIndexPage.sos);
+                     </script>                    
+                  </option>
+                  <option value="6">
+                     <script type="text/javascript">
+                         writePage(alarmIndexPage.cutPower);
+                     </script>                   
+                  </option>
+                  <option value="7">
+                     <script type="text/javascript">
+                         writePage(alarmIndexPage.vibration);
+                     </script>                   
+                  </option>
+                  <option value="8">
+                      <script type="text/javascript">
+                          writePage(alarmIndexPage.moved);
+                     </script>                  
+                  </option>
+                  <option value="500">
+                      <script type="text/javascript">
+                          writePage(yiwen201504.menci);
+                     </script>                  
+                  </option>
+                  <option value="52">
+                      <script type="text/javascript">
+                          writePage(yiwen201504.shengyin);
+                     </script>                  
+                  </option>
+                </select>
+                            </div>
+                             <div style="overflow:hidden;zoom:1; margin-top:10px">
+                                <script type="text/javascript">
+                                    writePage(allPage.startTime)
+                            </script>:&nbsp;<input name="beginTime" type="text" id="beginTime" size="15" readonly="" class="Wdate" style="width:120px;height:18px;" value="2016-06-10" onclick="WdatePicker({lang:&#39;zh-cn&#39;,el:$dp.$(&#39;beginTime&#39;),dateFmt:&#39;yyyy-MM-dd&#39;})" />
+                                &nbsp;<script type="text/javascript">
+                                          writePage(allPage.endTime)
+                            </script>:&nbsp;<input name="endTime" type="text" id="endTime" size="15" readonly="" class="Wdate" style="width:120px;height:18px;" value="2016-06-11" onclick="WdatePicker({lang:&#39;zh-cn&#39;,el:$dp.$(&#39;endTime&#39;),dateFmt:&#39;yyyy-MM-dd&#39;})" />
+                                &nbsp;&nbsp;
+                                 <button id="btnSearch"  type="button" onclick="clkGetReport();" style="background-color:#1f8ccc;cursor:pointer; font-weight:bold; width:60px; height:23px; border:0px; color:White;"></button>
+                            </div>
+						</div>
+					</div>
+					<div class="block-data">
+
+						<!-- listing [[ -->
+						<div class="rr">
+							<div class="yunxing">
+								<div id="divLoading" style="width:32px; margin:0 auto; display:none;"><img src="../icons/loading.gif" width="32" height="32" /></div>
+								<div id="divReportTable" style="overflow:hidden; display:none;"></div>
+								<div class="pager">
+									<em> <input type="submit" name="btnToExcel" value="" onclick="return checkSelDevice();" id="btnToExcel" style="background-color:#1f8ccc;cursor:pointer; font-weight:bold; width:80px; height:23px; border:0px; color:White;" />
+                                         </em>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			
+		</div>
+	</div>		
+
+	</td>
+  </tr>
+  </table>
+</div>
+        <input name="hidUserID" type="hidden" id="hidUserID" value="188" />
+        <input name="hidLanguage" type="hidden" id="hidLanguage" value="zh-cn" />
+        <input name="hidDeviceID" type="hidden" id="hidDeviceID" value="0" />
+        <input name="hidSelTypeID" type="hidden" id="hidSelTypeID" value="0" />
+        <input name="hidTimeZone" type="hidden" id="hidTimeZone" value="China Standard Time" />
+    </form>
+</body>
+</html>
+

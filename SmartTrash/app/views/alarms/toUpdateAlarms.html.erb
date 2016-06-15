@@ -9,18 +9,21 @@
 
 	<input type="hidden" id="isBind" value="">
     <div class="container-fluid" style="width: 100%;padding:0px;font-size:15px;">
-                <form class="form-horizontal" action="/alarms/addAlarms" onsubmit="return getQueryType();" method="POST">
-                     <input type="hidden" name="alarmsId" value="">
+                <form class="form-horizontal" action="/alarms/addAlarms" onsubmit="return getQueryType();" method="POST" id="update-sensor-form">
+                     <input type="hidden" name="alarmsId" value="<%= @alarm.id%>">
                      <input type="hidden" name="deviceName" id="deviceName" value="">
                      <input type="hidden" name="queryType" id="queryType">
                      <input type="hidden" name="contactId" id="contactId">	
                     <div class="form-group"> 
                         <label class="col-md-3 control-label pd0">选择设备</label>
                         <div class="col-md-9">
-                            <select id="device" class="form-control" name="deviceId" onchange="changerDevice(this)">
+                            <select id="device" class="form-control" disabled="disabled"  name="deviceId" onchange="changerDevice(this)">
                                <%@devices.each do |de|%>                       
+                                 <%if de.id==@alarm.deviceId%>
                                  <option value="<%=de.id%>"><%=de.device_name%></option>
-                                  
+                                  <%else%>
+                                 <option value="<%=de.id%>"  selected="selected" ><%=de.device_name%></option>
+                                  <%end%>
                                <%end%>
                             </select>                       
                         </div>
@@ -28,9 +31,13 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label pd0">选择传感器</label>
                         <div class="col-md-9">
-                            <select id="sensor" class="form-control" name="sensorId">
+                            <select id="sensor" class="form-control" disabled="disabled" name="sensorId">
                               <%@sensors.each do |se|%>
+                                <%if @alarm.sensorId==se.id%>
+                                <option value="<%= se.id  %>" selected = "selected"><%=se.name%></option>
+                                <%else%>
                                 <option value="<%= se.id  %>"><%=se.name%></option>
+                                <%end%>
                               <%end%> 
                             </select>
                         </div>
@@ -122,7 +129,7 @@
                         </div>
                     </div>
                    
-                   <div class="form-group">
+                   <div class="form-group" style="display:none">
                         <label class="col-md-3 control-label pd0" for="message">触发开关</label>
                         <div class="col-md-9">
                             <select id="message" class="form-control" name="message">
@@ -133,14 +140,14 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group" style="display:none">
                         <div class="col-md-9 col-md-offset-3">                                                                     
                            	 <div class="col-md-9"><div class="form-group"><input type="text" class="form-control" id="switchVal" name="switchVal" placeholder="下发数据" value=""></div></div>
                          </div>
                      </div>     
                     
                     <div class="form-group pull-right" align="center">
-                            <button type="submit" class="btn btn-default">修改报警</button>
+                            <button type="button" onclick="checkLng();" class="btn btn-default">修改报警</button>
                             
 	                            
                             
@@ -151,6 +158,19 @@
             </div>
     	<input type="hidden" id="basePath" value="">
     	<script type="text/javascript">
+                function checkLng(){
+                    var data = $("#update-sensor-form").serializeArray();
+                    $.post('/alarms/<%= @alarm.id%>/update',(data), 
+                     //回调函数 
+                      function(theback) 
+                       {
+                           //输出结果
+                           alert("修改成功");
+                      },
+                      //返回类型
+                       "json"
+                      );
+                }
     		function showOrHideDive(){
     			var target = $("#target").val();
     			if(target == 'Email'){

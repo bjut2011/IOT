@@ -310,8 +310,6 @@ function showDevicesTable(s) {
     devicesListHtml.push('<th style="text-align:center;">' + allPage.deviceName + '</th>');
     //devicesListHtml.push('<th style="text-align:center;">' + allPage.imeiNo + '</th>');
     devicesListHtml.push('<th style="text-align:center;">' + allPage.modelName + '</th>');
-    devicesListHtml.push('<th style="text-align:center;">' + allPage.carNum + '</th>');
-    devicesListHtml.push('<th style="text-align:center;">' + allPage.speedLimit + '</th>');
     devicesListHtml.push('<th style="text-align:center;">' + allPage.lat + '</th>');
     devicesListHtml.push('<th style="text-align:center;">' + allPage.lng + '</th>');
     devicesListHtml.push('<th style="text-align:center;">' + allPage.speed + '</th>');
@@ -463,8 +461,6 @@ function showDevicesTable(s) {
             devicesListHtml.push('<td class="tc">&nbsp;' + allDevices.devices[i].name + '</td>');
             //devicesListHtml.push('<td class="tc">' + allDevices.devices[i].sn + '</td>');
             devicesListHtml.push('<td class="tc">' + allDevices.devices[i].modelName + '</td>');
-            devicesListHtml.push('<td class="tc">&nbsp;' + allDevices.devices[i].carNum + '</td>');
-            devicesListHtml.push('<td class="tc">' + allDevices.devices[i].speedLimit + '</td>');
             var oLat = allDevices.devices[i].latitude;
             var oLng = allDevices.devices[i].longitude;
             if (oLat == "" || oLat == undefined) {
@@ -1498,9 +1494,9 @@ function showDivIframe(url, id) {
         $("#divIframe").css("height", "368px");
         $("#ifmPage").attr("height", "340");
         if (loginType == 1) {
-            $("#ifmPage").attr("src", url + "?deviceid=" + id + "&randon=" + randomnumber);
+            $("#ifmPage").attr("src",   "devices/" + id + "?randon=" + randomnumber);
         } else {
-            $("#ifmPage").attr("src", "ProductUpdate.aspx" + "?id=" + UserId + "&deviceid=" + loginDeviceID + "&randon=" + randomnumber);
+            $("#ifmPage").attr("src", "deevices/" + id +"?randon=" + randomnumber);
         }
     } else if (url == "DownloadLocation.aspx") {
         $("#spanIframeTitle").html(mapPage.downloadLocation);

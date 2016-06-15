@@ -176,6 +176,13 @@ $(function(){
 			}else{
 				$this.parent().parent().remove();	
 			}
+                        $.ajax({
+                           url: '/sensors/'+sensorId,
+                           type: 'DELETE',
+                           success: function(result) {
+                             // Do something with the result
+                           }
+                        });
 		}
 	});
 

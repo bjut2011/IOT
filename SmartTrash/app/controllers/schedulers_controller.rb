@@ -36,11 +36,12 @@ class SchedulersController < ApplicationController
   # POST /schedulers
   # POST /schedulers.json
   def create
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     @scheduler = Scheduler.new(name:params[:name],device_id:params[:deviceId],sendval:params[:sendval],sendflag:params[:sendflag].to_i)
     @scheduler.save
     respond_to do |format|
       #if @scheduler.save
-        format.html { redirect_to "/schedulers", notice: 'Scheduler was successfully created.' }
+        format.html { redirect_to "/schedulers?pid="+current_admin.id, notice: 'Scheduler was successfully created.' }
         #format.json { render :show, status: :created, location: @scheduler }
       #else
        # format.html { render :new }

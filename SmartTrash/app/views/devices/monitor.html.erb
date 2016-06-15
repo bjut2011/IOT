@@ -523,7 +523,7 @@ function demoLogin(){
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="">
+	                        <a href="/contacts?pid=<%=@project_id%>">
 	                            <i class="glyphicon glyphicon-user"></i>
 	                            <h5>用户中心</h5>
 	                        </a>
@@ -536,7 +536,7 @@ function demoLogin(){
 
 
             <!--中间部分-->
-            <div class="index_centen">
+            <div class="index_centen" style="width: 300px;">
                 <div class="conten_title">
                     <input type="hidden" id="wsurl1" value="ws://115.29.170.230:8086/tlink_websocket/chat/11135_0">
 					<input type="hidden" id="wsurl2" value="ws://115.29.170.230:8087/tlink_websocket/chat/11135_0">
@@ -557,12 +557,17 @@ function demoLogin(){
             		
 				                   
                     <% @devices.each do |de|%>
+                    <% if (@status==0 and (de.update_time==nill or ((Time.new.to_i-de.update_time) >180))) or (@status==1 and (de.update_time and  (Time.new.to_i-de.update_time) <180)) or (@status==-1)%>
                    <div class="index_img_infosN" onclick="divShow('<%=de.id%>')">
 				        <div class="in_imgN" id="dev_<%=de.id%>">
 				            <a href="#" title="<%=de.device_name%>">
-				                
-				                    <img src="../../img/NotConnected.png" title="增加协议，建立连接">
-				                
+				                <%if de.update_time and  (Time.new.to_i-de.update_time) >180%>
+				                    <img src="../../img/NotConnected.png" title="">
+                                                <%elsif de.update_time and  (Time.new.to_i-de.update_time) <180%>
+				                    <img src="../../img/Connected.png" title="">
+                                                <%else%>
+				                    <img src="../../img/NotConnected.png" title="">
+				                <%end%>
 				                
 				            </a>
 				        </div>
@@ -578,6 +583,7 @@ function demoLogin(){
 				                   
                     
                    <%end%>	
+                   <%end%>	
                    	
                 </div>
             </div>
@@ -588,7 +594,7 @@ function demoLogin(){
 	            </div>
   		    </div>
 
-  <div class="index_theRight" id="avast02">
+  <div class="index_theRight" style="margin-left: 400px;" id="avast02">
 		<% @devices.each do |de|%>
                 <%if de.sensor && de.sensor.size>0%>
                 <p class="in_sen_title" id="divicename_<%=de.id%>"  style="display:none">
@@ -600,35 +606,70 @@ function demoLogin(){
                 <%de.sensor.each do |se|%>		
                 	
                 	<div class="row infos_imgsTitle" id="device-item-<%=de.id%>" style="display:none">
-                    	<div class="col-sm-2">
+                    	<div class="col-sm-2" style="display:none">
                         	<img src="../img/temperature.png" onerror="this.src='../img/scenery-21.png'">
                         	<p style="padding:0px 0px 10px 10px;">ID:17020</p>
                     	</div>
-                    	<div class="col-sm-4">
+                    	<div class="col-sm-2" style="width: 20%;">
                         	<h4><%=se.name%></h4>
-                        	<p>当前状态：
-                        	<span id="sz_<%=se.id%>"><font color="#ff0000;">未连接</font></span>
+                    	</div>
+                        <div class="col-sm-2" style="width: 10%;">
+                                <p style="margin-top:14px;color: #333;">状态：<span id="st_<%=se.id%>">
+                                <% if se.updatetime and (Time.new.to_i-se.updatetime) >3000 %>
+                                异常
+                                <%elsif se.updatetime%>
+                                正常
+                                <%else%>
+                                异常
+                                <%end%>
+                                </span>
                         	</p>
-                        	<p style="margin-top:14px;">更新时间：<span id="st_<%=se.id%>"></span></p>
-                    	</div>
-                    	<div class="col-sm-3">
-                    	     <span id="s_<%=se.id%>">
-	                    	     
-	                    	     
-	                    	        <div id="switch_<%=se.id%>" class="infos_close_"> 
-	                    	          <a onclick="switchVal('<%=se.id%>','JVA613NM4U18P04J')"></a>
-	                    	          <a onclick="switchVal('<%=se.id%>','JVA613NM4U18P04J')"></a>
-	                    	          <input type="hidden" id="_switch<%=se.id%>" value="1">
+                        </div>
+                        <div class="col-sm-1" style="width: 18%;">
+                            <%if se.sensorType==1%>
+                           <p style="margin-top:14px;color: #333;">数值：<span id="st_<%=se.id%>">
+                           <%= se.value%>
+                           </span>
+                           </p>
+                           <%elsif se.sensorType==2%>
+                              <span id="s_17020">
+                                        <%if se.value.to_i == 1%>
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/runing.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
 	                    	        </div>
-	                    	     
+                                        <%else%>
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/alarm.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                                        <%end%>
                     	     </span>
-                    	     <span class="value_unit"></span>
-                    	</div>
+                           <%elsif se.sensorType==4%>
+                              <span id="s_17020">
+                                        <%if se.value.to_i == 0%>
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/runing.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                                        <%else%>
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/alarm.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                                        <%end%>
+                    	     </span>
+                           <%end%>
+                        </div>
+                        <div class="col-sm-4" style="width: 28%;">
+                            <p style="margin-top:14px;color: #333;">更新时间：<span id="st_<%=se.id%>">
+                                <%if se.updatetime%>
+                                <%= Time.at(se.updatetime).strftime('%Y-%m-%d %H:%M:%S')%>
+                                <%end%>
+                                </span>
+                            </p>
+                        </div>
                     	<div class="pull-right">
                     		
                     		
                         	<a id="shouH_chart" onclick="showFrameDiv('<%=de.id%>','<%=se.id%>','dd','',2,'','','','','','');">&nbsp;∨&nbsp;实时曲线</a>
-                        	<span data-toggle="modal" data-target="#myModal_hist"><a href="javascript:alertWin(<%=de.id%>,<%=se.id%>,30,2)">&nbsp;&gt;&nbsp;历史查询</a></span>&nbsp;
+                        	<span data-toggle="modal" data-target="#myModal_hist"><a href="javascript:alertWin('<%=se.id%>','<%=de.id%>',30,2)">&nbsp;&gt;&nbsp;历史查询</a></span>&nbsp;
                         	
                     	</div>
                 	</div>
@@ -955,7 +996,7 @@ function demoLogin(){
 				$("#_history").html(data);
 			}); 
 		}else{
-		    $.post("/device/history.htm",reqData,function(data){
+		    $.post("/history",reqData,function(data){
 				$("#_history").html(data);
 			}); 
 	   }

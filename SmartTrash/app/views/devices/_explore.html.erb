@@ -10,12 +10,12 @@
             </div>
         </div>
 
-
+<script src="../js/device/gps.js"></script>
 
 <script type="text/javascript">
     var map = new AMap.Map('exploremap', {
         resizeEnable: true,
-        zoom:11,
+        zoom:5,
         center: [116.397428, 39.90923]
         
     });
@@ -33,11 +33,19 @@
                                                                 var position=[];
                                                                 position[0]=dataObj[i].lon;
                                                                 position[1]=dataObj[i].lat;
+                                                                var lgd=GPS.gcj_encrypt(dataObj[i].lat,dataObj[i].lon);
+                                                                //alert(lgd);
+                                                                position[0]=lgd.lon;
+                                                                position[1]=lgd.lat;
                                                                 marker = new AMap.Marker({
                                                                 icon: "/img/mark_b.png",
                                                                 position: position
                                                                 });
                                                                 marker.setMap(map);
+                                                                 marker.setLabel({
+                                                                 offset: new AMap.Pixel(20, 20),//修改label相对于maker的位置
+                                                                 content: dataObj[i].device_name
+                                                                });
 							}
    						}else{
    						}

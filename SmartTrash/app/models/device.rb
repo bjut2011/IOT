@@ -8,6 +8,7 @@ class Device
   key :device_details, String
   key :device_img, String
   key :create_time, Time
+  key :update_time, Float
   key :lon, Float
   key :lat, Float
   key :status, Integer

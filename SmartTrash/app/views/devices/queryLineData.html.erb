@@ -161,7 +161,7 @@ var _hmt = _hmt || [];
  
                              var localeString = date2.toLocaleString();
                              arr[j]=[];
-                             arr[j][0]=Date.UTC(date2.getUTCFullYear(),  date2.getUTCMonth(),  date2.getUTCDate(),date2.getUTCHours(),date2.getUTCMinutes());
+                             arr[j][0]=date2.getTime();//Date.UTC(date2.getUTCFullYear(),  date2.getUTCMonth(),  date2.getUTCDate(),date2.getUTCHours(),date2.getUTCMinutes());
                              arr[j][1]=itm["value"];
                              j++;
   

@@ -523,7 +523,7 @@ function demoLogin(){
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="#">
+	                        <a href="/contacts?pid=<%=@project_id%>">
 	                            <i class="glyphicon glyphicon-user"></i>
 	                            <h5>用户中心</h5>
 	                        </a>
@@ -600,7 +600,7 @@ function demoLogin(){
       <div class="col-sm-5" style="width: 32.66666667%;">
         <%case am.alarmType%>
         <% when 'val_above' %>
-        <%=Sensor.find(am.sensorId).name%>:如果数值高于<%= am.alarmTypeDiv%>
+        <%=Sensor.find(am.sensorId).name%>:如果数值高于<%= am.upperBoundC%>
         <% when 'offline' %>
         <%=Sensor.find(am.sensorId).name%>:传感器断开
         <% when 'switch_on' %>
@@ -608,7 +608,7 @@ function demoLogin(){
         <% when 'switch_off' %>
         <%=Sensor.find(am.sensorId).name%>:开关关闭
         <% when 'val_below' %>
-        <%=Sensor.find(am.sensorId).name%>:如果数值低于<%= am.alarmTypeDiv%>
+        <%=Sensor.find(am.sensorId).name%>:如果数值低于<%= am.lowerBoundC%>
         <% else %>
         <% end %>
       </div>

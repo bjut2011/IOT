@@ -23,14 +23,16 @@ class AlarmsController < ApplicationController
      sensorId=params[:sensorId]
      alarmType=params[:alarmType]
      upperBoundC=params[:upperBoundC]
-     if params[:lowerBoundC]
-       upperBoundC=params[:lowerBoundC]
-     end
+     #if params[:lowerBoundC]
+      # upperBoundC=params[:lowerBoundC]
+     #end
+     duration=params[:duration]
+     lowerBoundC=params[:lowerBoundC]
      target=params[:target]
      switchVal=params[:switchVal]
      dev=Device.find(deviceId)
      userId=dev.user_id.to_s()
-     alarm=Alarm.new(contactId:contactId,deviceId:deviceId,sensorId:sensorId,alarmType:alarmType,alarmTypeDiv:upperBoundC,target:target,switchVal:switchVal,userId:userId)
+     alarm=Alarm.new(contactId:contactId,deviceId:deviceId,sensorId:sensorId,alarmType:alarmType,duration:duration,upperBoundC:upperBoundC,lowerBoundC:lowerBoundC,alarmTypeDiv:upperBoundC,target:target,switchVal:switchVal,userId:userId)
      alarm.save
      respond_to do |format|
         format.html { redirect_to "/alarms?pid="+userId, notice: 'Alarm was successfully created.' }
@@ -82,6 +84,10 @@ class AlarmsController < ApplicationController
     if @devices
        @sensors= @devices[0].sensor
     end
+    @alarm=Alarm.find(params[:alarmsId])
+
+    de= Device.find(@alarm.deviceId)
+    @sensors=de.sensor
   end
   # GET /alarms/1
   # GET /alarms/1.json
@@ -116,14 +122,20 @@ class AlarmsController < ApplicationController
   # PATCH/PUT /alarms/1
   # PATCH/PUT /alarms/1.json
   def update
+    contactId=params[:mobile_alarms]
+    deviceId=params[:deviceId]
+    sensorId=params[:sensorId]
+    alarmType=params[:alarmType]
+    upperBoundC=params[:upperBoundC]
+    duration=params[:duration]
+    lowerBoundC=params[:lowerBoundC]
+    target=params[:target]
+    switchVal=params[:switchVal]
+    alarmId=params[:alarmsId]
+    am=Alarm.find(alarmId)
+    am.update_attributes(contactId:contactId,alarmType:alarmType,upperBoundC:upperBoundC,duration:duration,lowerBoundC:lowerBoundC,target:target,switchVal:switchVal)
     respond_to do |format|
-      if @alarm.update(alarm_params)
-        format.html { redirect_to @alarm, notice: 'Alarm was successfully updated.' }
-        format.json { render :show, status: :ok, location: @alarm }
-      else
-        format.html { render :edit }
-        format.json { render json: @alarm.errors, status: :unprocessable_entity }
-      end
+        format.json {render :json => {:code =>0,:msg =>"OK",:redirect_uri =>"/"}}
     end
   end
 

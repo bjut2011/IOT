@@ -1,0 +1,184 @@
+
+
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="icon" href="/images/favicon.ico">
+<script src="/js/device/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="/js/device/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/device/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/device/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="/css/device/myIndex.css">
+<link rel="stylesheet" type="text/css" href="/css/device/style.min.css">
+<script type="text/javascript" src="/js/device/jquery-form.js"></script>
+<script type="text/javascript" src="/js/device/navbar.js"></script>
+<script type="text/javascript" src="/js/device/jquery.datetimepicker.js"></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cab9d2db73648c24a142c1d8df07c285";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script> 
+<!DOCTYPE html>
+<html>
+  <head>
+    <base />
+    <title>Tlink物联网-监控中心,TLINK物联网-中国最大的物联网开放平台</title>
+    <meta name="Keywords" content="TLINK|物联网|智能物联|数字农业|仪器仪表物联网|物联网平台|物联网云服务|物联网开放平台|物联网技术|物联网应用|传感器云平台|环境物联网|能源物联网"  />
+    <meta name="Description" content="TLINK物联网是深圳市模拟科技有限公司面向物联网产品的开放平台" />
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script type="text/javascript" src="/js/device/highcharts.js"></script>
+	<script type="text/javascript" src="/js/device/exporting.js"></script> 
+	
+	<script type="text/javascript">  
+	var chart; 
+	var series;
+    var unit;
+    var sname;
+    var sensorId;
+    var queryDate;
+    var m;
+    var data = [];
+	$(document).ready(function() { 
+	    var tmpDate = new Date();
+	    premonth = tmpDate.getMonth();    //前一月
+		month = tmpDate.getMonth() + 1 ;  //当前月
+	    
+		sensorId=$("#sensorId").val();
+        queryDate=$("#queryDate").val();
+        m=$("#m").val();
+        unit = $("#unit").val();
+        sname = "数值";
+        
+         $("#_pre").html(premonth+"月");
+         $("#_cur").html(month+"月");
+         $("#_pre").attr("title",premonth+"月份");
+         $("#_cur").attr("title",month+"月份");
+         $("#_pre").attr("href","/device/goHistoryLine.htm?sensorId="+sensorId+"&name=&unit="+unit+"&queryDate=3&type=1&url=&m="+premonth);
+         $("#_cur").attr("href","/device/goHistoryLine.htm?sensorId="+sensorId+"&name=&unit="+unit+"&queryDate=2&type=1&url=&m="+month)
+        
+    	Highcharts.setOptions({  
+        	global: {  
+            	useUTC: false  
+        	}  
+    	});  
+    	 
+    	chart = new Highcharts.Chart({  
+        	chart: {  
+            	renderTo: 'container',  
+            	type: 'spline',  
+            	marginRight: 10,  
+            	events: {  
+                	load: function() {  
+                    series = this.series[0];   
+                }  
+            }  
+        },  
+        title: {  
+            text: ''  
+        },  
+        xAxis: {  
+            type: 'datetime',  
+            tickPixelInterval: 150,
+        },  
+        yAxis: {  
+            title: {  
+                text: '历史曲线'  
+            },  
+            plotLines: [{  
+                value: 0,  
+                width: 1,  
+                color: '#808080'  
+            }]  
+        },  
+        tooltip: {  
+            formatter: function() {  
+                    return  Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>'+  
+                    '<b>'+ this.series.name +': </b>'+  
+                    Highcharts.numberFormat(this.y, 2)+' ';  
+            }  
+        },  
+        legend: {  
+            enabled: false  
+        },  
+        exporting: {  
+            enabled: true  
+        },  
+        series: [{  
+        	turboThreshold: 99999999,
+            name: ''+sname,  
+            data: (function() {  
+                // generate an array of random data  
+                $.ajax({
+   					type:"post",
+   					async: false,
+  					url:"/device/querySensorHistoryDatas.htm?sensorId="+sensorId+"&queryDate="+queryDate+"&m="+m,
+   					success:function(sensorData){
+   						var jsonObj = eval('('+sensorData+')');
+   						var sensorsObj=eval(jsonObj.dataList);  
+   						var flag = jsonObj.flag;
+   						var sensorType = $("#sensorType").val();
+   						if(flag == "00"){
+   							var len = sensorsObj.length;
+   							for(var i=0;i<len;i++){  
+	   							var val = sensorsObj[i].t_val; 
+	   							if('2' == sensorType || '' == sensorType){
+	   				   				val = sensorsObj[i].t_switcher;
+								}
+								
+	   							var updateTime = sensorsObj[i].t_addTime; 
+	   							updateTime = updateTime.replace(/-/g,"/");
+								var date = new Date(updateTime);
+								 data.push({  
+	                        		x: date,  
+	                       			y: Number(val)  //初始数据
+	                    		});  
+                    		}
+   						}
+					}
+                   });
+                return data;  
+            })()  
+        }]  
+    });  
+});  
+</script>  
+	
+  </head>
+  
+  <body style="background-color:#fff;">
+  <input type="hidden" name="name" id="name" value="æ¸©åº¦"/>
+  <input type="hidden" name="unit" id="unit" value="K"/>
+  <input type="hidden" name="sensorId" id="sensorId" value="16262"/>
+  <input type="hidden" name="sensorType" id="sensorType" value="1"/>
+  <input type="hidden" name="queryDate" id="queryDate" value="0"/><!--0、小时  1、天  2、月  3、年-->
+  <input type="hidden" name="m" id="m" value=""/>
+  
+  	<p class="history_p">历史数据</p>
+  
+  <p class="history_cTitle">
+     历史曲线
+  <span style="margin-left:30px;">Zoom</span>
+  <a href="/device/goHistoryLine.htm?sensorId=16262&unit=K&queryDate=0&type=1&url=&name=æ¸©åº¦" title="最近1小时" class="history_days">1h</a>
+  <a href="/device/goHistoryLine.htm?sensorId=16262&unit=K&queryDate=1&type=1&url=&name=æ¸©åº¦" title="最近1天" >1d</a>
+  <a href="#"  id="_pre"></a>
+  <a href="#"  id="_cur"></a>
+
+  <!-- <a href="/device/goHistoryLine.htm?sensorId=16262&name=æ¸©åº¦&unit=K&queryDate=3&type=1" title="最近1年" >1y</a> -->
+  </p>
+  <div class="col-sm-12 history_chart" id="container" style="width: 100%;height: 280px">
+  </div>
+  
+  </body>
+</html>
+

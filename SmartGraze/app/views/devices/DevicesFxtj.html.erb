@@ -1,0 +1,61 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	分析统计
+</title>
+    <script src="/js/map/jquery-1.6.min.js" type="text/javascript"></script>
+    <script src="/js/map/DevicesFxtj.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/map/WdatePicker.js"></script>
+</head>
+<body>
+    <form method="post" action="./DevicesFxtj.aspx?id=188&amp;n=888" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTc4OTkwNDIzMQ9kFgICAw9kFgQCAQ8PZBYCHgdvbmNsaWNrBVJXZGF0ZVBpY2tlcih7bGFuZzonemgtY24nLGVsOiRkcC4kKCd0eHRTdGFydERhdGUnKSxkYXRlRm10Oid5eXl5LU1NLWRkIEhIOm1tOnNzJ30pZAIDDw9kFgIfAAVQV2RhdGVQaWNrZXIoe2xhbmc6J3poLWNuJyxlbDokZHAuJCgndHh0RW5kRGF0ZScpLGRhdGVGbXQ6J3l5eXktTU0tZGQgSEg6bW06c3MnfSlkZDLxGpWDGx7B5tX+to6lEGBQRjEwtAbrsoCSQoxKIqga" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="F8371238" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAQlbdvFoC33uF6bGnAgnhSWE6xT88eU23mXQtKt61lAGFDrnzM85amiq0HGwa5wnb8CRqmdu6AK73dnw1sU7J2O9YV98TH7AMjXlkUOZJX0VIZBiIIDvNJgU/+jU9bDT98=" />
+</div>
+    <div>
+        分析统计包含自己用户和所有下级用户下的所有设备<br />
+        (点击设备统计数字,能显示该统计设备列表)
+         <br /><br />查询设备添加时间范围:<input name="txtStartDate" type="text" value="2003-06-10 09:51:12" id="txtStartDate" class="Wdate" onclick="WdatePicker({lang:&#39;zh-cn&#39;,el:$dp.$(&#39;txtStartDate&#39;),dateFmt:&#39;yyyy-MM-dd HH:mm:ss&#39;})" />
+                    &nbsp;到<input name="txtEndDate" type="text" value="2016-06-10 09:51:12" id="txtEndDate" class="Wdate" onclick="WdatePicker({lang:&#39;zh-cn&#39;,el:$dp.$(&#39;txtEndDate&#39;),dateFmt:&#39;yyyy-MM-dd HH:mm:ss&#39;})" />
+        &nbsp;&nbsp;<input type="button" value=" 搜索 " onclick="clkGetReport();" />
+        <div style="font-size:20px; font-weight:bold; color:Black; margin-top:5px;">
+        <div id="divLoading" style="width:32px; position:absolute; display:block; margin-left:290px; margin-top:80px;"><img src="../icons/loading.gif" width="32" height="32" /></div>
+            <table border="0" cellspacing="10">
+            <tr>
+                <td>所有设备:<span id="spanDeviceCount" onclick="showParentIframeReport(0);" style="color:Red; cursor:pointer;"></span>台</td>
+            </tr>
+            <tr>
+                <td>当前在线设备数:<span id="spanOnelineCount" onclick="showParentIframeReport(1);"  style="color:Red;cursor:pointer;"></span>台</td>
+            </tr>
+            <tr>
+                <td>30天内上线设备数:<span id="spanDay7OnlineCount" onclick="showParentIframeReport(6);"  style="color:Red;cursor:pointer;"></span>台</td>
+            </tr>
+            <tr>
+                <td>离线设备数:<span id="spanOfflineCount" onclick="showParentIframeReport(2);"  style="color:Red;cursor:pointer;"></span>台</td>
+            </tr>
+            <tr>
+                <td>使用设备数:<span id="spanUseCount" onclick="showParentIframeReport(3);"  style="color:Red;cursor:pointer;"></span>台(上线即算使用)</td>
+            </tr>
+            <tr>
+                <td>欠费设备数:<span id="spanArrearsCount" onclick="showParentIframeReport(4);"  style="color:Red;cursor:pointer;"></span>台</td>
+            </tr>
+            <tr>
+                <td>未启用设备数:<span id="spanLoggedOffCount" onclick="showParentIframeReport(5);"  style="color:Red;cursor:pointer;"></span>台(从未上线)</td>
+            </tr>
+            </table>
+        </div>
+    </div>
+        <input name="hidUserID" type="hidden" id="hidUserID" value="188" />
+    </form>
+</body>
+</html>
+

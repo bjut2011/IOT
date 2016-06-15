@@ -6,5 +6,6 @@ class Sensor
   key :sensorSign, Integer
   key :sensorUnit, String
   key :update_time, Time
+  key :updatetime, Float
   belongs_to :device
 end

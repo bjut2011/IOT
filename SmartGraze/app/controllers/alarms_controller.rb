@@ -15,7 +15,10 @@ class AlarmsController < ApplicationController
        @alarms=Alarm.where(userId:@project_id)
     end
   end
-  
+   
+  def AlarmDetail
+  end
+ 
   def addAlarms
      current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
      contactId=params[:contactId]

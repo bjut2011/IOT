@@ -8,4 +8,5 @@ class User
   key :token, String
   key :type, Integer
   many :device
+  many :contact
 end

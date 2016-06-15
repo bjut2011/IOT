@@ -160,7 +160,7 @@ function ajaxGetDevices(id, userID, pageNo, expDays) {
             //alert(res.responseText);
         },
         success: function (result) {
-            var res = result.info;
+            var res = result.d;
             if (res != "") {
                 showDevicesTable(res, id, expDays);
             }
