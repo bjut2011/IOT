@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :alarmlogs
   resources :schedulers
   get 'dmaps/layout' =>"dmaps#layout"
   resources :dmaps

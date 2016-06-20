@@ -553,15 +553,15 @@ function demoLogin(){
     
     
 	    <a href="/alarms?pid=<%=@project_id%>"><p><i class="glyphicon glyphicon-bell"></i>所有报警</p></a>
-	    <a href="/alarms?pid=<%=@project_id%>" style="display:none"><p><i><img src="../img/on_activate.png"></i>已激活</p></a>
-	    <a href="/alarms?pid=<%=@project_id%>" style="display:none"><p><i><img src="../img/off_activate.png"></i>未激活</p></a>
+	    <a href="/alarms?pid=<%=@project_id%>"><p><i><img src="../img/on_activate.png"></i>已激活</p></a>
+	    <a href="/alarms?pid=<%=@project_id%>"><p><i><img src="../img/off_activate.png"></i>未激活</p></a>
     
           <br>
           <h3 class="trigger_font">管理</h3> 
     
           <a href="javascript:updateAlarms('');"><p class="p_border_"><i class="glyphicon glyphicon-plus"></i><label data-toggle="modal" data-target="#addAlarms">添加报警</label></p></a>
     
-         <a href="/alarmlogs?pid=<%=@project_id%>"><p><i class="glyphicon glyphicon-pencil"></i>报警记录</p></a>
+         <a href="#"><p><i class="glyphicon glyphicon-pencil"></i>报警记录</p></a>
          </div>
 
 
@@ -570,70 +570,70 @@ function demoLogin(){
         </div>     
         <!--右边部分-->
         
-       <div class="col-sm-10">
-  <div class="trigger_theRight">
-    <div class="col-sm-12 trigger_liebiao">
-      报警列表
-    </div>
-    <% @alarms.each do |am|%>
-    <div class="row infos_imgsTitle">
-      <div class="col-sm-2">
-        <img src="../img/GPS.png">
-      </div>
-      <div class="col-sm-4">
-        <h4>
-          <%=Sensor.find(am.sensorId).name%>
-        </h4>
-        <p style="padding:0px 0px 12px 0px;">
-          <%if Contact.find(am.contactId)%>
-          联系人：<%=Contact.find(am.contactId).name%>
-          <%else%>
-          联系人：未知
-          <%end%>
-        </p>
-        <p>
-          当前状态：
-          <a href="javascript:activeAlarms('1','<%= am.id%>')" id="active920" style="color:#fff;"
-          class="online_t" title="开启报警">
-            已开启
-          </a>
-        </p>
-      </div>
-      <div class="col-sm-5" style="width: 32.66666667%;">
-        <%case am.alarmType%>
-        <% when 'val_above' %>
-        <%=Sensor.find(am.sensorId).name%>:如果数值高于<%= am.upperBoundC%>
-        <% when 'offline' %>
-        <%=Sensor.find(am.sensorId).name%>:故障
-        <% when 'switch_on' %>
-        <%=Sensor.find(am.sensorId).name%>:开关开启
-        <% when 'switch_off' %>
-        <%=Sensor.find(am.sensorId).name%>:开关关闭
-        <% when 'val_below' %>
-        <%=Sensor.find(am.sensorId).name%>:如果数值低于<%= am.lowerBoundC%>
-        <% else %>
-        <% end %>
-      </div>
-      <div class="pull-right">
-        <a href="javascript:updateAlarms('<%= am.id%>');" title="编辑报警">
-          <p data-toggle="modal" data-target="#addAlarms">
-            <img src="../img/edit.png">
-          </p>
-          <p data-toggle="modal" data-target="#addAlarms">
-            编辑
-          </p>
-        </a>
-      </div>
-      <div class="col-sm-1" style="width: 12.66666667%;padding-top: 31px;">
-        <a href="javascript:deleteAlarms('<%= am.id%>');" title="删除报警">
-            删除
-        </a>
-      </div>
-    </div>
-    <%end%>
-  </div>
-</div> 
-
+        <div class="col-sm-8 alarm_lo">
+        <form action="#" method="post" id="queryForm">
+           <div class="alarm_p" style="width: 100%;">
+             <span>报警记录</span>
+	            <span style="display: none;" id="_phone">
+	                手机号码：<input type="text" name="mobile" class="form-control" style="width: 200px;display: inline;" value="">
+	            </span>
+	            <span style="display: none;" id="_wechat">
+	                openId：<input type="text" name="weChat" class="form-control" style="width: 200px;display: inline;" value="">
+	            </span>
+	            <span style="display: none;" id="_email">
+	                邮箱：<input type="text" name="email" class="form-control" style="width: 200px;display: inline;" value="">
+	            </span>
+	            <span>
+	                 发送状态:
+		           <select class="form-control" name="status" style="width: 120px;display: inline;" onchange="gotoForm()">
+		              <option value="2">全部</option>
+		              <option value="0">发送成功</option>
+		              <option value="1">发送失败</option>
+		           </select>
+	           </span>
+	           <span><button class="btn btn-default"> 搜 索 </button></span>
+	        </div> 
+  			<input type="hidden" name="page" id="currPage" value="1">
+            <table style="margin-top: 30px;width: 100%;overflow: scroll" class="table">
+                <tbody><tr style="background: #e2e1dd;">
+                    <th>报警方式</th>
+                    <th>报警时间</th>
+                    <th>发送状态</th>
+                    <th>失败原因</th>
+                    <th>报警内容</th>
+                </tr>
+                
+                
+                <tr>
+                    <td>
+                     
+                        
+                        
+                        
+                          	 13319088765
+                        
+                     
+                    </td>
+                    <td>2016-05-20 13:52:17</td>
+                    <td>
+                       
+                       
+                          	发送失败
+                       
+                    </td>
+                    <td>短信数量为0或未找到联系人</td>
+                    <td>设备:温度
+传感器:dd
+触发:断开报警</td>
+                </tr>
+                
+                
+                
+                <tr align="center">
+			      <td colspan="7"><div class="text-center"><ul class="pagination" id="_queryPage"><li data-index="1"><a href="#" type="button">首页</a></li><li data-index="1"><a href="#" type="button"><font color="red">1</font></a></li> <li data-index="1"><a href="#" type="button">末页</a></li></ul></div></td>
+			    </tr>
+            </tbody></table>
+        </form></div>
 
 
        

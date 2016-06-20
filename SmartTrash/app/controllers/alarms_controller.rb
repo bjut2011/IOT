@@ -16,6 +16,18 @@ class AlarmsController < ApplicationController
     end
   end
   
+  def alarmlogs
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    if params["pid"]  and current_admin and  current_admin.type!=0
+       @pid=current_admin.id
+       @project_id=current_admin.id.to_s
+       @alarmlogs=Alarmlog.where(:user_id =>current_admin.id)
+    else
+       @alarmlogs=Alarmlog.all
+    end
+    
+  end
+ 
   def addAlarms
      current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
      contactId=params[:contactId]

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @alarmlog.user_id %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @alarmlog.code %>
+</p>
+
+<p>
+  <strong>Sendmsg:</strong>
+  <%= @alarmlog.sendmsg %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @alarmlog.mobile %>
+</p>
+
+<%= link_to 'Edit', edit_alarmlog_path(@alarmlog) %> |
+<%= link_to 'Back', alarmlogs_path %>
