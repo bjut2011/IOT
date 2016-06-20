@@ -30,6 +30,47 @@ class SensorlogsController < ApplicationController
     end
   end
 
+  def querySensorHistoryDatas
+    ##@sensorlog=Sensorlog.all(:sensor_id => params[:sensorid],:order => "time DESC")
+    tm=Time.now.to_i
+    day=Time.now
+    type=params[:queryDate]
+    if type.nil?
+      day=day-1.hour
+      tm=day.to_i
+      logger.info day
+      @sensorlog=Sensorlog.where(:sensor_id => params[:sensorid],:update_time.gt => tm).sort(:time => :desc)
+    elsif type.to_i==1
+      day=day-1.hour
+      tm=day.to_i
+      logger.info day
+      @sensorlog=Sensorlog.where(:sensor_id => params[:sensorid],:update_time.gt => tm).sort(:time => :desc)
+    elsif type.to_i==2
+      day = Time.new(day.year, day.month, day.day)
+      tm=day.to_i
+      logger.info day
+      @sensorlog=Sensorlog.where(:sensor_id => params[:sensorid],:update_time.gt => tm).sort(:time => :desc)
+    elsif type.to_i==3
+      day_e= Time.new(day.year, day.month, 1)
+      day=day-1.month
+      day= Time.new(day.year, day.month, 1)
+      tm=day.to_i
+      tm_e=day_e.to_i
+      logger.info day
+      logger.info day_e
+      @sensorlog=Sensorlog.where(:sensor_id => params[:sensorid],:update_time.gt => tm,:update_time.lt => tm_e).sort(:time => :desc)
+    elsif type.to_i==4
+      day = Time.new(day.year, day.month, 1)
+      tm=day.to_i
+      logger.info day
+      @sensorlog=Sensorlog.where(:sensor_id => params[:sensorid],:update_time.gt => tm).sort(:time => :desc)
+    end
+    respond_to do |format|
+      format.json {render :json => {:code =>0,:data => @sensorlog}}
+    end
+
+  end
+
   # POST /sensorlogs
   # POST /sensorlogs.json
   def create

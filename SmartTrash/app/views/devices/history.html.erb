@@ -21,6 +21,8 @@
 <link rel="stylesheet" type="text/css" href="/css/device/myIndex.css">
 <link rel="stylesheet" type="text/css" href="/css/device/style.min.css">
 <script type="text/javascript" src="/js/device/jquery-form.js"></script>
+<script type="text/javascript" src="../js/device/jquery_ujs.js"></script>
+<script type="text/javascript" src="../js/device/jquery.js"></script>
 <script type="text/javascript" src="/js/device/navbar.js"></script>
 <script type="text/javascript" src="/js/device/jquery.datetimepicker.js"></script>
 <script>
@@ -111,6 +113,9 @@ var _hmt = _hmt || [];
 						}else if(jsonData.dataList[i].t_sensorTypeId == "4"){  //图片型
 						   	val = "<img src='"+jsonData.dataList[i].t_val+"' width='30px' height='30px' onclick='attrImg(this)' style='cursor: hand'  />";
 						}*/
+                                                if(jsonData.sensor.sensorType!=1 &&jsonData.dataList[i].tag){
+                                                       val=jsonData.dataList[i].tag;
+                                                }
 						if(val == ""){
 							val = jsonData.dataList[i].value;
 						}
@@ -229,9 +234,9 @@ var _hmt = _hmt || [];
         <input type="hidden" id="sensorId" value="<%=@sensorId%>">
         <input type="hidden" id="sensorType" value="1">
            <!-- 线图开始 -->
-           
-             <iframe src="/goHistoryLine?sensorId=16262&unit=K&type=1&name=温度" style="width:100%;height:400px;border:none;display:none"></iframe>
-           
+             <%if @seobject.sensorType==1%>
+             <iframe src="/goHistoryLine?sensorId=<%=@seobject.id%>&queryDate=1&uniy=K&type=1&name=温度" style="width:100%;height:400px;border:none;"></iframe>
+             <%end%>
             
            <!-- 线图结束 -->
             <div class="col-sm-12 history_dataList">
@@ -251,11 +256,11 @@ var _hmt = _hmt || [];
                 		 <button  class="btn btn-default" id="sensorDataForm">
                         <i class="glyphicon glyphicon-search"></i>搜索
                     </button>
-                    <button class="btn btn-default" onclick="download();">
+                    <button class="btn btn-default" style="display:none" onclick="download();">
                         <i class="glyphicon glyphicon-arrow-down"></i>导出数据
                     </button>
                 	</div>
-                    <div class="col-sm-1 pd0">
+                    <div class="col-sm-1 pd0" style="display:none">
                     	 <input  type="text" name="faultDelay"  class="form-control" id="_faultDelay" value="" style="width:240px;"  placeholder="导出记录间隔时间（默认30秒/条）" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
                     </div>
                 </div>
@@ -265,14 +270,13 @@ var _hmt = _hmt || [];
                 <table class="table table-bordered">
                   <tbody>
                    <tr class="table_header"><td>数据</td><td>更新时间</td></tr>
-                     <tr><td>24</td><td>2016-06-14 15:08:24</td></tr>
 	              </tbody>
                  </table>
             </div>
             <div id="pagination" >
                
                
-                	<div  style="color: red" align="center">首页 </div>
+                	<div  style="color: red" align="center"> </div>
                
             </div>
         </div>
@@ -305,7 +309,7 @@ var _hmt = _hmt || [];
                         
                        </span>
 	            </p>
-	            <p class="sen_infos"> 
+	            <p class="sen_infos" style="display:none"> 
 	                <!--（注：已连接class为 online   未连接：offline）-->
 	                当前状态：<span class="offline" id="sz_16262">未连接</span>
 	                   

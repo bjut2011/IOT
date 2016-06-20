@@ -1,7 +1,6 @@
 class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token
-
   # GET /devices
   # GET /devices.json
   def index
@@ -11,7 +10,7 @@ class DevicesController < ApplicationController
     #    de.update_attributes(user_id:current_admin.id)
       
     #end 
-    if params["pid"] and current_admin.type!=0
+    if params["pid"] and current_admin and current_admin.type!=0
        pid=params["pid"]
        logger.info pid
        @devices=User.find(pid).device
@@ -32,11 +31,14 @@ class DevicesController < ApplicationController
    @deviceId=params[:deviceId]
    @seobject=Sensor.find(@sensorId);
    @deobject=Device.find(@deviceId);
+   @queryDate=params[:queryDate]
    logger.info @deobject
    logger.info  @deviceId
   end
   
   def goHistoryLine
+   @queryDate=params[:queryDate]
+   @sensorid=params[:sensorId]
   end
 
   def alarmsms
@@ -61,7 +63,7 @@ class DevicesController < ApplicationController
   def getDevices
     current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     @devices = Device.all
-    if params["pid"] and current_admin.type!=0
+    if params["pid"] and current_admin and current_admin.type!=0
        pid=params["pid"]
        logger.info pid
        @devices=User.find(pid).device
@@ -76,7 +78,7 @@ class DevicesController < ApplicationController
   def explore
     current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     @devices = Device.all
-    if params["pid"] and current_admin.type!=0
+    if params["pid"] and current_admin and current_admin.type!=0
        pid=params["pid"]
        logger.info pid
        @devices=User.find(pid).device
@@ -97,7 +99,7 @@ class DevicesController < ApplicationController
   def monitor
    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
    @devices = Device.all
-   if params["pid"] and current_admin.type!=0
+   if params["pid"] and current_admin and current_admin.type!=0
        pid=params["pid"]
        logger.info pid
        @devices=User.find(pid).device

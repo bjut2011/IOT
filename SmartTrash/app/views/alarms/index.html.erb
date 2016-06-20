@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="../css/device/myIndex.css">
 <link rel="stylesheet" type="text/css" href="../css/device/style.min.css">
 <script type="text/javascript" src="../js/device/jquery-form.js"></script>
+<script type="text/javascript" src="../js/device/jquery_ujs.js"></script>
+<script type="text/javascript" src="../js/device/jquery.js"></script>
 <script type="text/javascript" src="../js/device/navbar.js"></script>
 <script type="text/javascript" src="../js/device/jquery.datetimepicker.js"></script>
 <script>
@@ -525,7 +527,7 @@ function demoLogin(){
 	                    <li>
 	                        <a href="/contacts?pid=<%=@project_id%>">
 	                            <i class="glyphicon glyphicon-user"></i>
-	                            <h5>用户中心</h5>
+	                            <h5>清洁工管理</h5>
 	                        </a>
 	                    </li>
 	                    <!--<li>
@@ -602,7 +604,7 @@ function demoLogin(){
         <% when 'val_above' %>
         <%=Sensor.find(am.sensorId).name%>:如果数值高于<%= am.upperBoundC%>
         <% when 'offline' %>
-        <%=Sensor.find(am.sensorId).name%>:传感器断开
+        <%=Sensor.find(am.sensorId).name%>:故障
         <% when 'switch_on' %>
         <%=Sensor.find(am.sensorId).name%>:开关开启
         <% when 'switch_off' %>

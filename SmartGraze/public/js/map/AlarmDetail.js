@@ -38,16 +38,7 @@ function clkGetReport() {
         ajaxGetReport(deviceId);
     } else {
         var selDeviceID = $("#ddlDevices").val();
-        if (selDeviceID != "") {
-            selDeviceID = parseInt(selDeviceID);
-            if (selDeviceID > 0) {
-                ajaxGetReport(selDeviceID);
-            } else {
-                alert(allPage.plsDeviceMsg);
-            }
-        } else {
-            alert(allPage.plsDeviceMsg);
-        }
+        ajaxGetReport(selDeviceID);
     }
 }
 
@@ -85,9 +76,7 @@ function ajaxGetReport(deviceID) {
     $.ajax({
         type: "post",
         url: "getAlarmByDeviceID",
-        contentType: "application/json",
-        data: "{\"DeviceID\":\"" + deviceID + "\",\"TimeZones\":\"" + timeZones + "\",\"StartDates\":\"" + beginTime + "\",\"EndDates\":\"" + endTime + "\",\"TypeID\":" + selTypeID + "}",
-        dataType: "json",
+        data: "DeviceID=" + deviceID + "&TimeZones=" + timeZones + "&StartDates=" + beginTime + "&EndDates=" + endTime + "&TypeID=" + selTypeID ,
         error: function (res) {
             //alert(res.responseText);
         },
@@ -123,7 +112,7 @@ function showTable(strs) {
                 html.push('<td>' + typeStr + '</td>');
                 html.push('<td>' + json.reports[i].createTime + '</td>');
                 html.push('<td>' + json.reports[i].deviceTime + '</td>');
-                html.push('<td><a style="text-decoration:underline;"  href="javascript:void(0);" onclick="showDivIframe(\'simpleMap\',\'' + json.reports[i].latitude + '\',\'' + json.reports[i].longitude + '\');">' + json.reports[i].latitude + ',' + json.reports[i].longitude + '</a></td>');
+                html.push('<td><a style="text-decoration:underline;"  href="javascript:void(0);" onclick="showDivIframe(\'SimpleMap\',\'' + json.reports[i].latitude + '\',\'' + json.reports[i].longitude + '\');">' + json.reports[i].latitude + ',' + json.reports[i].longitude + '</a></td>');
                 var address = json.reports[i].address;
                 if (address == "") {
                     address = '<a href="javascript:void(0);" onclick="GetAddress(this,' + json.reports[i].latitude + ',' + json.reports[i].longitude + ')">' + allPage.resolve + '</a>';
@@ -147,7 +136,7 @@ function showTable(strs) {
 function showDivIframe(url, lat, lng) {
     //iframe缓存
     var randomnumber = Math.floor(Math.random() * 100000);
-    if (url == "simpleMap") {
+    if (url == "SimpleMap") {
         $("#ifmPage").attr("src", "../" + url + "?lat=" + lat + "&lng=" + lng + "&randon=" + randomnumber);
     }
     $("#divIframe").show();

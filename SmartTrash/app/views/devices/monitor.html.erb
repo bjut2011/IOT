@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="../css/device/myIndex.css">
 <link rel="stylesheet" type="text/css" href="../css/device/style.min.css">
 <script type="text/javascript" src="../js/device/jquery-form.js"></script>
+<script type="text/javascript" src="../js/device/jquery_ujs.js"></script>
+<script type="text/javascript" src="../js/device/jquery.js"></script>
 <script type="text/javascript" src="../js/device/navbar.js"></script>
 <script type="text/javascript" src="../js/device/jquery.datetimepicker.js"></script>
 <script>
@@ -215,7 +217,7 @@ function demoLogin(){
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     	<input type="hidden" id="reg" value="1">
         <form id="regForm" action="/user/registe.htm" method="post">
-            <div class="modal-dialog" style="margin-top:8%;">
+           <div class="modal-dialog" style="margin-top:8%;">
                 <!-- 手机注册 -->
                 <div class="modal-content">
                     <div class="modal-body">
@@ -525,7 +527,7 @@ function demoLogin(){
 	                    <li>
 	                        <a href="/contacts?pid=<%=@project_id%>">
 	                            <i class="glyphicon glyphicon-user"></i>
-	                            <h5>用户中心</h5>
+	                            <h5>清洁工管理</h5>
 	                        </a>
 	                    </li>
                     
@@ -603,7 +605,7 @@ function demoLogin(){
                 </p>
                 	
                 	
-                <%de.sensor.each do |se|%>		
+                <%de.sensor.sort(:order).each do |se|%>		
                 	
                 	<div class="row infos_imgsTitle" id="device-item-<%=de.id%>" style="display:none">
                     	<div class="col-sm-2" style="display:none">
@@ -613,44 +615,36 @@ function demoLogin(){
                     	<div class="col-sm-2" style="width: 20%;">
                         	<h4><%=se.name%></h4>
                     	</div>
-                        <div class="col-sm-2" style="width: 10%;">
+                        <div class="col-sm-2" style="width: 18%;">
+                              <%if se.sensorType!=1%>
                                 <p style="margin-top:14px;color: #333;">状态：<span id="st_<%=se.id%>">
-                                <% if se.updatetime and (Time.new.to_i-se.updatetime) >3000 %>
-                                异常
-                                <%elsif se.updatetime%>
-                                正常
-                                <%else%>
-                                异常
+                                <% if se.tag%>
+                                 <%=se.tag%>
                                 <%end%>
                                 </span>
                         	</p>
+                              <%else%>
+                                <p style="margin-top:14px;color: #333;">数值：<span id="st_<%=se.id%>">
+                                <%= se.value%>
+                                </span>
+                                </p>
+                              <%end%>
                         </div>
                         <div class="col-sm-1" style="width: 18%;">
                             <%if se.sensorType==1%>
-                           <p style="margin-top:14px;color: #333;">数值：<span id="st_<%=se.id%>">
-                           <%= se.value%>
-                           </span>
-                           </p>
-                           <%elsif se.sensorType==2%>
+                              <span id="s_17020">
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/1.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                    	     </span>
+                           <%elsif se.sensorType==2 or se.sensorType==4%>
                               <span id="s_17020">
                                         <%if se.value.to_i == 1%>
-	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/runing.png');"> 
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/<%=se.icon%>.png');"> 
 	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
 	                    	        </div>
                                         <%else%>
-	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/alarm.png');"> 
-	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
-	                    	        </div>
-                                        <%end%>
-                    	     </span>
-                           <%elsif se.sensorType==4%>
-                              <span id="s_17020">
-                                        <%if se.value.to_i == 0%>
-	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/runing.png');"> 
-	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
-	                    	        </div>
-                                        <%else%>
-	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/alarm.png');"> 
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/<%=se.icon%>.png');"> 
 	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
 	                    	        </div>
                                         <%end%>
@@ -667,8 +661,9 @@ function demoLogin(){
                         </div>
                     	<div class="pull-right">
                     		
-                    		
-                        	<a id="shouH_chart" onclick="showFrameDiv('<%=de.id%>','<%=se.id%>','dd','',2,'','','','','','');">&nbsp;∨&nbsp;实时曲线</a>
+                    	 <%if se.sensorType==1%>	
+			<a id="shouH_chart"  style="display:none" onclick="showFrameDiv('<%=de.id%>','<%=se.id%>','dd','',2,'','','','','','');">&nbsp;∨&nbsp;实时曲线</a>
+                         <%end%>
                         	<span data-toggle="modal" data-target="#myModal_hist"><a href="javascript:alertWin('<%=se.id%>','<%=de.id%>',30,2)">&nbsp;&gt;&nbsp;历史查询</a></span>&nbsp;
                         	
                     	</div>

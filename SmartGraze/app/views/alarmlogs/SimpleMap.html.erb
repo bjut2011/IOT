@@ -1,0 +1,40 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	报表中用地图
+</title><link rel="stylesheet" href="/css/map/all.css" type="text/css" /><script id="MapSrc" src="http://ditu.google.cn/maps/api/js?sensor=false&language=cn" type="text/javascript"></script>
+    <script src="/js/map/language02-zh-cn.js" type="text/javascript"></script>
+    <script src="/js/map/SimpleMap.js" type="text/javascript"></script>
+    <script src="/js/map/initmap-Google.js" type="text/javascript"></script>
+    <script src="/js/map/SimpleMap-Google.js" type="text/javascript"></script>
+</head>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style>
+<body style="overflow:hidden;">
+    <form method="post" action="SimpleMap.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTIwODczMTMzM2RkjmA9HNtM0Fw1jAk8DGovmjA3EUkecjsgN+EP5yERoig=" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="B1E6A8A8" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAJwHyA+9Rd7qtYAfZZveUe8s3xOGwWdYVd/MA+FcvLrO1VmOpxRTCOCPXzPh7bsY8eJ/zSGznhFCuLxZptaatA4" />
+</div>
+        <div id="map_canvas" style="height:440px; width:650px;"></div>
+        <input name="hidLatLng" type="hidden" id="hidLatLng" value="<%= @lat%>,<%= @lng%>" />
+    </form>
+</body>
+</html>
+

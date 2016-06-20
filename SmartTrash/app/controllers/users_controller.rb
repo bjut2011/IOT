@@ -51,17 +51,17 @@ class UsersController < ApplicationController
       if @user.password_digest==params[:password]
         cookies.permanent[:token] = @user.token
         respond_to do |format|
-           format.json {render :json => {:code =>0,:msg =>"登录成功",:redirect_uri =>"/devices?pid="+@user.id}}
+           format.json {render :json => {:code =>0,:msg =>"登录成功",:redirect_uri =>"/devices/explore?pid="+@user.id}}
         end
       else
         respond_to do |format|
-         format.json {render :json => {:code =>1,:msg =>"登录成功",:errorMsg => "密码不对",:redirect_uri =>"/devices?pid="+@user.id}}
+         format.json {render :json => {:code =>1,:msg =>"登录成功",:errorMsg => "密码不对",:redirect_uri =>"/devices/explore?pid="+@user.id}}
         end
         
       end
     else
       respond_to do |format|
-         format.json {render :json => {:code =>1,:msg =>"登录成功",:errorMsg => "用户名不存在",:redirect_uri =>"/devices?pid="+@user.id}}
+         format.json {render :json => {:code =>1,:msg =>"登录成功",:errorMsg => "用户名不存在",:redirect_uri =>"/?pid="+@user.id}}
       end
     end
   end

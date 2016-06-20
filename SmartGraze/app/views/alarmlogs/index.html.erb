@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Alarmlogs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @alarmlogs.each do |alarmlog| %>
+      <tr>
+        <td><%= alarmlog.name %></td>
+        <td><%= link_to 'Show', alarmlog %></td>
+        <td><%= link_to 'Edit', edit_alarmlog_path(alarmlog) %></td>
+        <td><%= link_to 'Destroy', alarmlog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Alarmlog', new_alarmlog_path %>

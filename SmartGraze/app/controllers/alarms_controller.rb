@@ -17,6 +17,11 @@ class AlarmsController < ApplicationController
   end
    
   def AlarmDetail
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    @devices=Device.all
+    if current_admin.type!=0
+      @devices=Device.where(user_id:current_admin.id)
+    end
   end
  
   def addAlarms

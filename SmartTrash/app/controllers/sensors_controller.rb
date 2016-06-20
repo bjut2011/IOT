@@ -24,9 +24,19 @@ class SensorsController < ApplicationController
 
   def querySensorDataDetail
     sensorId=params[:sensorId]
-    @sensors = Sensorlog.where(sensor_id:sensorId).sort(:time => :desc).limit(100)
+    startTime=params[:startTime]
+    endTime=params[:endTime]
+    stime=Time.parse(startTime)
+    etime=Time.parse(endTime)
+    tm=stime.to_i
+    tm_e=etime.to_i
+    @count=Sensorlog.where(:sensor_id => sensorId,:update_time.gt => tm,:update_time.lt => tm_e).count
+    @totolpage=@count/50+1;
+    @sensors=Sensorlog.where(:sensor_id => sensorId,:update_time.gt => tm,:update_time.lt => tm_e).sort(:time => :desc).paginate(page:params[:page],per_page:50)
+    #@sensors = Sensorlog.where(sensor_id:sensorId).sort(:time => :desc).limit(100)
+    @se=Sensor.find(sensorId)
     respond_to do |format|
-      format.json {render :json => {:code =>0,:dataList => @sensors}}
+      format.json {render :json => {:code =>0,:sensor => @se,:totalPage => @totolpage,:page => params[:page],:dataList => @sensors}}
     end
   end
 

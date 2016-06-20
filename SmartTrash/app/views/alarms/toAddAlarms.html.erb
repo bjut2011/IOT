@@ -41,12 +41,7 @@
                             <select id="alarmType" class="form-control" name="alarmType" onchange="changerAlarmTtype(this.value)">
                                 <option value="val_above">数值高于X</option>
                                 <option value="val_below">数值低于Y</option>
-                                <option value="val_above_below">数值高于X低于Y</option>
-                                <option value="val_between">数值在X和Y之间</option>
-                                <option value="val_above_bound">数值超过M分钟高于X</option>
-                                <option value="val_below_bound">数值超过M分钟低于Y</option>
-                                <option value="offline">传感器断开</option>
-                                <option value="offline_for_minutes">超过M分钟断开</option>
+                                <option value="offline">故障</option>
                                 <option value="switch_on">开关开启</option>
                                 <option value="switch_off">开关关闭</option>
                             </select>
@@ -122,22 +117,6 @@
                         </div>
                     </div>
                    
-                   <div class="form-group">
-                        <label class="col-md-3 control-label pd0" for="message">触发开关</label>
-                        <div class="col-md-9">
-                            <select id="message" class="form-control" name="message">
-                               <option value="">---请选择---</option>
-                                
-                               
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">                                                                     
-                           	 <div class="col-md-9"><div class="form-group"><input type="text" class="form-control" id="switchVal" name="switchVal" placeholder="下发数据" value=""></div></div>
-                         </div>
-                     </div>     
                     
                     <div class="form-group pull-right" align="center">
                             <button type="submit" class="btn btn-default">创建报警</button>
@@ -250,7 +229,7 @@
 					typeHtml = m+y
 					break;
 				  case "offline":
-					typeHtml = "如果传感器断开";
+					typeHtml = "如果故障";
 					break;
 				  case "offline_for_minutes":
 					typeHtml = m;

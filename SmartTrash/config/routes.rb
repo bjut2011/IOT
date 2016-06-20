@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'goHistoryLine' =>"devices#goHistoryLine"
   get 'sensorlogs/getData' =>"sensorlogs#getData"
   post 'sensorlogs/getData' =>"sensorlogs#getData"
+  post 'querySensorHistoryDatas' =>"sensorlogs#querySensorHistoryDatas"
   post 'querySensorDataDetail' =>"sensors#querySensorDataDetail"
   resources :devices
   resources :projects

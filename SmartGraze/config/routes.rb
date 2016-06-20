@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  resources :alarmlogs
   resources :polygodetails
   resources :geofences
   resources :schedulers
   get 'dmaps/layout' =>"dmaps#layout"
+  post 'getAlarmByDeviceID' =>"alarmlogs#getAlarmByDeviceID"
+  get 'SimpleMap' =>"alarmlogs#SimpleMap"
   resources :dmaps
   resources :contacts
   resources :sensors

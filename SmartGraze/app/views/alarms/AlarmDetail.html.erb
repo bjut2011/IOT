@@ -153,9 +153,9 @@ tr.type span{background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #EEEEE
 		                                                                                       writePage(allPage.deviceName);
                             </script>：
                                       <select name="ddlDevices" id="ddlDevices">
-	<option value="28488">girl</option>
-	<option value="47902">RF-V10-71273</option>
-	<option value="48049">RF-V10-81008</option>
+                                      <% @devices.each do |de|%>
+	<option value="<%=de.id%>"><%=de.name%></option>
+                                      <%end%>
 
 </select>
 	                        </div>
