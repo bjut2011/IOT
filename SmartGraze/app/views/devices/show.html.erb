@@ -29,14 +29,10 @@ fieldset {padding:5px;border:1px solid #eeeeee;background:#fff;}
 
 <body>
     <form method="post" action="./ProductUpdate.aspx?deviceid=52816&amp;randon=44707" id="form1">
-<div class="aspNetHidden">
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTc0MjE2MTI1Mw9kFgICAQ9kFgoCBw8WAh4FdmFsdWUFCjIwMjYtMDUtMDNkAgkPFgQeCHJlYWRvbmx5BQhyZWFkb25seR4FY2xhc3MFBmlucHV0X2QCDw8WAh8CBQVpbnB1dGQCHQ8WAh4JaW5uZXJodG1sZWQCHw8PZBYCHghkaXNhYmxlZAUIZGlzYWJsZWRkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYBBQZjaGtMQlMpvaCbhMPbucaTixvAyJsSELYDZVI69Xwy2PsWKgeN6w==" />
-</div>
 
 <div class="aspNetHidden">
 
-	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="7A133EA7" />
-	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdABJKgQj7ejOkXD9pIaRLh1BiXESaWW3C+UJVfsSzLqWMH//44tGdzOOMnd7Yv2BA4a8+Kmhd0h0lg5JoJ9doRx2XCFuxUfcsbSTR0vYSsHBj9ZCsEvN7ZtcYtkzYFrbP9V4Glx1qQ9FoA2DHZ1immjRv2Rf9aKYQpDLFw93giQ8yfJx2S8MSUJ9HN8WdXcyErRjsqBWz8u7uyf5+dsW5J7k58A13d9Li/Bfb0rOxMPtMZmq6gJEgFoHO/XBz7w1EjkwdU5FzRoqGRop/wnRi1Crh2bG7rBbR9WCe7OKkfuOWveAGhQWkJlPuNZl5JBCSVioGHrYxvYrs5XDlrjyz+wVUlliAPKY+KvRmniYVjNuQiE0aTsWAsTAqIEvaut0nhOwgEJjZDl30CT2Z0NAPVJHsCVi+KETHSIURkNVBJJeuJw==" />
+	<input type="hidden" name="device_id" id="device_id" value="<%=@dev_id%>" />
 </div>
     <div>
  <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -73,7 +69,7 @@ fieldset {padding:5px;border:1px solid #eeeeee;background:#fff;}
                             <script type="text/javascript">
                                 writePage(dealerPage.name3);
                             </script>:</td>
-        <td class="info"><input name="txtDeviceName" type="text" id="txtDeviceName" class="input" maxlength="20" /></td>
+        <td class="info"><input name="txtDeviceName" type="text" id="txtDeviceName" class="input" maxlength="20" value="<%=@dev.name%>" /></td>
         <td height="22" align="right" class="title"><script type="text/javascript">
                                           writePage(productUpdatePage.filterLBS);
                             </script>:</td>
@@ -95,7 +91,7 @@ fieldset {padding:5px;border:1px solid #eeeeee;background:#fff;}
                             <script type="text/javascript">
                                 writePage(allPage.cellPhone);
                             </script>:</td>
-        <td class="info"><input name="txtCellPhone" type="text" id="txtCellPhone" class="input" maxlength="20" value="******" /></td>
+        <td class="info"><input name="txtCellPhone" type="text" id="txtCellPhone" class="input" maxlength="20" value="<%=@dev.mobile%>" /></td>
     </tr>
 
       <tr>
@@ -108,7 +104,7 @@ fieldset {padding:5px;border:1px solid #eeeeee;background:#fff;}
       </tr>
 			  <tr style="height:50px;">
 				<td align="right"></td>
-				<td><input type="submit" name="btnSave" value="" onclick="return checkSubmit();" id="btnSave" disabled="disabled" style="background-color:#1f8ccc;cursor:pointer; font-weight:bold; width:60px; height:23px; border:0px; color:White;" />
+				<td><input type="button" name="btnSave" value="保存" onclick="checkSubmit()"  id="btnSave" style="background-color:#1f8ccc;cursor:pointer; font-weight:bold; width:60px; height:23px; border:0px; color:White;" />
              &nbsp;&nbsp;<a href="javascript:void(0);" style="color:Black;" onclick="closePage();"><script type="text/javascript">
                                                                                                  writePage(allPage.cancel);
                             </script></a>                   

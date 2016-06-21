@@ -185,33 +185,9 @@ class DevicesController < ApplicationController
   # PATCH/PUT /devices/1.json
   def update
     @device=Device.find(params[:id])
-    deviceName=params[:deviceName]
-    sn=params[:sn]
-    if deviceName
-       @device.update_attributes(device_name:deviceName,device_sn:sn)
-    end
-    for item in params[:deviceSensorList] do
-        logger.info item[1][:sensorName]
-        senid=item[1][:sensorId]
-        sensorType=item[1][:sensorType].to_i
-        sensorSign=0
-        if item[1][:sensorSign]
-           sensorSign=item[1][:sensorSign].to_i 
-        end
-        if senid!=''
-          sen=Sensor.find(senid)
-          sen.update_attributes(name:item[1][:sensorName],sensorUnit:item[1][:sensorUnit],sensorType:sensorType,sensorSign:sensorSign)
-        else
-          sensorType=item[1][:sensorType].to_i
-          sensorSign=0
-          if item[1][:sensorSign]
-            sensorSign=item[1][:sensorSign].to_i 
-          end
-          sen=Sensor.new(device_id:@device.id,name:item[1][:sensorName],sensorType:sensorType,sensorSign:sensorSign,sensorUnit:item[1][:sensorUnit])
-          sen.save()
-        end
-        
-        
+    mobile=params[:mobile]
+    if mobile
+       @device.update_attributes(mobile:mobile)
     end
     respond_to do |format|
       format.json { render :json => {:code =>1,:msg =>"ok",:redirect_uri =>"/"} }

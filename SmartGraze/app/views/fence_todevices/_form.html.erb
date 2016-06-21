@@ -1,0 +1,21 @@
+<%= form_for(@fence_todevice) do |f| %>
+  <% if @fence_todevice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fence_todevice.errors.count, "error") %> prohibited this fence_todevice from being saved:</h2>
+
+      <ul>
+      <% @fence_todevice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

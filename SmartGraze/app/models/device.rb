@@ -15,7 +15,8 @@ class Device
   many :sensor
   belongs_to :project   
   belongs_to :user   
-  
+ 
+  key :mobile, String 
   key :sn, String
   key :name, String
   key :model, String

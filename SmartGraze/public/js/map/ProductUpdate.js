@@ -16,22 +16,23 @@ function initLanguage() {
 }
 
 function checkSubmit() {
-    var val = $('input:radio[name="iconType"]:checked').val();
-    $("#hidIcon").val(val);
     var carNum = $("#txtCarNum").val();
-    var carNumLength = fucCheckLength(carNum);
-    var byDistance = parseFloat($("#txtByDistance").val());
-    //避免车牌号,IMEI号重复
-    if (carNumLength >= 15) {
-        alert(productUpdatePage.carNumMsg1);
-        return false;
-    } else if (byDistance != 0 && byDistance < 500) {
-        alert("保养提示间隔需大于500公里!");
-        return false;
-    }
+    var device_id = $("#device_id").val();
+    var mobile = $("#txtCellPhone").val();
+    $.ajax({
+        type: "put",
+        url: "/devices/"+device_id,
+        contentType: "application/json",
+        data: "{\"mobile\":\"" + mobile + "\"}",
+        dataType: "json",
+        success: function (result) {
+            //var res = parseInt(result.d);
+            alert("保存成功");
+        }
+    });
     return true;
-}
 
+}
 
 function saveSuccess() {
     alert(productUpdatePage.sccuess);

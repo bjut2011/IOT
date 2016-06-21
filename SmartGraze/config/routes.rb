@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :fence_todevices
   resources :alarmlogs
   resources :polygodetails
   resources :geofences

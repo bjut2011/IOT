@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Fence Todevices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fence_todevices.each do |fence_todevice| %>
+      <tr>
+        <td><%= fence_todevice.name %></td>
+        <td><%= link_to 'Show', fence_todevice %></td>
+        <td><%= link_to 'Edit', edit_fence_todevice_path(fence_todevice) %></td>
+        <td><%= link_to 'Destroy', fence_todevice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fence todevice', new_fence_todevice_path %>

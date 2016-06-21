@@ -49,6 +49,11 @@ class GeofencesController < ApplicationController
       pob=Polygodetail.new(geofence_id:@geofence.id,lat:lts[0],lng:lts[1])
       pob.save
     end
+    pde=params[:DeviceIDs].split(',')
+    for item in pde do
+      pfd=FenceTodevice.new(fence_id:@geofence.id,device_id:item)
+      pfd.save
+    end
     respond_to do |format|
       if @geofence.save
         format.json {render :json => {:code =>0,:msg =>"创建失败",:redirect_uri =>"/"}}
@@ -75,10 +80,18 @@ class GeofencesController < ApplicationController
   # DELETE /geofences/1
   # DELETE /geofences/1.json
   def destroy
+    @geoploys=FenceTodevice.where(fence_id:@geofence.id)
+    for pl in @geoploys do
+        pl.destroy
+    end
+    @ploys=Polygodetail.where(geofence_id:@geofence.id)
+    for pl in @ploys do
+        pl.destroy
+    end
     @geofence.destroy
+    
     respond_to do |format|
-      format.html { redirect_to geofences_url, notice: 'Geofence was successfully destroyed.' }
-      format.json { head :no_content }
+        format.json {render :json => {:code =>0,:msg =>""}}
     end
   end
 
