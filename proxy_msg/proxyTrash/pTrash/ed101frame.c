@@ -9,9 +9,6 @@ unsigned char VerifyIED101Frame(unsigned char * pTemp_Buf, unsigned short usTemp
     }
 
     printf("\n");
-    //BYTE *dsrc=(BYTE *)malloc(sizeof(BYTE)*strlen(pTemp_Buf)/2);
-    //memset(dsrc,0,sizeof(BYTE)*strlen(pTemp_Buf)/2);
-    //StrToHex(dsrc,pTemp_Buf,sizeof(BYTE)*strlen(pTemp_Buf)/2);
     BYTE *dsrc=pTemp_Buf;
     printf("%02x\n",dsrc[0]);
     if(dsrc[0]==0x68){
@@ -25,7 +22,6 @@ unsigned char VerifyIED101Frame(unsigned char * pTemp_Buf, unsigned short usTemp
 
 
 
-    //free(dsrc);
     return 0x01;
 }
 
@@ -65,15 +61,15 @@ void insertSensorRecord( mongoc_collection_t * sensorcoll,bson_oid_t *de_oid,mon
                     bson_oid_copy(&value->value.v_oid,&se_oid);
                     printf("se_oid\n");         
                  }
-                 char str[25];
-                 bson_oid_to_string (&value->value.v_oid, str);
-                 printf ("%s\n", str);
+                 char str1[25];
+                 bson_oid_to_string (&value->value.v_oid, str1);
+                 printf ("%s\n", str1);
                }
             }
           }
    }
+   mongoc_cursor_destroy (cursor);
    if(!bsensor){
-     printf("okokok");
      bson_t *sdoc = bson_new ();
      bson_oid_init (&se_oid, NULL);
      BSON_APPEND_OID (sdoc, "_id", &se_oid);
@@ -293,7 +289,7 @@ void upperquery(unsigned char * info ,unsigned short usTemp_Length)
    printf("phone:%s\n",phone);
 
    cursor = mongoc_collection_find (collection, MONGOC_QUERY_NONE, 0, 0, 0, query, NULL, NULL);
-   
+   int ifind=0;
    while (mongoc_cursor_next (cursor, &doc)) {
           str = bson_as_json (doc, NULL);
           printf ("%s\n", str);
@@ -313,7 +309,8 @@ void upperquery(unsigned char * info ,unsigned short usTemp_Length)
                     bson_oid_copy(&value->value.v_oid,&de_oid);
                     char str1[25];
                     bson_oid_to_string (&value->value.v_oid, str1);
-                    printf("de_oid %s\n",str1);         
+                    printf("de_oid %s\n",str1);   
+                    ifind=1;      
                  }
                  char str[25];
                  bson_oid_to_string (&value->value.v_oid, str);
@@ -325,7 +322,25 @@ void upperquery(unsigned char * info ,unsigned short usTemp_Length)
 
    bson_destroy (query);
    mongoc_cursor_destroy (cursor);
-
+   if(ifind==0){
+     bson_oid_t user_oid;
+     bson_oid_init_from_string(&user_oid, "5757947e421aa9edf8000001");
+     
+     bson_t *sdoc = bson_new ();
+     bson_oid_init (&de_oid, NULL);
+     BSON_APPEND_OID (sdoc, "_id", &de_oid);
+     BSON_APPEND_OID (sdoc, "user_id", &user_oid);
+     BSON_APPEND_UTF8 (sdoc, "device_name", phone);
+     BSON_APPEND_UTF8 (sdoc, "device_sn", phone);
+     time_t timep;
+     time(&timep);
+     BSON_APPEND_TIME_T (sdoc, "create_time", timep);
+     bson_error_t serror;
+     if (!mongoc_collection_insert (collection, MONGOC_INSERT_NONE, sdoc, NULL, &serror)) {
+        fprintf (stderr, "%s\n", serror.message);
+     }
+     bson_destroy (sdoc);
+   }
 
    float iMainBatteryVoltage=0;
    iMainBatteryVoltage=((info[8]<<8)|info[7])/10.0;

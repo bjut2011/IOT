@@ -32,7 +32,7 @@ static void getPhone(mongoc_collection_t *coll,char * contactId,char *str);
 
 static void do_geofence(mongoc_collection_t *geocoll,bson_oid_t g_oid,mongoc_collection_t *fence2devicecoll,mongoc_collection_t *devicecoll,mongoc_collection_t *logcoll);
 
-void updateAlarm(mongoc_collection_t *coll,bson_oid_t se_oid,int type);
+void updateAlarm(mongoc_collection_t *coll,bson_oid_t se_oid,int type,double lat,double lng);
 static void saveAlarmLog(mongoc_collection_t *coll,char* se_id,int code,char * tel,char * msg,char * userId);
 static void do_alarm(mongoc_collection_t *devicecoll,bson_oid_t de_oid,mongoc_collection_t *alarmlogcoll,POINT * pts,int NN);
 int sockfd;  
@@ -103,7 +103,7 @@ static void saveAlarmLog(mongoc_collection_t *coll,char* se_id,int code,char * t
      bson_destroy (sdoc);
 }
 
-void updateAlarm(mongoc_collection_t *coll,bson_oid_t se_oid,int type){
+void updateAlarm(mongoc_collection_t *coll,bson_oid_t se_oid,int type,double lat, double lng){
     time_t timep;
     bson_t *query;
     time(&timep);
@@ -111,7 +111,7 @@ void updateAlarm(mongoc_collection_t *coll,bson_oid_t se_oid,int type){
     bson_t reply;
     query = bson_new ();
     BSON_APPEND_OID (query, "_id",&se_oid);
-    bson_t *update = BCON_NEW ("$set", "{", "alarmtime",BCON_DOUBLE(timep), "type",BCON_INT32(type),"}");
+    bson_t *update = BCON_NEW ("$set", "{", "alarmtime",BCON_DOUBLE(timep), "type",BCON_INT32(type),"lat",BCON_DOUBLE(lat),"lng",BCON_DOUBLE(lng),"}");
 
     if (!mongoc_collection_find_and_modify (coll, query, NULL, update, NULL, false, false, true, &reply, &error)) {
       //fprintf (stderr, "find_and_modify() failure: %s\n", error.message);
@@ -404,7 +404,7 @@ static void do_alarm(mongoc_collection_t *devicecoll,bson_oid_t de_oid,mongoc_co
             
            if(bsend){
              int code=sendsms_c(buf,mobile);
-             updateAlarm(devicecoll,de_oid,1);
+             updateAlarm(devicecoll,de_oid,1,lat,lng);
            }
            //saveAlarmLog(alarmlogcoll,"",code,contactId,msg,userId);
         }else{
@@ -420,7 +420,7 @@ static void do_alarm(mongoc_collection_t *devicecoll,bson_oid_t de_oid,mongoc_co
            printf("alarm info: %s\n",msg);
            if (type!=2){
               int code=sendsms_c(buf,mobile);
-              updateAlarm(devicecoll,de_oid,2);
+              updateAlarm(devicecoll,de_oid,2,lat,lng);
            }
 
 

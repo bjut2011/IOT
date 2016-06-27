@@ -336,13 +336,35 @@ void insertSensorRecord( mongoc_collection_t * sensorcoll,bson_oid_t *de_oid,mon
     bson_oid_t oid;
     doc = bson_new ();
     bson_oid_init (&oid, NULL);
+    char locoid[128];
+    memset(locoid,'\0',128);
+    bson_oid_to_string (&oid, locoid);
     BSON_APPEND_OID (doc, "_id", &oid);
     BSON_APPEND_OID (doc, "sensor_id", &se_oid);
+    BSON_APPEND_OID (doc, "device_id", &de_oid);
     BSON_APPEND_INT32 (doc, "value", value);
     BSON_APPEND_UTF8 (doc, "tag", tag);
-    time_t timep;
-    time(&timep);
+    BSON_APPEND_UTF8 (doc, "lat", lat);
+    BSON_APPEND_UTF8 (doc, "lng", lng);
+    BSON_APPEND_UTF8 (doc, "locationID", locoid);
+    BSON_APPEND_UTF8 (doc, "baiduLat", lat);
+    BSON_APPEND_UTF8 (doc, "baiduLng", lng);
+    char sdatetime[128];
+    memset(sdatetime,'\0',128);
+    time_t timep;  
+    struct tm *p;   
+     
+    time(&timep);   
+    p = localtime(&timep);  
+    sprintf(sdatetime,"%4d-%02d-%02d %02d:%02d:%02d", (1900+p->tm_year), (1+p->tm_mon), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec);  
+    BSON_APPEND_UTF8 (doc, "deviceUtcDate", sdatetime);
+    BSON_APPEND_UTF8 (doc, "speed", "2");
+    BSON_APPEND_UTF8 (doc, "course", "2");
+    BSON_APPEND_UTF8 (doc, "dataType", "2");
+    BSON_APPEND_UTF8 (doc, "ct", "2");
+    BSON_APPEND_UTF8 (doc, "distance", "200");
     BSON_APPEND_TIME_T (doc, "time", timep);
+    BSON_APPEND_DOUBLE (doc, "createtime", timep);
 
     if (!mongoc_collection_insert (sensorlogcoll, MONGOC_INSERT_NONE, doc, NULL, &error)) {
         fprintf (stderr, "%s\n", error.message);
@@ -350,7 +372,7 @@ void insertSensorRecord( mongoc_collection_t * sensorcoll,bson_oid_t *de_oid,mon
     char *pstr=(char*)malloc(sizeof(char)*25);
     memset(pstr,0,sizeof(char)*25);
     bson_oid_to_string (&se_oid, pstr);
-    enQueue(&g_qalarm,str);
+    //enQueue(&g_qalarm,str);
  
     bson_destroy (doc);
    //
@@ -433,11 +455,19 @@ void upperquery(char * pid,char* platlon)
      //
      char *slat=strtok(platlon,",");
      char *slon=strtok(NULL,",");
+     char sdatetime[128];
+     memset(sdatetime,'\0',128);
+     time_t timep;  
+     struct tm *p;   
+      
+     time(&timep);   
+     p = localtime(&timep);  
+     sprintf(sdatetime,"%4d-%02d-%02d %02d:%02d:%02d", (1900+p->tm_year), (1+p->tm_mon), p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec);  
      bson_t reply;
      bson_error_t error;
      query = bson_new ();
      BSON_APPEND_OID (query, "_id",&de_oid);
-     bson_t *update = BCON_NEW ("$set", "{", "baiduLat", BCON_UTF8(slat), "baiduLng",BCON_UTF8(slon),"}");
+     bson_t *update = BCON_NEW ("$set", "{", "baiduLat", BCON_UTF8(slat), "baiduLng",BCON_UTF8(slon),"serverUtcDate",BCON_UTF8(sdatetime),"}");
      if (!mongoc_collection_find_and_modify (collection, query, NULL, update, NULL, false, false, true, &reply, &error)) {
        fprintf (stderr, "find_and_modify() failure: %s\n", error.message);
      }

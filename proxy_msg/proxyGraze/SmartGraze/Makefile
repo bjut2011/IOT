@@ -1,7 +1,7 @@
 CFLAG= -g
 LIBS =-L/usr/lib/x86_64-linux-gnu/ -lm
 main:main.o util.o re_thread.o ed101frame.o alarm_thread.o queue.o query_thread.o ddp.o gps.o
-	gcc $(CFLAG) -pthread -o main main.o util.o re_thread.o ed101frame.o alarm_thread.o query_thread.o queue.o ddp.o gps.o -lcurl $(LIBS) -lmongoc-1.0 -lbson-1.0 
+	gcc $(CFLAG) -pthread -o Graze main.o util.o re_thread.o ed101frame.o alarm_thread.o query_thread.o queue.o ddp.o gps.o -lcurl $(LIBS) -lmongoc-1.0 -lbson-1.0 
 
 main.o:main.c util.h re_thread.h alarm_thread.h queue.h query_thread.h
 	gcc $(CFLAG) -c main.c -I/usr/local/include/libmongoc-1.0/ -I/usr/local/include/libbson-1.0/

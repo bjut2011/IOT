@@ -33,10 +33,10 @@ thread_query(void *arg)
 	struct	timespec	timeout;
         mongoc_collection_t *collection;
         collection = mongoc_client_get_collection (mgclient, "smart_trash_development", "devices");
-        printf("query\n");
+        //printf("query\n");
 	while (1) {
 		/* Make sure we check the servers at the very begining */
-                printf("query\n");
+                //printf("query\n");
 	        //connect_init();
                 if(true/*sockfd != -1*/){
                     mongoc_cursor_t *cursor;
@@ -58,7 +58,7 @@ thread_query(void *arg)
                                 if (value->value_type == BSON_TYPE_UTF8) {
                                      if(strcmp(bson_iter_key (&iter),"device_sn")==0){
                                        if (value->value.v_utf8.len==11){
-                                         printf("se_oid %s\n",value->value.v_utf8);  
+                                         //printf("se_oid %s\n",value->value.v_utf8);  
                                          connect_init();  
                                          if(sockfd!=-1){
                                           query_send(value->value.v_utf8.str);
@@ -82,10 +82,10 @@ thread_query(void *arg)
 		/* Mutex must be locked for pthread_cond_timedwait... */
 		pthread_mutex_lock(&cond_mutex);
 		
-                printf("query1\n");
+                //printf("query1\n");
 		/* Thread safe "sleep" */
 		pthread_cond_timedwait(&cond, &cond_mutex, &timeout);
-                printf("query2\n");
+                //printf("query2\n");
 		/* No longer needs to be locked */
 		pthread_mutex_unlock(&cond_mutex);
 	}

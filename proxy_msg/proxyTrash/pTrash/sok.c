@@ -15,12 +15,28 @@
 #define IPSTR "110.76.185.36"
 #define PORT 8011
 #define BUFSIZE 1024
- 
+struct node{
+      long c;
+      int a;
+      char b;
+      short d;
+      
+};
+
+
 int main(int argc, char **argv)
 {       float count=0;
         count=0x06|0x10;
         count=count/10.0;
         printf("%f",count);
+        char a=120;
+        char b=a+8;
+        printf("%d\n",a+8);
+        printf("%d\n",b);
+        printf("%d\n",sizeof(struct node));
+        printf("%d\n",sizeof(int));
+        printf("%d\n",sizeof(long));
+        printf("%d\n",sizeof(short));
         return 0;
         int sockfd, ret, i, h;
         struct sockaddr_in servaddr;

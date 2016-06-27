@@ -13,7 +13,7 @@ int VerifyDDPFrame(unsigned char * pTemp_Buf, unsigned short usTemp_Length, unsi
     //StrToHex(dsrc,pTemp_Buf,sizeof(BYTE)*strlen(pTemp_Buf)/2);
     BYTE *dsrc=pTemp_Buf;
     printf("%02x\n",dsrc[0]);
-    if(0==1&&dsrc[1]==0x01){
+    if(1==0&&dsrc[1]==0x01){
      
      send_Buf[0]=0x7B;
      send_Buf[1]=0x81;

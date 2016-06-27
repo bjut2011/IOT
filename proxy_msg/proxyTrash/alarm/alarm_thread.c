@@ -29,7 +29,7 @@ static void getaddress(char *msg);
 static void getaddressbyID(char *msg,mongoc_collection_t *coll,char * deviceId);
 static void getPhone(mongoc_collection_t *coll,char * contactId,char *str);
 
-void updateAlarm(mongoc_collection_t *coll,char* se_id);
+void updateAlarm(mongoc_collection_t *coll,char* se_id,int interval,int ialarm);
 static void saveAlarmLog(mongoc_collection_t *coll,char* se_id,int code,char * tel,char * msg,char * userId);
 
 static void do_alarm(mongoc_collection_t *sensorcoll,char * se_id,char * alarmType,char * upperBoundC,char *lowerBoundC, char *duration,char *target,char * contactId,char * addr,mongoc_collection_t * alarmlogcoll,char* userId);
@@ -50,7 +50,7 @@ thread_alarm(void *arg){
 		
 		/* Sleep for config.checkinterval seconds... */
                 printf("sendsms\n");
-		timeout.tv_sec = time(NULL) + 600;
+		timeout.tv_sec = time(NULL) + 30;
 		timeout.tv_nsec = 0;
 
 		/* Mutex must be locked for pthread_cond_timedwait... */
@@ -101,7 +101,7 @@ static void saveAlarmLog(mongoc_collection_t *coll,char* se_id,int code,char * t
      bson_destroy (sdoc);
 }
 
-void updateAlarm(mongoc_collection_t *coll,char* se_id){
+void updateAlarm(mongoc_collection_t *coll,char* se_id,int interval,int ialarm){
     time_t timep;
     bson_t *query;
     bson_oid_t se_oid;
@@ -111,7 +111,7 @@ void updateAlarm(mongoc_collection_t *coll,char* se_id){
     bson_t reply;
     query = bson_new ();
     BSON_APPEND_OID (query, "_id",&se_oid);
-    bson_t *update = BCON_NEW ("$set", "{", "alarmtime",BCON_DOUBLE(timep), "}");
+    bson_t *update = BCON_NEW ("$set", "{", "alarmtime",BCON_DOUBLE(timep),"interval",BCON_INT32(interval),"balarm",BCON_INT32(ialarm),"}");
 
     if (!mongoc_collection_find_and_modify (coll, query, NULL, update, NULL, false, false, true, &reply, &error)) {
       //fprintf (stderr, "find_and_modify() failure: %s\n", error.message);
@@ -263,6 +263,9 @@ static void do_alarm(mongoc_collection_t *sensorcoll,char * se_id,char * alarmTy
    BSON_APPEND_OID (query, "_id",&se_oid);
    cursor = mongoc_collection_find (sensorcoll, MONGOC_QUERY_NONE, 0, 0, 0, query, NULL, NULL);
    double ivalue=0;
+   double dalarmtime=0;
+   int interval=0;
+   int balarm=0;
    int buse=0;
    char name[1024];
    memset(name,0,1024);
@@ -284,6 +287,10 @@ static void do_alarm(mongoc_collection_t *sensorcoll,char * se_id,char * alarmTy
                     printf("value %d\n", value->value.v_int32);         
                     ivalue=value->value.v_double; 
                     buse =1;
+                 }else if(strcmp(bson_iter_key (&iter),"interval")==0){
+                    interval=value->value.v_int32; 
+                 }else if(strcmp(bson_iter_key (&iter),"balarm")==0){
+                    balarm=value->value.v_int32; 
                  }
                }
                if(strcmp(bson_iter_key (&iter),"value")==0){
@@ -294,6 +301,9 @@ static void do_alarm(mongoc_collection_t *sensorcoll,char * se_id,char * alarmTy
                     //printf("value %d\n", (int)value->value.v_double);        
                     buse =1;
                     ivalue=value->value.v_double; 
+                 }
+                 if(strcmp(bson_iter_key (&iter),"alarmtime")==0){
+                    dalarmtime=value->value.v_double; 
                  }
                }
                if (value->value_type == BSON_TYPE_UTF8) {
@@ -313,6 +323,20 @@ static void do_alarm(mongoc_collection_t *sensorcoll,char * se_id,char * alarmTy
    bson_destroy (query);
    printf("se_id:%s,buse:%d\n",se_id,buse);
    printf("alarmType:%s,%f : %s,%s",alarmType,ivalue,upperBoundC,lowerBoundC);
+   time_t t;  
+   t = time(NULL);  
+   struct tm *lt;  
+   int ii = time(&t); 
+   int bdoalarm=1;
+   if(balarm==1){
+      bdoalarm=1;
+      if(dalarmtime>0 &&interval>0){
+          if((ii-dalarmtime)<300){
+             bdoalarm=0;
+          }
+        
+      }
+   }
    if(buse ==1){
      if(strcmp(alarmType,"val_above")==0){
         int iupper=atoi(upperBoundC);
@@ -329,9 +353,14 @@ static void do_alarm(mongoc_collection_t *sensorcoll,char * se_id,char * alarmTy
          URLEncodeGBK(msg, strlen(msg), buf,sizeof(buf));  
          printf("%s\n",buf);
          printf("alarm info: %s\n",msg);
-         int code=sendsms_c(buf,contactId);
-         saveAlarmLog(alarmlogcoll,"",code,contactId,msg,userId);
-         //sendsms_ihuyi(msg);
+         if(bdoalarm>0){
+           int code=sendsms_c(buf,contactId);
+           saveAlarmLog(alarmlogcoll,"",code,contactId,msg,userId);
+           updateAlarm(sensorcoll,se_id,interval+1,1);
+           printf("send sms \n");
+         }
+        }else {
+          updateAlarm(sensorcoll,se_id,0,0);
         }
      }else if(strcmp(alarmType,"val_below")==0){
         int iupper=atoi(lowerBoundC);
@@ -348,9 +377,35 @@ static void do_alarm(mongoc_collection_t *sensorcoll,char * se_id,char * alarmTy
          URLEncodeGBK(msg, strlen(msg), buf,sizeof(buf));  
          printf("%s\n",buf);
          printf("alarm info: %s\n",msg);
-         int code=sendsms_c(buf,contactId);
-         saveAlarmLog(alarmlogcoll,"",code,contactId,msg,userId);
-         //sendsms_ihuyi(msg);
+         if(bdoalarm>0){
+           int code=sendsms_c(buf,contactId);
+           saveAlarmLog(alarmlogcoll,"",code,contactId,msg,userId);
+           updateAlarm(sensorcoll,se_id,interval+1,1);
+           printf("send sms \n");
+         }
+        }else {
+          updateAlarm(sensorcoll,se_id,0,0);
+        }
+     }else if(strcmp(alarmType,"switch_on")==0){
+        if(ivalue==1){
+         char msg[2048];
+         memset(msg,0,2048);
+         snprintf(msg, sizeof(msg) - 1,
+			"故障报警：%s，位置是%s，请及时处理！",
+			name,
+			addr);
+         char buf[1024];  
+         URLEncodeGBK(msg, strlen(msg), buf,sizeof(buf));  
+         printf("%s\n",buf);
+         printf("alarm info: %s\n",msg);
+         if(bdoalarm>0){
+           int code=sendsms_c(buf,contactId);
+           saveAlarmLog(alarmlogcoll,"",code,contactId,msg,userId);
+           updateAlarm(sensorcoll,se_id,interval+1,1);
+           printf("send sms \n");
+         }
+        }else {
+          updateAlarm(sensorcoll,se_id,0,0);
         }
      }else if(strcmp(alarmType,"offline")==0){
         if(ivalue==1){
@@ -364,9 +419,14 @@ static void do_alarm(mongoc_collection_t *sensorcoll,char * se_id,char * alarmTy
          URLEncodeGBK(msg, strlen(msg), buf,sizeof(buf));  
          printf("%s\n",buf);
          printf("alarm info: %s\n",msg);
-         int code=sendsms_c(buf,contactId);
-         saveAlarmLog(alarmlogcoll,"",code,contactId,msg,userId);
-         //sendsms_ihuyi(msg);
+         if(bdoalarm>0){
+           int code=sendsms_c(buf,contactId);
+           saveAlarmLog(alarmlogcoll,"",code,contactId,msg,userId);
+           updateAlarm(sensorcoll,se_id,interval+1,1);
+           printf("send sms \n");
+         }
+        }else {
+          updateAlarm(sensorcoll,se_id,0,0);
         }
      }
    }
