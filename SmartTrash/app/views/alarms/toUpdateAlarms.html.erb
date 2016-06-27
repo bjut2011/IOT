@@ -17,12 +17,11 @@
                     <div class="form-group"> 
                         <label class="col-md-3 control-label pd0">选择设备</label>
                         <div class="col-md-9">
-                            <select id="device" class="form-control" disabled="disabled"  name="deviceId" onchange="changerDevice(this)">
+                            <select id="device" class="form-control" readonly="readonly"  name="deviceId" onchange="changerDevice(this)">
                                <%@devices.each do |de|%>                       
-                                 <%if de.id==@alarm.deviceId%>
-                                 <option value="<%=de.id%>"><%=de.device_name%></option>
+                                 <%if de.id.to_s==@alarm.deviceId%>
+                                 <option value="<%=de.id%>" selected="selected"><%=de.device_name%></option>
                                   <%else%>
-                                 <option value="<%=de.id%>"  selected="selected" ><%=de.device_name%></option>
                                   <%end%>
                                <%end%>
                             </select>                       
@@ -31,9 +30,9 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label pd0">选择传感器</label>
                         <div class="col-md-9">
-                            <select id="sensor" class="form-control" disabled="disabled" name="sensorId">
+                            <select id="sensor" class="form-control" readonly="readonly"  name="sensorId">
                               <%@sensors.each do |se|%>
-                                <%if @alarm.sensorId==se.id%>
+                                <%if @alarm.sensorId==se.id.to_s%>
                                 <option value="<%= se.id  %>" selected = "selected"><%=se.name%></option>
                                 <%else%>
                                 <option value="<%= se.id  %>"><%=se.name%></option>

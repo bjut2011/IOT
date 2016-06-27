@@ -170,17 +170,20 @@ function showDivIframe(url) {
     } else if (url == "DevicesFxtj") {
         $("#ifmPage").hide();
         $("#ifmFxtjPage").show();
-
+        $("#liReport").css('background-color', "");
+        $("#liDevice").css('background-color', "");
+        $("#liMonitor").css('background-color', "");
+        $("#liFxtj").css('background-color', "#1f8ccc");
         $("#spanIframeTitle").html("分析统计");
         $("#divIframe").css("width", "652px").css("height", "450px");
         $("#divIframe").css("left", (w - 652) / 2 + "px");
-        var page = $("#ifmFxtjPage").attr("src");
-        if (page == "null.html") {
+        //var page = $("#ifmFxtjPage").attr("src");
+        //if (page == "null.html") {
             var userID = $("#hidUserID").val();
             var loginName = $("#hidLoginName").val();
             loginName = encodeURIComponent(loginName);
-            $("#ifmFxtjPage").attr("src", url + "?id=" + userID + "&n=" + loginName);
-        }
+            $("#ifmFxtjPage").attr("src", url + "?user_id=" + userID + "&n=" + loginName);
+        //}
     }
     $("#divIframe").show();
 }

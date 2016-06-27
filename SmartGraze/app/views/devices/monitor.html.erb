@@ -122,7 +122,7 @@
         </div>
 		<div>
             <iframe frameborder="0" id="ifmPage" src="null.html" width="545" height="348"></iframe>
-            <iframe frameborder="0" id="ifmFxtjPage" src="null.html" width="640" height="420" style="display:none;"></iframe>
+            <iframe frameborder="0" id="ifmFxtjPage" src="DevicesFxtj?user_id=<%=@project_id%>" width="640" height="420" style="display:none;"></iframe>
 		</div>
 	</div> 
 
@@ -224,7 +224,7 @@
 </div>
 
      <input name="hidLoginType" type="hidden" id="hidLoginType" value="1" />
-     <input name="hidUserID" type="hidden" id="hidUserID" value="2" />
+     <input name="hidUserID" type="hidden" id="hidUserID" value="<%=@project_id%>" />
      <input name="hidDeviceID" type="hidden" id="hidDeviceID" value="0" />
      <input name="hidLoginName" type="hidden" id="hidLoginName" value="888" />
      <input name="hidTimeZone" type="hidden" id="hidTimeZone" value="China Standard Time" />

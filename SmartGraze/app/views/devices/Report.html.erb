@@ -109,22 +109,22 @@ function btnToExcel_onclick() {
 				<div class="bd">
 					<ul>
 					<li class="first">
-						<a hidefocus href="AlarmSum.aspx?id=188&deviceid=0">
+						<a hidefocus href="#">
 							<script type="text/javascript">
 							    writePage(allPage.tab2)
                             </script>
 						</a>
 					</li>
-					<li><a href="AlarmIndex.aspx?id=188&deviceid=0"><script type="text/javascript">
+					<li style="display:none"><a href="AlarmIndex.aspx?id=188&deviceid=0"><script type="text/javascript">
 					                                                                          writePage(alarmDetailPage.alarmCount)
                             </script> </a></li>
 					<li><a href="AlarmDetail?id=188&deviceid=0"><script type="text/javascript">
 					                                                                           writePage(alarmDetailPage.alarmDetail);
                             </script></a></li>					
-					<li class="end"><a href="GeofenceDetail.aspx?id=188&deviceid=0"><script type="text/javascript">
+					<li class="end" style="display:none"><a href="GeofenceDetail.aspx?id=188&deviceid=0"><script type="text/javascript">
 					                                                                                          writePage(geofencesPage.geofence);
                             </script></a></li>
-                    <li id="divOffsetRoad" class="end" style="display:block;"><a href="RoadOffsetWarn.aspx?id=188&deviceid=0">路线纠偏报警</a></li>
+                    <li id="divOffsetRoad" class="end" style="display:block;display:none"><a href="RoadOffsetWarn.aspx?id=188&deviceid=0">路线纠偏报警</a></li>
 					</ul>
 				</div>
 			</div>

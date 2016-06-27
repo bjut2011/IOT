@@ -22,6 +22,14 @@ class SensorsController < ApplicationController
   def edit
   end
 
+  def getSensorsByID
+    @device = Device.find(params[:id])
+    @sensor = @device.sensor.sort(:order)
+    #respond_to do |format|
+     # format.json {render :json => {:code =>0,:sensor => @sensor}}
+    #end
+  end
+
   def querySensorDataDetail
     sensorId=params[:sensorId]
     startTime=params[:startTime]

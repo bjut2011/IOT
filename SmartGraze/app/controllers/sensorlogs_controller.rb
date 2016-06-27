@@ -21,7 +21,15 @@ class SensorlogsController < ApplicationController
   # GET /sensorlogs/1/edit
   def edit
   end
-  
+ 
+  def GetDevicesHistory
+    @slog=Sensorlog.where(device_id:params[:DeviceID])
+    logger.info params[:DeviceID]
+    respond_to do |format|
+      format.json {render :json => {:code =>0,:d => {:devices => @slog}}}
+    end
+
+  end 
   def getData
     @sensorlog=Sensorlog.where(sensor_id:params[:sensorid]).limit(12)
     logger.info params

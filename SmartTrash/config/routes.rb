@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post 'sensorlogs/getData' =>"sensorlogs#getData"
   post 'querySensorHistoryDatas' =>"sensorlogs#querySensorHistoryDatas"
   post 'querySensorDataDetail' =>"sensors#querySensorDataDetail"
+  get 'getSensorsByID' =>"sensors#getSensorsByID"
   resources :devices
   resources :projects
   resources :sensorlogs

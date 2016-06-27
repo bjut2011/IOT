@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   post 'devices/getDevices' =>"devices#getDevices"
   get 'sensorlogs/getData' =>"sensorlogs#getData"
   post 'sensorlogs/getData' =>"sensorlogs#getData"
+  post 'GetDevicesHistory' =>"sensorlogs#GetDevicesHistory"
   resources :devices
   resources :projects
   resources :sensorlogs

@@ -1,0 +1,87 @@
+
+                <%if @sensor && @sensor.size>0%>
+                <p class="in_sen_title" id="divicename_<%=@device.id%>"  style="">
+                	 <%=@device.device_name%>
+                	<span class="pull-right">序列号：<%= @device.device_sn%></span>
+                </p>
+                	
+                	
+                <%@sensor.sort(:order).each do |se|%>		
+                	
+                	<div class="row infos_imgsTitle" id="device-item-<%=@device.id%>" style="">
+                        <div class="col-sm-1" style="width: 10%;">
+                            <%if se.sensorType==1%>
+                              <span id="s_17020">
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/1.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                    	     </span>
+                           <%elsif se.sensorType==2 or se.sensorType==4%>
+                              <span id="s_17020">
+                                        <%if se.value.to_i == 1%>
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/<%=se.icon%>.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                                        <%else%>
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/<%=se.icon%>.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                                        <%end%>
+                    	     </span>
+                           <%end%>
+                        </div>
+                    	<div class="col-sm-2" style="width: 20%;">
+                        	<h4><%=se.name%></h4>
+                    	</div>
+                        <div class="col-sm-2" style="width: 18%;">
+                              <%if se.sensorType!=1%>
+                                <p style="margin-top:14px;color: #333;">状态：<span id="st_<%=se.id%>">
+                                <% if se.tag%>
+                                 <%=se.tag%>
+                                <%end%>
+                                </span>
+                        	</p>
+                              <%else%>
+                                <p style="margin-top:14px;color: #1442E8;">数值：<span id="st_<%=se.id%>">
+                                <% if se.value.to_i == se.value.to_f%>
+                                  <%= se.value.to_i%>
+                                <%else%>
+                                  <%= se.value%>
+                                <%end%>
+                                </span>
+                                </p>
+                              <%end%>
+                        </div>
+                        <div class="col-sm-4" style="width: 38%;">
+                            <p style="margin-top:14px;color: #333;">更新时间：<span id="st_<%=se.id%>">
+                                <%if se.updatetime%>
+                                <%= Time.at(se.updatetime).strftime('%Y-%m-%d %H:%M:%S')%>
+                                <%end%>
+                                </span>
+                            </p>
+                        </div>
+                    	<div class="pull-right" style="    line-height: 50px;">
+                    		
+                    	 <%if se.sensorType==1%>	
+			<a id="shouH_chart"  style="" onclick="showFrameDiv('<%=@device.id%>','<%=se.id%>','dd','',2,'','','','','','');">&nbsp;∨&nbsp;实时曲线</a>
+                         <%end%>
+                        	<span data-toggle="modal" data-target="#myModal_hist"><a href="javascript:alertWin('<%=se.id%>','<%=@device.id%>',30,2)">&nbsp;&gt;&nbsp;历史查询</a></span>&nbsp;
+                        	
+                    	</div>
+                	</div>
+                	<div style="margin-bottom:0px;" class="collapse" id="collapseExample_<%=@device.id%>_<%=se.id%>" name="collapseExample_<%=@device.id%>">
+                	     <input type="hidden" name="coll_<%=@device.id%>" id="coll_<%=@device.id%>_<%=se.id%>" value="h">
+					      <!-- 数值型 -->
+                      	  <iframe name="embed-responsive-item iframe_<%=@device.id%>" id="iframe_<%=@device.id%>_<%=se.id%>" style="width:100%;height:500px;border:none;"></iframe>
+                         
+                         
+                         
+                         
+                         
+                    </div>
+                <%end%>
+                <%end%>	
+                
+                	
+                	
+                

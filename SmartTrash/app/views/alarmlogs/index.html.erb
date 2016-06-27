@@ -610,14 +610,17 @@ function demoLogin(){
                           <%=alog.mobile%>
                     </td>
                     <td><%= Time.at(alog.time).strftime('%Y-%m-%d %H:%M:%S').to_s  %></td>
+                    <%if alog.code==0%>
                     <td>
-                       <%if alog.code==0%>
                               发送成功
-                       <%else%>
-                          	发送失败
-                       <%end%>
+                    </td>
+                    <td></td>
+                    <%else%>
+                    <td>
+                              发送失败
                     </td>
                     <td>短信数量为0或未找到联系人</td>
+                     <%end%>
                     <td><%= alog.sendmsg%></td>
                 </tr>
                 <%end%>

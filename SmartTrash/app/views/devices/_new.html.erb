@@ -122,7 +122,7 @@
       }
   
   	function checkLng(){
-  		 if($("#sensorName").length == 0 ){
+  		 if($("#sensorName").length == 0 && 2==1 ){
       			alert("请至少添加一个传感器！");
      			return false;
      	 }
@@ -176,6 +176,7 @@
             function(theback) 
             {
                 //输出结果
+                alert("新建成功");
                 $("#div_2").html('第一个数：'+theback.num1+'<br />'+'第二个数：'+theback.num2+'<br />'+'算法类型：'+theback.type+'<br />'+'计算结果：'+theback.result);
             },
             //返回类型

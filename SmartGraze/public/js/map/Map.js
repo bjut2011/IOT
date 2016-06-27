@@ -729,7 +729,7 @@ function clkShowMoreMenu(userid, deviceid, model, name, sn) {
 
     html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);" onclick="openPage(\'Geofences\',' + UserId + ',\'' + deviceid + '\')" target="_blank">' + mapPage.geofence + '</a></div>');
 
-    html.push('<div style="padding-top:2px;" class="showdivs" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);">' + mapPage.moveToGroup + '</a>');
+    //html.push('<div style="padding-top:2px;" class="showdivs" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);">' + mapPage.moveToGroup + '</a>');
     html.push('<div id="divLeftMenuGroup" class="showitems"></div>');
     html.push('</div>');
 
@@ -822,12 +822,12 @@ function clkShowMoreMenu(userid, deviceid, model, name, sn) {
         //康凯斯协议设备
         html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:showD2SMS(' + deviceid + ',\'D2SMS\',\'' + name + '\',\'' + sn + '\',' + model + ')" >' + '设备发送短信' + '</a></div>');
     }
-    html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:showCommandList(' + deviceid + ',\'' + sn + '\',1);" >' + mapPage.checkCommand + '</a></div>');
-    html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);" onclick="showDivIframe(\'DownloadLocation.aspx\',' + deviceid + ');">' + mapPage.downloadLocation + '</a></div>');
+    //html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:showCommandList(' + deviceid + ',\'' + sn + '\',1);" >' + mapPage.checkCommand + '</a></div>');
+    //html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="javascript:void(0);" onclick="showDivIframe(\'DownloadLocation.aspx\',' + deviceid + ');">' + mapPage.downloadLocation + '</a></div>');
     if (language == "zh-cn" && loginType == 1) {
         html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="Geofences?id=' + UserId + '&deviceid=' + deviceid + '" target="_blank">电子栅栏(多边形)</a></div>');
-        html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="RoutePlanning.aspx?id=' + UserId + '" target="_blank">路线偏离设置</a></div>');
-        html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="POI.aspx?id=' + UserId + '" target="_blank">用户POI管理</a></div>');
+        //html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="RoutePlanning.aspx?id=' + UserId + '" target="_blank">路线偏离设置</a></div>');
+        //html.push('<div style="padding-top:2px;" onmouseover="this.style.backgroundColor=\'#F0F0F0\';" onmouseout="this.style.backgroundColor=\'#FFFFFF\';" ><a href="POI.aspx?id=' + UserId + '" target="_blank">用户POI管理</a></div>');
     }
 
     html.push('<div style="height:6px;"></div>');

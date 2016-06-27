@@ -202,7 +202,7 @@ function serchLocation() {
         alert(playbackPage.timeMsg);
         return false;
     } else {
-        if (DeviceID > 0) {
+        if (DeviceID != "") {
             deleteOverLays(allPolyline);
             deleteOverLays(allMarker);
             lastLocationID = -1;
@@ -249,9 +249,9 @@ function WebGetHistory() {
     //CollectGarbage();
     $.ajax({
         type: "post",
-        url: "Ajax/DevicesAjax.asmx/GetDevicesHistory",
+        url: "GetDevicesHistory",
         contentType: "application/json",
-        data: "{DeviceID:" + DeviceID + ",Start:'" + queryStartDate + "',End:'" + queryEndDate + "',TimeZone:'" + TimeZone + "',ShowLBS:" + isShowLBS + "}",
+        data: "{\"DeviceID\":\"" + DeviceID + "\",\"Start\":\"" + queryStartDate + "\",\"End\":\"" + queryEndDate + "\",\"TimeZone\":\"" + TimeZone + "\",\"ShowLBS\":\"" + isShowLBS + "\"}",
         dataType: "json",
         error: function (res) {
             alert(res.responseText);

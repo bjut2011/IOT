@@ -35,8 +35,10 @@ class DevicesController < ApplicationController
   end
 
   def gettracking
+    @device=Device.find(params[:DeviceID])
+    logger.info params[:DeviceID]
     respond_to do |format|
-      format.json { render :json => {:code =>1,:msg =>"ok",:redirect_uri =>"/"} }
+      format.json { render :json => {:code =>1,:msg =>"ok",:d => @device} }
     end
 
   end

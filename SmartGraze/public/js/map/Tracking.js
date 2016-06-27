@@ -69,14 +69,14 @@ function ajaxGetTracking() {
         type: "GET",
         url: "gettracking",
         contentType: "application/json",
-        data: "{DeviceID:" + DeviceID + ",TimeZone:'" + TimeZone + "'}",
+        data: "DeviceID=" + DeviceID + "&TimeZone=" + TimeZone,
         dataType: "json",
         success: function (result) {
             if (true) {
                 var json = eval("(" + "{locationID:1,deviceUtcDate:\"2016-05-30 09:40:59\",serverUtcDate:\"2016-05-30 10:18:04\",latitude:\"31.97629\",longitude:\"118.79877\",baiduLat:\"31.98264\",baiduLng:\"118.80518\",oLat:\"31.97833\",oLng:\"118.79358\",speed:\"0.00\",course:221,isStop:1,dataType:1,dataContext:\"\",distance:\"16627.1479\",status:\"Stop\"}" + ")");
                 nowLat = json.latitude;
                 nowLng = json.longitude;
-                showMarker(json);
+                showMarker(result.d);
             }
         }
     });

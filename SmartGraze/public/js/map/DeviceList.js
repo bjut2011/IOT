@@ -198,7 +198,7 @@ function showDevicesTable(res, id, expDays) {
             } else {
                 html.push('<td>' + allPage.deviceHireDay + ':' + json.devices[i].hireDay + '</td>');
             }
-            var useStr = '<a href="javascript:void(0);" onclick="showDivIframe(\'ProductUpdate.aspx\',' + json.devices[i].id + ');">' + allPage.edit + '</a>';
+            var useStr = '<a href="javascript:void(0);" onclick="showDivIframe(\'ProductUpdate.aspx\',\'' + json.devices[i].id + '\');">' + allPage.edit + '</a>';
             useStr += '&nbsp;|&nbsp;<a href="javascript:void(0);" onclick="addSelDeviceToUpdateTime(' + json.devices[i].id + ',\'' + json.devices[i].name + '\',\'' + json.devices[i].sn + '\')"">' + allPage.hireExpireTime + '</a>';
             html.push('<td>' + useStr + '</td>');
             html.push('</tr>');
@@ -291,7 +291,7 @@ function showDivIframe(url, id) {
         $("#spanIframeTitle").html(allPage.divicesInfo);
         $("#divIframe").css("height", "368px");
         $("#ifmPage").attr("height", "340");
-        $("#ifmPage").attr("src", url + "?deviceid=" + id + "&randon=" + randomnumber);
+        $("#ifmPage").attr("src", "/devices/" + id + "?randon=" + randomnumber);
     } else if (url == "UsersUpdate.aspx") {
         
     }

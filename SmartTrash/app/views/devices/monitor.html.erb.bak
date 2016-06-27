@@ -558,7 +558,7 @@ function demoLogin(){
             		
             		
 				                   
-                    <% @devices.order('update_time desc').each do |de|%>
+                    <% @devices.each do |de|%>
                     <% if (@status==0 and (de.update_time==nill or ((Time.new.to_i-de.update_time) >180))) or (@status==1 and (de.update_time and  (Time.new.to_i-de.update_time) <180)) or (@status==-1)%>
                    <div class="index_img_infosN" onclick="divShow('<%=de.id%>')">
 				        <div class="in_imgN" id="dev_<%=de.id%>">
@@ -574,25 +574,10 @@ function demoLogin(){
 				            </a>
 				        </div>
 				        <div class="in_infosN">
-				            <h4><a onclick="divShow('<%=de.id%>')"  title="<%=de.device_name%>">
-                                             <%if de.device_name.length>5%>
-                                             <%=de.device_name[0,5]%>...
-                                             <%else%>
-                                             <%=de.device_name%>
-                                             <%end%>
-                                             </a></h4>
+				            <h4><a onclick="divShow('<%=de.id%>')"  title="<%=de.device_name%>"><%=de.device_name%></a></h4>
 				        </div>
-				        <div class="in_infosN" style="float: right">
-				                <%if de.update_time and  (Time.new.to_i-de.update_time) >180%>
-                                                  <h4 style="color:#FF5353;">离线</h4>
-                                                <%elsif de.update_time and  (Time.new.to_i-de.update_time) <180%>
-                                                  <h4  style="color:#51E16B;">在线</h4>
-                                                <%else%>
-                                                  <h4 style="color:#FF5353;">离线</h4>
-				                <%end%>
-				        </div>
-				        <div class="pull-right" style="display:none">
-				            <a onclick="divHide('<%=de.id%>')" id="device_h_<%=de.id%>"><img class="newImage_eyes" title="隐藏传感器" src="../../img/closeEyes.png">在线</a>
+				        <div class="pull-right" style="display:none;">
+				            <a onclick="divHide('<%=de.id%>')" id="device_h_<%=de.id%>"><img class="newImage_eyes" title="隐藏传感器" src="../../img/closeEyes.png"></a>
 				            <a style="display:none;" onclick="divShow('<%=de.id%>')" id="device_s_<%=de.id%>"><img title="显示传感器" class="newImage_eyes" src="../../img/openEyes.png"></a>
 				            <a onclick="onLocationClick('<%=de.id%>')"><img title="查看传感器" class="newImage_seT" src="../../img/select_T.png"></a>
 				        </div>
@@ -612,6 +597,94 @@ function demoLogin(){
   		    </div>
 
   <div class="index_theRight" style="margin-left: 400px;" id="avast02">
+		<% @devices.each do |de|%>
+                <%if de.sensor && de.sensor.size>0%>
+                <p class="in_sen_title" id="divicename_<%=de.id%>"  style="display:none">
+                	 <%=de.device_name%>
+                	<span class="pull-right">序列号：<%= de.device_sn%></span>
+                </p>
+                	
+                	
+                <%de.sensor.sort(:order).each do |se|%>		
+                	
+                	<div class="row infos_imgsTitle" id="device-item-<%=de.id%>" style="display:none">
+                    	<div class="col-sm-2" style="display:none">
+                        	<img src="../img/temperature.png" onerror="this.src='../img/scenery-21.png'">
+                        	<p style="padding:0px 0px 10px 10px;">ID:17020</p>
+                    	</div>
+                        <div class="col-sm-1" style="width: 10%;">
+                            <%if se.sensorType==1%>
+                              <span id="s_17020">
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/1.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                    	     </span>
+                           <%elsif se.sensorType==2 or se.sensorType==4%>
+                              <span id="s_17020">
+                                        <%if se.value.to_i == 1%>
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/<%=se.icon%>.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                                        <%else%>
+	                    	        <div id="switch_17020" class="infos_open_" style=" width: 45px;height: 45px;background-image: url('/css/images/<%=se.icon%>.png');"> 
+	                    	          <input type="hidden" id="_switch17020" value="<%=  se.value.to_i%>">
+	                    	        </div>
+                                        <%end%>
+                    	     </span>
+                           <%end%>
+                        </div>
+                    	<div class="col-sm-2" style="width: 20%;">
+                        	<h4><%=se.name%></h4>
+                    	</div>
+                        <div class="col-sm-2" style="width: 18%;">
+                              <%if se.sensorType!=1%>
+                                <p style="margin-top:14px;color: #333;">状态：<span id="st_<%=se.id%>">
+                                <% if se.tag%>
+                                 <%=se.tag%>
+                                <%end%>
+                                </span>
+                        	</p>
+                              <%else%>
+                                <p style="margin-top:14px;color: #1442E8;">数值：<span id="st_<%=se.id%>">
+                                <% if se.value.to_i == se.value.to_f%>
+                                  <%= se.value.to_i%>
+                                <%else%>
+                                  <%= se.value%>
+                                <%end%>
+                                </span>
+                                </p>
+                              <%end%>
+                        </div>
+                        <div class="col-sm-4" style="width: 38%;">
+                            <p style="margin-top:14px;color: #333;">更新时间：<span id="st_<%=se.id%>">
+                                <%if se.updatetime%>
+                                <%= Time.at(se.updatetime).strftime('%Y-%m-%d %H:%M:%S')%>
+                                <%end%>
+                                </span>
+                            </p>
+                        </div>
+                    	<div class="pull-right" style="    line-height: 50px;">
+                    		
+                    	 <%if se.sensorType==1%>	
+			<a id="shouH_chart"  style="display:none" onclick="showFrameDiv('<%=de.id%>','<%=se.id%>','dd','',2,'','','','','','');">&nbsp;∨&nbsp;实时曲线</a>
+                         <%end%>
+                        	<span data-toggle="modal" data-target="#myModal_hist"><a href="javascript:alertWin('<%=se.id%>','<%=de.id%>',30,2)">&nbsp;&gt;&nbsp;历史查询</a></span>&nbsp;
+                        	
+                    	</div>
+                	</div>
+                	<div style="margin-bottom:0px;" class="collapse" id="collapseExample_<%=de.id%>_<%=se.id%>" name="collapseExample_<%=de.id%>">
+                	     <input type="hidden" name="coll_<%=de.id%>" id="coll_<%=de.id%>_<%=se.id%>" value="h">
+					      <!-- 数值型 -->
+                      	  <iframe name="embed-responsive-item iframe_<%=de.id%>" id="iframe_<%=de.id%>_<%=se.id%>" style="width:100%;height:500px;border:none;"></iframe>
+                         
+                         
+                         
+                         
+                         
+                    </div>
+                <%end%>
+                <%end%>	
+                <%end%>	
                 
                 	
                 	
@@ -857,20 +930,23 @@ function demoLogin(){
     }
     
     function divShow(id){
-    	//$("div[id*='device-item-"+id+"']").show();
-    	//$("#divicename_"+id).show();
-    	//$("#device_h_"+id).show();
-    	//$("#device_s_"+id).hide();
-        //if(pre!="" &&pre!=id){
-        //  divHide(pre);
-        //}
-        //pre=id;
+    	$("div[id*='device-item-"+id+"']").show();
+    	$("#divicename_"+id).show();
+    	$("#device_h_"+id).show();
+    	$("#device_s_"+id).hide();
+        if(pre!="" &&pre!=id){
+          divHide(pre);
+        }
+        pre=id;
                $.ajax({
 	               url:"/getSensorsByID",
-	               type:"get",
+	               type:"POST",
 	               data:"id="+id, 
 	               success:function (data) {
-	                  document.getElementById('avast02').innerHTML =data
+	                 
+	                 if(0 == data.code){
+                           html="";
+	                 }
 	               }
                });
     }

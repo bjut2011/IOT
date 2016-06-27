@@ -7,6 +7,7 @@ class User
   key :remeber_digest, String
   key :token, String
   key :type, Integer
+  key :parent_id, String
   many :device
   many :contact
 end
