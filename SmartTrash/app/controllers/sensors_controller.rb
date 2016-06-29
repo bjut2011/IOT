@@ -23,8 +23,17 @@ class SensorsController < ApplicationController
   end
 
   def getSensorsByID
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    if current_admin.nil?
+        redirect_to root_url, :notice => "已经退出登录"
+    end
     @device = Device.find(params[:id])
-    @sensor = @device.sensor.sort(:order)
+    #@sensor = @device.sensor.sort(:order)
+    if current_admin.type!=0
+     @sensor=Sensor.where(:device_id => @device.id,:display => 1).sort(:order)
+    else
+     @sensor = @device.sensor.sort(:order)
+    end
     #respond_to do |format|
      # format.json {render :json => {:code =>0,:sensor => @sensor}}
     #end
@@ -36,6 +45,7 @@ class SensorsController < ApplicationController
     endTime=params[:endTime]
     stime=Time.parse(startTime)
     etime=Time.parse(endTime)
+    etime=etime+24.hour
     tm=stime.to_i
     tm_e=etime.to_i
     @count=Sensorlog.where(:sensor_id => sensorId,:update_time.gt => tm,:update_time.lt => tm_e).count

@@ -459,6 +459,14 @@ function demoLogin(){
 	                            <h5>清洁工管理</h5>
 	                        </a>
 	                    </li>
+                            <% if @current_admin and @current_admin.type < 2%>
+	                    <li>
+	                        <a href="/users?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-user"></i>
+	                            <h5>用户管理</h5>
+	                        </a>
+	                    </li>
+                            <%end%>
                     
                     
                 </ul>

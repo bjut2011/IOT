@@ -3,6 +3,7 @@ class User
 
   key :name, String
   key :email, String
+  key :mobile, String
   key :password_digest, String
   key :remeber_digest, String
   key :token, String

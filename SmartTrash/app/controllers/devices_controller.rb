@@ -10,18 +10,34 @@ class DevicesController < ApplicationController
     #    de.update_attributes(user_id:current_admin.id)
       
     #end 
-    if params["pid"] and current_admin and current_admin.type!=0
+    if params["pid"] and current_admin and current_admin.type ==1
        pid=params["pid"]
        logger.info pid
        @devices=User.find(pid).device
        @project_name=User.find(pid).name
        @project_id=User.find(pid).id
     end
+    if params["pid"] and current_admin and current_admin.type ==2
+       @project_name=current_admin.name
+       @project_id=current_admin.id.to_s
+       @u2ds=Userdevice.where(user_id:current_admin.id.to_s)
+       @devices=[]
+       @u2ds.each do |ud|
+          de=Device.find(ud.device_id)
+          if de
+            @devices.push(de)
+          end
+       end
+    end
     @status=-1
     if params[:status]
      @status=params[:status]
     end
+    logger.info "class_1234"
+    logger.info @devices.class
   end
+
+
   def layout
   end
 
@@ -63,12 +79,24 @@ class DevicesController < ApplicationController
   def getDevices
     current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     @devices = Device.all
-    if params["pid"] and current_admin and current_admin.type!=0
+    if params["pid"] and current_admin and current_admin.type==1
        pid=params["pid"]
        logger.info pid
        @devices=User.find(pid).device
        @project_name=User.find(pid).name
        @project_id=User.find(pid).id
+    end
+    if current_admin and current_admin.type ==2
+       @project_name=current_admin.name
+       @project_id=current_admin.id.to_s
+       @u2ds=Userdevice.where(user_id:current_admin.id.to_s)
+       @devices=[]
+       @u2ds.each do |ud|
+          de=Device.find(ud.device_id)
+          if de
+            @devices.push(de)
+          end
+       end
     end
     respond_to do |format|
       format.json {render :json => {:code =>0,:data => @devices}}
@@ -78,7 +106,7 @@ class DevicesController < ApplicationController
   def explore
     current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     @devices = Device.all
-    if params["pid"] and current_admin and current_admin.type!=0
+    if params["pid"] and current_admin and current_admin.type==1
        pid=params["pid"]
        logger.info pid
        @devices=User.find(pid).device
@@ -86,25 +114,62 @@ class DevicesController < ApplicationController
        @project_id=User.find(pid).id
        @user_id=User.find(pid).id
     end
+    if current_admin and current_admin.type ==2
+       @project_name=current_admin.name
+       @user_id=current_admin.id.to_s
+       @project_id=current_admin.id.to_s
+       @u2ds=Userdevice.where(user_id:current_admin.id.to_s)
+       @devices=[]
+       @u2ds.each do |ud|
+          de=Device.find(ud.device_id)
+          if de
+            @devices.push(de)
+          end
+       end
+    end
   end
   # GET /devices/1
   # GET /devices/1.json
   def show
+      current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+      if current_admin.nil?
+        redirect_to root_url, :notice => "已经退出登录"
+      end
       @dev_id=params["id"]
       @dev=Device.find(@dev_id)
-      @sensor=@dev.sensor
+      if current_admin.type!=0
+        @sensor=Sensor.where(:device_id => @dev.id,:display => 1).sort(:order)
+        
+      else
+        @sensor=@dev.sensor
+      end
       @project=User.find(@dev.user_id)
   end
 
   def monitor
-   current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
-   @devices = Device.all
-   if params["pid"] and current_admin and current_admin.type!=0
+   @current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+   if params["pid"] and @current_admin and @current_admin.type==1
        pid=params["pid"]
        logger.info pid
-       @devices=User.find(pid).device
+       @devices=User.find(pid).device.order('update_time desc')
        @project_name=User.find(pid).name
        @project_id=User.find(pid).id
+   else
+    
+     @devices = Device.all
+   end
+   if params["pid"] and @current_admin and @current_admin.type ==2
+       @project_name=@current_admin.name
+       @project_id=@current_admin.id.to_s
+       @u2ds=Userdevice.where(user_id:@current_admin.id.to_s)
+       @devices=[]
+       @u2ds.each do |ud|
+          de=Device.find(ud.device_id)
+          if de
+            @devices.push(de)
+          end
+       end
+       @devices.sort! { |a,b| a.update_time <=> b.update_time }
    end
    @status=-1
    if params[:status]
@@ -118,6 +183,7 @@ class DevicesController < ApplicationController
   def new
     @device = Device.new
     @project_id=params[:pid]
+    @current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
   end
 
   # GET /devices/1/edit

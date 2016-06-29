@@ -545,6 +545,14 @@ function demoLogin(){
 	                            <h5>清洁工管理</h5>
 	                        </a>
 	                    </li>
+                            <% if @current_admin and @current_admin.type < 2%>
+	                    <li>
+	                        <a href="/users?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-user"></i>
+	                            <h5>用户管理</h5>
+	                        </a>
+	                    </li>
+                            <%end%>
 	                    <!--<li>
 	                        <a href="/scheduler/queryUserScheduler.htm">
 	                            <i class="glyphicon glyphicon-time"></i>
@@ -577,6 +585,7 @@ function demoLogin(){
      
      
     <br>
+     <%if @current_admin and @current_admin.type!=2%>
     <h3 class="trigger_font">管理</h3>
              <a href="/user/queryUserApi.htm" style="display:none"><p class="p_border_"><i class="glyphicon glyphicon-lock"></i>用户API</p></a>
     
@@ -585,6 +594,7 @@ function demoLogin(){
 	    <a href="/contacts/new?pid=<%= @user_id%>"><p><i class="glyphicon glyphicon-pencil"></i>添加清洁工</p></a>
 	    <a href="/user/message_buy.htm"  style="display:none"><p><i class="glyphicon glyphicon-yen"></i>短信购买</p></a>
 	    <a href="/payorder/queryUserPayorder.htm"  style="display:none"><p><i class="glyphicon glyphicon-envelope"></i>短信购买记录</p></a>
+     <%end%>
     
 </div>
             </div>             
@@ -602,13 +612,16 @@ function demoLogin(){
                         <th>姓名</th>
                         <th>手机号码</th>
                         <th>邮箱</th>
+                        <%if  @current_admin.type!=2%>
                         <th>设置</th>
+                        <%end%>
                     </tr>
                     <%  @contacts.each do |co|%>
                     <tr>
                         <td><%=co.name%></td>
                         <td><%=co.mobile%></td>
                         <td><%=co.email%></td>
+                        <%if  @current_admin.type!=2%>
                         <td>
                           
                           
@@ -617,6 +630,7 @@ function demoLogin(){
 	                          <a onclick="delbindUserCon('<%=co.id%>')">删除</a>
                            
                          </td>
+                        <%end%>
                     </tr>
                     <%end%>
                     

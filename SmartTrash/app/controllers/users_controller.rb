@@ -4,7 +4,17 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    if current_admin and current_admin.type==1
+       @users = User.where(parent_id:current_admin.id.to_s)
+    else
+       @users = User.all
+    end
+    @user_id=params[:pid]
+    if  current_admin
+        @user_id=current_admin.id
+    end
+ 
   end
 
   # GET /users/1
@@ -12,9 +22,32 @@ class UsersController < ApplicationController
   def show
   end
 
+  def delbinding
+     @ud=Userdevice.where(device_id:params[:device_id],user_id:params[:user_id]).first
+     @ud.destroy
+     respond_to do |format|
+         format.json {render :json => {:code =>0}}
+     end
+  end
+  
+  def binding
+      @ud=Userdevice.new(device_id:params[:device_id],user_id:params[:user_id]);
+      @ud.save
+      respond_to do |format|
+         format.json {render :json => {:code =>0}}
+      end
+  end
+
+  def devicebinding
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    @devices=Device.where(user_id:current_admin.id)
+    @user_id=params[:user_id]
+     
+  end
   # GET /users/new
   def new
     @user = User.new
+    @user_id=params[:pid]
   end
   
   def logout
@@ -73,9 +106,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    #@user = User.new(user_params)
     
-    logger.info user_params
+    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    @user = User.new(name:params[:name],parent_id:current_admin.id.to_s,mobile:params[:mobile],email:params[:email],password_digest:params[:password],type:2)
+    #@user.save
 
     respond_to do |format|
       if @user.save

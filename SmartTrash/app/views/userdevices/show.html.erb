@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @userdevice.user_id %>
+</p>
+
+<p>
+  <strong>Device:</strong>
+  <%= @userdevice.device_id %>
+</p>
+
+<%= link_to 'Edit', edit_userdevice_path(@userdevice) %> |
+<%= link_to 'Back', userdevices_path %>

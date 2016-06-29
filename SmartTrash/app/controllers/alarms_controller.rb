@@ -6,8 +6,8 @@ class AlarmsController < ApplicationController
   # GET /alarms.json
   def index
     @alarms = Alarm.all
-    current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
-    if params["pid"]  and current_admin and  current_admin.type!=0
+    @current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
+    if params["pid"]  and @current_admin and  @current_admin.type!=0
        pid=params["pid"]
        logger.info pid
        @project_name=User.find(pid).name

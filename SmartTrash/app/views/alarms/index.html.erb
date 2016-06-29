@@ -558,9 +558,9 @@ function demoLogin(){
     
           <br>
           <h3 class="trigger_font">管理</h3> 
-    
+          <%if @current_admin and @current_admin.type!=2%>
           <a href="javascript:updateAlarms('');"><p class="p_border_"><i class="glyphicon glyphicon-plus"></i><label data-toggle="modal" data-target="#addAlarms">添加报警</label></p></a>
-    
+          <%end%>
          <a href="/alarmlogs?pid=<%=@project_id%>"><p><i class="glyphicon glyphicon-pencil"></i>报警记录</p></a>
          </div>
 
@@ -619,6 +619,7 @@ function demoLogin(){
         <% else %>
         <% end %>
       </div>
+      <%if @current_admin and @current_admin.type!=2%>
       <div class="pull-right">
         <a href="javascript:updateAlarms('<%= am.id%>');" title="编辑报警">
           <p data-toggle="modal" data-target="#addAlarms">
@@ -634,6 +635,7 @@ function demoLogin(){
             删除
         </a>
       </div>
+      <%end%>
     </div>
     <%end%>
   </div>

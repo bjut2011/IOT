@@ -558,9 +558,9 @@ function demoLogin(){
     
           <br>
           <h3 class="trigger_font">管理</h3> 
-    
+          <%if @current_admin and @current_admin.type!=2%>
           <a href="javascript:updateAlarms('');"><p class="p_border_"><i class="glyphicon glyphicon-plus"></i><label data-toggle="modal" data-target="#addAlarms">添加报警</label></p></a>
-    
+          <%end%>
          <a href="#"><p><i class="glyphicon glyphicon-pencil"></i>报警记录</p></a>
          </div>
 

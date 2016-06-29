@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :userdevices
   resources :alarmlogs
   resources :schedulers
   get 'dmaps/layout' =>"dmaps#layout"
@@ -37,6 +38,9 @@ Rails.application.routes.draw do
   post 'login' => 'users#create_login_session'
   delete 'logout' => 'users#logout'
   get 'logout' => 'users#logout'
+  get 'devicebinding' => 'users#devicebinding'
+  post 'users/binding' => 'users#binding'
+  post 'users/delbinding' => 'users#delbinding'
   #get 'login' => 'sessions#new'
   #get 'login' => 'sessions#new'
   #post 'login' => 'sessions#create'

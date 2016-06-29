@@ -5,6 +5,7 @@ class SchedulersController < ApplicationController
   # GET /schedulers
   # GET /schedulers.json
   def index
+    @current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     @schedulers = Scheduler.all
     if params[:pid]
        @project_id=params[:pid]
@@ -21,6 +22,7 @@ class SchedulersController < ApplicationController
     @project_id=params[:pid]
     @scheduler = Scheduler.new
     @devices= Device.where(user_id:params[:pid])
+    @current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
   end
 
   # GET /schedulers/1/edit
@@ -31,6 +33,7 @@ class SchedulersController < ApplicationController
     logger.info @curdevice
     @devices= Device.where(user_id:@curdevice.user_id)
     @project_id=@curdevice.user_id
+    @current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
   end
 
   # POST /schedulers

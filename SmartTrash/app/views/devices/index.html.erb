@@ -534,6 +534,14 @@ function demoLogin(){
 	                            <h5>清洁工管理</h5>
 	                        </a>
 	                    </li>
+                            <% if @current_admin and @current_admin.type < 2%>
+	                    <li>
+	                        <a href="/users?pid=<%=@project_id%>">
+	                            <i class="glyphicon glyphicon-user"></i>
+	                            <h5>用户管理</h5>
+	                        </a>
+	                    </li>
+                            <%end%>
                     
                     
                 </ul>
@@ -552,10 +560,12 @@ function demoLogin(){
 	    <a href="/devices?pid=<%=@project_id%>&status=0"> <p>离线设备</p></a>
     
     <br>
+  
+    <% if @current_admin and @current_admin.type < 2%>
     <h3 class="trigger_font">管理设备</h3>
     
    	 <a href="/devices/new?pid=<%=@project_id%>"><p class="p_border_">添加设备</p></a>
-    
+    <%end%>
 </div>
             </div>
         </div>     
@@ -595,11 +605,12 @@ function demoLogin(){
  
                                     <% end %>
 			        </div>
+                                <% if @current_admin and @current_admin.type < 2%>
 			        <div class="col-sm-5 allDe_Opera">
-			            <a href="/device/devices/device-index/3180/tcp.htm" style="display:none">设置连接</a>
 			            <a href="/devices/<%=pd.id%>">编辑设备</a>
 			            <a onclick="javascript:deleteDevice('<%=pd.id%>')">删除设备</a>
 			        </div>
+                                <%end%>
 			    </div>
                     <%end%>
                   <%end%>

@@ -7,6 +7,7 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
     @user_id=params[:pid]
+    @current_admin ||=  User.find_by_token(cookies[:token]) if cookies[:token]
     
   end
 
